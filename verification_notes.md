@@ -22,3 +22,6 @@
 1. About 页面 “Our Philosophy” 区块中的 **Vision** 与 **Quality Policy** 两个白色卡片目前已显示为一致高度，左右边界与底边对齐，视觉上已修正此前不一致的问题。
 2. Contact 页面 “Send an Inquiry” 区块已由按钮形式改为直接邮箱链接，主链接文案显示为 **jojowei@huiyijianpin.cn**，并附带“会自动打开默认邮件客户端且预填收件人与主题”的说明。
 3. Quality 页面 Certifications 模块已调整为 3+2 的居中布局：第一行 3 个卡片，第二行 2 个卡片位于中间区域，整体观感较之前更对称。
+4. About 页面 Locations 区块中的两个白色卡片目前已显示为一致高度，标题与正文虽字数不同，但整体外框尺寸与底边已对齐。
+5. Quality 页面 Documentation Download Center 的六个文档卡片现已保持一致外框高度，第二排卡片不再出现明显高低不齐。
+6. 代码检索已确认前端页面中不再存在 “Download TDS” 按钮文案或原先的占位下载提示逻辑，产品页的该操作已移除。

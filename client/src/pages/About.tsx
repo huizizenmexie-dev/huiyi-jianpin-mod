@@ -226,9 +226,9 @@ export default function About() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            <FadeIn delay={100}>
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto items-stretch">
+            <FadeIn delay={100} className="h-full">
+              <div className="h-full min-h-[220px] bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 text-center flex flex-col items-center justify-center">
                 <MapPin className="w-8 h-8 text-earth-green mx-auto mb-4" />
                 <h3 className="font-heading font-semibold text-deep-brown text-lg mb-2">
                   Headquarters & Sourcing Base
@@ -238,8 +238,8 @@ export default function About() {
                 </p>
               </div>
             </FadeIn>
-            <FadeIn delay={200}>
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 text-center">
+            <FadeIn delay={200} className="h-full">
+              <div className="h-full min-h-[220px] bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 text-center flex flex-col items-center justify-center">
                 <MapPin className="w-8 h-8 text-earth-green mx-auto mb-4" />
                 <h3 className="font-heading font-semibold text-deep-brown text-lg mb-2">
                   Manufacturing Facility

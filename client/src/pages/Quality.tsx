@@ -285,19 +285,19 @@ export default function Quality() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto items-stretch">
             {documents.map((doc, i) => (
-              <FadeIn key={doc.name} delay={i * 60}>
+              <FadeIn key={doc.name} delay={i * 60} className="h-full">
                 <a
                   href={doc.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   download
-                  className="block w-full bg-white rounded-lg p-5 border border-border hover:border-earth-green shadow-sm hover:shadow-md transition-all text-left group"
+                  className="block h-full w-full min-h-[126px] bg-white rounded-lg p-5 border border-border hover:border-earth-green shadow-sm hover:shadow-md transition-all text-left group"
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex h-full items-start gap-3">
                     <FileText className="w-5 h-5 text-earth-green shrink-0 mt-0.5" />
-                    <div className="flex-1">
+                    <div className="flex-1 flex flex-col justify-center">
                       <h4 className="font-heading font-semibold text-deep-brown text-sm group-hover:text-earth-green transition-colors">
                         {doc.name}
                       </h4>

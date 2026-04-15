@@ -4,7 +4,7 @@
  */
 import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
-import { ChevronRight, ArrowLeft, Mail, Phone, FileDown } from "lucide-react";
+import { ChevronRight, ArrowLeft, Mail, Phone } from "lucide-react";
 import { getProductBySlug } from "@/lib/productData";
 
 const CONTACT_EMAIL_BASE = "mailto:jojowei@huiyijianpin.cn?subject=";
@@ -103,17 +103,6 @@ export default function ProductDetail() {
                   <ArrowLeft className="w-4 h-4" />
                   Back to Products
                 </Link>
-                <button
-                  onClick={() => {
-                    import("sonner").then(({ toast }) =>
-                      toast.info("TDS document will be available for download soon.")
-                    );
-                  }}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 border border-harvest-gold text-harvest-gold rounded-md hover:bg-harvest-gold hover:text-white transition-colors text-sm"
-                >
-                  <FileDown className="w-4 h-4" />
-                  Download TDS
-                </button>
               </div>
             </div>
           </div>
