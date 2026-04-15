@@ -4,3 +4,6 @@
 - [x] 删除所有产品页面中的 Download TDS 按钮或下载入口
 - [x] 统一 About 页面 Locations 区块中两个白色卡片的高度与视觉尺寸
 - [x] 统一 Quality 页面 Documentation Download Center 中文档卡片的高度与视觉尺寸
+- [x] 为首页（/）补充关键词相关元信息
+- [x] 将首页标题调整到 30–60 个字符，并确保通过 document.title 生效
+- [x] 将首页描述调整到 50–160 个字符，并更新对应 meta description

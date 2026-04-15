@@ -28,6 +28,11 @@ const HERO_IMG =
 const CONTACT_EMAIL =
   "mailto:jojowei@huiyijianpin.cn?subject=Product%20Inquiry%20-%20Website&body=Please%20fill%20in%3A%0ACompany%3A%0AProduct%20of%20Interest%3A%0AQuantity%3A%0AMessage%3A";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
+const HOME_SEO_TITLE = "Soy Lecithin & Phospholipids | Huiyi Jianpin";
+const HOME_SEO_DESCRIPTION =
+  "ISO 22000 certified soy lecithin, phospholipids, soy protein and fiber from Heilongjiang with traceable sourcing and global B2B supply.";
+const HOME_SEO_KEYWORDS =
+  "soy lecithin, phospholipids, phosphatidylcholine, phosphatidylserine, soy protein isolate, soy dietary fiber, Huiyi Jianpin";
 
 const industries = [
   { icon: Candy, title: "Chocolate & Confectionery", desc: "Viscosity reduction, bloom control, cocoa butter savings" },
@@ -124,6 +129,23 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 }
 
 export default function Home() {
+  useEffect(() => {
+    document.title = HOME_SEO_TITLE;
+
+    const ensureMeta = (name: string, content: string) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+
+    ensureMeta("description", HOME_SEO_DESCRIPTION);
+    ensureMeta("keywords", HOME_SEO_KEYWORDS);
+  }, []);
+
   return (
     <div>
       {/* ─── Hero ─── */}
