@@ -181,9 +181,9 @@ export default function About() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <FadeIn delay={100}>
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-earth-green/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
+            <FadeIn delay={100} className="h-full">
+              <div className="h-full min-h-[240px] bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 flex flex-col">
                 <div className="w-12 h-12 rounded-full bg-earth-green/10 flex items-center justify-center mb-4">
                   <Eye className="w-6 h-6 text-earth-green" />
                 </div>
@@ -195,8 +195,8 @@ export default function About() {
                 </p>
               </div>
             </FadeIn>
-            <FadeIn delay={200}>
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-earth-green/10">
+            <FadeIn delay={200} className="h-full">
+              <div className="h-full min-h-[240px] bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 flex flex-col">
                 <div className="w-12 h-12 rounded-full bg-earth-green/10 flex items-center justify-center mb-4">
                   <ShieldCheck className="w-6 h-6 text-earth-green" />
                 </div>

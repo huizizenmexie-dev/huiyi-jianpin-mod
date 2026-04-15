@@ -147,10 +147,16 @@ export default function Quality() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 gap-5 max-w-5xl mx-auto sm:grid-cols-2 lg:grid-cols-6">
             {certifications.map((cert, i) => (
-              <FadeIn key={cert.name} delay={i * 80}>
-                <div className="bg-white rounded-xl p-6 border border-harvest-gold/20 shadow-sm text-center hover:shadow-md hover:border-harvest-gold/40 transition-all">
+              <FadeIn
+                key={cert.name}
+                delay={i * 80}
+                className={`h-full lg:col-span-2 ${
+                  i === 3 ? "lg:col-start-2" : i === 4 ? "lg:col-start-4" : ""
+                }`}
+              >
+                <div className="h-full bg-white rounded-xl p-6 border border-harvest-gold/20 shadow-sm text-center hover:shadow-md hover:border-harvest-gold/40 transition-all">
                   <div className="w-14 h-14 mx-auto rounded-full bg-harvest-gold/15 flex items-center justify-center mb-4">
                     <cert.icon className="w-7 h-7 text-harvest-gold" />
                   </div>

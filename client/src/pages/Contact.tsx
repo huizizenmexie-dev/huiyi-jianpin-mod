@@ -106,14 +106,21 @@ export default function Contact() {
                   Send an Inquiry
                 </h3>
                 <p className="text-sm text-medium-gray mb-4 leading-relaxed">
-                  Click the button below to open your email client. The recipient and subject will be pre-filled. Please include your company name, product of interest, and quantity in the message body.
+                  Click the email link below to open your default mail client automatically with the recipient and subject pre-filled. Please include your company name, product of interest, and quantity in the message body.
                 </p>
                 <a
                   href={CONTACT_EMAIL}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors w-full justify-center sm:w-auto"
+                  className="inline-flex w-full items-start gap-3 rounded-xl border border-earth-green/20 bg-white px-5 py-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-earth-green hover:shadow-md"
                 >
-                  <Mail className="w-5 h-5" />
-                  Send Email Inquiry
+                  <Mail className="mt-0.5 h-5 w-5 shrink-0 text-earth-green" />
+                  <span className="flex flex-col">
+                    <span className="text-sm font-heading font-semibold text-deep-brown">
+                      jojowei@huiyijianpin.cn
+                    </span>
+                    <span className="mt-1 text-xs text-medium-gray">
+                      Opens your default email app with recipient and subject pre-filled.
+                    </span>
+                  </span>
                 </a>
               </div>
 
