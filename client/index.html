@@ -12,6 +12,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script type="text/javascript">
+      (function(w, d, n, a, j, s) {
+        w[n] =
+          w[n] ||
+          function() {
+            return (w[n].a = w[n].a || []).push(arguments);
+          };
+        j = d.createElement('script');
+        j.async = true;
+        j.src = 'https://sirius-it-site.lx.netease.com/site-sdk.js';
+        j.onload = function() {
+          setTimeout(() => {
+            if (!w.__siteSDK__ || typeof w.__siteSDK__.setDefaultConfig !== 'function' || typeof w.__siteSDK__.init !== 'function') {
+              console.warn('Site SDK was loaded, but the global API is not ready.');
+              return;
+            }
+
+            w.__siteSDK__.setDefaultConfig({
+              outerKey: 'key568983629cdf4c00a613bcdf6913be10',
+            });
+            w.__siteSDK__.init();
+          }, 500);
+        };
+        j.onerror = function() {
+          console.warn('Failed to load site SDK script.');
+        };
+        s = d.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(j, s);
+      })(window, document, '__siteSDK__');
+    </script>
   </head>
 
   <body>

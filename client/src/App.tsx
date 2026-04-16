@@ -12,8 +12,8 @@ import ProductDetail from "./pages/ProductDetail";
 import IndustrySolutions from "./pages/IndustrySolutions";
 import Quality from "./pages/Quality";
 import Contact from "./pages/Contact";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
       <Switch>
