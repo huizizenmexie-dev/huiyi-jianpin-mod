@@ -14,8 +14,8 @@ import {
   Phone,
 } from "lucide-react";
 
-const CONTACT_EMAIL =
-  "mailto:jojowei@huiyijianpin.cn?subject=Product%20Inquiry%20-%20Website&body=Please%20fill%20in%3A%0ACompany%3A%0AProduct%20of%20Interest%3A%0AQuantity%3A%0AMessage%3A";
+const QUOTE_FORM_LINK = "/contact#quoteForm";
+const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 
 /* ─── Navbar ─── */
@@ -117,7 +117,7 @@ function Navbar() {
 
         {/* Desktop CTA */}
         <a
-          href={CONTACT_EMAIL}
+          href={QUOTE_FORM_LINK}
           className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
         >
           <Mail className="w-4 h-4" />
@@ -183,7 +183,7 @@ function Navbar() {
               )
             )}
             <a
-              href={CONTACT_EMAIL}
+              href={QUOTE_FORM_LINK}
               className="flex items-center justify-center gap-2 mt-3 px-4 py-2.5 bg-earth-green text-white text-sm font-medium rounded-md"
             >
               <Mail className="w-4 h-4" />
@@ -298,7 +298,7 @@ function FloatingContact() {
       {open && (
         <div className="mb-3 bg-white rounded-xl shadow-xl border border-border p-3 space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-200">
           <a
-            href={CONTACT_EMAIL}
+            href={INQUIRY_FORM_LINK}
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors"
           >
             <Mail className="w-5 h-5 text-earth-green" />
