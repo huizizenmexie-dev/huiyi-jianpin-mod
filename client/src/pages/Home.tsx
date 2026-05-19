@@ -25,8 +25,7 @@ import {
 
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
-const CONTACT_EMAIL =
-  "mailto:jojowei@huiyijianpin.cn?subject=Product%20Inquiry%20-%20Website&body=Please%20fill%20in%3A%0ACompany%3A%0AProduct%20of%20Interest%3A%0AQuantity%3A%0AMessage%3A";
+const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 const HOME_SEO_TITLE = "Soy Lecithin & Phospholipids | Huiyi Jianpin";
 const HOME_SEO_DESCRIPTION =
@@ -148,7 +147,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* ─── Hero ─── */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -171,7 +169,6 @@ export default function Home() {
               from farm to shipment.
             </p>
 
-            {/* Trust Badges */}
             <div className="flex flex-wrap gap-3 mb-8">
               {["ISO 22000", "FSSC 22000", "10,000T Capacity", "Non-GMO IP"].map(
                 (badge) => (
@@ -186,7 +183,6 @@ export default function Home() {
               )}
             </div>
 
-            {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/products"
@@ -196,7 +192,7 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a
-                href={CONTACT_EMAIL}
+                href={INQUIRY_FORM_LINK}
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-harvest-gold text-harvest-gold font-medium rounded-md hover:bg-harvest-gold hover:text-white transition-colors"
               >
                 Contact an Engineer
@@ -206,7 +202,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Industry Entry Grid ─── */}
       <section className="py-20 lg:py-28 bg-warm-ivory">
         <div className="container">
           <FadeIn>
@@ -240,7 +235,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Product Systems ─── */}
       <section className="py-20 lg:py-28 bg-soft-green">
         <div className="container">
           <FadeIn>
@@ -285,7 +279,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Trust Layer ─── */}
       <section className="py-16 lg:py-24 bg-warm-ivory">
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
@@ -308,7 +301,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Footer CTA ─── */}
       <section className="py-20 lg:py-28 bg-dark-green">
         <div className="container text-center">
           <FadeIn>
@@ -322,7 +314,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href={CONTACT_EMAIL}
+                href={INQUIRY_FORM_LINK}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 <Mail className="w-4 h-4" />
