@@ -60,10 +60,7 @@ function Navbar() {
     >
       <nav className="container flex items-center justify-between h-16 lg:h-18">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-8 h-8 rounded-full bg-earth-green flex items-center justify-center">
-            <span className="text-white font-heading font-bold text-sm">H</span>
-          </div>
+        <Link href="/" className="flex items-center shrink-0">
           <span className="font-heading font-semibold text-deep-brown text-base lg:text-lg tracking-tight">
             Huiyi Jianpin
           </span>
@@ -215,10 +212,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-earth-green flex items-center justify-center">
-                <span className="text-white font-heading font-bold text-sm">H</span>
-              </div>
+            <div className="mb-4">
               <span className="font-heading font-semibold text-warm-ivory text-lg">
                 Huiyi Jianpin
               </span>
