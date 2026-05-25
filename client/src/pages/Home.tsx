@@ -1,6 +1,6 @@
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
- * Home page: Hero with soybean field, industry grid, product systems, trust layer, footer CTA
+ * Home page: Hero with soybean field, industry grid, product systems, trust layer, resilience narrative, footer CTA
  */
 import { Link } from "wouter";
 import { useEffect, useRef, useState } from "react";
@@ -21,17 +21,26 @@ import {
   Leaf,
   Sparkles,
   Dog,
+  Globe2,
+  PackageCheck,
+  Route,
 } from "lucide-react";
+import {
+  applyPageSeo,
+  buildBreadcrumbSchema,
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+} from "@/lib/seo";
 
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
 const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
-const HOME_SEO_TITLE = "Soy Lecithin & Phospholipids | Huiyi Jianpin";
+const HOME_SEO_TITLE = "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin";
 const HOME_SEO_DESCRIPTION =
-  "ISO 22000 certified soy lecithin, phospholipids, soy protein and fiber from Heilongjiang with traceable sourcing and global B2B supply.";
+  "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability, and stable phospholipid supply from China.";
 const HOME_SEO_KEYWORDS =
-  "soy lecithin, phospholipids, phosphatidylcholine, phosphatidylserine, soy protein isolate, soy dietary fiber, Huiyi Jianpin";
+  "stable soy lecithin supplier, resilient phospholipid supply chain, Non-GMO IP lecithin China, secure ingredient sourcing, phosphatidylcholine supplier, phosphatidylserine supplier, Huiyi Jianpin";
 
 const industries = [
   { icon: Candy, title: "Chocolate & Confectionery", desc: "Viscosity reduction, bloom control, cocoa butter savings" },
@@ -61,7 +70,12 @@ const trustItems = [
   { icon: Headphones, title: "Support", desc: "Direct Access to Application Engineers" },
 ];
 
-/* Animated counter hook */
+const resilienceItems = [
+  { icon: Globe2, title: "China-Based Supply Continuity", desc: "Stable production planning from sourcing base to GMP workshop." },
+  { icon: PackageCheck, title: "Documented Procurement Confidence", desc: "COA, TDS, MSDS and certification files support supplier qualification." },
+  { icon: Route, title: "Traceable Farm-to-Shipment Control", desc: "Heilongjiang Non-GMO IP sourcing linked to batch-level quality records." },
+];
+
 function useCounter(end: number, duration = 2000) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -93,7 +107,6 @@ function useCounter(end: number, duration = 2000) {
   return { count, ref };
 }
 
-/* Fade-in on scroll */
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -128,22 +141,21 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 }
 
 export default function Home() {
-  useEffect(() => {
-    document.title = HOME_SEO_TITLE;
-
-    const ensureMeta = (name: string, content: string) => {
-      let tag = document.querySelector(`meta[name="${name}"]`);
-      if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("name", name);
-        document.head.appendChild(tag);
-      }
-      tag.setAttribute("content", content);
-    };
-
-    ensureMeta("description", HOME_SEO_DESCRIPTION);
-    ensureMeta("keywords", HOME_SEO_KEYWORDS);
-  }, []);
+  useEffect(
+    () =>
+      applyPageSeo({
+        title: HOME_SEO_TITLE,
+        description: HOME_SEO_DESCRIPTION,
+        keywords: HOME_SEO_KEYWORDS,
+        path: "/",
+        jsonLd: [
+          buildOrganizationSchema(),
+          buildWebSiteSchema(),
+          buildBreadcrumbSchema([{ name: "Home", path: "/" }]),
+        ],
+      }),
+    []
+  );
 
   return (
     <div>
@@ -156,17 +168,18 @@ export default function Home() {
         <div className="relative container py-32 lg:py-40">
           <div className="max-w-2xl">
             <p className="text-harvest-gold font-heading font-medium text-sm uppercase tracking-widest mb-4">
-              From Heilongjiang Black Soil to Global Formulations
+              From Heilongjiang Black Soil to Stable Global Formulations
             </p>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
               Natural Phospholipids
               <br />
-              <span className="text-harvest-gold">Precision Engineered</span>
+              <span className="text-harvest-gold">Engineered for Stable Supply</span>
             </h1>
-            <p className="text-white/85 text-lg md:text-xl leading-relaxed mb-8 max-w-xl">
-              ISO 22000 certified soy lecithin and high-purity phospholipid
-              derivatives. 10,000 tons annual capacity. Non-GMO IP traceable
-              from farm to shipment.
+            <p className="text-white/85 text-lg md:text-xl leading-relaxed mb-4 max-w-xl">
+              ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China.
+            </p>
+            <p className="text-harvest-gold/90 text-sm font-semibold mb-8 border-l-2 border-harvest-gold pl-4">
+              Guaranteed supply stability amidst global sourcing uncertainty.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-8">
@@ -301,6 +314,52 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-20 lg:py-28 bg-soft-green">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-center">
+            <FadeIn>
+              <div>
+                <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
+                  Supply Chain Resilience
+                </p>
+                <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown mb-5">
+                  Your Safe Harbor in Global Ingredient Sourcing
+                </h2>
+                <p className="text-medium-gray text-lg leading-relaxed mb-6">
+                  When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control.
+                </p>
+                <Link
+                  href="/quality"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
+                >
+                  Verify Quality & Traceability
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </FadeIn>
+            <div className="grid grid-cols-1 gap-4">
+              {resilienceItems.map((item, index) => (
+                <FadeIn key={item.title} delay={index * 100}>
+                  <div className="bg-white rounded-lg border border-earth-green/10 p-6 shadow-sm hover:shadow-md transition-all">
+                    <div className="flex items-start gap-4">
+                      <div className="w-11 h-11 rounded-full bg-earth-green/10 flex items-center justify-center shrink-0">
+                        <item.icon className="w-5 h-5 text-earth-green" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading font-semibold text-deep-brown text-lg mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-medium-gray text-sm leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 lg:py-28 bg-dark-green">
         <div className="container text-center">
           <FadeIn>
@@ -308,9 +367,7 @@ export default function Home() {
               From Field to Formulation
             </h2>
             <p className="text-warm-ivory/70 text-lg max-w-2xl mx-auto mb-8">
-              Precision Controlled Every Step. Tell us about your product needs.
-              Our agricultural and application engineers provide tailored
-              recommendations.
+              Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
