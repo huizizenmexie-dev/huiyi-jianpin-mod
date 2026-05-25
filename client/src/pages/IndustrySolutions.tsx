@@ -5,11 +5,11 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronRight, Mail } from "lucide-react";
+import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
-const CONTACT_EMAIL =
-  "mailto:jojowei@huiyijianpin.cn?subject=Industry%20Application%20Inquiry%20-%20Website&body=Please%20fill%20in%3A%0ACompany%3A%0AIndustry%3A%0ASpecific%20Request%3A%0AMessage%3A";
+const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 
 interface SolutionRow {
   industry: string;
@@ -125,6 +125,26 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export default function IndustrySolutions() {
   const [activeFilter, setActiveFilter] = useState("All");
 
+  useEffect(
+    () =>
+      applyPageSeo({
+        title: "Industry Solutions | Stable Phospholipid Applications",
+        description:
+          "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications with stable sourcing support.",
+        keywords:
+          "lecithin applications, phospholipid industry solutions, stable ingredient sourcing, food emulsifier solutions, nutraceutical phospholipids, soy protein applications",
+        path: "/industry-solutions",
+        image: HEADER_IMG,
+        jsonLd: [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Industry Solutions", path: "/industry-solutions" },
+          ]),
+        ],
+      }),
+    []
+  );
+
   const filtered =
     activeFilter === "All"
       ? solutions
@@ -149,7 +169,7 @@ export default function IndustrySolutions() {
             Application Guide & Selection Matrix
           </h1>
           <p className="text-white/70 text-lg mt-2 max-w-2xl">
-            From food to industrial applications — precisely matched phospholipid solutions.
+            From food to industrial applications — precisely matched phospholipid solutions backed by stable sourcing support.
           </p>
         </div>
       </section>
@@ -157,7 +177,6 @@ export default function IndustrySolutions() {
       {/* Filter + Table */}
       <section className="py-12 lg:py-20 bg-warm-ivory">
         <div className="container">
-          {/* Filter Tags */}
           <FadeIn>
             <div className="flex flex-wrap gap-2 mb-8">
               {filterTags.map((tag) => (
@@ -176,7 +195,6 @@ export default function IndustrySolutions() {
             </div>
           </FadeIn>
 
-          {/* Table */}
           <FadeIn delay={100}>
             <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
               <table className="w-full min-w-[900px]">
@@ -219,19 +237,17 @@ export default function IndustrySolutions() {
             </div>
           </FadeIn>
 
-          {/* Notes */}
           <FadeIn delay={200}>
             <div className="mt-6 bg-white rounded-lg p-5 border border-border text-sm text-medium-gray space-y-1">
               <p>* Recommended dosages are typical ranges. Adjust based on specific formulation and process.</p>
-              <p>* For custom specifications or allergen-free solutions, contact our application engineers.</p>
+              <p>* For custom specifications, allergen-free solutions, or secure sourcing plans, contact our application engineers.</p>
             </div>
           </FadeIn>
 
-          {/* CTA */}
           <FadeIn delay={300}>
             <div className="mt-10 text-center">
               <a
-                href={CONTACT_EMAIL}
+                href={INQUIRY_FORM_LINK}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 <Mail className="w-4 h-4" />
