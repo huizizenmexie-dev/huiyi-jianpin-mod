@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import { products, filterCategories } from "@/lib/productData";
+import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
@@ -46,6 +47,26 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export default function Products() {
   const [activeFilter, setActiveFilter] = useState("All");
 
+  useEffect(
+    () =>
+      applyPageSeo({
+        title: "Soy Lecithin & Phospholipid Products | Stable B2B Supply",
+        description:
+          "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Huiyi Jianpin, built for reliable sourcing and global B2B supply.",
+        keywords:
+          "soy lecithin products, phospholipid systems, phosphatidylcholine supplier, phosphatidylserine supplier, reliable lecithin sourcing, stable B2B ingredient supply",
+        path: "/products",
+        image: HEADER_IMG,
+        jsonLd: [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+          ]),
+        ],
+      }),
+    []
+  );
+
   const filtered =
     activeFilter === "All"
       ? products
@@ -69,6 +90,9 @@ export default function Products() {
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
             Natural Phospholipid Systems
           </h1>
+          <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
+            Reliable sourcing for stable global B2B supply.
+          </p>
         </div>
       </section>
 
@@ -76,7 +100,7 @@ export default function Products() {
       <section className="py-8 bg-warm-ivory border-b border-border sticky top-16 z-30 backdrop-blur-sm" style={{ backgroundColor: "rgba(245, 242, 235, 0.95)" }}>
         <div className="container">
           <p className="text-medium-gray text-sm mb-4 max-w-3xl">
-            From standard soy lecithin to pharmaceutical-grade high-purity derivatives, our nine product systems cover food, pharma, nutrition, and feed applications. Click any product to view full specifications.
+            From standard soy lecithin to high-purity phospholipid derivatives, our product systems support food, nutrition, pharma, cosmetics, feed, and plant-based applications. Each product is backed by stable production capacity, documented specifications, and batch-level quality traceability.
           </p>
           <div className="flex flex-wrap gap-2">
             {filterCategories.map((cat) => (
@@ -107,7 +131,7 @@ export default function Products() {
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={product.image}
-                        alt={product.name}
+                        alt={`${product.name} for stable ingredient sourcing`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
