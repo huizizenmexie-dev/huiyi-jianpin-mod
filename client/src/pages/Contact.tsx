@@ -13,6 +13,7 @@ import {
   WEBSITE_FROM_NAME,
   type Web3FormsStatus,
 } from "@/lib/web3Forms";
+import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
 
 const SPLIT_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
@@ -67,6 +68,26 @@ export default function Contact() {
     inquiryForm: { type: "idle", message: "" },
   });
   const [inquiryName, setInquiryName] = useState("");
+
+  useEffect(
+    () =>
+      applyPageSeo({
+        title: "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry",
+        description:
+          "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.",
+        keywords:
+          "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact, lecithin samples documentation",
+        path: "/contact",
+        image: SPLIT_IMG,
+        jsonLd: [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        ],
+      }),
+    []
+  );
 
   useEffect(() => {
     const timers = Object.entries(statuses)
@@ -149,7 +170,7 @@ export default function Contact() {
             <div className="relative min-h-[360px] lg:min-h-full">
               <img
                 src={SPLIT_IMG}
-                alt="Soybean field and GMP factory"
+                alt="Soybean field and GMP factory for stable ingredient supply"
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
@@ -161,7 +182,7 @@ export default function Contact() {
                   Get in Touch
                 </h1>
                 <p className="max-w-md text-sm leading-relaxed text-white/85">
-                  Tell us your application, target dosage, and required specification. Our team will respond within 1 business day.
+                  Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.
                 </p>
 
                 <div className="mt-8 space-y-4 rounded-xl border border-white/15 bg-white/90 p-5 backdrop-blur-sm">
