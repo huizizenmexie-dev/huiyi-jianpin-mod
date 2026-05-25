@@ -14,6 +14,7 @@ import {
   Download,
   ExternalLink,
 } from "lucide-react";
+import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
 
 const QUALITY_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-quality-samples-iG6mFTz7k7z8wbBtmTUuWG.webp";
@@ -109,6 +110,26 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 }
 
 export default function Quality() {
+  useEffect(
+    () =>
+      applyPageSeo({
+        title: "Quality & Traceability | Secure Soy Lecithin Supply Chain",
+        description:
+          "Verify Huiyi Jianpin quality systems, certifications, COA documentation and batch traceability for secure soy lecithin and phospholipid sourcing.",
+        keywords:
+          "soy lecithin quality, phospholipid traceability, COA documentation, secure ingredient sourcing, Non-GMO IP traceability, FSSC 22000 lecithin supplier",
+        path: "/quality",
+        image: QUALITY_IMG,
+        jsonLd: [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Quality", path: "/quality" },
+          ]),
+        ],
+      }),
+    []
+  );
+
   return (
     <div>
       {/* Header */}
@@ -128,7 +149,7 @@ export default function Quality() {
             Quality Assurance & Compliance
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            Certified. Traceable. Verifiable.
+            Certified. Traceable. Verifiable for secure sourcing.
           </p>
         </div>
       </section>
@@ -144,6 +165,9 @@ export default function Quality() {
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
                 Certifications
               </h2>
+              <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
+                Every shipment is supported by verifiable documentation for supplier qualification, procurement audits, and long-term ingredient sourcing confidence.
+              </p>
             </div>
           </FadeIn>
 
@@ -183,7 +207,7 @@ export default function Quality() {
                 Quality Control System
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                Every batch tested and shipped with COA and TDS.
+                Every batch tested and shipped with COA and TDS to support secure procurement and repeatable formulation performance.
               </p>
             </div>
           </FadeIn>
@@ -282,6 +306,9 @@ export default function Quality() {
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
                 Documentation Download Center
               </h2>
+              <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
+                COA, certification files, inspection reports and standards help buyers verify stable, compliant phospholipid supply before purchase.
+              </p>
             </div>
           </FadeIn>
 
