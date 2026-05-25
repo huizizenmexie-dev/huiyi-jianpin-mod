@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { MapPin, Eye, ShieldCheck, ChevronRight } from "lucide-react";
+import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
 
 const GMP_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
@@ -81,6 +82,26 @@ export default function About() {
   const counter3 = useCounter(10000, "T");
   const counter4 = useCounter(100, "%");
 
+  useEffect(
+    () =>
+      applyPageSeo({
+        title: "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China",
+        description:
+          "Learn how Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production for stable, traceable global supply.",
+        keywords:
+          "Huiyi Jianpin manufacturer, stable phospholipid manufacturer China, Non-GMO soybean sourcing, GMP soy lecithin factory, reliable lecithin supplier",
+        path: "/about",
+        image: GMP_IMG,
+        jsonLd: [
+          buildBreadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        ],
+      }),
+    []
+  );
+
   return (
     <div>
       {/* Hero */}
@@ -100,7 +121,7 @@ export default function About() {
             About Huiyi Jianpin
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            Rooted in Black Soil. Refined in the Cleanroom.
+            Rooted in black soil. Built for stable global supply.
           </p>
         </div>
       </section>
@@ -122,6 +143,9 @@ export default function About() {
                     Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. originates from China's premier non-GMO soybean belt — Heilongjiang Province. We are a modern agricultural technology enterprise integrating deep processing of soybeans, R&D of high-purity phospholipid derivatives, production, and global distribution.
                   </p>
                   <p>
+                    Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production, helping global buyers reduce procurement uncertainty through reliable capacity, traceable raw materials, and verified quality documentation.
+                  </p>
+                  <p>
                     Headquartered in Harbin, our 7,000㎡ GMP-certified manufacturing facility is located in Liaocheng, Shandong Province, operating three independent computer-controlled automated production lines with an annual processing capacity of 10,000 tons for soy lecithin series products.
                   </p>
                   <p>
@@ -134,7 +158,7 @@ export default function About() {
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <img
                   src={QUALITY_IMG}
-                  alt="Quality control technician"
+                  alt="Quality control technician verifying traceable phospholipid supply"
                   className="w-full h-[400px] object-cover"
                 />
               </div>
@@ -191,7 +215,7 @@ export default function About() {
                   Vision
                 </h3>
                 <p className="text-medium-gray leading-relaxed">
-                  Unlocking the full value of every Heilongjiang soybean for global health industries.
+                  Unlocking the full value of every Heilongjiang soybean for global health industries while supporting secure, long-term ingredient sourcing.
                 </p>
               </div>
             </FadeIn>
@@ -204,7 +228,7 @@ export default function About() {
                   Quality Policy
                 </h3>
                 <p className="text-medium-gray leading-relaxed">
-                  Standards define quality. Every batch tested. Every batch traceable.
+                  Standards define quality. Every batch tested. Every batch traceable. Every shipment documented for procurement confidence.
                 </p>
               </div>
             </FadeIn>
