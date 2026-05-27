@@ -283,6 +283,38 @@ export const products: Product[] = [
     ],
     ctaText: "Need small-pack ingredients for retail or R&D?",
   },
+  {
+    id: 10,
+    slug: "soy-lecithin-granules",
+    name: "Soy Lecithin Granules",
+    subtitle: "Total Phospholipids 97.2% | Non-GMO Soy | Clean Granular Format",
+    quickSpecs: "Form: Light yellow granules | Acetone Insoluble: 97.2% | MOQ: 200 kg",
+    form: "Granules",
+    moq: "200 kg",
+    category: ["Powder"],
+    image: "/products/soy-lecithin-granules.jpg",
+    listingSpecs: "Total Phospholipids 97.2% | Non-GMO Granules",
+    specifications: [
+      { label: "Product Form", value: "Light yellow soy lecithin granules for easy blending, dispersion, and handling" },
+      { label: "Source", value: "Refined from non-GMO soybeans" },
+      { label: "Acetone Insoluble (Total Phospholipids)", value: "97.2% reference value; standard limit ≥95.0% (SN/T 0802.2)" },
+      { label: "Hexane Insoluble", value: "0.09% reference value; standard limit ≤0.30% (SN/T 0802.2)" },
+      { label: "Moisture & Volatiles", value: "0.40% reference value; standard limit ≤1.0% (GB/T 5009.3)" },
+      { label: "Acid Value", value: "22.0 mg KOH/g reference value; standard limit ≤30.0 mg KOH/g (GB/T 5530)" },
+      { label: "Peroxide Value", value: "≤3.0 meq/kg reference value; standard limit ≤10.0 meq/kg (GB/T 5009.227)" },
+      { label: "Heavy Metals", value: "Pb not detected; As not detected (GB/T 5009.74 / AOAC 986.15)" },
+      { label: "Nutrition Profile (per 100g)", value: "Energy 3700 kJ, fat 91g, carbohydrates 8g, protein 0g, sodium 0.04g" },
+      { label: "Key Active Components", value: "Natural phospholipid blend rich in phosphatidylcholine (PC), phosphatidylethanolamine (PE), and phosphatidylinositol (PI)" },
+      { label: "Storage", value: "Keep sealed in a cool, dry place away from direct sunlight and moisture" },
+    ],
+    applications: [
+      { industry: "Dietary Supplements", painPoint: "Need natural phospholipid nutrition in a convenient solid format", product: "Soy Lecithin Granules", dosage: "As formulated", effect: "Supports nutrition formulations for brain, liver, and cardiovascular wellness positioning" },
+      { industry: "Bakery, Chocolate & Confectionery", painPoint: "Oil-water instability, poor texture, and shorter shelf life", product: "Soy Lecithin Granules", dosage: "0.3%-0.8% typical use depending on formula", effect: "Improves emulsification, texture uniformity, processing flow, and product stability" },
+      { industry: "Dairy, Margarine & Processed Foods", painPoint: "Fat separation and inconsistent mouthfeel", product: "Soy Lecithin Granules", dosage: "As formulated", effect: "Stabilizes fat systems and improves texture in clean-label formulations" },
+      { industry: "Feed & Animal Nutrition", painPoint: "Need better palatability and nutrient utilization", product: "Soy Lecithin Granules", dosage: "As formulated", effect: "Helps improve feed palatability, dispersion, and nutritional absorption support" },
+    ],
+    ctaText: "Need Soy Lecithin Granules for supplements, food, or feed applications?",
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
@@ -299,6 +331,7 @@ export const productListingNames: { slug: string; name: string }[] = [
   { slug: "soy-dietary-fiber", name: "Soy Dietary Fiber" },
   { slug: "soy-protein-isolate", name: "Gel-Type Soy Protein Isolate" },
   { slug: "soy-oligosaccharide-small-pack", name: "Soy Oligosaccharide & Small Pack" },
+  { slug: "soy-lecithin-granules", name: "Soy Lecithin Granules" },
 ];
 
 export const filterCategories = ["All", "Liquid", "Powder", "High-Purity", "Allergen-Free", "Protein/Fiber"];

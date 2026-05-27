@@ -1,6 +1,6 @@
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
- * Products listing: Filter bar, 9 product cards in grid
+ * Products listing: Filter bar, product cards in grid
  */
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";

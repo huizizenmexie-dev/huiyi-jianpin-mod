@@ -284,7 +284,7 @@ export default function Home() {
                 href="/products"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
-                Browse All 9 Products
+                Browse All 10 Products
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
