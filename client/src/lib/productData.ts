@@ -292,7 +292,7 @@ export const products: Product[] = [
     form: "Granules",
     moq: "200 kg",
     category: ["Powder"],
-    image: "/products/soy-lecithin-granules.jpg",
+    image: "/products/soy-lecithin-granules.png",
     listingSpecs: "Total Phospholipids 97.2% | Non-GMO Granules",
     specifications: [
       { label: "Product Form", value: "Light yellow soy lecithin granules for easy blending, dispersion, and handling" },
