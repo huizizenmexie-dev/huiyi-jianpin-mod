@@ -1,5 +1,7 @@
 import { useEffect } from "react";
-import { useI18nContext, LOCALES, DEFAULT_LOCALE, buildLocalizedPath, type Locale } from "@/i18n";
+import { useI18nContext, buildLocalizedPath, type Locale } from "@/i18n";
+import { INDEXABLE_LOCALES, DEFAULT_LOCALE } from "@/content/routes";
+import { SITE_URL } from "@/content/site";
 
 interface SEOData {
   title: string;
@@ -12,16 +14,15 @@ interface SEOData {
 
 // Generate absolute URL
 function getAbsoluteUrl(path: string, locale: Locale): string {
-  const baseUrl = "https://lecprima.com";
   const localizedPath = buildLocalizedPath(locale, path);
-  return `${baseUrl}${localizedPath}`;
+  return `${SITE_URL}${localizedPath}`;
 }
 
-// Generate hreflang links
+// Generate hreflang links — only for indexable (translated) locales
 function generateHreflangLinks(path: string): Array<{ lang: string; url: string }> {
   const links: Array<{ lang: string; url: string }> = [];
 
-  for (const locale of LOCALES) {
+  for (const locale of INDEXABLE_LOCALES) {
     links.push({
       lang: locale,
       url: getAbsoluteUrl(path, locale),

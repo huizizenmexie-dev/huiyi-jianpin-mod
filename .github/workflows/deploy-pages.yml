@@ -34,17 +34,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run tests
-        run: pnpm test
-
       - name: Type check
         run: pnpm check
 
-      - name: Build
+      - name: Run tests
+        run: pnpm test
+
+      - name: Build and pre-render
         run: pnpm build
 
-      - name: Preserve SPA routes
-        run: cp dist/public/index.html dist/public/404.html
+      - name: Validate SEO
+        run: pnpm validate
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
