@@ -26,12 +26,10 @@ import {
   Route,
 } from "lucide-react";
 import {
-  applyPageSeo,
+  usePageSEO,
   buildBreadcrumbSchema,
   buildOrganizationSchema,
-  buildWebSiteSchema,
-} from "@/lib/seo";
-import { applyMultilingualSEO } from "@/lib/multilingualSeo";
+} from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const HERO_IMG =
@@ -143,23 +141,17 @@ export default function Home() {
   const seoDescription = t("homepage.seo_description", "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability.");
   const seoKeywords = t("homepage.seo_keywords", "soy lecithin, phospholipids, phosphatidylcholine, Huiyi Jianpin");
 
-  useEffect(() => {
-    // Apply multilingual SEO with hreflang and canonical
-    applyMultilingualSEO("/", locale, seoTitle, seoDescription);
-
-    // Apply structured data
-    applyPageSeo({
-      title: seoTitle,
-      description: seoDescription,
-      keywords: seoKeywords,
-      path: "/",
-      jsonLd: [
-        buildOrganizationSchema(),
-        buildWebSiteSchema(),
-        buildBreadcrumbSchema([{ name: t("common.home", "Home"), path: "/" }]),
-      ],
-    });
-  }, [seoTitle, seoDescription, seoKeywords, locale, t]);
+  // Apply unified SEO
+  usePageSEO({
+    title: seoTitle,
+    description: seoDescription,
+    keywords: seoKeywords,
+    path: "/",
+    jsonLd: [
+      buildOrganizationSchema(),
+      buildBreadcrumbSchema([{ name: t("common.home", "Home"), path: "/" }], locale),
+    ],
+  });
 
   // Industries data from translations
   const industries = [

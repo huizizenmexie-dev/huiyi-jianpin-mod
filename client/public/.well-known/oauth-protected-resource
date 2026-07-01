@@ -1,8 +1,0 @@
-{
-  "resource": "https://lecprima.com",
-  "authorization_servers": ["https://lecprima.com"],
-  "scopes_supported": ["openid", "profile", "email", "api:read"],
-  "bearer_methods_supported": ["header", "query"],
-  "resource_documentation": "https://lecprima.com/about",
-  "ui_locales_supported": ["en", "zh-CN"]
-}

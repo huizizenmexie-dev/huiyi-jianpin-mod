@@ -13,8 +13,7 @@ import {
   WEBSITE_FROM_NAME,
   type Web3FormsStatus,
 } from "@/lib/web3Forms";
-import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
-import { applyMultilingualSEO } from "@/lib/multilingualSeo";
+import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext } from "@/i18n";
 
 const SPLIT_IMG =
@@ -74,25 +73,20 @@ export default function Contact() {
   const seoDescription = t("contact_page.seo_description", "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.");
   const seoKeywords = t("contact_page.seo_keywords", "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact");
 
-  useEffect(() => {
-    // Apply multilingual SEO
-    applyMultilingualSEO("/contact", locale, seoTitle, seoDescription);
-
-    // Apply structured data
-    applyPageSeo({
-      title: seoTitle,
-      description: seoDescription,
-      keywords: seoKeywords,
-      path: "/contact",
-      image: SPLIT_IMG,
-      jsonLd: [
-        buildBreadcrumbSchema([
-          { name: t("common.home", "Home"), path: "/" },
-          { name: t("common.contact", "Contact"), path: "/contact" },
-        ]),
-      ],
-    });
-  }, [seoTitle, seoDescription, seoKeywords, locale, t]);
+  // Apply unified SEO
+  usePageSEO({
+    title: seoTitle,
+    description: seoDescription,
+    keywords: seoKeywords,
+    path: "/contact",
+    image: SPLIT_IMG,
+    jsonLd: [
+      buildBreadcrumbSchema([
+        { name: t("common.home", "Home"), path: "/" },
+        { name: t("common.contact", "Contact"), path: "/contact" },
+      ], locale),
+    ],
+  });
 
   useEffect(() => {
     const timers = Object.entries(statuses)
@@ -230,10 +224,18 @@ export default function Contact() {
                 action={WEB3FORMS_ACTION}
                 method="POST"
                 noValidate
-                onSubmit={(event) => handleSubmit(event, "quoteForm", ["name", "email", "message"])}
+                onSubmit={(event) => handleSubmit(event, "quoteForm", ["company", "name", "email", "country", "product", "application", "quantity"])}
                 className="rounded-xl border border-border bg-warm-ivory p-5 shadow-sm sm:p-6"
               >
                 <HiddenWeb3Fields formType="Get a Quote" subject="New Quote Request from Huiyi Jianpin Website" />
+                {/* Hidden fields for tracking */}
+                <input type="hidden" name="locale" value={locale} />
+                <input type="hidden" name="page_url" value={window.location.href} />
+                <input type="hidden" name="referrer" value={document.referrer} />
+                <input type="hidden" name="utm_source" value={new URLSearchParams(window.location.search).get("utm_source") || ""} />
+                <input type="hidden" name="utm_medium" value={new URLSearchParams(window.location.search).get("utm_medium") || ""} />
+                <input type="hidden" name="utm_campaign" value={new URLSearchParams(window.location.search).get("utm_campaign") || ""} />
+
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>
                     <p className="mb-2 text-sm font-heading font-semibold uppercase tracking-widest text-harvest-gold">
@@ -246,15 +248,15 @@ export default function Contact() {
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label className="space-y-2">
-                    <span className={labelClass}>{t("contact_page.form.name", "Name")} *</span>
+                    <span className={labelClass}>{t("contact_page.form.company", "Company Name")} *</span>
+                    <input className={inputClass} name="company" required autoComplete="organization" />
+                  </label>
+                  <label className="space-y-2">
+                    <span className={labelClass}>{t("contact_page.form.name", "Contact Name")} *</span>
                     <input className={inputClass} name="name" required autoComplete="name" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>{t("contact_page.form.company", "Company")}</span>
-                    <input className={inputClass} name="company" autoComplete="organization" />
-                  </label>
-                  <label className="space-y-2">
-                    <span className={labelClass}>{t("contact_page.form.email", "Email")} *</span>
+                    <span className={labelClass}>{t("contact_page.form.email", "Business Email")} *</span>
                     <input className={inputClass} name="email" type="email" required autoComplete="email" />
                   </label>
                   <label className="space-y-2">
@@ -262,24 +264,39 @@ export default function Contact() {
                     <input className={inputClass} name="phoneOrWhatsapp" autoComplete="tel" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>{t("contact_page.form.country", "Country / Region")}</span>
-                    <input className={inputClass} name="countryOrRegion" autoComplete="country-name" />
+                    <span className={labelClass}>{t("contact_page.form.country", "Country / Region")} *</span>
+                    <input className={inputClass} name="country" required autoComplete="country-name" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>{t("contact_page.form.product", "Product of Interest")}</span>
-                    <input className={inputClass} name="productOfInterest" placeholder={t("contact_page.form.product_placeholder", "Soy lecithin, PC, PS...")} />
+                    <span className={labelClass}>{t("contact_page.form.product", "Interested Product")} *</span>
+                    <input className={inputClass} name="product" required placeholder={t("contact_page.form.product_placeholder", "Soy lecithin, PC, PS...")} />
+                  </label>
+                  <label className="space-y-2">
+                    <span className={labelClass}>{t("contact_page.form.application", "Application / Industry")} *</span>
+                    <input className={inputClass} name="application" required placeholder={t("contact_page.form.application_placeholder", "Food, Pharma, Cosmetics...")} />
+                  </label>
+                  <label className="space-y-2">
+                    <span className={labelClass}>{t("contact_page.form.monthly_quantity", "Estimated Monthly Quantity")} *</span>
+                    <input className={inputClass} name="monthlyQuantity" required placeholder={t("contact_page.form.monthly_quantity_placeholder", "100 kg, 1 ton, 10 tons...")} />
+                  </label>
+                  <label className="space-y-2">
+                    <span className={labelClass}>{t("contact_page.form.port", "Destination Port / Incoterm")}</span>
+                    <input className={inputClass} name="destinationPort" placeholder={t("contact_page.form.port_placeholder", "FOB, CIF, Shanghai Port...")} />
+                  </label>
+                  <label className="space-y-2">
+                    <span className={labelClass}>{t("contact_page.form.sample", "Sample Request")}</span>
+                    <select className={inputClass} name="sampleRequest">
+                      <option value="">{t("contact_page.form.sample_select", "Select...")}</option>
+                      <option value="yes">{t("contact_page.form.sample_yes", "Yes, I need samples")}</option>
+                      <option value="no">{t("contact_page.form.sample_no", "No, not now")}</option>
+                    </select>
                   </label>
                   <label className="space-y-2 sm:col-span-2">
-                    <span className={labelClass}>{t("contact_page.form.quantity", "Quantity")}</span>
-                    <input className={inputClass} name="quantity" placeholder={t("contact_page.form.quantity_placeholder", "Trial order, 200 kg, 1 FCL...")} />
-                  </label>
-                  <label className="space-y-2 sm:col-span-2">
-                    <span className={labelClass}>{t("contact_page.form.requirements", "Requirements / Message")} *</span>
+                    <span className={labelClass}>{t("contact_page.form.requirements", "Message")}</span>
                     <textarea
                       className={`${inputClass} min-h-32 resize-y`}
                       name="message"
-                      required
-                      placeholder={t("contact_page.form.requirements_placeholder", "Tell us the application, target specification, packaging, destination port, and timeline.")}
+                      placeholder={t("contact_page.form.requirements_placeholder", "Tell us more about your requirements...")}
                     />
                   </label>
                 </div>
