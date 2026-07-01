@@ -5,7 +5,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronRight, Mail } from "lucide-react";
-import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
+import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
@@ -124,26 +125,22 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 
 export default function IndustrySolutions() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const { t, locale } = useI18nContext();
 
-  useEffect(
-    () =>
-      applyPageSeo({
-        title: "Industry Solutions | Stable Phospholipid Applications",
-        description:
-          "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications with stable sourcing support.",
-        keywords:
-          "lecithin applications, phospholipid industry solutions, stable ingredient sourcing, food emulsifier solutions, nutraceutical phospholipids, soy protein applications",
-        path: "/industry-solutions",
-        image: HEADER_IMG,
-        jsonLd: [
-          buildBreadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Industry Solutions", path: "/industry-solutions" },
-          ]),
-        ],
-      }),
-    []
-  );
+  // Apply unified SEO
+  usePageSEO({
+    title: t("industry_page.seo_title", "Industry Solutions | Stable Phospholipid Applications"),
+    description: t("industry_page.seo_description", "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications with stable sourcing support."),
+    keywords: t("industry_page.seo_keywords", "lecithin applications, phospholipid industry solutions, stable ingredient sourcing, food emulsifier solutions, nutraceutical phospholipids, soy protein applications"),
+    path: "/industry-solutions",
+    image: HEADER_IMG,
+    jsonLd: [
+      buildBreadcrumbSchema([
+        { name: t("common.home", "Home"), path: "/" },
+        { name: t("common.industry_solutions", "Industry Solutions"), path: "/industry-solutions" },
+      ], locale),
+    ],
+  });
 
   const filtered =
     activeFilter === "All"

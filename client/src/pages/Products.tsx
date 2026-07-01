@@ -6,7 +6,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import { products, filterCategories } from "@/lib/productData";
-import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
+import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
@@ -46,26 +47,22 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 
 export default function Products() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const { t, locale } = useI18nContext();
 
-  useEffect(
-    () =>
-      applyPageSeo({
-        title: "Soy Lecithin & Phospholipid Products | Stable B2B Supply",
-        description:
-          "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Huiyi Jianpin, built for reliable sourcing and global B2B supply.",
-        keywords:
-          "soy lecithin products, phospholipid systems, phosphatidylcholine supplier, phosphatidylserine supplier, reliable lecithin sourcing, stable B2B ingredient supply",
-        path: "/products",
-        image: HEADER_IMG,
-        jsonLd: [
-          buildBreadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Products", path: "/products" },
-          ]),
-        ],
-      }),
-    []
-  );
+  // Apply unified SEO
+  usePageSEO({
+    title: t("products_page.seo_title", "Soy Lecithin & Phospholipid Products | Stable B2B Supply"),
+    description: t("products_page.seo_description", "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Huiyi Jianpin, built for reliable sourcing and global B2B supply."),
+    keywords: t("products_page.seo_keywords", "soy lecithin products, phospholipid systems, phosphatidylcholine supplier, phosphatidylserine supplier, reliable lecithin sourcing, stable B2B ingredient supply"),
+    path: "/products",
+    image: HEADER_IMG,
+    jsonLd: [
+      buildBreadcrumbSchema([
+        { name: t("common.home", "Home"), path: "/" },
+        { name: t("common.products", "Products"), path: "/products" },
+      ], locale),
+    ],
+  });
 
   const filtered =
     activeFilter === "All"

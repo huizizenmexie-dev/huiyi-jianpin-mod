@@ -14,7 +14,8 @@ import {
   Download,
   ExternalLink,
 } from "lucide-react";
-import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
+import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const QUALITY_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-quality-samples-iG6mFTz7k7z8wbBtmTUuWG.webp";
@@ -110,25 +111,22 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 }
 
 export default function Quality() {
-  useEffect(
-    () =>
-      applyPageSeo({
-        title: "Quality & Traceability | Secure Soy Lecithin Supply Chain",
-        description:
-          "Verify Huiyi Jianpin quality systems, certifications, COA documentation and batch traceability for secure soy lecithin and phospholipid sourcing.",
-        keywords:
-          "soy lecithin quality, phospholipid traceability, COA documentation, secure ingredient sourcing, Non-GMO IP traceability, FSSC 22000 lecithin supplier",
-        path: "/quality",
-        image: QUALITY_IMG,
-        jsonLd: [
-          buildBreadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Quality", path: "/quality" },
-          ]),
-        ],
-      }),
-    []
-  );
+  const { t, locale } = useI18nContext();
+
+  // Apply unified SEO
+  usePageSEO({
+    title: t("quality_page.seo_title", "Quality & Traceability | Secure Soy Lecithin Supply Chain"),
+    description: t("quality_page.seo_description", "Verify Huiyi Jianpin quality systems, certifications, COA documentation and batch traceability for secure soy lecithin and phospholipid sourcing."),
+    keywords: t("quality_page.seo_keywords", "soy lecithin quality, phospholipid traceability, COA documentation, secure ingredient sourcing, Non-GMO IP traceability, FSSC 22000 lecithin supplier"),
+    path: "/quality",
+    image: QUALITY_IMG,
+    jsonLd: [
+      buildBreadcrumbSchema([
+        { name: t("common.home", "Home"), path: "/" },
+        { name: t("common.quality", "Quality"), path: "/quality" },
+      ], locale),
+    ],
+  });
 
   return (
     <div>

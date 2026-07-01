@@ -5,7 +5,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import { MapPin, Eye, ShieldCheck, ChevronRight } from "lucide-react";
-import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
+import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const GMP_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
@@ -77,30 +78,26 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 }
 
 export default function About() {
+  const { t, locale } = useI18nContext();
   const counter1 = useCounter(7000, "㎡");
   const counter2 = useCounter(3, "");
   const counter3 = useCounter(10000, "T");
   const counter4 = useCounter(100, "%");
 
-  useEffect(
-    () =>
-      applyPageSeo({
-        title: "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China",
-        description:
-          "Learn how Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production for stable, traceable global supply.",
-        keywords:
-          "Huiyi Jianpin manufacturer, stable phospholipid manufacturer China, Non-GMO soybean sourcing, GMP soy lecithin factory, reliable lecithin supplier",
-        path: "/about",
-        image: GMP_IMG,
-        jsonLd: [
-          buildBreadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "About", path: "/about" },
-          ]),
-        ],
-      }),
-    []
-  );
+  // Apply unified SEO
+  usePageSEO({
+    title: t("about_page.seo_title", "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China"),
+    description: t("about_page.seo_description", "Learn how Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production for stable, traceable global supply."),
+    keywords: t("about_page.seo_keywords", "Huiyi Jianpin manufacturer, stable phospholipid manufacturer China, Non-GMO soybean sourcing, GMP soy lecithin factory, reliable lecithin supplier"),
+    path: "/about",
+    image: GMP_IMG,
+    jsonLd: [
+      buildBreadcrumbSchema([
+        { name: t("common.home", "Home"), path: "/" },
+        { name: t("common.about", "About"), path: "/about" },
+      ], locale),
+    ],
+  });
 
   return (
     <div>
