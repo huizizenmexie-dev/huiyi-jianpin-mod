@@ -1,18 +1,18 @@
-import { Link, type LinkProps } from "wouter";
+import { Link } from "wouter";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
-interface LocalizedLinkProps extends Omit<LinkProps, "href"> {
+interface LocalizedLinkProps {
   to: string;
   children: React.ReactNode;
   className?: string;
 }
 
-export default function LocalizedLink({ to, children, className, ...props }: LocalizedLinkProps) {
+export default function LocalizedLink({ to, children, className }: LocalizedLinkProps) {
   const { locale } = useI18nContext();
   const localizedPath = buildLocalizedPath(locale, to);
 
   return (
-    <Link href={localizedPath} className={className} {...props}>
+    <Link href={localizedPath} className={className}>
       {children}
     </Link>
   );
