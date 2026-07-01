@@ -1,68 +1,41 @@
-/**
- * Static Pre-render Script
- *
- * Generates real HTML files for each indexable route so GitHub Pages
- * returns HTTP 200 instead of relying on 404.html SPA fallback.
- *
- * Run after `vite build`: `node --import tsx scripts/prerender.ts`
- */
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { renderToString } from "react-dom/server";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
+import App from "../client/src/App";
+import {
+  DEFAULT_LOCALE,
+  INDEXABLE_LOCALES,
+  LOCALES,
+  LOCALE_STATUS,
+  PAGE_PATHS,
+  PRODUCT_SLUGS,
+  RTL_LOCALES,
+  type Locale,
+} from "../client/src/content/routes";
+import { getProductBySlug, products } from "../client/src/lib/productData";
+import { SITE_NAME } from "../client/src/content/site";
+import { buildCanonicalUrl, buildRoutePath, SITE_ORIGIN, withTrailingSlash } from "../client/src/content/url";
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const ROOT = join(__dirname, "..");
+const ROOT = join(import.meta.dirname, "..");
 const DIST = join(ROOT, "dist", "public");
 
-// Import route definitions
-const LOCALES = ["en", "zh-CN", "pt-BR", "fr", "ar", "es"];
-const DEFAULT_LOCALE = "en";
-const RTL_LOCALES = ["ar"];
+type RouteType = "page" | "product";
 
-// Only indexable locales (en is fully translated)
-const INDEXABLE_LOCALES = ["en"];
-
-const PRODUCT_SLUGS = [
-  "soy-lecithin-granules",
-  "soy-lecithin-liquid",
-  "soy-lecithin-powder",
-  "modified-soy-lecithin",
-  "phosphatidylcholine",
-  "phosphatidylserine",
-  "sunflower-lecithin",
-  "soy-dietary-fiber",
-  "soy-protein-isolate",
-  "soy-oligosaccharide-small-pack",
-];
-
-const PAGE_PATHS = [
-  { path: "/", name: "Home" },
-  { path: "/products", name: "Products" },
-  { path: "/about", name: "About" },
-  { path: "/quality", name: "Quality" },
-  { path: "/industry-solutions", name: "Industry Solutions" },
-  { path: "/contact", name: "Contact" },
-];
-
-const SITE_URL = "https://lecprima.com";
-
-interface RouteConfig {
-  locale: string;
-  outputPath: string; // relative to DIST
-  canonical: string;
+type RouteConfig = {
+  locale: Locale;
+  routePath: string;
+  type: RouteType;
   title: string;
   description: string;
-  type: "page" | "product";
-}
+};
 
-// Page SEO data (English only for now)
 const PAGE_SEO: Record<string, { title: string; description: string }> = {
   "/": {
     title: "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
     description:
-      "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability, and stable phospholipid supply from China.",
+      "Secure your formulation against global supply chain disruptions with Huiyi Jianpin soy lecithin, phospholipid, soy protein and fiber systems.",
   },
   "/products": {
     title: "Soy Lecithin & Phospholipid Products | Stable B2B Supply",
@@ -72,7 +45,7 @@ const PAGE_SEO: Record<string, { title: string; description: string }> = {
   "/about": {
     title: "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China",
     description:
-      "Learn how Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production.",
+      "Learn how Huiyi Jianpin connects Heilongjiang soybean sourcing with GMP-standard phospholipid production.",
   },
   "/quality": {
     title: "Quality & Traceability | Secure Soy Lecithin Supply Chain",
@@ -87,298 +60,246 @@ const PAGE_SEO: Record<string, { title: string; description: string }> = {
   "/contact": {
     title: "Contact Huiyi Jianpin | Request a Quote for Soy Lecithin",
     description:
-      "Contact Huiyi Jianpin for soy lecithin, phospholipid quote requests, samples and stable global supply support.",
+      "Contact Huiyi Jianpin for soy lecithin, phospholipid quote requests, samples and documentation.",
   },
 };
 
-// Product SEO data
-const PRODUCT_SEO: Record<string, { title: string; description: string }> = {
-  "soy-lecithin-granules": {
-    title: "Soy Lecithin Granules | Non-GMO Phospholipid 97.2% | Huiyi Jianpin",
-    description:
-      "Soy lecithin granules with 97.2% total phospholipids. Non-GMO soy source, clean granular format for supplements, food and feed applications.",
-  },
-  "soy-lecithin-liquid": {
-    title: "Soy Lecithin Liquid System | Phospholipid ≥60% | Huiyi Jianpin",
-    description:
-      "Soy lecithin liquid for chocolate, dairy, bakery. ISO 22000 certified, Non-GMO IP optional. Models HXY-1SP/3SP/5SP/1SPN.",
-  },
-  "soy-lecithin-powder": {
-    title: "Soy Lecithin Powder System | Phospholipid ≥96% | Huiyi Jianpin",
-    description:
-      "Soy lecithin powder for baking, pharma excipients, meat processing. Phospholipid ≥96%, ISO 22000 certified.",
-  },
-  "modified-soy-lecithin": {
-    title: "Modified Soy Lecithin | HLB ~10 O/W Emulsifier | Huiyi Jianpin",
-    description:
-      "Modified soy lecithin for instant beverages, bakery, protein processing. HLB ~10, rapid water dispersion.",
-  },
-  phosphatidylcholine: {
-    title: "Phosphatidylcholine (PC) 30%–90% | Liposome Grade | Huiyi Jianpin",
-    description:
-      "High-purity phosphatidylcholine for supplements, liposomal drug delivery, cosmetics. Purity 30%–90%.",
-  },
-  phosphatidylserine: {
-    title: "Phosphatidylserine (PS) 20%–70% | Cognitive Health | Huiyi Jianpin",
-    description:
-      "Phosphatidylserine for brain health supplements, dietary formulations. Purity 20%–70%, enzymatic synthesis.",
-  },
-  "sunflower-lecithin": {
-    title: "Sunflower Lecithin | Soy-Free Allergen-Free | Huiyi Jianpin",
-    description:
-      "Sunflower lecithin liquid and powder. Soy-free, allergen-free for infant formula, clean label foods, cosmetics.",
-  },
-  "soy-dietary-fiber": {
-    title: "Soy Dietary Fiber | Total Fiber ≥60% | Huiyi Jianpin",
-    description:
-      "Soy dietary fiber for meat products, baking, frozen foods. High water holding capacity, ISO 22000 certified.",
-  },
-  "soy-protein-isolate": {
-    title: "Gel-Type Soy Protein Isolate | Protein ≥90% | Huiyi Jianpin",
-    description:
-      "Gel-type soy protein isolate for restructured meat, seafood, sausages. Protein ≥90%, gel value ≥20g.",
-  },
-  "soy-oligosaccharide-small-pack": {
-    title: "Soy Oligosaccharide & Protein | FSSC 22000 | Huiyi Jianpin",
-    description:
-      "Soy oligosaccharide and protein in retail-ready small packaging. FSSC 22000 certified, prebiotic.",
-  },
-};
-
-function generateHreflangLinks(locale: string, basePath: string): string {
-  const links: string[] = [];
-  for (const loc of INDEXABLE_LOCALES) {
-    const url = `${SITE_URL}/${loc}${basePath === "/" ? "" : basePath}`;
-    links.push(`<link rel="alternate" hreflang="${loc}" href="${url}" />`);
-  }
-  links.push(
-    `<link rel="alternate" hreflang="x-default" href="${SITE_URL}/${DEFAULT_LOCALE}${basePath === "/" ? "" : basePath}" />`
-  );
-  return links.join("\n    ");
+function productSeo(slug: string) {
+  const product = getProductBySlug(slug);
+  if (!product) throw new Error(`Unknown product slug: ${slug}`);
+  return {
+    title: `${product.name} | ${SITE_NAME}`,
+    description: `${product.subtitle}. ${product.quickSpecs}`,
+  };
 }
 
-function generateJsonLd(
-  locale: string,
-  type: "page" | "product",
-  slug?: string
-): string {
-  const schemas: object[] = [];
+function routeConfigs(): RouteConfig[] {
+  const routes: RouteConfig[] = [];
+  for (const locale of LOCALES) {
+    for (const routePath of PAGE_PATHS) {
+      routes.push({
+        locale,
+        routePath,
+        type: "page",
+        title: PAGE_SEO[routePath].title,
+        description: PAGE_SEO[routePath].description,
+      });
+    }
+    for (const slug of PRODUCT_SLUGS) {
+      const seo = productSeo(slug);
+      routes.push({
+        locale,
+        routePath: `/products/${slug}`,
+        type: "product",
+        title: seo.title,
+        description: seo.description,
+      });
+    }
+  }
+  return routes;
+}
 
-  // Organization
-  schemas.push({
+function relativeOutputPath(locale: Locale, routePath: string) {
+  const route = buildRoutePath(locale, routePath).replace(/^\/|\/$/g, "");
+  return join(DIST, route, "index.html");
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function scriptTag(data: object) {
+  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
+}
+
+function organizationSchema() {
+  return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Huiyi Jianpin",
-    url: SITE_URL,
+    legalName: "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    url: SITE_ORIGIN,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+86-18646556618",
       contactType: "sales",
       availableLanguage: ["English", "Chinese", "Portuguese", "French", "Arabic", "Spanish"],
     },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Harbin",
-      addressRegion: "Heilongjiang",
-      addressCountry: "CN",
-    },
-  });
+  };
+}
 
-  // WebSite
-  schemas.push({
+function websiteSchema(locale: Locale) {
+  return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Huiyi Jianpin",
-    url: `${SITE_URL}/${locale}`,
-  });
+    name: SITE_NAME,
+    url: buildCanonicalUrl(locale, "/"),
+  };
+}
 
-  // Product schema for product pages
-  if (type === "product" && slug) {
-    const seo = PRODUCT_SEO[slug];
-    if (seo) {
-      schemas.push({
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: seo.title.split("|")[0].trim(),
-        description: seo.description,
-        brand: { "@type": "Brand", name: "Huiyi Jianpin" },
-        manufacturer: {
-          "@type": "Organization",
-          name: "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
-        },
-        category: "Food Ingredients",
-      });
-    }
+function breadcrumbSchema(route: RouteConfig) {
+  const items = [
+    { name: "Home", path: "/" },
+    route.type === "product"
+      ? { name: "Products", path: "/products" }
+      : route.routePath === "/"
+        ? null
+        : { name: PAGE_SEO[route.routePath]?.title.split("|")[0].trim() || route.routePath, path: route.routePath },
+  ].filter(Boolean) as Array<{ name: string; path: string }>;
+
+  if (route.type === "product") {
+    const slug = route.routePath.split("/").filter(Boolean).pop() || "";
+    items.push({ name: getProductBySlug(slug)?.name || slug, path: route.routePath });
   }
 
-  return schemas
-    .map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`)
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: buildCanonicalUrl(route.locale, item.path),
+    })),
+  };
+}
+
+function productSchema(route: RouteConfig) {
+  const slug = route.routePath.split("/").filter(Boolean).pop() || "";
+  const product = getProductBySlug(slug);
+  if (!product) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: `${product.subtitle}. ${product.quickSpecs}`,
+    image: product.image.startsWith("http") ? product.image : buildCanonicalUrl(route.locale, product.image),
+    brand: { "@type": "Brand", name: SITE_NAME },
+    manufacturer: {
+      "@type": "Organization",
+      name: "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    },
+    category: product.category.join(", "),
+  };
+}
+
+function hreflang(route: RouteConfig) {
+  if (LOCALE_STATUS[route.locale].status !== "ready") return "";
+  const alternates = INDEXABLE_LOCALES.map(
+    (locale) =>
+      `<link rel="alternate" hreflang="${locale}" href="${buildCanonicalUrl(locale, route.routePath)}" />`
+  );
+  if (INDEXABLE_LOCALES.includes(DEFAULT_LOCALE)) {
+    alternates.push(
+      `<link rel="alternate" hreflang="x-default" href="${buildCanonicalUrl(DEFAULT_LOCALE, route.routePath)}" />`
+    );
+  }
+  return alternates.join("\n    ");
+}
+
+function headFor(route: RouteConfig) {
+  const canonical = buildCanonicalUrl(route.locale, route.routePath);
+  const robots =
+    LOCALE_STATUS[route.locale].status === "ready" ? "index,follow" : "noindex,follow";
+  const schemas = [organizationSchema(), websiteSchema(route.locale), breadcrumbSchema(route)];
+  if (route.type === "product") {
+    const schema = productSchema(route);
+    if (schema) schemas.push(schema);
+  }
+
+  return [
+    `<title>${escapeHtml(route.title)}</title>`,
+    `<meta name="description" content="${escapeHtml(route.description)}" />`,
+    `<meta name="robots" content="${robots}" />`,
+    `<link rel="canonical" href="${canonical}" />`,
+    hreflang(route),
+    `<meta property="og:title" content="${escapeHtml(route.title)}" />`,
+    `<meta property="og:description" content="${escapeHtml(route.description)}" />`,
+    `<meta property="og:url" content="${canonical}" />`,
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:site_name" content="${SITE_NAME}" />`,
+    `<meta property="og:locale" content="${route.locale.replace("-", "_")}" />`,
+    ...schemas.map(scriptTag),
+  ]
+    .filter(Boolean)
     .join("\n    ");
 }
 
-function generateHtml(config: RouteConfig): string {
-  const isRTL = RTL_LOCALES.includes(config.locale);
-  const basePath = config.outputPath.replace(/\/index\.html$/, "").replace(/^\/?/, "/") || "/";
-  const canonical = config.canonical;
+function renderRoute(route: RouteConfig) {
+  const queryClient = new QueryClient();
+  const ssrPath = buildRoutePath(route.locale, route.routePath);
+  return renderToString(
+    React.createElement(
+      QueryClientProvider,
+      { client: queryClient },
+      React.createElement(App, { ssrPath })
+    )
+  );
+}
 
-  return `<!DOCTYPE html>
-<html lang="${config.locale}" dir="${isRTL ? "rtl" : "ltr"}">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${config.title}</title>
-    <meta name="description" content="${config.description}" />
-    <link rel="canonical" href="${canonical}" />
-    ${generateHreflangLinks(config.locale, basePath === `/${config.locale}` ? "/" : basePath.replace(`/${config.locale}`, ""))}
-    <meta property="og:title" content="${config.title}" />
-    <meta property="og:description" content="${config.description}" />
-    <meta property="og:url" content="${canonical}" />
-    <meta property="og:locale" content="${config.locale.replace("-", "_")}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Huiyi Jianpin" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${config.title}" />
-    <meta name="twitter:description" content="${config.description}" />
-    ${generateJsonLd(config.locale, config.type, config.type === "product" ? config.outputPath.split("/").pop()?.replace("/index.html", "") : undefined)}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/${config.locale === DEFAULT_LOCALE ? "" : ""}assets/"></script>
-  </body>
-</html>`;
+function injectHtml(template: string, route: RouteConfig, body: string) {
+  const isRtl = RTL_LOCALES.includes(route.locale);
+  return template
+    .replace(/<html[^>]*>/, `<html lang="${route.locale}" dir="${isRtl ? "rtl" : "ltr"}">`)
+    .replace(/<title>[\s\S]*?<\/title>/, "")
+    .replace(/<meta[^>]+name="description"[^>]*>/, "")
+    .replace("</head>", `    ${headFor(route)}\n  </head>`)
+    .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${body}</div>`);
+}
+
+function writeSitemap(routes: RouteConfig[]) {
+  const urls = routes
+    .filter((route) => LOCALE_STATUS[route.locale].status === "ready")
+    .map((route) => `  <url><loc>${buildCanonicalUrl(route.locale, route.routePath)}</loc></url>`)
+    .join("\n");
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  writeFileSync(join(DIST, "sitemap.xml"), xml, "utf-8");
+}
+
+function writeRobots() {
+  const robots = `User-agent: *\nAllow: /\nSitemap: ${withTrailingSlash(SITE_ORIGIN).replace(/\/$/, "")}/sitemap.xml\n`;
+  writeFileSync(join(DIST, "robots.txt"), robots, "utf-8");
 }
 
 function main() {
-  console.log("🔧 Pre-rendering static pages...\n");
-
-  // Read the built index.html to get asset references
   const builtIndex = join(DIST, "index.html");
   if (!existsSync(builtIndex)) {
-    console.error("❌ dist/public/index.html not found. Run `vite build` first.");
-    process.exit(1);
+    throw new Error("dist/public/index.html not found. Run vite build first.");
   }
 
-  const builtHtml = readFileSync(builtIndex, "utf-8");
+  const template = readFileSync(builtIndex, "utf-8");
+  const routes = routeConfigs();
 
-  // Extract script/style tags from built HTML
-  const scriptMatch = builtHtml.match(/<script[^>]*type="module"[^>]*src="([^"]*)"[^>]*>/);
-  const styleMatches = [...builtHtml.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]*)"[^>]*>/g)];
-  const moduleScript = scriptMatch ? scriptMatch[0] : "";
-  const styleLinks = styleMatches.map((m) => m[0]).join("\n    ");
-
-  const routes: RouteConfig[] = [];
-
-  // Generate page routes
-  for (const locale of INDEXABLE_LOCALES) {
-    for (const page of PAGE_PATHS) {
-      const seoKey = page.path;
-      const seo = PAGE_SEO[seoKey];
-      if (!seo) continue;
-
-      const outputPath =
-        page.path === "/"
-          ? `${locale}/index.html`
-          : `${locale}${page.path}/index.html`;
-
-      const canonical =
-        page.path === "/"
-          ? `${SITE_URL}/${locale}`
-          : `${SITE_URL}/${locale}${page.path}`;
-
-      routes.push({
-        locale,
-        outputPath,
-        canonical,
-        title: seo.title,
-        description: seo.description,
-        type: "page",
-      });
-    }
-
-    // Generate product routes
-    for (const slug of PRODUCT_SLUGS) {
-      const seo = PRODUCT_SEO[slug];
-      if (!seo) continue;
-
-      routes.push({
-        locale,
-        outputPath: `${locale}/products/${slug}/index.html`,
-        canonical: `${SITE_URL}/${locale}/products/${slug}`,
-        title: seo.title,
-        description: seo.description,
-        type: "product",
-      });
-    }
-  }
-
-  // Write each HTML file
-  let count = 0;
   for (const route of routes) {
-    const fullPath = join(DIST, route.outputPath);
-    const dir = dirname(fullPath);
-
-    if (!existsSync(dir)) {
-      mkdirSync(dir, { recursive: true });
-    }
-
-    // Build custom HTML with proper meta tags but referencing built assets
-    const isRTL = RTL_LOCALES.includes(route.locale);
-    const basePath = route.outputPath.replace(/\/index\.html$/, "");
-    const altBasePath = basePath.replace(new RegExp(`^${route.locale}`), "") || "/";
-
-    const html = builtHtml
-      .replace(/<html[^>]*>/, `<html lang="${route.locale}" dir="${isRTL ? "rtl" : "ltr"}">`)
-      .replace(/<title>[^<]*<\/title>/, `<title>${route.title}</title>`)
-      .replace(
-        /<meta[^>]*name="description"[^>]*>/,
-        `<meta name="description" content="${route.description}" />`
-      )
-      .replace(
-        /<\/head>/,
-        `    <link rel="canonical" href="${route.canonical}" />
-    ${generateHreflangLinks(route.locale, altBasePath)}
-    <meta property="og:title" content="${route.title}" />
-    <meta property="og:description" content="${route.description}" />
-    <meta property="og:url" content="${route.canonical}" />
-    <meta property="og:locale" content="${route.locale.replace("-", "_")}" />
-    <meta property="og:type" content="website" />
-    ${generateJsonLd(route.locale, route.type, route.type === "product" ? route.outputPath.split("/").slice(-2, -1)[0] : undefined)}
-  </head>`
-      );
-
-    writeFileSync(fullPath, html, "utf-8");
-    count++;
-    console.log(`  ✅ ${route.outputPath}`);
+    const outputPath = relativeOutputPath(route.locale, route.routePath);
+    mkdirSync(dirname(outputPath), { recursive: true });
+    writeFileSync(outputPath, injectHtml(template, route, renderRoute(route)), "utf-8");
+    console.log(`  rendered ${buildRoutePath(route.locale, route.routePath)}`);
   }
 
-  // Generate root redirect
-  const rootHtml = `<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="refresh" content="0;url=/${DEFAULT_LOCALE}/" />
-  <link rel="canonical" href="${SITE_URL}/${DEFAULT_LOCALE}/" />
-</head>
-<body>
-  <a href="${SITE_URL}/${DEFAULT_LOCALE}/">Redirecting...</a>
-</body>
-</html>`;
-  writeFileSync(join(DIST, "index.html"), rootHtml, "utf-8");
-  console.log(`  ✅ index.html (redirect to /${DEFAULT_LOCALE}/)`);
+  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="refresh" content="0;url=${buildRoutePath(DEFAULT_LOCALE, "/")}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${buildRoutePath(DEFAULT_LOCALE, "/")}">Continue to English homepage</a></body></html>`;
+  writeFileSync(join(DIST, "index.html"), rootRedirect, "utf-8");
 
-  // Generate 404 page
-  const notFoundHtml = builtHtml
-    .replace(/<title>[^<]*<\/title>/, "<title>Page Not Found | Huiyi Jianpin</title>")
-    .replace(
-      /<div id="root">/,
-      `<div id="root"><div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui"><div style="text-align:center"><h1 style="font-size:3rem;font-weight:700;margin-bottom:1rem">404</h1><p style="font-size:1.25rem;margin-bottom:2rem">Page Not Found</p><a href="/${DEFAULT_LOCALE}/" style="color:#2E7D32;text-decoration:underline">Go to Homepage</a></div></div></div>`
-    );
-  writeFileSync(join(DIST, "404.html"), notFoundHtml, "utf-8");
-  console.log(`  ✅ 404.html`);
+  writeFileSync(
+    join(DIST, "404.html"),
+    injectHtml(template, {
+      locale: DEFAULT_LOCALE,
+      routePath: "/404",
+      type: "page",
+      title: "Page Not Found | Huiyi Jianpin",
+      description: "The requested page could not be found.",
+    }, renderRoute({ locale: DEFAULT_LOCALE, routePath: "/404", type: "page", title: "", description: "" })),
+    "utf-8"
+  );
 
-  console.log(`\n🎉 Pre-rendered ${count} pages + 404 + root redirect`);
+  writeSitemap(routes);
+  writeRobots();
+  console.log(`Pre-rendered ${routes.length} localized static pages.`);
+  console.log(`Sitemap contains ${routes.filter((route) => LOCALE_STATUS[route.locale].status === "ready").length} indexable URLs.`);
 }
 
 main();

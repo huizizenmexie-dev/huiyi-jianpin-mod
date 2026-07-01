@@ -1,8 +1,10 @@
 import { AlertCircle, Home } from "lucide-react";
 import { useLocation } from "wouter";
+import { buildLocalizedPath, useI18nContext } from "@/i18n";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();
+  const { locale } = useI18nContext();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-warm-ivory pt-16">
@@ -20,7 +22,7 @@ export default function NotFound() {
           It may have been moved or deleted.
         </p>
         <button
-          onClick={() => setLocation("/")}
+          onClick={() => setLocation(buildLocalizedPath(locale, "/"))}
           className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
         >
           <Home className="w-4 h-4" />

@@ -7,14 +7,16 @@ import { Link } from "wouter";
 import { ArrowRight, ChevronRight, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import {
   formDataToWeb3FormsPayload,
+  QUOTE_REQUIRED_FIELDS,
   submitWeb3FormsPayload,
+  validateQuoteRequest,
   validateRequiredFields,
   WEB3FORMS_ACCESS_KEY,
   WEBSITE_FROM_NAME,
   type Web3FormsStatus,
 } from "@/lib/web3Forms";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
-import { useI18nContext } from "@/i18n";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const SPLIT_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
@@ -68,6 +70,13 @@ export default function Contact() {
     inquiryForm: { type: "idle", message: "" },
   });
   const [inquiryName, setInquiryName] = useState("");
+  const [trackingFields, setTrackingFields] = useState({
+    page_url: "",
+    referrer: "",
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+  });
 
   const seoTitle = t("contact_page.seo_title", "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry");
   const seoDescription = t("contact_page.seo_description", "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.");
@@ -103,6 +112,17 @@ export default function Contact() {
     return () => timers.forEach(window.clearTimeout);
   }, [statuses]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setTrackingFields({
+      page_url: window.location.href,
+      referrer: document.referrer,
+      utm_source: params.get("utm_source") || "",
+      utm_medium: params.get("utm_medium") || "",
+      utm_campaign: params.get("utm_campaign") || "",
+    });
+  }, []);
+
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>,
     formId: ContactFormId,
@@ -112,8 +132,12 @@ export default function Contact() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = formDataToWeb3FormsPayload(formData);
+    const validation =
+      formId === "quoteForm"
+        ? validateQuoteRequest(payload)
+        : { valid: validateRequiredFields(payload, requiredFields) };
 
-    if (!validateRequiredFields(payload, requiredFields)) {
+    if (!validation.valid) {
       setStatuses((current) => ({
         ...current,
         [formId]: { type: "error", message: t("contact_page.form.error_required", "Please complete required fields with a valid email.") },
@@ -154,7 +178,7 @@ export default function Contact() {
       <section className="bg-warm-ivory pb-6 pt-24">
         <div className="container">
           <nav className="mb-2 flex items-center gap-2 text-sm text-medium-gray">
-            <Link href="/" className="transition-colors hover:text-earth-green">
+            <Link href={buildLocalizedPath(locale, "/")} className="transition-colors hover:text-earth-green">
               {t("common.home", "Home")}
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
@@ -224,17 +248,17 @@ export default function Contact() {
                 action={WEB3FORMS_ACTION}
                 method="POST"
                 noValidate
-                onSubmit={(event) => handleSubmit(event, "quoteForm", ["company", "name", "email", "country", "product", "application", "quantity"])}
+                onSubmit={(event) => handleSubmit(event, "quoteForm", [...QUOTE_REQUIRED_FIELDS])}
                 className="rounded-xl border border-border bg-warm-ivory p-5 shadow-sm sm:p-6"
               >
                 <HiddenWeb3Fields formType="Get a Quote" subject="New Quote Request from Huiyi Jianpin Website" />
                 {/* Hidden fields for tracking */}
                 <input type="hidden" name="locale" value={locale} />
-                <input type="hidden" name="page_url" value={window.location.href} />
-                <input type="hidden" name="referrer" value={document.referrer} />
-                <input type="hidden" name="utm_source" value={new URLSearchParams(window.location.search).get("utm_source") || ""} />
-                <input type="hidden" name="utm_medium" value={new URLSearchParams(window.location.search).get("utm_medium") || ""} />
-                <input type="hidden" name="utm_campaign" value={new URLSearchParams(window.location.search).get("utm_campaign") || ""} />
+                <input type="hidden" name="page_url" value={trackingFields.page_url} />
+                <input type="hidden" name="referrer" value={trackingFields.referrer} />
+                <input type="hidden" name="utm_source" value={trackingFields.utm_source} />
+                <input type="hidden" name="utm_medium" value={trackingFields.utm_medium} />
+                <input type="hidden" name="utm_campaign" value={trackingFields.utm_campaign} />
 
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>

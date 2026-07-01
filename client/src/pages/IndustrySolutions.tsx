@@ -10,7 +10,6 @@ import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
-const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 
 interface SolutionRow {
   industry: string;
@@ -28,7 +27,7 @@ const solutions: SolutionRow[] = [
     painPoints: "High viscosity, molding difficulty, poor dough extensibility, milk powder clumping",
     products: "Soy Lecithin Liquid HXY-1SP / HXY-3SP, Lecithin Powder HXY-PLP",
     dosage: "Chocolate: 0.3–0.5% of total fat; Bakery: 0.3–1% of flour; Milk powder: 0.5–2% spray",
-    effect: "Reduces viscosity 15-25%, improves flow, enhances dough extensibility, uniform powder dispersion",
+    effect: "Supports flow, dough handling, and powder dispersion targets after buyer-side validation",
   },
   {
     industry: "Dairy & Instant Beverages",
@@ -36,15 +35,15 @@ const solutions: SolutionRow[] = [
     painPoints: "Powder clumping, slow dissolution, fat floating, uneven emulsification",
     products: "Modified Lecithin HXY-PLW, Soy Lecithin Liquid HXY-1SPN, Small Pack Oligosaccharide",
     dosage: "0.2–2% dry/wet addition, spray or dry blend",
-    effect: "Uniform dispersion, wetting time reduced by 50%, stable emulsion, smooth mouthfeel",
+    effect: "Supports dispersion, emulsion stability, and mouthfeel targets after buyer-side validation",
   },
   {
     industry: "Nutraceuticals / Supplements",
     category: "Pharma/Supplements",
-    painPoints: "Poor active solubility, low lipophilic absorption, poor stability",
+    painPoints: "Ingredient dispersion and formulation stability screening",
     products: "PC 50–90% (Liposome/Softgel), PS 20–70%, Modified Lecithin HXY-PLW",
     dosage: "PC high-purity solution/softgel, PS oil-based softgel, Modified powder dry blend",
-    effect: "Improves water dispersibility and bioavailability, stabilizes nutrients, improves mouthfeel",
+    effect: "Supports buyer-led dispersibility, stability, and sensory evaluation",
   },
   {
     industry: "Cosmetics / Skincare",
@@ -79,12 +78,12 @@ const solutions: SolutionRow[] = [
     effect: "Uniform nutrition, improves gut health, powder free-flowing",
   },
   {
-    industry: "Functional Foods / Wellness",
+    industry: "High-Fiber Foods",
     category: "Food",
-    painPoints: "High-fiber, low-calorie needs, satiety support",
+    painPoints: "High-fiber formulation and texture needs",
     products: "Soy Dietary Fiber J18000, Small Pack Soy Oligosaccharide",
     dosage: "1–5% addition",
-    effect: "High swelling capacity provides satiety, improves digestive function",
+    effect: "Supports fiber-content and texture formulation targets after buyer validation",
   },
 ];
 
@@ -126,6 +125,7 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export default function IndustrySolutions() {
   const [activeFilter, setActiveFilter] = useState("All");
   const { t, locale } = useI18nContext();
+  const inquiryFormLink = buildLocalizedPath(locale, "/contact#inquiryForm");
 
   // Apply unified SEO
   usePageSEO({
@@ -158,7 +158,7 @@ export default function IndustrySolutions() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-10">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-white">Industry Solutions</span>
           </nav>
@@ -244,7 +244,7 @@ export default function IndustrySolutions() {
           <FadeIn delay={300}>
             <div className="mt-10 text-center">
               <a
-                href={INQUIRY_FORM_LINK}
+                href={inquiryFormLink}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 <Mail className="w-4 h-4" />

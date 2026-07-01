@@ -1,213 +1,167 @@
-/**
- * Static SEO Validation Script
- *
- * Validates the pre-rendered output for:
- * - Every sitemap URL has a corresponding HTML file
- * - Every indexable page has a unique canonical
- * - hreflang relationships are bidirectional
- * - Product pages have Product + Breadcrumb Schema
- * - /ar pages have dir="rtl"
- * - No bare internal links in built HTML
- */
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { join, relative } from "node:path";
+import {
+  DEFAULT_LOCALE,
+  INDEXABLE_LOCALES,
+  LOCALES,
+  LOCALE_STATUS,
+  PAGE_PATHS,
+  PRODUCT_SLUGS,
+  RTL_LOCALES,
+  type Locale,
+} from "../client/src/content/routes";
+import { buildCanonicalUrl, buildRoutePath } from "../client/src/content/url";
 
-import { readFileSync, readdirSync, statSync, existsSync } from "fs";
-import { join } from "path";
+const ROOT = process.cwd();
+const DIST = join(ROOT, "dist", "public");
 
-const DIST = join(process.cwd(), "dist", "public");
-const SITE_URL = "https://lecprima.com";
+type Check = { ok: boolean; message: string };
+const checks: Check[] = [];
 
-const INDEXABLE_LOCALES = ["en"];
-const PRODUCT_SLUGS = [
-  "soy-lecithin-granules",
-  "soy-lecithin-liquid",
-  "soy-lecithin-powder",
-  "modified-soy-lecithin",
-  "phosphatidylcholine",
-  "phosphatidylserine",
-  "sunflower-lecithin",
-  "soy-dietary-fiber",
-  "soy-protein-isolate",
-  "soy-oligosaccharide-small-pack",
-];
-
-interface ValidationResult {
-  passed: boolean;
-  message: string;
+function check(ok: boolean, message: string) {
+  checks.push({ ok, message });
+  console.log(`${ok ? "PASS" : "FAIL"} ${message}`);
 }
 
-const results: ValidationResult[] = [];
-
-function check(condition: boolean, message: string) {
-  results.push({ passed: condition, message });
-  if (!condition) {
-    console.error(`  ❌ FAIL: ${message}`);
-  } else {
-    console.log(`  ✅ PASS: ${message}`);
-  }
+function htmlPath(locale: Locale, routePath: string) {
+  const clean = buildRoutePath(locale, routePath).replace(/^\/|\/$/g, "");
+  return join(DIST, clean, "index.html");
 }
 
-function getHtmlFiles(dir: string): string[] {
+function readHtml(locale: Locale, routePath: string) {
+  return readFileSync(htmlPath(locale, routePath), "utf-8");
+}
+
+function allRoutes() {
+  return LOCALES.flatMap((locale) => [
+    ...PAGE_PATHS.map((routePath) => ({ locale, routePath, type: "page" as const })),
+    ...PRODUCT_SLUGS.map((slug) => ({
+      locale,
+      routePath: `/products/${slug}`,
+      type: "product" as const,
+    })),
+  ]);
+}
+
+function collectFiles(dir: string, suffix: string): string[] {
   const files: string[] = [];
   if (!existsSync(dir)) return files;
   for (const entry of readdirSync(dir)) {
     const full = join(dir, entry);
-    const stat = statSync(full);
-    if (stat.isDirectory()) {
-      files.push(...getHtmlFiles(full));
-    } else if (entry.endsWith(".html")) {
+    if (statSync(full).isDirectory()) {
+      files.push(...collectFiles(full, suffix));
+    } else if (entry.endsWith(suffix)) {
       files.push(full);
     }
   }
   return files;
 }
 
-function main() {
-  console.log("🔍 Validating pre-rendered output...\n");
+function attr(content: string, pattern: RegExp) {
+  return content.match(pattern)?.[1] || "";
+}
 
-  if (!existsSync(DIST)) {
-    console.error("❌ dist/public not found. Run build first.");
-    process.exit(1);
-  }
+function rootContent(content: string) {
+  return attr(content, /<div id="root">([\s\S]*?)<\/div>\s*<script/);
+}
 
-  // 1. Check all expected routes have HTML files
-  console.log("📁 Checking route files...");
-  for (const locale of INDEXABLE_LOCALES) {
-    // Homepage
-    check(
-      existsSync(join(DIST, locale, "index.html")),
-      `/${locale}/ has index.html`
-    );
-
-    // Static pages
-    for (const page of ["products", "about", "quality", "industry-solutions", "contact"]) {
-      check(
-        existsSync(join(DIST, locale, page, "index.html")),
-        `/${locale}/${page}/ has index.html`
-      );
-    }
-
-    // Product pages
-    for (const slug of PRODUCT_SLUGS) {
-      check(
-        existsSync(join(DIST, locale, "products", slug, "index.html")),
-        `/${locale}/products/${slug}/ has index.html`
-      );
-    }
-  }
-
-  // 2. Check 404.html exists
-  console.log("\n📄 Checking 404 page...");
-  check(existsSync(join(DIST, "404.html")), "404.html exists");
-
-  // 3. Check canonical tags
-  console.log("\n🔗 Checking canonical tags...");
-  const htmlFiles = getHtmlFiles(DIST);
-  const canonicals = new Set<string>();
-
-  for (const file of htmlFiles) {
-    if (file.includes("404.html")) continue;
-    const content = readFileSync(file, "utf-8");
-    const canonicalMatch = content.match(
-      /<link[^>]*rel="canonical"[^>]*href="([^"]*)"[^>]*>/
-    );
-
-    if (canonicalMatch) {
-      const canonical = canonicalMatch[1];
-      check(
-        !canonicals.has(canonical),
-        `Unique canonical: ${canonical}`
-      );
-      canonicals.add(canonical);
-
-      // Check canonical includes locale
-      const hasLocale = INDEXABLE_LOCALES.some((l) =>
-        canonical.includes(`/${l}`)
-      );
-      check(hasLocale, `Canonical includes locale: ${canonical}`);
-    }
-  }
-
-  // 4. Check hreflang
-  console.log("\n🌐 Checking hreflang...");
-  for (const file of htmlFiles) {
-    if (file.includes("404.html")) continue;
-    const content = readFileSync(file, "utf-8");
-    const hreflangMatches = [
-      ...content.matchAll(
-        /<link[^>]*rel="alternate"[^>]*hreflang="([^"]*)"[^>]*href="([^"]*)"[^>]*>/g
-      ),
-    ];
-
-    if (hreflangMatches.length > 0) {
-      const hasXDefault = hreflangMatches.some((m) => m[1] === "x-default");
-      check(hasXDefault, `Has x-default: ${file.replace(DIST, "")}`);
-    }
-  }
-
-  // 5. Check product pages have Product schema
-  console.log("\n📦 Checking product schemas...");
-  for (const slug of PRODUCT_SLUGS) {
-    const file = join(DIST, "en", "products", slug, "index.html");
-    if (!existsSync(file)) continue;
-    const content = readFileSync(file, "utf-8");
-    check(
-      content.includes('"@type":"Product"'),
-      `Product schema: ${slug}`
-    );
-    check(
-      content.includes('"@type":"Organization"'),
-      `Organization schema: ${slug}`
-    );
-  }
-
-  // 6. Check /ar pages have dir="rtl"
-  console.log("\n🔄 Checking RTL...");
-  // Only check if ar pages exist
-  const arDir = join(DIST, "ar");
-  if (existsSync(arDir)) {
-    const arFiles = getHtmlFiles(arDir);
-    for (const file of arFiles) {
-      const content = readFileSync(file, "utf-8");
-      check(
-        content.includes('dir="rtl"'),
-        `RTL: ${file.replace(DIST, "")}`
-      );
-    }
-  } else {
-    console.log("  ⏭️  No /ar pages (not yet translated)");
-  }
-
-  // 7. Check sitemap references valid files
-  console.log("\n🗺️  Checking sitemap...");
+function sitemapUrls() {
   const sitemapPath = join(DIST, "sitemap.xml");
-  if (existsSync(sitemapPath)) {
-    const sitemap = readFileSync(sitemapPath, "utf-8");
-    const locMatches = [
-      ...sitemap.matchAll(/<loc>([^<]*)<\/loc>/g),
-    ];
-    for (const match of locMatches) {
-      const url = match[1];
-      const path = url.replace(SITE_URL, "");
-      const filePath = join(DIST, path, "index.html");
-      check(
-        existsSync(filePath),
-        `Sitemap URL has file: ${path}`
-      );
-    }
-  }
+  if (!existsSync(sitemapPath)) return [];
+  const xml = readFileSync(sitemapPath, "utf-8");
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+}
 
-  // Summary
-  console.log("\n" + "=".repeat(50));
-  const passed = results.filter((r) => r.passed).length;
-  const failed = results.filter((r) => !r.passed).length;
-  console.log(`\n📊 Results: ${passed} passed, ${failed} failed out of ${results.length} checks`);
-
-  if (failed > 0) {
-    console.log("\n❌ Some checks failed!");
-    process.exit(1);
-  } else {
-    console.log("\n✅ All checks passed!");
+function validateSourceLinks() {
+  const sourceFiles = [
+    ...collectFiles(join(ROOT, "client", "src"), ".tsx"),
+    ...collectFiles(join(ROOT, "client", "src"), ".ts"),
+  ];
+  const bareLinkPattern = /href=["']\/(?!\/|en\/|zh-CN\/|pt-BR\/|fr\/|ar\/|es\/|products\/soy-lecithin-granules\.png|api\/)/;
+  const bareSetLocationPattern = /setLocation\(["']\//;
+  for (const file of sourceFiles) {
+    const content = readFileSync(file, "utf-8");
+    check(!bareLinkPattern.test(content), `no bare public href in ${relative(ROOT, file)}`);
+    check(!bareSetLocationPattern.test(content), `no bare setLocation in ${relative(ROOT, file)}`);
   }
 }
 
-main();
+function validate() {
+  check(existsSync(DIST), "dist/public exists");
+  const routes = allRoutes();
+  const urls = sitemapUrls();
+  const urlSet = new Set(urls);
+
+  for (const route of routes) {
+    const file = htmlPath(route.locale, route.routePath);
+    const expectedCanonical = buildCanonicalUrl(route.locale, route.routePath);
+    const indexable = LOCALE_STATUS[route.locale].status === "ready";
+
+    check(existsSync(file), `${buildRoutePath(route.locale, route.routePath)} has static index.html`);
+    if (!existsSync(file)) continue;
+
+    const content = readHtml(route.locale, route.routePath);
+    const root = rootContent(content);
+    const canonical = attr(content, /<link[^>]+rel="canonical"[^>]+href="([^"]+)"/);
+    const robots = attr(content, /<meta[^>]+name="robots"[^>]+content="([^"]+)"/);
+    const h1Count = (content.match(/<h1[\s>]/g) || []).length;
+    const bodyText = root.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+
+    check(root.length > 1000, `${buildRoutePath(route.locale, route.routePath)} root contains real HTML`);
+    check(h1Count >= 1, `${buildRoutePath(route.locale, route.routePath)} has H1`);
+    check(bodyText.length > 300, `${buildRoutePath(route.locale, route.routePath)} has visible body text`);
+    check(canonical === expectedCanonical, `${buildRoutePath(route.locale, route.routePath)} has self canonical`);
+    check(canonical.endsWith("/"), `${buildRoutePath(route.locale, route.routePath)} canonical uses trailing slash`);
+    check(content.includes(`property="og:url" content="${expectedCanonical}"`), `${buildRoutePath(route.locale, route.routePath)} OG URL matches canonical`);
+
+    if (indexable) {
+      check(robots === "index,follow", `${buildRoutePath(route.locale, route.routePath)} is indexable`);
+      check(urlSet.has(expectedCanonical), `${expectedCanonical} appears in sitemap`);
+      for (const alt of INDEXABLE_LOCALES) {
+        check(content.includes(`hreflang="${alt}" href="${buildCanonicalUrl(alt, route.routePath)}"`), `${expectedCanonical} has hreflang ${alt}`);
+      }
+      check(content.includes(`hreflang="x-default" href="${buildCanonicalUrl(DEFAULT_LOCALE, route.routePath)}"`), `${expectedCanonical} has x-default`);
+    } else {
+      check(robots === "noindex,follow", `${buildRoutePath(route.locale, route.routePath)} is noindex`);
+      check(!urlSet.has(expectedCanonical), `${expectedCanonical} omitted from sitemap`);
+      check(!content.includes('rel="alternate"'), `${expectedCanonical} has no hreflang alternates`);
+    }
+
+    if (RTL_LOCALES.includes(route.locale)) {
+      check(content.includes('<html lang="ar" dir="rtl">'), `${expectedCanonical} has RTL html attrs`);
+    }
+
+    if (route.type === "product") {
+      check(content.includes('"@type":"Product"'), `${expectedCanonical} has Product schema`);
+      check(content.includes('"@type":"BreadcrumbList"'), `${expectedCanonical} has BreadcrumbList schema`);
+      check(content.includes('"@type":"Organization"'), `${expectedCanonical} has Organization schema`);
+      check(content.includes('"@type":"WebSite"'), `${expectedCanonical} has WebSite schema`);
+      for (const forbidden of ["Offer", "price", "availability", "aggregateRating", "review", "gtin", "mpn"]) {
+        check(!content.includes(`"${forbidden}"`) && !content.includes(`"@type":"${forbidden}"`), `${expectedCanonical} schema omits ${forbidden}`);
+      }
+    }
+  }
+
+  const expectedSitemapUrls = routes
+    .filter((route) => LOCALE_STATUS[route.locale].status === "ready")
+    .map((route) => buildCanonicalUrl(route.locale, route.routePath));
+  check(urls.length === expectedSitemapUrls.length, "sitemap contains only ready locale URLs");
+  for (const url of urls) {
+    check(url.endsWith("/"), `${url} uses trailing slash`);
+    check(expectedSitemapUrls.includes(url), `${url} is an expected indexable URL`);
+    const parsed = new URL(url);
+    const localPath = parsed.pathname.replace(/^\/+|\/+$/g, "");
+    check(existsSync(join(DIST, localPath, "index.html")), `${url} maps to a static file`);
+  }
+
+  validateSourceLinks();
+}
+
+validate();
+
+const failed = checks.filter((item) => !item.ok);
+console.log(`\nSEO validation: ${checks.length - failed.length} passed, ${failed.length} failed`);
+
+if (failed.length > 0) {
+  process.exit(1);
+}

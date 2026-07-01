@@ -3,9 +3,10 @@
  * Product Detail: Tabs for Specifications / Applications & Pain Points, sticky CTA bar
  */
 import { useState, useEffect } from "react";
-import { Link, useParams } from "wouter";
+import { useParams } from "wouter";
 import { ChevronRight, ArrowLeft, Mail, Phone } from "lucide-react";
 import { getProductBySlug } from "@/lib/productData";
+import LocalizedLink from "@/components/LocalizedLink";
 
 const CONTACT_EMAIL_BASE = "mailto:jojowei@huiyijianpin.cn?subject=";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
@@ -36,13 +37,13 @@ export default function ProductDetail() {
           <h2 className="font-heading font-bold text-2xl text-deep-brown mb-4">
             Product Not Found
           </h2>
-          <Link
-            href="/products"
+          <LocalizedLink
+            to="/products"
             className="inline-flex items-center gap-2 text-earth-green hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Products
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     );
@@ -60,9 +61,9 @@ export default function ProductDetail() {
       <section className="pt-24 pb-8 bg-white border-b border-border">
         <div className="container">
           <nav className="flex items-center gap-2 text-sm text-medium-gray mb-6">
-            <Link href="/" className="hover:text-earth-green transition-colors">Home</Link>
+            <LocalizedLink to="/" className="hover:text-earth-green transition-colors">Home</LocalizedLink>
             <ChevronRight className="w-3.5 h-3.5" />
-            <Link href="/products" className="hover:text-earth-green transition-colors">Products</Link>
+            <LocalizedLink to="/products" className="hover:text-earth-green transition-colors">Products</LocalizedLink>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-deep-brown font-medium">{product.name}</span>
           </nav>
@@ -96,13 +97,13 @@ export default function ProductDetail() {
 
               {/* Actions */}
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/products"
+                <LocalizedLink
+                  to="/products"
                   className="inline-flex items-center gap-2 px-4 py-2.5 border border-border text-medium-gray rounded-md hover:border-earth-green hover:text-earth-green transition-colors text-sm"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Products
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>
@@ -136,9 +137,12 @@ export default function ProductDetail() {
             </button>
           </div>
 
-          {/* Tab Content: Specifications */}
-          {activeTab === "specs" && (
+          {/* Static core content: keep specs visible in initial HTML */}
+          <div className="space-y-8">
             <div className="bg-white rounded-xl p-6 lg:p-8 shadow-sm border border-border">
+              <h2 className="font-heading font-bold text-2xl text-deep-brown mb-5">
+                Product Specifications
+              </h2>
               <table className="w-full">
                 <tbody>
                   {product.specifications.map((spec, i) => (
@@ -159,11 +163,11 @@ export default function ProductDetail() {
                 </tbody>
               </table>
             </div>
-          )}
 
-          {/* Tab Content: Applications */}
-          {activeTab === "apps" && (
             <div className="space-y-4">
+              <h2 className="font-heading font-bold text-2xl text-deep-brown">
+                Applications & Pain Points
+              </h2>
               {product.applications.map((app, i) => (
                 <div
                   key={i}
@@ -205,7 +209,7 @@ export default function ProductDetail() {
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
       </section>
 

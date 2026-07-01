@@ -1,7 +1,9 @@
 /**
  * Site-wide constants — single source of truth
  */
-export const SITE_URL = "https://lecprima.com";
+import { SITE_ORIGIN } from "./url";
+
+export const SITE_URL = SITE_ORIGIN;
 export const SITE_NAME = "Huiyi Jianpin";
 export const SITE_LEGAL_NAME = "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.";
 export const SITE_TAGLINE = "From Black Soil to Global Health";

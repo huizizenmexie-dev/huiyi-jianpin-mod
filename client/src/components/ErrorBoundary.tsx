@@ -96,7 +96,7 @@ class ErrorBoundary extends Component<Props, State> {
               </button>
 
               <a
-                href="/"
+                href="/en/"
                 className={cn(
                   "flex items-center justify-center gap-2 px-6 py-3 rounded-lg",
                   "border-2 border-earth-green text-earth-green font-medium",

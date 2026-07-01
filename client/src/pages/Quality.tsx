@@ -139,7 +139,7 @@ export default function Quality() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-12">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-white">Quality & Compliance</span>
           </nav>

@@ -7,6 +7,7 @@ export const LOCALES = ["en", "zh-CN", "pt-BR", "fr", "ar", "es"] as const;
 export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = "en";
 export const RTL_LOCALES: Locale[] = ["ar"];
+export type TranslationStatus = "draft" | "reviewed" | "ready";
 
 /**
  * Translation completion status per locale
@@ -16,18 +17,21 @@ export const RTL_LOCALES: Locale[] = ["ar"];
  * As of 2026-07-01 only English has complete product content.
  * Other languages have UI chrome translated but NOT product data.
  */
-export const LOCALE_STATUS: Record<Locale, { label: string; ready: boolean }> = {
-  en: { label: "English", ready: true },
-  "zh-CN": { label: "简体中文", ready: false },
-  "pt-BR": { label: "Português (Brasil)", ready: false },
-  fr: { label: "Français", ready: false },
-  ar: { label: "العربية", ready: false },
-  es: { label: "Español", ready: false },
+export const LOCALE_STATUS: Record<Locale, { label: string; status: TranslationStatus }> = {
+  en: { label: "English", status: "ready" },
+  "zh-CN": { label: "简体中文", status: "draft" },
+  "pt-BR": { label: "Português (Brasil)", status: "draft" },
+  fr: { label: "Français", status: "draft" },
+  ar: { label: "العربية", status: "draft" },
+  es: { label: "Español", status: "draft" },
 };
 
 /** Locales that are fully translated and should be indexed */
 export const INDEXABLE_LOCALES: Locale[] = LOCALES.filter(
-  (l) => LOCALE_STATUS[l].ready
+  (l) => LOCALE_STATUS[l].status === "ready"
+);
+export const NOINDEX_LOCALES: Locale[] = LOCALES.filter(
+  (l) => LOCALE_STATUS[l].status !== "ready"
 );
 
 /** All product slugs — must match productData.ts */
@@ -62,24 +66,32 @@ export function generateAllRoutes(): Array<{
   path: string;
   fullUrl: string;
   type: "page" | "product";
+  indexable: boolean;
 }> {
-  const SITE_URL = "https://lecprima.com";
+  const siteOrigin =
+    (typeof process !== "undefined" && process.env.SITE_ORIGIN) ||
+    "https://lecprima.com";
+  const toRoutePath = (locale: Locale, path: string) => {
+    const clean = path === "/" ? "" : `/${path.replace(/^\/+|\/+$/g, "")}`;
+    return `/${locale}${clean}/`;
+  };
   const routes: Array<{
     locale: Locale;
     path: string;
     fullUrl: string;
     type: "page" | "product";
+    indexable: boolean;
   }> = [];
 
-  for (const locale of INDEXABLE_LOCALES) {
+  for (const locale of LOCALES) {
     // Static pages
     for (const pagePath of PAGE_PATHS) {
-      const p = pagePath === "/" ? "" : pagePath;
       routes.push({
         locale,
-        path: `/${locale}${p}`,
-        fullUrl: `${SITE_URL}/${locale}${p}`,
+        path: toRoutePath(locale, pagePath),
+        fullUrl: `${siteOrigin}${toRoutePath(locale, pagePath)}`,
         type: "page",
+        indexable: LOCALE_STATUS[locale].status === "ready",
       });
     }
 
@@ -87,9 +99,10 @@ export function generateAllRoutes(): Array<{
     for (const slug of PRODUCT_SLUGS) {
       routes.push({
         locale,
-        path: `/${locale}/products/${slug}`,
-        fullUrl: `${SITE_URL}/${locale}/products/${slug}`,
+        path: toRoutePath(locale, `/products/${slug}`),
+        fullUrl: `${siteOrigin}${toRoutePath(locale, `/products/${slug}`)}`,
         type: "product",
+        indexable: LOCALE_STATUS[locale].status === "ready",
       });
     }
   }

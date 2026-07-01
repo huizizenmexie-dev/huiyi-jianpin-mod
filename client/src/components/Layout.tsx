@@ -65,7 +65,7 @@ function Navbar() {
     >
       <nav className={`container flex items-center justify-between h-16 lg:h-18 ${isRTL ? "flex-row-reverse" : ""}`}>
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0">
+        <Link href={buildLocalizedPath(locale, "/")} className="flex items-center shrink-0">
           <span className="font-heading font-semibold text-deep-brown text-base lg:text-lg tracking-tight">
             Huiyi Jianpin
           </span>

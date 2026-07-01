@@ -1,4 +1,5 @@
 import { LOCALES, DEFAULT_LOCALE, type Locale, isValidLocale } from "./config";
+import { buildLocalizedHref } from "@/content/url";
 
 // Extract locale from URL path
 export function getLocaleFromPath(pathname: string): Locale {
@@ -26,8 +27,7 @@ export function getPathWithoutLocale(pathname: string): string {
 
 // Build URL with locale prefix
 export function buildLocalizedPath(locale: Locale, path: string): string {
-  const cleanPath = path.startsWith("/") ? path : `/${path}`;
-  return `/${locale}${cleanPath === "/" ? "" : cleanPath}`;
+  return buildLocalizedHref(locale, path);
 }
 
 // Get all localized paths for a given path

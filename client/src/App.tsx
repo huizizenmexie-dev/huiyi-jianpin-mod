@@ -1,21 +1,20 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation } from "wouter";
-import React, { Suspense, useEffect } from "react";
+import { Route, Router as WouterRouter, Switch, useLocation } from "wouter";
+import React, { useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/Layout";
 import { I18nProvider, useI18nContext, DEFAULT_LOCALE, buildLocalizedPath, isValidLocale } from "@/i18n";
-
-// Lazy load page components for code splitting
-const Home = React.lazy(() => import("./pages/Home"));
-const About = React.lazy(() => import("./pages/About"));
-const Products = React.lazy(() => import("./pages/Products"));
-const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
-const IndustrySolutions = React.lazy(() => import("./pages/IndustrySolutions"));
-const Quality = React.lazy(() => import("./pages/Quality"));
-const Contact = React.lazy(() => import("./pages/Contact"));
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import IndustrySolutions from "./pages/IndustrySolutions";
+import Quality from "./pages/Quality";
+import Contact from "./pages/Contact";
+import { BASE_PATH } from "@/content/url";
 
 // Loading fallback component
 function LoadingFallback() {
@@ -65,14 +64,13 @@ function LocaleGuard({ children, params }: { children: React.ReactNode; params: 
 }
 
 function Router() {
-  const [location] = useLocation();
-  const { locale } = useI18nContext();
+  useLocation();
+  useI18nContext();
 
   // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
-      <Suspense fallback={<LoadingFallback />}>
-        <Switch>
+      <Switch>
           {/* Language-prefixed routes with locale guard */}
           <Route path="/:lang/">
             {(params) => (
@@ -130,23 +128,24 @@ function Router() {
           {/* 404 */}
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />
-        </Switch>
-      </Suspense>
+      </Switch>
     </Layout>
   );
 }
 
-function App() {
+function App({ ssrPath }: { ssrPath?: string } = {}) {
   return (
     <ErrorBoundary>
-      <I18nProvider>
-        <ThemeProvider defaultTheme="light">
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-          </TooltipProvider>
-        </ThemeProvider>
-      </I18nProvider>
+      <WouterRouter ssrPath={ssrPath} base={BASE_PATH || undefined}>
+        <I18nProvider>
+          <ThemeProvider defaultTheme="light">
+            <TooltipProvider>
+              <Toaster />
+              <Router />
+            </TooltipProvider>
+          </ThemeProvider>
+        </I18nProvider>
+      </WouterRouter>
     </ErrorBoundary>
   );
 }

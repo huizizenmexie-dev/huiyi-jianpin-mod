@@ -80,7 +80,7 @@ export default function Products() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-10">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-white">Products</span>
           </nav>
@@ -123,7 +123,7 @@ export default function Products() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((product, i) => (
               <FadeIn key={product.id} delay={i * 60}>
-                <Link href={`/products/${product.slug}`}>
+                <Link href={buildLocalizedPath(locale, `/products/${product.slug}`)}>
                   <div className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-earth-green shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col">
                     <div className="relative h-48 overflow-hidden">
                       <img

@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useI18nContext, buildLocalizedPath, type Locale } from "@/i18n";
-import { INDEXABLE_LOCALES, DEFAULT_LOCALE } from "@/content/routes";
+import { INDEXABLE_LOCALES, DEFAULT_LOCALE, LOCALE_STATUS } from "@/content/routes";
 import { SITE_URL } from "@/content/site";
+import { buildCanonicalUrl } from "@/content/url";
 
 interface SEOData {
   title: string;
@@ -14,8 +15,7 @@ interface SEOData {
 
 // Generate absolute URL
 function getAbsoluteUrl(path: string, locale: Locale): string {
-  const localizedPath = buildLocalizedPath(locale, path);
-  return `${SITE_URL}${localizedPath}`;
+  return buildCanonicalUrl(locale, path);
 }
 
 // Generate hreflang links — only for indexable (translated) locales
@@ -101,6 +101,11 @@ export function usePageSEO(seoData: SEOData) {
     // Set canonical - always points to current locale URL
     const canonicalUrl = getAbsoluteUrl(path, locale);
     setLinkTag("canonical", canonicalUrl);
+    if (LOCALE_STATUS[locale].status === "ready") {
+      setMetaTag("robots", "index,follow");
+    } else {
+      setMetaTag("robots", "noindex,follow");
+    }
 
     // Set hreflang links
     const hreflangLinks = generateHreflangLinks(path);
