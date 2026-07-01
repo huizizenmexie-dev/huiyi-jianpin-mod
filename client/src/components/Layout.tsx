@@ -206,7 +206,7 @@ function Navbar() {
 
 /* ─── Footer ─── */
 function Footer() {
-  const { t, isRTL } = useI18nContext();
+  const { t, isRTL, locale } = useI18nContext();
 
   const quickLinks = [
     { label: t("common.home", "Home"), href: buildLocalizedPath(locale, "/") },
@@ -299,6 +299,8 @@ function Footer() {
 /* ─── Floating Contact Button ─── */
 function FloatingContact() {
   const [open, setOpen] = useState(false);
+  const { t, locale } = useI18nContext();
+  const INQUIRY_FORM_LINK = buildLocalizedPath(locale, "/contact#inquiryForm");
 
   return (
     <div className="fixed bottom-6 right-6 z-40">
@@ -309,7 +311,7 @@ function FloatingContact() {
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors"
           >
             <Mail className="w-5 h-5 text-earth-green" />
-            <span className="text-sm font-medium text-deep-brown">Email Inquiry</span>
+            <span className="text-sm font-medium text-deep-brown">{t("contact_page.email_inquiry", "Email Inquiry")}</span>
           </a>
           <a
             href={WHATSAPP_LINK}
