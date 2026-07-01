@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://lecprima.com",
+      "service-desc": [
+        {
+          "href": "https://lecprima.com/.well-known/api-catalog",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://lecprima.com/about",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://lecprima.com",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

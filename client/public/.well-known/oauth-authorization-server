@@ -1,0 +1,20 @@
+{
+  "issuer": "https://lecprima.com",
+  "authorization_endpoint": "https://lecprima.com/oauth/authorize",
+  "token_endpoint": "https://lecprima.com/oauth/token",
+  "jwks_uri": "https://lecprima.com/.well-known/jwks.json",
+  "registration_endpoint": "https://lecprima.com/oauth/register",
+  "scopes_supported": ["openid", "profile", "email"],
+  "response_types_supported": ["code", "token"],
+  "grant_types_supported": ["authorization_code", "client_credentials"],
+  "token_endpoint_auth_methods_supported": ["client_secret_basic", "client_secret_post"],
+  "service_documentation": "https://lecprima.com/about",
+  "ui_locales_supported": ["en", "zh-CN"],
+  "agent_auth": {
+    "register_uri": "https://lecprima.com/oauth/register",
+    "supported_identity_types": ["public", "confidential"],
+    "credential_types": ["client_secret", "jwt_assertion"],
+    "claim_url": "https://lecprima.com/oauth/claims",
+    "revocation_url": "https://lecprima.com/oauth/revoke"
+  }
+}

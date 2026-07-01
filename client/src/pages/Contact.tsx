@@ -14,13 +14,13 @@ import {
   type Web3FormsStatus,
 } from "@/lib/web3Forms";
 import { applyPageSeo, buildBreadcrumbSchema } from "@/lib/seo";
+import { applyMultilingualSEO } from "@/lib/multilingualSeo";
+import { useI18nContext } from "@/i18n";
 
 const SPLIT_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 const WEB3FORMS_ACTION = "https://api.web3forms.com/submit";
-const SUCCESS_MESSAGE = "Thank you! We will reply within 24 hours.";
-const ERROR_MESSAGE = "Something went wrong. Please try again.";
 
 const inputClass =
   "w-full rounded-md border border-border bg-white px-4 py-3 text-sm text-deep-brown shadow-sm transition-colors placeholder:text-medium-gray/70 focus:border-earth-green focus:outline-none focus:ring-2 focus:ring-earth-green/20 disabled:opacity-60";
@@ -62,6 +62,7 @@ function HiddenWeb3Fields({ formType, subject }: { formType: string; subject: st
 }
 
 export default function Contact() {
+  const { t, locale } = useI18nContext();
   const [submittingForm, setSubmittingForm] = useState<ContactFormId | null>(null);
   const [statuses, setStatuses] = useState<Record<ContactFormId, Web3FormsStatus>>({
     quoteForm: { type: "idle", message: "" },
@@ -69,25 +70,29 @@ export default function Contact() {
   });
   const [inquiryName, setInquiryName] = useState("");
 
-  useEffect(
-    () =>
-      applyPageSeo({
-        title: "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry",
-        description:
-          "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.",
-        keywords:
-          "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact, lecithin samples documentation",
-        path: "/contact",
-        image: SPLIT_IMG,
-        jsonLd: [
-          buildBreadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Contact", path: "/contact" },
-          ]),
-        ],
-      }),
-    []
-  );
+  const seoTitle = t("contact_page.seo_title", "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry");
+  const seoDescription = t("contact_page.seo_description", "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.");
+  const seoKeywords = t("contact_page.seo_keywords", "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact");
+
+  useEffect(() => {
+    // Apply multilingual SEO
+    applyMultilingualSEO("/contact", locale, seoTitle, seoDescription);
+
+    // Apply structured data
+    applyPageSeo({
+      title: seoTitle,
+      description: seoDescription,
+      keywords: seoKeywords,
+      path: "/contact",
+      image: SPLIT_IMG,
+      jsonLd: [
+        buildBreadcrumbSchema([
+          { name: t("common.home", "Home"), path: "/" },
+          { name: t("common.contact", "Contact"), path: "/contact" },
+        ]),
+      ],
+    });
+  }, [seoTitle, seoDescription, seoKeywords, locale, t]);
 
   useEffect(() => {
     const timers = Object.entries(statuses)
@@ -117,7 +122,7 @@ export default function Contact() {
     if (!validateRequiredFields(payload, requiredFields)) {
       setStatuses((current) => ({
         ...current,
-        [formId]: { type: "error", message: "Please complete required fields with a valid email." },
+        [formId]: { type: "error", message: t("contact_page.form.error_required", "Please complete required fields with a valid email.") },
       }));
       return;
     }
@@ -131,12 +136,12 @@ export default function Contact() {
       if (formId === "inquiryForm") setInquiryName("");
       setStatuses((current) => ({
         ...current,
-        [formId]: { type: "success", message: SUCCESS_MESSAGE },
+        [formId]: { type: "success", message: t("contact_page.form.success", "Thank you! We will reply within 24 hours.") },
       }));
     } catch {
       setStatuses((current) => ({
         ...current,
-        [formId]: { type: "error", message: ERROR_MESSAGE },
+        [formId]: { type: "error", message: t("contact_page.form.error", "Something went wrong. Please try again.") },
       }));
     } finally {
       setSubmittingForm(null);
@@ -156,10 +161,10 @@ export default function Contact() {
         <div className="container">
           <nav className="mb-2 flex items-center gap-2 text-sm text-medium-gray">
             <Link href="/" className="transition-colors hover:text-earth-green">
-              Home
+              {t("common.home", "Home")}
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span className="font-medium text-deep-brown">Contact</span>
+            <span className="font-medium text-deep-brown">{t("common.contact", "Contact")}</span>
           </nav>
         </div>
       </section>
@@ -170,40 +175,40 @@ export default function Contact() {
             <div className="relative min-h-[360px] lg:min-h-full">
               <img
                 src={SPLIT_IMG}
-                alt="Soybean field and GMP factory for stable ingredient supply"
+                alt={t("contact_page.hero_image_alt", "Soybean field and GMP factory for stable ingredient supply")}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 lg:p-10">
                 <p className="mb-2 text-sm font-heading font-medium text-white/80">
-                  From Heilongjiang Black Soil
+                  {t("contact_page.hero_subtitle", "From Heilongjiang Black Soil")}
                 </p>
                 <h1 className="mb-4 font-heading text-3xl font-bold text-white lg:text-4xl">
-                  Get in Touch
+                  {t("contact_page.hero_title", "Get in Touch")}
                 </h1>
                 <p className="max-w-md text-sm leading-relaxed text-white/85">
-                  Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.
+                  {t("contact_page.hero_description", "Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.")}
                 </p>
 
                 <div className="mt-8 space-y-4 rounded-xl border border-white/15 bg-white/90 p-5 backdrop-blur-sm">
                   <h2 className="font-heading text-lg font-semibold text-deep-brown">
-                    Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.
+                    {t("contact_page.company_name", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.")}
                   </h2>
                   <div className="space-y-3">
-                    <ContactDetail icon={MapPin} title="Headquarters">
-                      Harbin, Heilongjiang Province, China
+                    <ContactDetail icon={MapPin} title={t("contact_page.headquarters", "Headquarters")}>
+                      {t("contact_page.headquarters_address", "Harbin, Heilongjiang Province, China")}
                     </ContactDetail>
-                    <ContactDetail icon={MapPin} title="Factory">
-                      Liaocheng, Shandong Province, China (7,000㎡ GMP)
+                    <ContactDetail icon={MapPin} title={t("contact_page.factory", "Factory")}>
+                      {t("contact_page.factory_address", "Liaocheng, Shandong Province, China (7,000㎡ GMP)")}
                     </ContactDetail>
-                    <ContactDetail icon={Phone} title="WhatsApp / WeChat">
+                    <ContactDetail icon={Phone} title={t("contact_page.whatsapp_wechat", "WhatsApp / WeChat")}>
                       +86 18646556618
                     </ContactDetail>
-                    <ContactDetail icon={Mail} title="Email">
+                    <ContactDetail icon={Mail} title={t("contact_page.email", "Email")}>
                       jojowei@huiyijianpin.cn
                     </ContactDetail>
-                    <ContactDetail icon={Clock} title="Business Hours">
-                      Monday - Friday, 9:00 AM - 6:00 PM (GMT+8)
+                    <ContactDetail icon={Clock} title={t("contact_page.business_hours", "Business Hours")}>
+                      {t("contact_page.business_hours_value", "Monday - Friday, 9:00 AM - 6:00 PM (GMT+8)")}
                     </ContactDetail>
                   </div>
                   <a
@@ -232,49 +237,49 @@ export default function Contact() {
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>
                     <p className="mb-2 text-sm font-heading font-semibold uppercase tracking-widest text-harvest-gold">
-                      Quote Request
+                      {t("contact_page.quote_request_label", "Quote Request")}
                     </p>
-                    <h2 className="font-heading text-2xl font-bold text-deep-brown">Get a Quote</h2>
+                    <h2 className="font-heading text-2xl font-bold text-deep-brown">{t("contact_page.get_a_quote", "Get a Quote")}</h2>
                   </div>
                   <ArrowRight className="mt-2 h-5 w-5 text-earth-green" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label className="space-y-2">
-                    <span className={labelClass}>Name *</span>
+                    <span className={labelClass}>{t("contact_page.form.name", "Name")} *</span>
                     <input className={inputClass} name="name" required autoComplete="name" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>Company</span>
+                    <span className={labelClass}>{t("contact_page.form.company", "Company")}</span>
                     <input className={inputClass} name="company" autoComplete="organization" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>Email *</span>
+                    <span className={labelClass}>{t("contact_page.form.email", "Email")} *</span>
                     <input className={inputClass} name="email" type="email" required autoComplete="email" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>Phone / WhatsApp</span>
+                    <span className={labelClass}>{t("contact_page.form.phone", "Phone / WhatsApp")}</span>
                     <input className={inputClass} name="phoneOrWhatsapp" autoComplete="tel" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>Country / Region</span>
+                    <span className={labelClass}>{t("contact_page.form.country", "Country / Region")}</span>
                     <input className={inputClass} name="countryOrRegion" autoComplete="country-name" />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>Product of Interest</span>
-                    <input className={inputClass} name="productOfInterest" placeholder="Soy lecithin, PC, PS..." />
+                    <span className={labelClass}>{t("contact_page.form.product", "Product of Interest")}</span>
+                    <input className={inputClass} name="productOfInterest" placeholder={t("contact_page.form.product_placeholder", "Soy lecithin, PC, PS...")} />
                   </label>
                   <label className="space-y-2 sm:col-span-2">
-                    <span className={labelClass}>Quantity</span>
-                    <input className={inputClass} name="quantity" placeholder="Trial order, 200 kg, 1 FCL..." />
+                    <span className={labelClass}>{t("contact_page.form.quantity", "Quantity")}</span>
+                    <input className={inputClass} name="quantity" placeholder={t("contact_page.form.quantity_placeholder", "Trial order, 200 kg, 1 FCL...")} />
                   </label>
                   <label className="space-y-2 sm:col-span-2">
-                    <span className={labelClass}>Requirements / Message *</span>
+                    <span className={labelClass}>{t("contact_page.form.requirements", "Requirements / Message")} *</span>
                     <textarea
                       className={`${inputClass} min-h-32 resize-y`}
                       name="message"
                       required
-                      placeholder="Tell us the application, target specification, packaging, destination port, and timeline."
+                      placeholder={t("contact_page.form.requirements_placeholder", "Tell us the application, target specification, packaging, destination port, and timeline.")}
                     />
                   </label>
                 </div>
@@ -286,7 +291,7 @@ export default function Contact() {
                     disabled={submittingForm === "quoteForm"}
                     className="inline-flex items-center justify-center gap-2 rounded-md bg-earth-green px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-earth-green-dark disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {submittingForm === "quoteForm" ? "Sending..." : "Submit Quote Request"}
+                    {submittingForm === "quoteForm" ? t("contact_page.form.sending", "Sending...") : t("contact_page.form.submit_quote", "Submit Quote Request")}
                   </button>
                 </div>
               </form>
@@ -303,16 +308,16 @@ export default function Contact() {
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>
                     <p className="mb-2 text-sm font-heading font-semibold uppercase tracking-widest text-earth-green">
-                      Direct Message
+                      {t("contact_page.direct_message_label", "Direct Message")}
                     </p>
-                    <h2 className="font-heading text-2xl font-bold text-deep-brown">Email Inquiry</h2>
+                    <h2 className="font-heading text-2xl font-bold text-deep-brown">{t("contact_page.email_inquiry", "Email Inquiry")}</h2>
                   </div>
                   <Send className="mt-2 h-5 w-5 text-earth-green" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <label className="space-y-2">
-                    <span className={labelClass}>Name *</span>
+                    <span className={labelClass}>{t("contact_page.form.name", "Name")} *</span>
                     <input
                       className={inputClass}
                       name="name"
@@ -322,20 +327,20 @@ export default function Contact() {
                     />
                   </label>
                   <label className="space-y-2">
-                    <span className={labelClass}>Email *</span>
+                    <span className={labelClass}>{t("contact_page.form.email", "Email")} *</span>
                     <input className={inputClass} name="email" type="email" required autoComplete="email" />
                   </label>
                   <label className="space-y-2 sm:col-span-2">
-                    <span className={labelClass}>Subject</span>
-                    <input className={inputClass} name="inquirySubject" placeholder="Product question, sample request, documentation..." />
+                    <span className={labelClass}>{t("contact_page.form.subject", "Subject")}</span>
+                    <input className={inputClass} name="inquirySubject" placeholder={t("contact_page.form.subject_placeholder", "Product question, sample request, documentation...")} />
                   </label>
                   <label className="space-y-2 sm:col-span-2">
-                    <span className={labelClass}>Message *</span>
+                    <span className={labelClass}>{t("contact_page.form.message", "Message")} *</span>
                     <textarea
                       className={`${inputClass} min-h-28 resize-y`}
                       name="message"
                       required
-                      placeholder="How can we help?"
+                      placeholder={t("contact_page.form.message_placeholder", "How can we help?")}
                     />
                   </label>
                 </div>
@@ -347,7 +352,7 @@ export default function Contact() {
                     disabled={submittingForm === "inquiryForm"}
                     className="inline-flex items-center justify-center gap-2 rounded-md border border-earth-green bg-white px-5 py-3 text-sm font-semibold text-earth-green transition-colors hover:bg-earth-green hover:text-white disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    {submittingForm === "inquiryForm" ? "Sending..." : "Send Inquiry"}
+                    {submittingForm === "inquiryForm" ? t("contact_page.form.sending", "Sending...") : t("contact_page.form.send_inquiry", "Send Inquiry")}
                   </button>
                 </div>
               </form>

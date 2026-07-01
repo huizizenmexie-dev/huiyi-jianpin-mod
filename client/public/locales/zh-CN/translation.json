@@ -1,0 +1,174 @@
+{
+  "common": {
+    "home": "首页",
+    "products": "产品",
+    "industry_solutions": "行业解决方案",
+    "quality": "质量",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "get_a_quote": "获取报价",
+    "view_details": "查看详情",
+    "learn_more": "了解更多",
+    "loading": "加载中...",
+    "error": "错误",
+    "not_found": "页面未找到"
+  },
+  "homepage": {
+    "seo_title": "稳定大豆卵磷脂供应商 | 弹性供应链 | 慧怡简品",
+    "seo_description": "保护您的配方免受全球供应链中断影响。慧怡简品提供年产10,000吨、非转基因IP可追溯性、来自中国的稳定磷脂供应。",
+    "seo_keywords": "稳定大豆卵磷脂供应商, 弹性磷脂供应链, 非转基因IP卵磷脂中国, 安全原料采购, 磷脂酰胆碱供应商, 磷脂酰丝氨酸供应商, 慧怡简品",
+    "hero_subtitle": "从黑龙江黑土地到全球稳定配方",
+    "hero_title_line1": "天然磷脂",
+    "hero_title_line2": "为稳定供应而设计",
+    "hero_description": "ISO 22000认证的大豆卵磷脂和高纯度磷脂衍生物，年产10,000吨，非转基因IP可追溯性，来自中国的可靠供应连续性。",
+    "hero_guarantee": "在全球采购不确定性中保证供应稳定。",
+    "explore_products": "探索产品系统",
+    "contact_engineer": "联系工程师",
+    "industries_subtitle": "服务全球行业",
+    "industries_title": "应用行业",
+    "industries": {
+      "chocolate": {
+        "title": "巧克力和糖果",
+        "desc": "降低粘度，控制起霜，节省可可脂"
+      },
+      "dairy": {
+        "title": "乳制品和速溶饮料",
+        "desc": "快速分散，无沉淀"
+      },
+      "bakery": {
+        "title": "烘焙和零食",
+        "desc": "面团强度，保湿，抗老化"
+      },
+      "pharmaceuticals": {
+        "title": "制药和脂质体",
+        "desc": "高纯度PC用于药物递送"
+      },
+      "cognitive": {
+        "title": "认知和运动营养",
+        "desc": "PS用于大脑健康，PC用于肝脏支持"
+      },
+      "plant_based": {
+        "title": "植物肉和蛋白质",
+        "desc": "凝胶化，保水，肉质感"
+      },
+      "cosmetics": {
+        "title": "化妆品和个人护理",
+        "desc": "天然乳化剂，皮肤友好保湿"
+      },
+      "animal": {
+        "title": "动物营养和饲料",
+        "desc": "能量来源，颗粒粘合"
+      }
+    },
+    "systems_subtitle": "综合解决方案",
+    "systems_title": "六大功能系统",
+    "systems": [
+      "液体乳化剂系统",
+      "干式乳化剂系统",
+      "高纯度脂质系统",
+      "无过敏原葵花系统",
+      "蛋白质和质构系统",
+      "益生元和膳食纤维系统"
+    ],
+    "browse_all": "浏览全部10种产品",
+    "trust": {
+      "certifications": {
+        "title": "认证",
+        "desc": "ISO 22000 · FSSC 22000 · HACCP · Halal"
+      },
+      "traceability": {
+        "title": "可追溯性",
+        "desc": "黑龙江非转基因身份保护"
+      },
+      "documentation": {
+        "title": "文档",
+        "desc": "TDS · COA · MSDS 批次报告"
+      },
+      "capacity": {
+        "title": "产能",
+        "desc": "7,000㎡ GMP · 3条自动化产线 · 年产10,000吨"
+      },
+      "support": {
+        "title": "支持",
+        "desc": "直接联系应用工程师"
+      }
+    },
+    "resilience_subtitle": "供应链韧性",
+    "resilience_title": "全球原料采购的安全港湾",
+    "resilience_description": "当关税、物流瓶颈和供应商不稳定性扰乱全球食品原料采购时，慧怡简品提供稳定的磷脂供应链，依托可追溯的黑龙江非转基因大豆、GMP生产和文档化的批次级质量控制。",
+    "verify_quality": "验证质量和可追溯性",
+    "resilience": {
+      "supply_continuity": {
+        "title": "中国基地供应连续性",
+        "desc": "从采购基地到GMP车间的稳定生产计划。"
+      },
+      "procurement_confidence": {
+        "title": "文档化采购信心",
+        "desc": "COA、TDS、MSDS和认证文件支持供应商资质审核。"
+      },
+      "farm_to_shipment": {
+        "title": "可追溯的农场到装运控制",
+        "desc": "黑龙江非转基因IP采购与批次级质量记录相关联。"
+      }
+    },
+    "cta_title": "从田间到配方",
+    "cta_description": "每一步都精准控制。告诉我们您的产品需求。我们的农业和应用工程师为稳定的长期磷脂采购提供定制建议。",
+    "email_inquiry": "邮件询盘",
+    "whatsapp_contact": "WhatsApp联系"
+  },
+  "contact_page": {
+    "seo_title": "联系慧怡简品 | 稳定大豆卵磷脂供应询盘",
+    "seo_description": "联系慧怡简品获取大豆卵磷脂、磷脂、大豆蛋白和纤维报价请求、文档、样品和稳定全球供应支持。",
+    "seo_keywords": "联系大豆卵磷脂供应商, 磷脂报价请求, 稳定原料供应询盘, 慧怡简品联系方式",
+    "hero_subtitle": "从黑龙江黑土地",
+    "hero_title": "联系我们",
+    "hero_description": "告诉我们您的应用、目标剂量、所需规格和供应时间表。我们的团队将在1个工作日内回复。",
+    "hero_image_alt": "大豆田和GMP工厂，稳定原料供应",
+    "company_name": "哈尔滨慧怡简品进出口贸易有限公司",
+    "headquarters": "总部",
+    "headquarters_address": "中国黑龙江省哈尔滨市",
+    "factory": "工厂",
+    "factory_address": "中国山东省聊城市（7,000㎡ GMP）",
+    "whatsapp_wechat": "WhatsApp / 微信",
+    "email": "邮箱",
+    "business_hours": "工作时间",
+    "business_hours_value": "周一至周五，上午9:00 - 下午6:00（GMT+8）",
+    "quote_request_label": "报价请求",
+    "get_a_quote": "获取报价",
+    "direct_message_label": "直接消息",
+    "email_inquiry": "邮件询盘",
+    "form": {
+      "name": "姓名",
+      "company": "公司",
+      "email": "邮箱",
+      "phone": "电话 / WhatsApp",
+      "country": "国家 / 地区",
+      "product": "感兴趣的产品",
+      "product_placeholder": "大豆卵磷脂、PC、PS...",
+      "quantity": "数量",
+      "quantity_placeholder": "试订单、200公斤、1个整柜...",
+      "requirements": "需求 / 留言",
+      "requirements_placeholder": "请告诉我们应用、目标规格、包装、目的港和时间表。",
+      "subject": "主题",
+      "subject_placeholder": "产品问题、样品请求、文档...",
+      "message": "留言",
+      "message_placeholder": "我们能为您提供什么帮助？",
+      "submit_quote": "提交报价请求",
+      "send_inquiry": "发送询盘",
+      "sending": "发送中...",
+      "success": "谢谢！我们将在24小时内回复。",
+      "error": "出现问题，请重试。",
+      "error_required": "请填写必填字段并提供有效邮箱。"
+    }
+  },
+  "footer": {
+    "company_name": "哈尔滨慧怡简品进出口贸易有限公司",
+    "tagline": "从黑土地到全球健康。",
+    "quick_links": "快速链接",
+    "contact": "联系方式",
+    "location_harbin": "哈尔滨（总部）",
+    "location_liaocheng": "聊城（工厂）",
+    "certifications": "认证",
+    "copyright": "哈尔滨慧怡简品进出口贸易有限公司 版权所有"
+  }
+}

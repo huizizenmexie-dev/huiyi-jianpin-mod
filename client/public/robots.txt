@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
 Sitemap: https://lecprima.com/sitemap.xml
+
+# AI Content Usage Preferences
+Content-Signal: ai-train=no, search=yes, ai-input=yes

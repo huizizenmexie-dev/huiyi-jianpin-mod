@@ -13,6 +13,8 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useI18nContext } from "@/i18n";
 
 const QUOTE_FORM_LINK = "/contact#quoteForm";
 const INQUIRY_FORM_LINK = "/contact#inquiryForm";
@@ -24,6 +26,7 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [prodOpen, setProdOpen] = useState(false);
   const [location] = useLocation();
+  const { isRTL, t } = useI18nContext();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -37,12 +40,12 @@ function Navbar() {
   }, [location]);
 
   const navLinks = [
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products", dropdown: true },
-    { label: "Industry Solutions", href: "/industry-solutions" },
-    { label: "Quality", href: "/quality" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: t("common.home", "Home"), href: "/" },
+    { label: t("common.products", "Products"), href: "/products", dropdown: true },
+    { label: t("common.industry_solutions", "Industry Solutions"), href: "/industry-solutions" },
+    { label: t("common.quality", "Quality"), href: "/quality" },
+    { label: t("common.about", "About"), href: "/about" },
+    { label: t("common.contact", "Contact"), href: "/contact" },
   ];
 
   return (
@@ -58,7 +61,7 @@ function Navbar() {
           : undefined
       }
     >
-      <nav className="container flex items-center justify-between h-16 lg:h-18">
+      <nav className={`container flex items-center justify-between h-16 lg:h-18 ${isRTL ? "flex-row-reverse" : ""}`}>
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0">
           <span className="font-heading font-semibold text-deep-brown text-base lg:text-lg tracking-tight">
@@ -67,7 +70,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className={`hidden lg:flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}>
           {navLinks.map((link) =>
             link.dropdown ? (
               <div key={link.label} className="relative group">
@@ -82,7 +85,7 @@ function Navbar() {
                   {link.label}
                   <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
                 </Link>
-                <div className="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className={`absolute top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ${isRTL ? "right-0" : "left-0"}`}>
                   <div className="bg-white rounded-lg shadow-lg border border-border py-2 min-w-[260px]">
                     {productListingNames.map((p) => (
                       <Link
@@ -112,14 +115,17 @@ function Navbar() {
           )}
         </div>
 
-        {/* Desktop CTA */}
-        <a
-          href={QUOTE_FORM_LINK}
-          className="hidden lg:inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-        >
-          <Mail className="w-4 h-4" />
-          Get a Quote
-        </a>
+        {/* Desktop CTA + Language Switcher */}
+        <div className="hidden lg:flex items-center gap-3">
+          <LanguageSwitcher />
+          <a
+            href={QUOTE_FORM_LINK}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+            Get a Quote
+          </a>
+        </div>
 
         {/* Mobile Toggle */}
         <button
@@ -179,6 +185,9 @@ function Navbar() {
                 </Link>
               )
             )}
+            <div className="pt-2">
+              <LanguageSwitcher />
+            </div>
             <a
               href={QUOTE_FORM_LINK}
               className="flex items-center justify-center gap-2 mt-3 px-4 py-2.5 bg-earth-green text-white text-sm font-medium rounded-md"
@@ -195,13 +204,15 @@ function Navbar() {
 
 /* ─── Footer ─── */
 function Footer() {
+  const { t, isRTL } = useI18nContext();
+
   const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
-    { label: "Industry Solutions", href: "/industry-solutions" },
-    { label: "Quality", href: "/quality" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: t("common.home", "Home"), href: "/" },
+    { label: t("common.products", "Products"), href: "/products" },
+    { label: t("common.industry_solutions", "Industry Solutions"), href: "/industry-solutions" },
+    { label: t("common.quality", "Quality"), href: "/quality" },
+    { label: t("common.about", "About"), href: "/about" },
+    { label: t("common.contact", "Contact"), href: "/contact" },
   ];
 
   const certs = ["ISO 22000", "FSSC 22000", "HACCP", "Halal", "Non-GMO IP"];
@@ -209,7 +220,7 @@ function Footer() {
   return (
     <footer className="bg-dark-green text-warm-ivory">
       <div className="container py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 ${isRTL ? "text-right" : ""}`}>
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-4">
@@ -218,17 +229,17 @@ function Footer() {
               </span>
             </div>
             <p className="text-sm text-warm-ivory/70 leading-relaxed">
-              Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.
+              {t("footer.company_name", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.")}
             </p>
             <p className="text-xs text-warm-ivory/50 mt-2">
-              From Black Soil to Global Health.
+              {t("footer.tagline", "From Black Soil to Global Health.")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-harvest-gold mb-4">
-              Quick Links
+              {t("footer.quick_links", "Quick Links")}
             </h4>
             <ul className="space-y-2">
               {quickLinks.map((l) => (
@@ -247,20 +258,20 @@ function Footer() {
           {/* Contact */}
           <div>
             <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-harvest-gold mb-4">
-              Contact
+              {t("footer.contact", "Contact")}
             </h4>
             <ul className="space-y-2 text-sm text-warm-ivory/70">
               <li>+86 18646556618</li>
               <li>jojowei@huiyijianpin.cn</li>
-              <li className="pt-1">Harbin (HQ)</li>
-              <li>Liaocheng (Factory)</li>
+              <li className="pt-1">{t("footer.location_harbin", "Harbin (HQ)")}</li>
+              <li>{t("footer.location_liaocheng", "Liaocheng (Factory)")}</li>
             </ul>
           </div>
 
           {/* Certifications */}
           <div>
             <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-harvest-gold mb-4">
-              Certifications
+              {t("footer.certifications", "Certifications")}
             </h4>
             <div className="flex flex-wrap gap-2">
               {certs.map((c) => (
@@ -276,7 +287,7 @@ function Footer() {
         </div>
 
         <div className="mt-10 pt-6 border-t border-warm-ivory/10 text-center text-xs text-warm-ivory/40">
-          &copy; {new Date().getFullYear()} Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. All rights reserved.
+          &copy; {new Date().getFullYear()} {t("footer.copyright", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. All rights reserved.")}
         </div>
       </div>
     </footer>

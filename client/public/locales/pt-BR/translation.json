@@ -1,0 +1,174 @@
+{
+  "common": {
+    "home": "Início",
+    "products": "Produtos",
+    "industry_solutions": "Soluções por Indústria",
+    "quality": "Qualidade",
+    "about": "Sobre Nós",
+    "contact": "Contato",
+    "get_a_quote": "Solicitar Cotação",
+    "view_details": "Ver Detalhes",
+    "learn_more": "Saiba Mais",
+    "loading": "Carregando...",
+    "error": "Erro",
+    "not_found": "Página Não Encontrada"
+  },
+  "homepage": {
+    "seo_title": "Fornecedor Estável de Lecitina de Soja | Cadeia de Suprimentos Resiliente | Huiyi Jianpin",
+    "seo_description": "Proteja sua formulação contra interrupções na cadeia de suprimentos global. A Huiyi Jianpin oferece capacidade anual de 10.000T, rastreabilidade Non-GMO IP e fornecimento estável de fosfolípidos da China.",
+    "seo_keywords": "fornecedor estável lecitina de soja, cadeia de suprimentos resiliente fosfolípidos, lecitina Non-GMO IP China, fornecimento seguro de ingredientes, fornecedor fosfatidilcolina, fornecedor fosfatidilserina, Huiyi Jianpin",
+    "hero_subtitle": "Do Solo Negro de Heilongjiang às Formulações Globais Estáveis",
+    "hero_title_line1": "Fosfolípidos Naturais",
+    "hero_title_line2": "Projetados para Abastecimento Estável",
+    "hero_description": "Lecitina de soja certificada ISO 22000 e derivados de fosfolípidos de alta pureza com capacidade anual de 10.000 toneladas, rastreabilidade Non-GMO IP e continuidade de fornecimento confiável da China.",
+    "hero_guarantee": "Estabilidade garantida no abastecimento em meio à incerteza global de sourcing.",
+    "explore_products": "Explorar Sistemas de Produtos",
+    "contact_engineer": "Falar com um Engenheiro",
+    "industries_subtitle": "Atendendo Indústrias Globais",
+    "industries_title": "Indústrias de Aplicação",
+    "industries": {
+      "chocolate": {
+        "title": "Chocolate e Confeitaria",
+        "desc": "Redução de viscosidade, controle de bloom, economia de manteiga de cacau"
+      },
+      "dairy": {
+        "title": "Lácteos e Bebidas Instantâneas",
+        "desc": "Dispersão rápida, sem sedimentação"
+      },
+      "bakery": {
+        "title": "Panificação e Snacks",
+        "desc": "Resistência da massa, retenção de umidade, anti-encanhamento"
+      },
+      "pharmaceuticals": {
+        "title": "Farmacêuticos e Lipossomos",
+        "desc": "PC de alta pureza para entrega de medicamentos"
+      },
+      "cognitive": {
+        "title": "Nutrição Cognitiva e Esportiva",
+        "desc": "PS para saúde cerebral, PC para suporte hepático"
+      },
+      "plant_based": {
+        "title": "Carne e Proteína Vegetal",
+        "desc": "Gelificação, ligação de água, textura semelhante à carne"
+      },
+      "cosmetics": {
+        "title": "Cosméticos e Cuidados Pessoais",
+        "desc": "Emulsificantes naturais, hidratação amigável à pele"
+      },
+      "animal": {
+        "title": "Nutrição Animal e Ração",
+        "desc": "Fonte de energia, ligação de pellets"
+      }
+    },
+    "systems_subtitle": "Soluções Abrangentes",
+    "systems_title": "Seis Sistemas Funcionais",
+    "systems": [
+      "Sistemas Emulsificantes Líquidos",
+      "Sistemas Emulsificantes Secos",
+      "Sistemas Lipídicos de Alta Pureza",
+      "Sistemas de Girassol Livres de Alérgenos",
+      "Sistemas de Proteína e Textura",
+      "Sistemas de Fibra Dietética e Prebióticos"
+    ],
+    "browse_all": "Ver Todos os 10 Produtos",
+    "trust": {
+      "certifications": {
+        "title": "Certificações",
+        "desc": "ISO 22000 · FSSC 22000 · HACCP · Halal"
+      },
+      "traceability": {
+        "title": "Rastreabilidade",
+        "desc": "Heilongjiang Non-GMO Identidade Preservada"
+      },
+      "documentation": {
+        "title": "Documentação",
+        "desc": "TDS · COA · MSDS por lote"
+      },
+      "capacity": {
+        "title": "Capacidade",
+        "desc": "7.000㎡ GMP · 3 Linhas Automatizadas · 10.000T/Ano"
+      },
+      "support": {
+        "title": "Suporte",
+        "desc": "Acesso Direto a Engenheiros de Aplicação"
+      }
+    },
+    "resilience_subtitle": "Resiliência da Cadeia de Suprimentos",
+    "resilience_title": "Seu Porto Seguro no Sourcing Global de Ingredientes",
+    "resilience_description": "Quando tarifas, gargalos logísticos e instabilidade de fornecedores interrompem o abastecimento global de ingredientes alimentícios, a Huiyi Jianpin fornece uma cadeia de suprimentos estável de fosfolípidos, apoiada por sojas Non-GMO rastreáveis de Heilongjiang, produção GMP e controle de qualidade documentado por lote.",
+    "verify_quality": "Verificar Qualidade e Rastreabilidade",
+    "resilience": {
+      "supply_continuity": {
+        "title": "Continuidade de Suprimento Baseada na China",
+        "desc": "Planejamento estável de produção da base de sourcing ao workshop GMP."
+      },
+      "procurement_confidence": {
+        "title": "Confiança de Compra Documentada",
+        "desc": "COA, TDS, MSDS e arquivos de certificação suportam a qualificação de fornecedores."
+      },
+      "farm_to_shipment": {
+        "title": "Controle Rastreável da Fazenda ao Embarque",
+        "desc": "Sourcing Non-GMO IP de Heilongjiang vinculado a registros de qualidade por lote."
+      }
+    },
+    "cta_title": "Da Fazenda à Formulação",
+    "cta_description": "Precisão controlada em cada etapa. Conte-nos sobre suas necessidades de produto. Nossos engenheiros agrícolas e de aplicação fornecem recomendações personalizadas para sourcing estável e de longo prazo de fosfolípidos.",
+    "email_inquiry": "Consulta por E-mail",
+    "whatsapp_contact": "Contato WhatsApp"
+  },
+  "contact_page": {
+    "seo_title": "Contato Huiyi Jianpin | Consulta de Abastecimento Estável de Lecitina de Soja",
+    "seo_description": "Contate a Huiyi Jianpin para solicitações de cotação de lecitina de soja, fosfolípidos, proteína de soja e fibra, documentação, amostras e suporte de abastecimento global estável.",
+    "seo_keywords": "contato fornecedor lecitina de soja, solicitação cotação fosfolípidos, consulta abastecimento estável ingredientes, contato Huiyi Jianpin",
+    "hero_subtitle": "Do Solo Negro de Heilongjiang",
+    "hero_title": "Entre em Contato",
+    "hero_description": "Conte-nos sua aplicação, dosagem alvo, especificação necessária e cronograma de abastecimento. Nossa equipe responderá em 1 dia útil.",
+    "hero_image_alt": "Campo de soja e fábrica GMP para abastecimento estável de ingredientes",
+    "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    "headquarters": "Sede",
+    "headquarters_address": "Harbin, Província de Heilongjiang, China",
+    "factory": "Fábrica",
+    "factory_address": "Liaocheng, Província de Shandong, China (7.000㎡ GMP)",
+    "whatsapp_wechat": "WhatsApp / WeChat",
+    "email": "E-mail",
+    "business_hours": "Horário Comercial",
+    "business_hours_value": "Segunda - Sexta, 9:00 - 18:00 (GMT+8)",
+    "quote_request_label": "Solicitação de Cotação",
+    "get_a_quote": "Solicitar Cotação",
+    "direct_message_label": "Mensagem Direta",
+    "email_inquiry": "Consulta por E-mail",
+    "form": {
+      "name": "Nome",
+      "company": "Empresa",
+      "email": "E-mail",
+      "phone": "Telefone / WhatsApp",
+      "country": "País / Região",
+      "product": "Produto de Interesse",
+      "product_placeholder": "Lecitina de soja, PC, PS...",
+      "quantity": "Quantidade",
+      "quantity_placeholder": "Pedido teste, 200 kg, 1 FCL...",
+      "requirements": "Requisitos / Mensagem",
+      "requirements_placeholder": "Conte-nos a aplicação, especificação alvo, embalagem, porto de destino e cronograma.",
+      "subject": "Assunto",
+      "subject_placeholder": "Pergunta sobre produto, solicitação de amostra, documentação...",
+      "message": "Mensagem",
+      "message_placeholder": "Como podemos ajudar?",
+      "submit_quote": "Enviar Solicitação de Cotação",
+      "send_inquiry": "Enviar Consulta",
+      "sending": "Enviando...",
+      "success": "Obrigado! Responderemos em 24 horas.",
+      "error": "Algo deu errado. Por favor, tente novamente.",
+      "error_required": "Por favor, preencha os campos obrigatórios com um e-mail válido."
+    }
+  },
+  "footer": {
+    "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    "tagline": "Do Solo Negro à Saúde Global.",
+    "quick_links": "Links Rápidos",
+    "contact": "Contato",
+    "location_harbin": "Harbin (Sede)",
+    "location_liaocheng": "Liaocheng (Fábrica)",
+    "certifications": "Certificações",
+    "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Todos os direitos reservados."
+  }
+}

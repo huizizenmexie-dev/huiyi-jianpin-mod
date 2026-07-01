@@ -1,0 +1,174 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "industry_solutions": "Industry Solutions",
+    "quality": "Quality",
+    "about": "About",
+    "contact": "Contact",
+    "get_a_quote": "Get a Quote",
+    "view_details": "View Details",
+    "learn_more": "Learn More",
+    "loading": "Loading...",
+    "error": "Error",
+    "not_found": "Page Not Found"
+  },
+  "homepage": {
+    "seo_title": "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
+    "seo_description": "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability, and stable phospholipid supply from China.",
+    "seo_keywords": "stable soy lecithin supplier, resilient phospholipid supply chain, Non-GMO IP lecithin China, secure ingredient sourcing, phosphatidylcholine supplier, phosphatidylserine supplier, Huiyi Jianpin",
+    "hero_subtitle": "From Heilongjiang Black Soil to Stable Global Formulations",
+    "hero_title_line1": "Natural Phospholipids",
+    "hero_title_line2": "Engineered for Stable Supply",
+    "hero_description": "ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China.",
+    "hero_guarantee": "Guaranteed supply stability amidst global sourcing uncertainty.",
+    "explore_products": "Explore Product Systems",
+    "contact_engineer": "Contact an Engineer",
+    "industries_subtitle": "Serving Global Industries",
+    "industries_title": "Application Industries",
+    "industries": {
+      "chocolate": {
+        "title": "Chocolate & Confectionery",
+        "desc": "Viscosity reduction, bloom control, cocoa butter savings"
+      },
+      "dairy": {
+        "title": "Dairy & Instant Beverages",
+        "desc": "Rapid dispersion, no sedimentation"
+      },
+      "bakery": {
+        "title": "Bakery & Snacks",
+        "desc": "Dough strength, moisture retention, anti-staling"
+      },
+      "pharmaceuticals": {
+        "title": "Pharmaceuticals & Liposomes",
+        "desc": "High-purity PC for drug delivery"
+      },
+      "cognitive": {
+        "title": "Cognitive & Sports Nutrition",
+        "desc": "PS for brain health, PC for liver support"
+      },
+      "plant_based": {
+        "title": "Plant-Based Meat & Protein",
+        "desc": "Gelation, water binding, meat-like texture"
+      },
+      "cosmetics": {
+        "title": "Cosmetics & Personal Care",
+        "desc": "Natural emulsifiers, skin-friendly moisturization"
+      },
+      "animal": {
+        "title": "Animal Nutrition & Feed",
+        "desc": "Energy source, pellet binding"
+      }
+    },
+    "systems_subtitle": "Comprehensive Solutions",
+    "systems_title": "Six Functional Systems",
+    "systems": [
+      "Liquid Emulsifier Systems",
+      "Dry Emulsifier Systems",
+      "High-Purity Lipid Systems",
+      "Allergen-Free Sunflower Systems",
+      "Protein & Texture Systems",
+      "Prebiotic & Dietary Fiber Systems"
+    ],
+    "browse_all": "Browse All 10 Products",
+    "trust": {
+      "certifications": {
+        "title": "Certifications",
+        "desc": "ISO 22000 · FSSC 22000 · HACCP · Halal"
+      },
+      "traceability": {
+        "title": "Traceability",
+        "desc": "Heilongjiang Non-GMO Identity Preserved"
+      },
+      "documentation": {
+        "title": "Documentation",
+        "desc": "TDS · COA · MSDS by batch"
+      },
+      "capacity": {
+        "title": "Capacity",
+        "desc": "7,000㎡ GMP · 3 Automated Lines · 10,000T/Year"
+      },
+      "support": {
+        "title": "Support",
+        "desc": "Direct Access to Application Engineers"
+      }
+    },
+    "resilience_subtitle": "Supply Chain Resilience",
+    "resilience_title": "Your Safe Harbor in Global Ingredient Sourcing",
+    "resilience_description": "When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control.",
+    "verify_quality": "Verify Quality & Traceability",
+    "resilience": {
+      "supply_continuity": {
+        "title": "China-Based Supply Continuity",
+        "desc": "Stable production planning from sourcing base to GMP workshop."
+      },
+      "procurement_confidence": {
+        "title": "Documented Procurement Confidence",
+        "desc": "COA, TDS, MSDS and certification files support supplier qualification."
+      },
+      "farm_to_shipment": {
+        "title": "Traceable Farm-to-Shipment Control",
+        "desc": "Heilongjiang Non-GMO IP sourcing linked to batch-level quality records."
+      }
+    },
+    "cta_title": "From Field to Formulation",
+    "cta_description": "Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing.",
+    "email_inquiry": "Email Inquiry",
+    "whatsapp_contact": "WhatsApp Contact"
+  },
+  "contact_page": {
+    "seo_title": "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry",
+    "seo_description": "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.",
+    "seo_keywords": "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact",
+    "hero_subtitle": "From Heilongjiang Black Soil",
+    "hero_title": "Get in Touch",
+    "hero_description": "Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.",
+    "hero_image_alt": "Soybean field and GMP factory for stable ingredient supply",
+    "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    "headquarters": "Headquarters",
+    "headquarters_address": "Harbin, Heilongjiang Province, China",
+    "factory": "Factory",
+    "factory_address": "Liaocheng, Shandong Province, China (7,000㎡ GMP)",
+    "whatsapp_wechat": "WhatsApp / WeChat",
+    "email": "Email",
+    "business_hours": "Business Hours",
+    "business_hours_value": "Monday - Friday, 9:00 AM - 6:00 PM (GMT+8)",
+    "quote_request_label": "Quote Request",
+    "get_a_quote": "Get a Quote",
+    "direct_message_label": "Direct Message",
+    "email_inquiry": "Email Inquiry",
+    "form": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone / WhatsApp",
+      "country": "Country / Region",
+      "product": "Product of Interest",
+      "product_placeholder": "Soy lecithin, PC, PS...",
+      "quantity": "Quantity",
+      "quantity_placeholder": "Trial order, 200 kg, 1 FCL...",
+      "requirements": "Requirements / Message",
+      "requirements_placeholder": "Tell us the application, target specification, packaging, destination port, and timeline.",
+      "subject": "Subject",
+      "subject_placeholder": "Product question, sample request, documentation...",
+      "message": "Message",
+      "message_placeholder": "How can we help?",
+      "submit_quote": "Submit Quote Request",
+      "send_inquiry": "Send Inquiry",
+      "sending": "Sending...",
+      "success": "Thank you! We will reply within 24 hours.",
+      "error": "Something went wrong. Please try again.",
+      "error_required": "Please complete required fields with a valid email."
+    }
+  },
+  "footer": {
+    "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    "tagline": "From Black Soil to Global Health.",
+    "quick_links": "Quick Links",
+    "contact": "Contact",
+    "location_harbin": "Harbin (HQ)",
+    "location_liaocheng": "Liaocheng (Factory)",
+    "certifications": "Certifications",
+    "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. All rights reserved."
+  }
+}

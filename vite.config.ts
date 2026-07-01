@@ -1,10 +1,19 @@
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import legacy from "@vitejs/plugin-legacy";
 import path from "node:path";
 import { defineConfig } from "vite";
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin()];
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  legacy({
+    targets: ["defaults", "not IE 11"],
+    polyfills: ["es.promise", "es.array.iterator", "es.object.assign"],
+  }),
+];
 
 export default defineConfig({
   plugins,
@@ -21,6 +30,15 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    target: "es2017",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu"],
+        },
+      },
+    },
   },
   server: {
     port: 3000,

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0.json",
+  "skills": [
+    {
+      "name": "product-lookup",
+      "type": "tool",
+      "description": "Look up soy lecithin product information by product ID or name",
+      "url": "https://lecprima.com/.well-known/agent-skills/product-lookup.json",
+      "sha256": "placeholder-will-be-computed"
+    },
+    {
+      "name": "quality-inquiry",
+      "type": "tool",
+      "description": "Inquire about quality certifications and standards compliance",
+      "url": "https://lecprima.com/.well-known/agent-skills/quality-inquiry.json",
+      "sha256": "placeholder-will-be-computed"
+    },
+    {
+      "name": "sales-contact",
+      "type": "tool",
+      "description": "Send sales inquiry or request product samples",
+      "url": "https://lecprima.com/.well-known/agent-skills/sales-contact.json",
+      "sha256": "placeholder-will-be-computed"
+    },
+    {
+      "name": "industry-solutions",
+      "type": "resource",
+      "description": "Access industry-specific solution documentation",
+      "url": "https://lecprima.com/.well-known/agent-skills/industry-solutions.json",
+      "sha256": "placeholder-will-be-computed"
+    }
+  ]
+}

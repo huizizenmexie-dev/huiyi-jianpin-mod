@@ -2,31 +2,53 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import React, { Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import IndustrySolutions from "./pages/IndustrySolutions";
-import Quality from "./pages/Quality";
-import Contact from "./pages/Contact";
+import { I18nProvider } from "@/i18n";
+
+// Lazy load page components for code splitting
+const Home = React.lazy(() => import("./pages/Home"));
+const About = React.lazy(() => import("./pages/About"));
+const Products = React.lazy(() => import("./pages/Products"));
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
+const IndustrySolutions = React.lazy(() => import("./pages/IndustrySolutions"));
+const Quality = React.lazy(() => import("./pages/Quality"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+
+// Loading fallback component
+function LoadingFallback() {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+    </div>
+  );
+}
+
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/products" component={Products} />
-        <Route path="/products/:slug" component={ProductDetail} />
-        <Route path="/industry-solutions" component={IndustrySolutions} />
-        <Route path="/quality" component={Quality} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/404" component={NotFound} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={<LoadingFallback />}>
+        <Switch>
+          {/* Language-prefixed routes */}
+          <Route path="/:lang/" component={Home} />
+          <Route path="/:lang/about" component={About} />
+          <Route path="/:lang/products" component={Products} />
+          <Route path="/:lang/products/:slug" component={ProductDetail} />
+          <Route path="/:lang/industry-solutions" component={IndustrySolutions} />
+          <Route path="/:lang/quality" component={Quality} />
+          <Route path="/:lang/contact" component={Contact} />
+
+          {/* Redirect root to default language */}
+          <Route path="/" component={Home} />
+
+          {/* 404 */}
+          <Route path="/404" component={NotFound} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </Layout>
   );
 }
@@ -34,12 +56,14 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
+      <I18nProvider>
+        <ThemeProvider defaultTheme="light">
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </ThemeProvider>
+      </I18nProvider>
     </ErrorBoundary>
   );
 }
