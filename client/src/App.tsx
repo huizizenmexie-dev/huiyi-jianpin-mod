@@ -1,12 +1,12 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
-import React, { Suspense } from "react";
+import { Route, Switch, useLocation } from "wouter";
+import React, { Suspense, useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/Layout";
-import { I18nProvider } from "@/i18n";
+import { I18nProvider, useI18nContext, DEFAULT_LOCALE, buildLocalizedPath } from "@/i18n";
 
 // Lazy load page components for code splitting
 const Home = React.lazy(() => import("./pages/Home"));
@@ -26,7 +26,22 @@ function LoadingFallback() {
   );
 }
 
+// Redirect component for root path
+function RootRedirect() {
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    // Redirect to default language
+    setLocation(buildLocalizedPath(DEFAULT_LOCALE, "/"));
+  }, [setLocation]);
+
+  return <LoadingFallback />;
+}
+
 function Router() {
+  const [location] = useLocation();
+  const { locale } = useI18nContext();
+
   // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
@@ -42,7 +57,7 @@ function Router() {
           <Route path="/:lang/contact" component={Contact} />
 
           {/* Redirect root to default language */}
-          <Route path="/" component={Home} />
+          <Route path="/" component={RootRedirect} />
 
           {/* 404 */}
           <Route path="/404" component={NotFound} />

@@ -32,11 +32,10 @@ import {
   buildWebSiteSchema,
 } from "@/lib/seo";
 import { applyMultilingualSEO } from "@/lib/multilingualSeo";
-import { useI18nContext } from "@/i18n";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
-const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 
 // Industry icons mapping
@@ -133,6 +132,11 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 
 export default function Home() {
   const { t, locale } = useI18nContext();
+
+  // Build localized links
+  const PRODUCTS_LINK = buildLocalizedPath(locale, "/products");
+  const QUALITY_LINK = buildLocalizedPath(locale, "/quality");
+  const INQUIRY_FORM_LINK = buildLocalizedPath(locale, "/contact#inquiryForm");
 
   // SEO data from translations
   const seoTitle = t("homepage.seo_title", "Stable Soy Lecithin Supplier | Huiyi Jianpin");
@@ -231,7 +235,7 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/products"
+                href={PRODUCTS_LINK}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 {t("homepage.explore_products", "Explore Product Systems")}
@@ -267,7 +271,7 @@ export default function Home() {
               const Icon = item.icon;
               return (
                 <FadeIn key={item.key} delay={i * 60}>
-                  <Link href="/industry-solutions">
+                  <Link href={buildLocalizedPath(locale, "/industry-solutions")}>
                     <div className="group bg-white rounded-lg p-6 border border-transparent hover:border-earth-green shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                       <Icon className="w-8 h-8 text-earth-green mb-4 group-hover:scale-110 transition-transform" />
                       <h3 className="font-heading font-semibold text-deep-brown text-base mb-2">
@@ -319,7 +323,7 @@ export default function Home() {
           <FadeIn>
             <div className="text-center">
               <Link
-                href="/products"
+                href={PRODUCTS_LINK}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 {t("homepage.browse_all", "Browse All 10 Products")}
@@ -372,7 +376,7 @@ export default function Home() {
                   {t("homepage.resilience_description", "When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control.")}
                 </p>
                 <Link
-                  href="/quality"
+                  href={QUALITY_LINK}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
                 >
                   {t("homepage.verify_quality", "Verify Quality & Traceability")}

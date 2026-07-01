@@ -14,10 +14,8 @@ import {
   Phone,
 } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useI18nContext } from "@/i18n";
+import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
-const QUOTE_FORM_LINK = "/contact#quoteForm";
-const INQUIRY_FORM_LINK = "/contact#inquiryForm";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 
 /* ─── Navbar ─── */
@@ -26,7 +24,11 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [prodOpen, setProdOpen] = useState(false);
   const [location] = useLocation();
-  const { isRTL, t } = useI18nContext();
+  const { isRTL, t, locale } = useI18nContext();
+
+  // Build localized links
+  const QUOTE_FORM_LINK = buildLocalizedPath(locale, "/contact#quoteForm");
+  const INQUIRY_FORM_LINK = buildLocalizedPath(locale, "/contact#inquiryForm");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -40,12 +42,12 @@ function Navbar() {
   }, [location]);
 
   const navLinks = [
-    { label: t("common.home", "Home"), href: "/" },
-    { label: t("common.products", "Products"), href: "/products", dropdown: true },
-    { label: t("common.industry_solutions", "Industry Solutions"), href: "/industry-solutions" },
-    { label: t("common.quality", "Quality"), href: "/quality" },
-    { label: t("common.about", "About"), href: "/about" },
-    { label: t("common.contact", "Contact"), href: "/contact" },
+    { label: t("common.home", "Home"), href: buildLocalizedPath(locale, "/") },
+    { label: t("common.products", "Products"), href: buildLocalizedPath(locale, "/products"), dropdown: true },
+    { label: t("common.industry_solutions", "Industry Solutions"), href: buildLocalizedPath(locale, "/industry-solutions") },
+    { label: t("common.quality", "Quality"), href: buildLocalizedPath(locale, "/quality") },
+    { label: t("common.about", "About"), href: buildLocalizedPath(locale, "/about") },
+    { label: t("common.contact", "Contact"), href: buildLocalizedPath(locale, "/contact") },
   ];
 
   return (
@@ -77,7 +79,7 @@ function Navbar() {
                 <Link
                   href={link.href}
                   className={`flex items-center gap-1 px-3 py-2 text-sm font-body font-medium transition-colors rounded-md ${
-                    location.startsWith("/products")
+                    location.startsWith(`/${locale}/products`)
                       ? "text-earth-green"
                       : "text-deep-brown hover:text-earth-green"
                   }`}
@@ -90,7 +92,7 @@ function Navbar() {
                     {productListingNames.map((p) => (
                       <Link
                         key={p.slug}
-                        href={`/products/${p.slug}`}
+                        href={buildLocalizedPath(locale, `/products/${p.slug}`)}
                         className="block px-4 py-2 text-sm text-deep-brown hover:bg-soft-green hover:text-earth-green transition-colors"
                       >
                         {p.name}
@@ -158,15 +160,15 @@ function Navbar() {
                   {prodOpen && (
                     <div className="pl-4 space-y-0.5">
                       <Link
-                        href="/products"
+                        href={buildLocalizedPath(locale, "/products")}
                         className="block px-3 py-2 text-sm text-medium-gray hover:text-earth-green"
                       >
-                        All Products
+                        {t("common.all_products", "All Products")}
                       </Link>
                       {productListingNames.map((p) => (
                         <Link
                           key={p.slug}
-                          href={`/products/${p.slug}`}
+                          href={buildLocalizedPath(locale, `/products/${p.slug}`)}
                           className="block px-3 py-2 text-sm text-medium-gray hover:text-earth-green"
                         >
                           {p.name}
@@ -193,7 +195,7 @@ function Navbar() {
               className="flex items-center justify-center gap-2 mt-3 px-4 py-2.5 bg-earth-green text-white text-sm font-medium rounded-md"
             >
               <Mail className="w-4 h-4" />
-              Get a Quote
+              {t("common.get_a_quote", "Get a Quote")}
             </a>
           </div>
         </div>
@@ -207,12 +209,12 @@ function Footer() {
   const { t, isRTL } = useI18nContext();
 
   const quickLinks = [
-    { label: t("common.home", "Home"), href: "/" },
-    { label: t("common.products", "Products"), href: "/products" },
-    { label: t("common.industry_solutions", "Industry Solutions"), href: "/industry-solutions" },
-    { label: t("common.quality", "Quality"), href: "/quality" },
-    { label: t("common.about", "About"), href: "/about" },
-    { label: t("common.contact", "Contact"), href: "/contact" },
+    { label: t("common.home", "Home"), href: buildLocalizedPath(locale, "/") },
+    { label: t("common.products", "Products"), href: buildLocalizedPath(locale, "/products") },
+    { label: t("common.industry_solutions", "Industry Solutions"), href: buildLocalizedPath(locale, "/industry-solutions") },
+    { label: t("common.quality", "Quality"), href: buildLocalizedPath(locale, "/quality") },
+    { label: t("common.about", "About"), href: buildLocalizedPath(locale, "/about") },
+    { label: t("common.contact", "Contact"), href: buildLocalizedPath(locale, "/contact") },
   ];
 
   const certs = ["ISO 22000", "FSSC 22000", "HACCP", "Halal", "Non-GMO IP"];
