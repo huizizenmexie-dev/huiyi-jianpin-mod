@@ -8,6 +8,7 @@ import { ChevronRight, ArrowRight } from "lucide-react";
 import { products, filterCategories } from "@/lib/productData";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
+import { buildPublicAssetPath } from "@/content/url";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
@@ -127,7 +128,7 @@ export default function Products() {
                   <div className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-earth-green shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col">
                     <div className="relative h-48 overflow-hidden">
                       <img
-                        src={product.image}
+                        src={buildPublicAssetPath(product.image)}
                         alt={`${product.name} for stable ingredient sourcing`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />

@@ -1,147 +1,133 @@
 import { useEffect } from "react";
-import { useI18nContext, buildLocalizedPath, type Locale } from "@/i18n";
-import { INDEXABLE_LOCALES, DEFAULT_LOCALE, LOCALE_STATUS } from "@/content/routes";
-import { SITE_URL } from "@/content/site";
+import { useI18nContext, type Locale } from "@/i18n";
+import { resolveRouteSEO } from "@/content/seo";
 import { buildCanonicalUrl } from "@/content/url";
+import { SITE_LEGAL_NAME, SITE_NAME, CONTACT } from "@/content/site";
 
 interface SEOData {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   keywords?: string;
   path: string;
   image?: string;
   jsonLd?: object[];
 }
 
-// Generate absolute URL
-function getAbsoluteUrl(path: string, locale: Locale): string {
-  return buildCanonicalUrl(locale, path);
+const MANAGED_ATTR = "data-managed-seo";
+const MANAGED_VALUE = "route";
+
+function markManaged(el: Element) {
+  el.setAttribute(MANAGED_ATTR, MANAGED_VALUE);
 }
 
-// Generate hreflang links — only for indexable (translated) locales
-function generateHreflangLinks(path: string): Array<{ lang: string; url: string }> {
-  const links: Array<{ lang: string; url: string }> = [];
-
-  for (const locale of INDEXABLE_LOCALES) {
-    links.push({
-      lang: locale,
-      url: getAbsoluteUrl(path, locale),
-    });
-  }
-
-  // Add x-default
-  links.push({
-    lang: "x-default",
-    url: getAbsoluteUrl(path, DEFAULT_LOCALE),
-  });
-
-  return links;
-}
-
-// Set meta tag
 function setMetaTag(name: string, content: string, attribute: string = "name"): void {
-  let el = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+  let el = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement | null;
   if (!el) {
     el = document.createElement("meta");
     el.setAttribute(attribute, name);
     document.head.appendChild(el);
   }
+  markManaged(el);
   el.setAttribute("content", content);
 }
 
-// Set link tag
 function setLinkTag(rel: string, href: string, attributes: Record<string, string> = {}): void {
-  // Remove existing
-  const existing = document.querySelector(`link[rel="${rel}"]${attributes.hreflang ? `[hreflang="${attributes.hreflang}"]` : ""}`);
-  if (existing) {
-    existing.remove();
+  const selector = attributes.hreflang
+    ? `link[rel="${rel}"][hreflang="${attributes.hreflang}"]`
+    : `link[rel="${rel}"]`;
+  let el = document.querySelector(selector) as HTMLLinkElement | null;
+  if (!el) {
+    el = document.createElement("link");
+    el.rel = rel;
+    for (const [key, value] of Object.entries(attributes)) {
+      el.setAttribute(key, value);
+    }
+    document.head.appendChild(el);
   }
-
-  const el = document.createElement("link");
-  el.rel = rel;
+  markManaged(el);
   el.href = href;
-  for (const [key, value] of Object.entries(attributes)) {
-    el.setAttribute(key, value);
+}
+
+function removeStaleAlternates(nextHreflangs: Set<string>) {
+  const alternates = document.querySelectorAll(`link[rel="alternate"][${MANAGED_ATTR}="${MANAGED_VALUE}"]`);
+  alternates.forEach((alternate) => {
+    const hreflang = alternate.getAttribute("hreflang") || "";
+    if (!nextHreflangs.has(hreflang)) {
+      alternate.remove();
+    }
+  });
+}
+
+function setJsonLd(id: string, data: object): void {
+  let script = document.getElementById(id) as HTMLScriptElement | null;
+  if (!script) {
+    script = document.createElement("script");
+    script.id = id;
+    script.type = "application/ld+json";
+    document.head.appendChild(script);
   }
-  document.head.appendChild(el);
-}
-
-// Clean up JSON-LD scripts
-function cleanupJsonLd(): void {
-  const scripts = document.querySelectorAll('script[type="application/ld+json"]');
-  scripts.forEach((script) => script.remove());
-}
-
-// Add JSON-LD
-function addJsonLd(data: object): void {
-  const script = document.createElement("script");
-  script.type = "application/ld+json";
+  markManaged(script);
   script.textContent = JSON.stringify(data);
-  document.head.appendChild(script);
 }
 
-// Unified SEO hook
+function removeStaleJsonLd(nextIds: Set<string>) {
+  const scripts = document.querySelectorAll(`script[type="application/ld+json"][${MANAGED_ATTR}="${MANAGED_VALUE}"]`);
+  scripts.forEach((script) => {
+    if (!nextIds.has(script.id)) {
+      script.remove();
+    }
+  });
+}
+
 export function usePageSEO(seoData: SEOData) {
   const { locale } = useI18nContext();
 
   useEffect(() => {
-    const { title, description, keywords, path, image, jsonLd } = seoData;
+    const seo = resolveRouteSEO({
+      locale,
+      routePath: seoData.path,
+      title: seoData.title,
+      description: seoData.description,
+      keywords: seoData.keywords,
+      image: seoData.image,
+    });
 
-    // Set title
-    document.title = title;
-
-    // Set meta description
-    setMetaTag("description", description);
-
-    // Set keywords
-    if (keywords) {
-      setMetaTag("keywords", keywords);
+    document.title = seo.title;
+    setMetaTag("description", seo.description);
+    if (seo.keywords) {
+      setMetaTag("keywords", seo.keywords);
     }
 
-    // Set canonical - always points to current locale URL
-    const canonicalUrl = getAbsoluteUrl(path, locale);
-    setLinkTag("canonical", canonicalUrl);
-    if (LOCALE_STATUS[locale].status === "ready") {
-      setMetaTag("robots", "index,follow");
-    } else {
-      setMetaTag("robots", "noindex,follow");
+    setMetaTag("robots", seo.robots);
+    setLinkTag("canonical", seo.canonical);
+
+    const nextHreflangs = new Set(seo.alternates.map((alternate) => alternate.hreflang));
+    removeStaleAlternates(nextHreflangs);
+    for (const alternate of seo.alternates) {
+      setLinkTag("alternate", alternate.href, { hreflang: alternate.hreflang });
     }
 
-    // Set hreflang links
-    const hreflangLinks = generateHreflangLinks(path);
-    for (const link of hreflangLinks) {
-      setLinkTag("alternate", link.url, { hreflang: link.lang });
+    setMetaTag("og:title", seo.og.title, "property");
+    setMetaTag("og:description", seo.og.description, "property");
+    setMetaTag("og:url", seo.og.url, "property");
+    setMetaTag("og:locale", seo.og.locale, "property");
+    setMetaTag("og:type", seo.og.type, "property");
+    setMetaTag("og:site_name", seo.og.siteName, "property");
+    if (seo.og.image) {
+      setMetaTag("og:image", seo.og.image, "property");
     }
 
-    // Set Open Graph
-    setMetaTag("og:title", title, "property");
-    setMetaTag("og:description", description, "property");
-    setMetaTag("og:url", canonicalUrl, "property");
-    setMetaTag("og:locale", locale.replace("-", "_"), "property");
-    setMetaTag("og:type", "website", "property");
-
-    if (image) {
-      setMetaTag("og:image", image, "property");
-    }
-
-    // Set HTML lang and dir
     document.documentElement.lang = locale;
     document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
 
-    // Clean up and add JSON-LD
-    cleanupJsonLd();
-    if (jsonLd) {
-      jsonLd.forEach((data) => addJsonLd(data));
+    const nextJsonLdIds = new Set(seo.jsonLd.map((entry) => entry.id));
+    removeStaleJsonLd(nextJsonLdIds);
+    for (const entry of seo.jsonLd) {
+      setJsonLd(entry.id, entry.data);
     }
-
-    // Cleanup function
-    return () => {
-      cleanupJsonLd();
-    };
-  }, [seoData, locale]);
+  }, [seoData.description, seoData.image, seoData.keywords, seoData.path, seoData.title, locale]);
 }
 
-// Helper to build breadcrumb JSON-LD
 export function buildBreadcrumbSchema(items: Array<{ name: string; path: string }>, locale: Locale): object {
   return {
     "@context": "https://schema.org",
@@ -150,22 +136,21 @@ export function buildBreadcrumbSchema(items: Array<{ name: string; path: string 
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: getAbsoluteUrl(item.path, locale),
+      item: buildCanonicalUrl(locale, item.path),
     })),
   };
 }
 
-// Helper to build organization JSON-LD
 export function buildOrganizationSchema(): object {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Huiyi Jianpin",
-    url: "https://lecprima.com",
-    logo: "https://lecprima.com/logo.png",
+    name: SITE_NAME,
+    url: buildCanonicalUrl("en", "/").replace(/\/en\/$/, ""),
+    logo: buildCanonicalUrl("en", "/logo.png"),
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+86-18646556618",
+      telephone: CONTACT.phone.replace(/\s+/g, ""),
       contactType: "sales",
       availableLanguage: ["English", "Chinese", "Portuguese", "French", "Arabic", "Spanish"],
     },
@@ -175,10 +160,10 @@ export function buildOrganizationSchema(): object {
       addressRegion: "Heilongjiang",
       addressCountry: "CN",
     },
+    legalName: SITE_LEGAL_NAME,
   };
 }
 
-// Helper to build product JSON-LD
 export function buildProductSchema(product: {
   name: string;
   description: string;
@@ -194,11 +179,11 @@ export function buildProductSchema(product: {
     sku: product.sku,
     brand: {
       "@type": "Brand",
-      name: "Huiyi Jianpin",
+      name: SITE_NAME,
     },
     manufacturer: {
       "@type": "Organization",
-      name: "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+      name: SITE_LEGAL_NAME,
     },
   };
 }

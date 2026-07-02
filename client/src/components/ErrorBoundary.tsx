@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { buildPublicPath } from "@/content/url";
 import { AlertTriangle, RotateCcw, Home } from "lucide-react";
 import { Component, ReactNode } from "react";
 
@@ -96,7 +97,7 @@ class ErrorBoundary extends Component<Props, State> {
               </button>
 
               <a
-                href="/en/"
+                href={buildPublicPath("en", "/")}
                 className={cn(
                   "flex items-center justify-center gap-2 px-6 py-3 rounded-lg",
                   "border-2 border-earth-green text-earth-green font-medium",

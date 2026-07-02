@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import legacy from "@vitejs/plugin-legacy";
 import path from "node:path";
 import { defineConfig } from "vite";
+import { normalizeBasePath } from "./client/src/content/url";
 
 const plugins = [
   react(),
@@ -16,6 +17,7 @@ const plugins = [
 ];
 
 export default defineConfig({
+  base: normalizeBasePath(process.env.BASE_PATH || process.env.VITE_BASE_PATH || "/"),
   plugins,
   resolve: {
     alias: {

@@ -27,5 +27,5 @@ export function useI18nContext(): I18nContextValue {
 
 // Re-export utilities
 export { useI18n } from "./useI18n";
-export { getLocaleFromPath, buildLocalizedPath, getPathWithoutLocale } from "./locale";
+export { getLocaleFromPath, buildLocalizedPath, buildLocalizedPublicPath, getPathWithoutLocale } from "./locale";
 export type { Locale } from "./config";

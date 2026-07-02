@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronRight, Mail } from "lucide-react";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
-import { useI18nContext, buildLocalizedPath } from "@/i18n";
+import { useI18nContext, buildLocalizedPath, buildLocalizedPublicPath } from "@/i18n";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
@@ -125,7 +125,7 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export default function IndustrySolutions() {
   const [activeFilter, setActiveFilter] = useState("All");
   const { t, locale } = useI18nContext();
-  const inquiryFormLink = buildLocalizedPath(locale, "/contact#inquiryForm");
+  const inquiryFormLink = buildLocalizedPublicPath(locale, "/contact#inquiryForm");
 
   // Apply unified SEO
   usePageSEO({

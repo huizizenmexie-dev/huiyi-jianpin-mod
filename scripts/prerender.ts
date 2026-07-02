@@ -6,7 +6,6 @@ import React from "react";
 import App from "../client/src/App";
 import {
   DEFAULT_LOCALE,
-  INDEXABLE_LOCALES,
   LOCALES,
   LOCALE_STATUS,
   PAGE_PATHS,
@@ -14,9 +13,8 @@ import {
   RTL_LOCALES,
   type Locale,
 } from "../client/src/content/routes";
-import { getProductBySlug, products } from "../client/src/lib/productData";
-import { SITE_NAME } from "../client/src/content/site";
-import { buildCanonicalUrl, buildRoutePath, SITE_ORIGIN, withTrailingSlash } from "../client/src/content/url";
+import { resolveRouteSEO } from "../client/src/content/seo";
+import { buildCanonicalUrl, buildPublicPath, buildRoutePath, buildSitemapUrl } from "../client/src/content/url";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST = join(ROOT, "dist", "public");
@@ -27,73 +25,16 @@ type RouteConfig = {
   locale: Locale;
   routePath: string;
   type: RouteType;
-  title: string;
-  description: string;
 };
-
-const PAGE_SEO: Record<string, { title: string; description: string }> = {
-  "/": {
-    title: "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
-    description:
-      "Secure your formulation against global supply chain disruptions with Huiyi Jianpin soy lecithin, phospholipid, soy protein and fiber systems.",
-  },
-  "/products": {
-    title: "Soy Lecithin & Phospholipid Products | Stable B2B Supply",
-    description:
-      "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Huiyi Jianpin.",
-  },
-  "/about": {
-    title: "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China",
-    description:
-      "Learn how Huiyi Jianpin connects Heilongjiang soybean sourcing with GMP-standard phospholipid production.",
-  },
-  "/quality": {
-    title: "Quality & Traceability | Secure Soy Lecithin Supply Chain",
-    description:
-      "Verify Huiyi Jianpin quality systems, certifications, COA documentation and batch traceability.",
-  },
-  "/industry-solutions": {
-    title: "Industry Solutions | Stable Phospholipid Applications",
-    description:
-      "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications.",
-  },
-  "/contact": {
-    title: "Contact Huiyi Jianpin | Request a Quote for Soy Lecithin",
-    description:
-      "Contact Huiyi Jianpin for soy lecithin, phospholipid quote requests, samples and documentation.",
-  },
-};
-
-function productSeo(slug: string) {
-  const product = getProductBySlug(slug);
-  if (!product) throw new Error(`Unknown product slug: ${slug}`);
-  return {
-    title: `${product.name} | ${SITE_NAME}`,
-    description: `${product.subtitle}. ${product.quickSpecs}`,
-  };
-}
 
 function routeConfigs(): RouteConfig[] {
   const routes: RouteConfig[] = [];
   for (const locale of LOCALES) {
     for (const routePath of PAGE_PATHS) {
-      routes.push({
-        locale,
-        routePath,
-        type: "page",
-        title: PAGE_SEO[routePath].title,
-        description: PAGE_SEO[routePath].description,
-      });
+      routes.push({ locale, routePath, type: "page" });
     }
     for (const slug of PRODUCT_SLUGS) {
-      const seo = productSeo(slug);
-      routes.push({
-        locale,
-        routePath: `/products/${slug}`,
-        type: "product",
-        title: seo.title,
-        description: seo.description,
-      });
+      routes.push({ locale, routePath: `/products/${slug}`, type: "product" });
     }
   }
   return routes;
@@ -112,118 +53,30 @@ function escapeHtml(value: string) {
     .replace(/>/g, "&gt;");
 }
 
-function scriptTag(data: object) {
-  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
-}
-
-function organizationSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Huiyi Jianpin",
-    legalName: "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
-    url: SITE_ORIGIN,
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+86-18646556618",
-      contactType: "sales",
-      availableLanguage: ["English", "Chinese", "Portuguese", "French", "Arabic", "Spanish"],
-    },
-  };
-}
-
-function websiteSchema(locale: Locale) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_NAME,
-    url: buildCanonicalUrl(locale, "/"),
-  };
-}
-
-function breadcrumbSchema(route: RouteConfig) {
-  const items = [
-    { name: "Home", path: "/" },
-    route.type === "product"
-      ? { name: "Products", path: "/products" }
-      : route.routePath === "/"
-        ? null
-        : { name: PAGE_SEO[route.routePath]?.title.split("|")[0].trim() || route.routePath, path: route.routePath },
-  ].filter(Boolean) as Array<{ name: string; path: string }>;
-
-  if (route.type === "product") {
-    const slug = route.routePath.split("/").filter(Boolean).pop() || "";
-    items.push({ name: getProductBySlug(slug)?.name || slug, path: route.routePath });
-  }
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: buildCanonicalUrl(route.locale, item.path),
-    })),
-  };
-}
-
-function productSchema(route: RouteConfig) {
-  const slug = route.routePath.split("/").filter(Boolean).pop() || "";
-  const product = getProductBySlug(slug);
-  if (!product) return null;
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: `${product.subtitle}. ${product.quickSpecs}`,
-    image: product.image.startsWith("http") ? product.image : buildCanonicalUrl(route.locale, product.image),
-    brand: { "@type": "Brand", name: SITE_NAME },
-    manufacturer: {
-      "@type": "Organization",
-      name: "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
-    },
-    category: product.category.join(", "),
-  };
-}
-
-function hreflang(route: RouteConfig) {
-  if (LOCALE_STATUS[route.locale].status !== "ready") return "";
-  const alternates = INDEXABLE_LOCALES.map(
-    (locale) =>
-      `<link rel="alternate" hreflang="${locale}" href="${buildCanonicalUrl(locale, route.routePath)}" />`
-  );
-  if (INDEXABLE_LOCALES.includes(DEFAULT_LOCALE)) {
-    alternates.push(
-      `<link rel="alternate" hreflang="x-default" href="${buildCanonicalUrl(DEFAULT_LOCALE, route.routePath)}" />`
-    );
-  }
-  return alternates.join("\n    ");
+function scriptTag(id: string, data: object) {
+  return `<script id="${id}" data-managed-seo="route" type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 }
 
 function headFor(route: RouteConfig) {
-  const canonical = buildCanonicalUrl(route.locale, route.routePath);
-  const robots =
-    LOCALE_STATUS[route.locale].status === "ready" ? "index,follow" : "noindex,follow";
-  const schemas = [organizationSchema(), websiteSchema(route.locale), breadcrumbSchema(route)];
-  if (route.type === "product") {
-    const schema = productSchema(route);
-    if (schema) schemas.push(schema);
-  }
+  const seo = resolveRouteSEO({ locale: route.locale, routePath: route.routePath });
 
   return [
-    `<title>${escapeHtml(route.title)}</title>`,
-    `<meta name="description" content="${escapeHtml(route.description)}" />`,
-    `<meta name="robots" content="${robots}" />`,
-    `<link rel="canonical" href="${canonical}" />`,
-    hreflang(route),
-    `<meta property="og:title" content="${escapeHtml(route.title)}" />`,
-    `<meta property="og:description" content="${escapeHtml(route.description)}" />`,
-    `<meta property="og:url" content="${canonical}" />`,
-    `<meta property="og:type" content="website" />`,
-    `<meta property="og:site_name" content="${SITE_NAME}" />`,
-    `<meta property="og:locale" content="${route.locale.replace("-", "_")}" />`,
-    ...schemas.map(scriptTag),
+    `<title>${escapeHtml(seo.title)}</title>`,
+    `<meta data-managed-seo="route" name="description" content="${escapeHtml(seo.description)}" />`,
+    `<meta data-managed-seo="route" name="robots" content="${seo.robots}" />`,
+    `<link data-managed-seo="route" rel="canonical" href="${seo.canonical}" />`,
+    ...seo.alternates.map(
+      (alternate) =>
+        `<link data-managed-seo="route" rel="alternate" hreflang="${alternate.hreflang}" href="${alternate.href}" />`
+    ),
+    `<meta data-managed-seo="route" property="og:title" content="${escapeHtml(seo.og.title)}" />`,
+    `<meta data-managed-seo="route" property="og:description" content="${escapeHtml(seo.og.description)}" />`,
+    `<meta data-managed-seo="route" property="og:url" content="${seo.og.url}" />`,
+    `<meta data-managed-seo="route" property="og:type" content="${seo.og.type}" />`,
+    `<meta data-managed-seo="route" property="og:site_name" content="${escapeHtml(seo.og.siteName)}" />`,
+    `<meta data-managed-seo="route" property="og:locale" content="${seo.og.locale}" />`,
+    seo.og.image ? `<meta data-managed-seo="route" property="og:image" content="${seo.og.image}" />` : "",
+    ...seo.jsonLd.map((entry) => scriptTag(entry.id, entry.data)),
   ]
     .filter(Boolean)
     .join("\n    ");
@@ -231,7 +84,7 @@ function headFor(route: RouteConfig) {
 
 function renderRoute(route: RouteConfig) {
   const queryClient = new QueryClient();
-  const ssrPath = buildRoutePath(route.locale, route.routePath);
+  const ssrPath = buildPublicPath(route.locale, route.routePath);
   return renderToString(
     React.createElement(
       QueryClientProvider,
@@ -261,7 +114,7 @@ function writeSitemap(routes: RouteConfig[]) {
 }
 
 function writeRobots() {
-  const robots = `User-agent: *\nAllow: /\nSitemap: ${withTrailingSlash(SITE_ORIGIN).replace(/\/$/, "")}/sitemap.xml\n`;
+  const robots = `User-agent: *\nAllow: /\nSitemap: ${buildSitemapUrl()}\n`;
   writeFileSync(join(DIST, "robots.txt"), robots, "utf-8");
 }
 
@@ -281,18 +134,17 @@ function main() {
     console.log(`  rendered ${buildRoutePath(route.locale, route.routePath)}`);
   }
 
-  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="refresh" content="0;url=${buildRoutePath(DEFAULT_LOCALE, "/")}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${buildRoutePath(DEFAULT_LOCALE, "/")}">Continue to English homepage</a></body></html>`;
+  const rootTarget = buildPublicPath(DEFAULT_LOCALE, "/");
+  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
   writeFileSync(join(DIST, "index.html"), rootRedirect, "utf-8");
 
   writeFileSync(
     join(DIST, "404.html"),
-    injectHtml(template, {
-      locale: DEFAULT_LOCALE,
-      routePath: "/404",
-      type: "page",
-      title: "Page Not Found | Huiyi Jianpin",
-      description: "The requested page could not be found.",
-    }, renderRoute({ locale: DEFAULT_LOCALE, routePath: "/404", type: "page", title: "", description: "" })),
+    injectHtml(
+      template,
+      { locale: DEFAULT_LOCALE, routePath: "/", type: "page" },
+      renderRoute({ locale: DEFAULT_LOCALE, routePath: "/404", type: "page" })
+    ),
     "utf-8"
   );
 

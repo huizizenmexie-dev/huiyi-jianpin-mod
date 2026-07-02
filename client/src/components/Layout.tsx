@@ -14,7 +14,7 @@ import {
   Phone,
 } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useI18nContext, buildLocalizedPath } from "@/i18n";
+import { useI18nContext, buildLocalizedPath, buildLocalizedPublicPath } from "@/i18n";
 
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 
@@ -27,8 +27,7 @@ function Navbar() {
   const { isRTL, t, locale } = useI18nContext();
 
   // Build localized links
-  const QUOTE_FORM_LINK = buildLocalizedPath(locale, "/contact#quoteForm");
-  const INQUIRY_FORM_LINK = buildLocalizedPath(locale, "/contact#inquiryForm");
+  const QUOTE_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#quoteForm");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -300,7 +299,7 @@ function Footer() {
 function FloatingContact() {
   const [open, setOpen] = useState(false);
   const { t, locale } = useI18nContext();
-  const INQUIRY_FORM_LINK = buildLocalizedPath(locale, "/contact#inquiryForm");
+  const INQUIRY_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#inquiryForm");
 
   return (
     <div className="fixed bottom-6 right-6 z-40">

@@ -10,7 +10,7 @@ import {
   RTL_LOCALES,
   type Locale,
 } from "../client/src/content/routes";
-import { buildCanonicalUrl, buildRoutePath } from "../client/src/content/url";
+import { BASE_PATH, buildCanonicalUrl, buildRoutePath, buildSitemapUrl, stripBasePath } from "../client/src/content/url";
 
 const ROOT = process.cwd();
 const DIST = join(ROOT, "dist", "public");
@@ -72,6 +72,28 @@ function sitemapUrls() {
   return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 }
 
+function robotsSitemapUrl() {
+  const robotsPath = join(DIST, "robots.txt");
+  if (!existsSync(robotsPath)) return "";
+  const robots = readFileSync(robotsPath, "utf-8");
+  return attr(robots, /^Sitemap:\s*(\S+)/m);
+}
+
+function validateBuiltAssetPaths(content: string, routeLabel: string) {
+  check(!content.includes("/https://"), `${routeLabel} has no malformed /https:// URL`);
+
+  const assetRefs = [
+    ...content.matchAll(/<(?:script|link)[^>]+(?:src|href)="([^"]+)"/g),
+    ...content.matchAll(/data-src="([^"]+)"/g),
+  ].map((match) => match[1]);
+
+  for (const asset of assetRefs.filter((ref) => ref.includes("/assets/"))) {
+    if (BASE_PATH !== "/") {
+      check(asset.startsWith(`${BASE_PATH}assets/`), `${routeLabel} asset ${asset} uses configured base path`);
+    }
+  }
+}
+
 function validateSourceLinks() {
   const sourceFiles = [
     ...collectFiles(join(ROOT, "client", "src"), ".tsx"),
@@ -89,8 +111,12 @@ function validateSourceLinks() {
 function validate() {
   check(existsSync(DIST), "dist/public exists");
   const routes = allRoutes();
+  check(routes.length === 96, "route manifest contains 96 localized static pages");
   const urls = sitemapUrls();
   const urlSet = new Set(urls);
+  const robotsUrl = robotsSitemapUrl();
+  check(robotsUrl === buildSitemapUrl(), "robots.txt points to the generated absolute sitemap URL");
+  check(!robotsUrl.includes("/https://"), "robots.txt sitemap URL is not malformed");
 
   for (const route of routes) {
     const file = htmlPath(route.locale, route.routePath);
@@ -101,6 +127,7 @@ function validate() {
     if (!existsSync(file)) continue;
 
     const content = readHtml(route.locale, route.routePath);
+    validateBuiltAssetPaths(content, buildRoutePath(route.locale, route.routePath));
     const root = rootContent(content);
     const canonical = attr(content, /<link[^>]+rel="canonical"[^>]+href="([^"]+)"/);
     const robots = attr(content, /<meta[^>]+name="robots"[^>]+content="([^"]+)"/);
@@ -150,7 +177,7 @@ function validate() {
     check(url.endsWith("/"), `${url} uses trailing slash`);
     check(expectedSitemapUrls.includes(url), `${url} is an expected indexable URL`);
     const parsed = new URL(url);
-    const localPath = parsed.pathname.replace(/^\/+|\/+$/g, "");
+    const localPath = stripBasePath(parsed.pathname).replace(/^\/+|\/+$/g, "");
     check(existsSync(join(DIST, localPath, "index.html")), `${url} maps to a static file`);
   }
 

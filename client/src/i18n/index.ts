@@ -18,6 +18,7 @@ export {
   getLocaleFromPath,
   getPathWithoutLocale,
   buildLocalizedPath,
+  buildLocalizedPublicPath,
   getAllLocalizedPaths,
   parseUrlParams,
 } from "./locale";

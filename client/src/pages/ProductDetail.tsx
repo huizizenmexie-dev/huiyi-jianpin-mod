@@ -7,6 +7,8 @@ import { useParams } from "wouter";
 import { ChevronRight, ArrowLeft, Mail, Phone } from "lucide-react";
 import { getProductBySlug } from "@/lib/productData";
 import LocalizedLink from "@/components/LocalizedLink";
+import { usePageSEO } from "@/lib/usePageSEO";
+import { buildPublicAssetPath } from "@/content/url";
 
 const CONTACT_EMAIL_BASE = "mailto:jojowei@huiyijianpin.cn?subject=";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
@@ -18,6 +20,15 @@ export default function ProductDetail() {
   const product = getProductBySlug(slug || "");
   const [activeTab, setActiveTab] = useState<"specs" | "apps">("specs");
   const [showStickyCta, setShowStickyCta] = useState(false);
+
+  usePageSEO({
+    path: product ? `/products/${product.slug}` : "/products",
+    title: product ? `${product.name} | Huiyi Jianpin` : "Product Not Found | Huiyi Jianpin",
+    description: product
+      ? `${product.subtitle}. ${product.quickSpecs}`
+      : "The requested product could not be found.",
+    image: product?.image,
+  });
 
   useEffect(() => {
     setActiveTab("specs");
@@ -54,6 +65,7 @@ export default function ProductDetail() {
   )}&body=${encodeURIComponent(
     `Please fill in:\nCompany:\nProduct: ${product.name}\nQuantity:\nMessage:`
   )}`;
+  const productImage = buildPublicAssetPath(product.image);
 
   return (
     <div className="bg-warm-ivory">
@@ -72,7 +84,7 @@ export default function ProductDetail() {
             {/* Product Image */}
             <div className="rounded-xl overflow-hidden shadow-md">
               <img
-                src={product.image}
+                src={productImage}
                 alt={product.name}
                 className="w-full h-[320px] lg:h-[400px] object-cover"
                 onError={(e) => {
@@ -143,25 +155,27 @@ export default function ProductDetail() {
               <h2 className="font-heading font-bold text-2xl text-deep-brown mb-5">
                 Product Specifications
               </h2>
-              <table className="w-full">
-                <tbody>
-                  {product.specifications.map((spec, i) => (
-                    <tr
-                      key={i}
-                      className={`${
-                        i % 2 === 0 ? "bg-light-green/50" : "bg-white"
-                      }`}
-                    >
-                      <td className="px-4 py-3 text-sm font-heading font-semibold text-deep-brown w-1/3 align-top">
-                        {spec.label}
-                      </td>
-                      <td className="px-4 py-3 text-sm font-mono text-medium-gray">
-                        {spec.value}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="max-w-full overflow-x-auto">
+                <table className="w-full min-w-[560px]">
+                  <tbody>
+                    {product.specifications.map((spec, i) => (
+                      <tr
+                        key={i}
+                        className={`${
+                          i % 2 === 0 ? "bg-light-green/50" : "bg-white"
+                        }`}
+                      >
+                        <td className="px-4 py-3 text-sm font-heading font-semibold text-deep-brown w-1/3 align-top">
+                          {spec.label}
+                        </td>
+                        <td className="px-4 py-3 text-sm font-mono text-medium-gray">
+                          {spec.value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div className="space-y-4">

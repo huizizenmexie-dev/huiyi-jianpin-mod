@@ -14,7 +14,7 @@ import ProductDetail from "./pages/ProductDetail";
 import IndustrySolutions from "./pages/IndustrySolutions";
 import Quality from "./pages/Quality";
 import Contact from "./pages/Contact";
-import { BASE_PATH } from "@/content/url";
+import { ROUTER_BASE_PATH, stripBasePath } from "@/content/url";
 
 // Loading fallback component
 function LoadingFallback() {
@@ -47,7 +47,7 @@ function LocaleGuard({ children, params }: { children: React.ReactNode; params: 
     // Check if locale is valid
     if (!isValidLocale(lang)) {
       // Get current path without locale
-      const currentPath = window.location.pathname;
+      const currentPath = stripBasePath(window.location.pathname);
       const pathWithoutLocale = currentPath.replace(/^\/[^/]+/, "") || "/";
       // Redirect to default locale
       setLocation(buildLocalizedPath(DEFAULT_LOCALE, pathWithoutLocale), { replace: true });
@@ -136,7 +136,7 @@ function Router() {
 function App({ ssrPath }: { ssrPath?: string } = {}) {
   return (
     <ErrorBoundary>
-      <WouterRouter ssrPath={ssrPath} base={BASE_PATH || undefined}>
+      <WouterRouter ssrPath={ssrPath} base={ROUTER_BASE_PATH || undefined}>
         <I18nProvider>
           <ThemeProvider defaultTheme="light">
             <TooltipProvider>

@@ -1,4 +1,5 @@
 import { DEFAULT_LOCALE, type Locale } from "./config";
+import { buildPublicAssetPath } from "@/content/url";
 
 type TranslationData = Record<string, any>;
 
@@ -10,7 +11,7 @@ const loadingPromises: Map<Locale, Promise<TranslationData>> = new Map();
 
 // Load translation file for a locale
 async function loadTranslationFile(locale: Locale): Promise<TranslationData> {
-  const response = await fetch(`/locales/${locale}/translation.json`);
+  const response = await fetch(buildPublicAssetPath(`/locales/${locale}/translation.json`));
 
   if (!response.ok) {
     throw new Error(`Failed to load translation for ${locale}: ${response.status}`);

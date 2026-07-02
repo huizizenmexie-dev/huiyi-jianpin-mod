@@ -30,7 +30,7 @@ import {
   buildBreadcrumbSchema,
   buildOrganizationSchema,
 } from "@/lib/usePageSEO";
-import { useI18nContext, buildLocalizedPath } from "@/i18n";
+import { useI18nContext, buildLocalizedPath, buildLocalizedPublicPath } from "@/i18n";
 
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
@@ -134,7 +134,7 @@ export default function Home() {
   // Build localized links
   const PRODUCTS_LINK = buildLocalizedPath(locale, "/products");
   const QUALITY_LINK = buildLocalizedPath(locale, "/quality");
-  const INQUIRY_FORM_LINK = buildLocalizedPath(locale, "/contact#inquiryForm");
+  const INQUIRY_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#inquiryForm");
 
   // SEO data from translations
   const seoTitle = t("homepage.seo_title", "Stable Soy Lecithin Supplier | Huiyi Jianpin");

@@ -1,5 +1,5 @@
 import { LOCALES, DEFAULT_LOCALE, type Locale, isValidLocale } from "./config";
-import { buildLocalizedHref } from "@/content/url";
+import { buildLocalizedHref, buildLocalizedPublicHref } from "@/content/url";
 
 // Extract locale from URL path
 export function getLocaleFromPath(pathname: string): Locale {
@@ -28,6 +28,10 @@ export function getPathWithoutLocale(pathname: string): string {
 // Build URL with locale prefix
 export function buildLocalizedPath(locale: Locale, path: string): string {
   return buildLocalizedHref(locale, path);
+}
+
+export function buildLocalizedPublicPath(locale: Locale, path: string): string {
+  return buildLocalizedPublicHref(locale, path);
 }
 
 // Get all localized paths for a given path
