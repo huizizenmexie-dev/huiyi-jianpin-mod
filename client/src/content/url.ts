@@ -1,4 +1,5 @@
 import { DEFAULT_LOCALE, LOCALES, type Locale } from "./routes";
+import { SITE_CONFIG } from "./siteConfig";
 
 type UrlSystemInput = {
   siteOrigin: string;
@@ -17,18 +18,35 @@ function envValue(key: string) {
   return undefined;
 }
 
-const EXPLICIT_SITE_ORIGIN = envValue("SITE_ORIGIN") || envValue("VITE_SITE_ORIGIN");
+const EXPLICIT_SITE_ORIGIN =
+  envValue("SITE_ORIGIN") || envValue("VITE_SITE_ORIGIN");
+const EXPLICIT_BASE_PATH = envValue("BASE_PATH") || envValue("VITE_BASE_PATH");
+const PRODUCTION_LIFECYCLE_EVENTS = new Set([
+  "build",
+  "build:full",
+  "validate",
+  "validate-seo",
+  "verify-static",
+]);
 const REQUIRES_EXPLICIT_SITE_ORIGIN =
-  envValue("npm_lifecycle_event") === "build" ||
+  PRODUCTION_LIFECYCLE_EVENTS.has(envValue("npm_lifecycle_event") || "") ||
   envValue("NODE_ENV") === "production" ||
   (typeof import.meta !== "undefined" && import.meta.env?.PROD);
 
 const RAW_SITE_ORIGIN =
-  EXPLICIT_SITE_ORIGIN || (REQUIRES_EXPLICIT_SITE_ORIGIN ? "" : "http://localhost:5173");
+  EXPLICIT_SITE_ORIGIN ||
+  (REQUIRES_EXPLICIT_SITE_ORIGIN
+    ? SITE_CONFIG.productionSiteOrigin
+    : SITE_CONFIG.localSiteOrigin);
 
 const RAW_BASE_PATH =
-  envValue("BASE_PATH") || envValue("VITE_BASE_PATH") ||
-  (typeof import.meta !== "undefined" ? import.meta.env?.BASE_URL : undefined) ||
+  EXPLICIT_BASE_PATH ||
+  (REQUIRES_EXPLICIT_SITE_ORIGIN
+    ? SITE_CONFIG.productionBasePath
+    : SITE_CONFIG.localBasePath) ||
+  (typeof import.meta !== "undefined"
+    ? import.meta.env?.BASE_URL
+    : undefined) ||
   "/";
 
 export function normalizeSiteOrigin(origin: string) {
@@ -72,7 +90,9 @@ export function stripBasePath(path: string, basePath = BASE_PATH) {
 }
 
 export function stripLocale(path: string) {
-  const clean = withTrailingSlash(stripBasePath(path)).split("#")[0].split("?")[0];
+  const clean = withTrailingSlash(stripBasePath(path))
+    .split("#")[0]
+    .split("?")[0];
   const segments = clean.split("/").filter(Boolean);
   if (LOCALES.includes(segments[0] as Locale)) {
     return withTrailingSlash(`/${segments.slice(1).join("/")}`);
@@ -83,7 +103,8 @@ export function stripLocale(path: string) {
 export function createUrlSystem({ siteOrigin, basePath }: UrlSystemInput) {
   const normalizedOrigin = normalizeSiteOrigin(siteOrigin);
   const normalizedBase = normalizeBasePath(basePath);
-  const routerBasePath = normalizedBase === "/" ? "" : normalizedBase.replace(/\/$/, "");
+  const routerBasePath =
+    normalizedBase === "/" ? "" : normalizedBase.replace(/\/$/, "");
 
   const withBase = (path: string) => {
     const slashPath = path.startsWith("/") ? path : `/${path}`;
@@ -92,11 +113,15 @@ export function createUrlSystem({ siteOrigin, basePath }: UrlSystemInput) {
 
   const routePath = (locale: Locale, path: string) => {
     const cleanRoute = stripLocale(path);
-    return withTrailingSlash(`/${locale}${cleanRoute === "/" ? "" : cleanRoute}`);
+    return withTrailingSlash(
+      `/${locale}${cleanRoute === "/" ? "" : cleanRoute}`
+    );
   };
 
-  const publicPath = (locale: Locale, path: string) => withBase(routePath(locale, path));
-  const canonicalUrl = (locale: Locale, path: string) => `${normalizedOrigin}${publicPath(locale, path)}`;
+  const publicPath = (locale: Locale, path: string) =>
+    withBase(routePath(locale, path));
+  const canonicalUrl = (locale: Locale, path: string) =>
+    `${normalizedOrigin}${publicPath(locale, path)}`;
   const publicAssetPath = (path: string) => {
     if (/^(https?:|mailto:|tel:|data:|#)/.test(path)) return path;
     return withBase(path.startsWith("/") ? path : `/${path}`);
