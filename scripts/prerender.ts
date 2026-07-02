@@ -9,17 +9,19 @@ import {
   LOCALES,
   LOCALE_STATUS,
   PAGE_PATHS,
+  INSIGHT_SLUGS,
   PRODUCT_SLUGS,
   RTL_LOCALES,
   type Locale,
 } from "../client/src/content/routes";
+import { getInsightBySlug } from "../client/src/content/insights";
 import { resolveRouteSEO } from "../client/src/content/seo";
 import { buildCanonicalUrl, buildPublicPath, buildRoutePath, buildSitemapUrl } from "../client/src/content/url";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST = join(ROOT, "dist", "public");
 
-type RouteType = "page" | "product";
+type RouteType = "page" | "product" | "insight";
 
 type RouteConfig = {
   locale: Locale;
@@ -35,6 +37,9 @@ function routeConfigs(): RouteConfig[] {
     }
     for (const slug of PRODUCT_SLUGS) {
       routes.push({ locale, routePath: `/products/${slug}`, type: "product" });
+    }
+    for (const slug of INSIGHT_SLUGS) {
+      routes.push({ locale, routePath: `/insights/${slug}`, type: "insight" });
     }
   }
   return routes;
@@ -106,7 +111,14 @@ function injectHtml(template: string, route: RouteConfig, body: string) {
 
 function writeSitemap(routes: RouteConfig[]) {
   const urls = routes
-    .filter((route) => LOCALE_STATUS[route.locale].status === "ready")
+    .filter((route) => {
+      if (LOCALE_STATUS[route.locale].status !== "ready") return false;
+      if (route.type === "insight") {
+        const slug = route.routePath.split("/").filter(Boolean)[1];
+        return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
+      }
+      return true;
+    })
     .map((route) => `  <url><loc>${buildCanonicalUrl(route.locale, route.routePath)}</loc></url>`)
     .join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -151,7 +163,18 @@ function main() {
   writeSitemap(routes);
   writeRobots();
   console.log(`Pre-rendered ${routes.length} localized static pages.`);
-  console.log(`Sitemap contains ${routes.filter((route) => LOCALE_STATUS[route.locale].status === "ready").length} indexable URLs.`);
+  console.log(
+    `Sitemap contains ${
+      routes.filter((route) => {
+        if (LOCALE_STATUS[route.locale].status !== "ready") return false;
+        if (route.type === "insight") {
+          const slug = route.routePath.split("/").filter(Boolean)[1];
+          return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
+        }
+        return true;
+      }).length
+    } indexable URLs.`
+  );
 }
 
 main();

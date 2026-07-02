@@ -14,6 +14,7 @@ import ProductDetail from "./pages/ProductDetail";
 import IndustrySolutions from "./pages/IndustrySolutions";
 import Quality from "./pages/Quality";
 import Contact from "./pages/Contact";
+import InsightsArticle from "./pages/InsightsArticle";
 import { ROUTER_BASE_PATH, stripBasePath } from "@/content/url";
 
 // Loading fallback component
@@ -118,6 +119,13 @@ function Router() {
             {(params) => (
               <LocaleGuard params={params}>
                 <Contact />
+              </LocaleGuard>
+            )}
+          </Route>
+          <Route path="/:lang/insights/:slug">
+            {(params) => (
+              <LocaleGuard params={params}>
+                <InsightsArticle />
               </LocaleGuard>
             )}
           </Route>

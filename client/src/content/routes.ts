@@ -50,6 +50,22 @@ export const PRODUCT_SLUGS = [
 
 export type ProductSlug = (typeof PRODUCT_SLUGS)[number];
 
+/** English insight article slugs — must match insights.ts */
+export const INSIGHT_SLUGS = [
+  "soy-lecithin-aquafeed-guide",
+  "liquid-vs-powder-lecithin-aquafeed",
+  "feed-grade-lecithin-buyer-checklist",
+  "soy-lecithin-shrimp-feed",
+  "soy-lecithin-fish-feed",
+  "liquid-lecithin-feed-mill-handling",
+  "food-grade-soy-lecithin-selection",
+  "soy-lecithin-bakery-applications",
+  "soy-lecithin-chocolate-confectionery",
+  "water-dispersible-lecithin-instant-beverages",
+] as const;
+
+export type InsightSlug = (typeof INSIGHT_SLUGS)[number];
+
 /** Static page paths (without locale prefix) */
 export const PAGE_PATHS = [
   "/",

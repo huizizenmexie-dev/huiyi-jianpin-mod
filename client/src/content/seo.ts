@@ -12,6 +12,7 @@ import {
   DEFAULT_OG_IMAGE,
 } from "./site";
 import { getProductBySlug } from "../lib/productData";
+import { getInsightBySlug } from "./insights";
 import { URLS, buildRoutePath, createUrlSystem, stripLocale } from "./url";
 
 type UrlSystem = ReturnType<typeof createUrlSystem>;
@@ -33,7 +34,7 @@ export type RouteSEO = {
     title: string;
     description: string;
     url: string;
-    type: "website" | "product";
+    type: "website" | "product" | "article";
     siteName: string;
     locale: string;
     image?: string;
@@ -93,14 +94,31 @@ function productSeo(slug: string) {
   };
 }
 
+function insightSeo(slug: string) {
+  const article = getInsightBySlug(slug);
+  if (!article) throw new Error(`Unknown insight slug: ${slug}`);
+  return {
+    title: article.metaTitle,
+    description: article.metaDescription,
+  };
+}
+
 function routeTitleDescription(routePath: string): { title: string; description: string; image?: string } {
   const slug = productSlug(routePath);
-  return slug ? productSeo(slug) : pageSeo(routePath);
+  const insight = insightSlug(routePath);
+  if (slug) return productSeo(slug);
+  if (insight) return insightSeo(insight);
+  return pageSeo(routePath);
 }
 
 function productSlug(routePath: string) {
   const segments = stripLocale(routePath).split("/").filter(Boolean);
   return segments[0] === "products" && segments[1] ? segments[1] : "";
+}
+
+function insightSlug(routePath: string) {
+  const segments = stripLocale(routePath).split("/").filter(Boolean);
+  return segments[0] === "insights" && segments[1] ? segments[1] : "";
 }
 
 function organizationSchema(urls: UrlSystem) {
@@ -130,11 +148,14 @@ function websiteSchema(locale: Locale, urls: UrlSystem) {
 
 function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
   const slug = productSlug(routePath);
+  const articleSlug = insightSlug(routePath);
   const normalized = stripLocale(routePath).replace(/\/$/, "") || "/";
   const items = [
     { name: "Home", path: "/" },
     slug
       ? { name: "Products", path: "/products" }
+      : articleSlug
+        ? null
       : normalized === "/"
         ? null
         : { name: pageSeo(normalized).title.split("|")[0].trim(), path: normalized },
@@ -142,6 +163,10 @@ function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
 
   if (slug) {
     items.push({ name: getProductBySlug(slug)?.name || slug, path: `/products/${slug}` });
+  }
+
+  if (articleSlug) {
+    items.push({ name: getInsightBySlug(articleSlug)?.title || articleSlug, path: `/insights/${articleSlug}` });
   }
 
   return {
@@ -153,6 +178,31 @@ function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
       name: item.name,
       item: urls.canonicalUrl(locale, item.path),
     })),
+  };
+}
+
+function articleSchema(locale: Locale, routePath: string, urls: UrlSystem) {
+  const slug = insightSlug(routePath);
+  if (!slug) return null;
+
+  const article = getInsightBySlug(slug);
+  if (!article) return null;
+  if (article.localeStatus[locale] !== "ready") return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.metaDescription,
+    mainEntityOfPage: urls.canonicalUrl(locale, routePath),
+    author: {
+      "@type": "Organization",
+      name: SITE_LEGAL_NAME,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_LEGAL_NAME,
+    },
   };
 }
 
@@ -203,6 +253,7 @@ export function resolveRouteSEO({
   const ready = LOCALE_STATUS[locale].status === "ready";
   const canonical = urls.canonicalUrl(locale, normalizedRoute);
   const slug = productSlug(normalizedRoute);
+  const articleSlug = insightSlug(normalizedRoute);
   const alternates = ready
     ? [
         ...INDEXABLE_LOCALES.map((alternateLocale) => ({
@@ -226,6 +277,11 @@ export function resolveRouteSEO({
     jsonLd.push({ id: "ld-product", data: product });
   }
 
+  const article = articleSchema(locale, normalizedRoute, urls);
+  if (article) {
+    jsonLd.push({ id: "ld-article", data: article });
+  }
+
   return {
     locale,
     routePath: buildRoutePath(locale, normalizedRoute),
@@ -238,7 +294,7 @@ export function resolveRouteSEO({
       title: resolvedTitle,
       description: resolvedDescription,
       url: canonical,
-      type: slug ? "product" : "website",
+      type: slug ? "product" : articleSlug ? "article" : "website",
       siteName: SITE_NAME,
       locale: locale.replace("-", "_"),
       image: urls.absoluteAssetUrl(resolvedImage),

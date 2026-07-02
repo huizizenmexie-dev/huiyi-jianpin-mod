@@ -6,10 +6,12 @@ import {
   LOCALES,
   LOCALE_STATUS,
   PAGE_PATHS,
+  INSIGHT_SLUGS,
   PRODUCT_SLUGS,
   RTL_LOCALES,
   type Locale,
 } from "../client/src/content/routes";
+import { getInsightBySlug } from "../client/src/content/insights";
 import { BASE_PATH, buildCanonicalUrl, buildRoutePath, buildSitemapUrl, stripBasePath } from "../client/src/content/url";
 
 const ROOT = process.cwd();
@@ -40,7 +42,21 @@ function allRoutes() {
       routePath: `/products/${slug}`,
       type: "product" as const,
     })),
+    ...INSIGHT_SLUGS.map((slug) => ({
+      locale,
+      routePath: `/insights/${slug}`,
+      type: "insight" as const,
+    })),
   ]);
+}
+
+function isIndexableRoute(route: ReturnType<typeof allRoutes>[number]) {
+  if (LOCALE_STATUS[route.locale].status !== "ready") return false;
+  if (route.type === "insight") {
+    const slug = route.routePath.split("/").filter(Boolean)[1];
+    return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
+  }
+  return true;
 }
 
 function collectFiles(dir: string, suffix: string): string[] {
@@ -111,7 +127,7 @@ function validateSourceLinks() {
 function validate() {
   check(existsSync(DIST), "dist/public exists");
   const routes = allRoutes();
-  check(routes.length === 96, "route manifest contains 96 localized static pages");
+  check(routes.length === LOCALES.length * (PAGE_PATHS.length + PRODUCT_SLUGS.length + INSIGHT_SLUGS.length), `route manifest contains ${routes.length} localized static pages`);
   const urls = sitemapUrls();
   const urlSet = new Set(urls);
   const robotsUrl = robotsSitemapUrl();
@@ -121,7 +137,7 @@ function validate() {
   for (const route of routes) {
     const file = htmlPath(route.locale, route.routePath);
     const expectedCanonical = buildCanonicalUrl(route.locale, route.routePath);
-    const indexable = LOCALE_STATUS[route.locale].status === "ready";
+    const indexable = isIndexableRoute(route);
 
     check(existsSync(file), `${buildRoutePath(route.locale, route.routePath)} has static index.html`);
     if (!existsSync(file)) continue;
@@ -167,10 +183,22 @@ function validate() {
         check(!content.includes(`"${forbidden}"`) && !content.includes(`"@type":"${forbidden}"`), `${expectedCanonical} schema omits ${forbidden}`);
       }
     }
+
+    if (route.type === "insight") {
+      if (indexable) {
+        check(content.includes('"@type":"Article"'), `${expectedCanonical} has Article schema`);
+      } else {
+        check(!content.includes('"@type":"Article"'), `${expectedCanonical} draft insight omits Article schema`);
+      }
+      check(content.includes('"@type":"BreadcrumbList"'), `${expectedCanonical} has BreadcrumbList schema`);
+      check(content.includes('"@type":"Organization"'), `${expectedCanonical} has Organization schema`);
+      check(content.includes('"@type":"WebSite"'), `${expectedCanonical} has WebSite schema`);
+      check(!content.includes('"@type":"Product"'), `${expectedCanonical} article page omits Product schema`);
+    }
   }
 
   const expectedSitemapUrls = routes
-    .filter((route) => LOCALE_STATUS[route.locale].status === "ready")
+    .filter(isIndexableRoute)
     .map((route) => buildCanonicalUrl(route.locale, route.routePath));
   check(urls.length === expectedSitemapUrls.length, "sitemap contains only ready locale URLs");
   for (const url of urls) {

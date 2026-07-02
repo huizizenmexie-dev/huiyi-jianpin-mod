@@ -5,9 +5,11 @@ import {
   LOCALES,
   LOCALE_STATUS,
   PAGE_PATHS,
+  INSIGHT_SLUGS,
   PRODUCT_SLUGS,
   type Locale,
 } from "../client/src/content/routes";
+import { getInsightBySlug } from "../client/src/content/insights";
 import {
   BASE_PATH,
   SITE_ORIGIN,
@@ -35,7 +37,21 @@ function allRoutes() {
       routePath: `/products/${slug}`,
       type: "product" as const,
     })),
+    ...INSIGHT_SLUGS.map((slug) => ({
+      locale,
+      routePath: `/insights/${slug}`,
+      type: "insight" as const,
+    })),
   ]);
+}
+
+function isIndexableRoute(route: ReturnType<typeof allRoutes>[number]) {
+  if (LOCALE_STATUS[route.locale].status !== "ready") return false;
+  if (route.type === "insight") {
+    const slug = route.routePath.split("/").filter(Boolean)[1];
+    return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
+  }
+  return true;
 }
 
 function htmlPath(locale: Locale, routePath: string) {
@@ -135,11 +151,11 @@ async function validateHttpPreview(publicPaths: string[]) {
 async function validate() {
   check(existsSync(DIST), "dist/public exists");
   const routes = allRoutes();
-  check(routes.length === 96, "route manifest derives 96 localized static pages");
+  check(routes.length === LOCALES.length * (PAGE_PATHS.length + PRODUCT_SLUGS.length + INSIGHT_SLUGS.length), `route manifest derives ${routes.length} localized static pages`);
 
   const urls = sitemapUrls();
   const expectedSitemapUrls = routes
-    .filter((route) => LOCALE_STATUS[route.locale].status === "ready")
+    .filter(isIndexableRoute)
     .map((route) => buildCanonicalUrl(route.locale, route.routePath));
 
   check(urls.length === expectedSitemapUrls.length, "sitemap contains only ready locale URLs");
