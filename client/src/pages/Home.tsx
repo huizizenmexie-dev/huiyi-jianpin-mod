@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Mail,
-  Phone,
   Shield,
   MapPin,
   FileText,
@@ -30,11 +29,14 @@ import {
   buildBreadcrumbSchema,
   buildOrganizationSchema,
 } from "@/lib/usePageSEO";
-import { useI18nContext, buildLocalizedPath, buildLocalizedPublicPath } from "@/i18n";
+import {
+  useI18nContext,
+  buildLocalizedPath,
+  buildLocalizedPublicPath,
+} from "@/i18n";
 
 const HERO_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
-const WHATSAPP_LINK = "https://wa.me/8618646556618";
 
 // Industry icons mapping
 const industryIcons = {
@@ -95,7 +97,15 @@ function useCounter(end: number, duration = 2000) {
   return { count, ref };
 }
 
-function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+function FadeIn({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -134,12 +144,24 @@ export default function Home() {
   // Build localized links
   const PRODUCTS_LINK = buildLocalizedPath(locale, "/products");
   const QUALITY_LINK = buildLocalizedPath(locale, "/quality");
-  const INQUIRY_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#inquiryForm");
+  const INQUIRY_FORM_LINK = buildLocalizedPublicPath(
+    locale,
+    "/contact#inquiryForm"
+  );
 
   // SEO data from translations
-  const seoTitle = t("homepage.seo_title", "Stable Soy Lecithin Supplier | Huiyi Jianpin");
-  const seoDescription = t("homepage.seo_description", "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability.");
-  const seoKeywords = t("homepage.seo_keywords", "soy lecithin, phospholipids, phosphatidylcholine, Huiyi Jianpin");
+  const seoTitle = t(
+    "homepage.seo_title",
+    "Stable Soy Lecithin Supplier | Huiyi Jianpin"
+  );
+  const seoDescription = t(
+    "homepage.seo_description",
+    "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability."
+  );
+  const seoKeywords = t(
+    "homepage.seo_keywords",
+    "soy lecithin, phospholipids, phosphatidylcholine, Huiyi Jianpin"
+  );
 
   // Apply unified SEO
   usePageSEO({
@@ -149,7 +171,10 @@ export default function Home() {
     path: "/",
     jsonLd: [
       buildOrganizationSchema(),
-      buildBreadcrumbSchema([{ name: t("common.home", "Home"), path: "/" }], locale),
+      buildBreadcrumbSchema(
+        [{ name: t("common.home", "Home"), path: "/" }],
+        locale
+      ),
     ],
   });
 
@@ -158,7 +183,10 @@ export default function Home() {
     { key: "chocolate", icon: industryIcons["Chocolate & Confectionery"] },
     { key: "dairy", icon: industryIcons["Dairy & Instant Beverages"] },
     { key: "bakery", icon: industryIcons["Bakery & Snacks"] },
-    { key: "pharmaceuticals", icon: industryIcons["Pharmaceuticals & Liposomes"] },
+    {
+      key: "pharmaceuticals",
+      icon: industryIcons["Pharmaceuticals & Liposomes"],
+    },
     { key: "cognitive", icon: industryIcons["Cognitive & Sports Nutrition"] },
     { key: "plant_based", icon: industryIcons["Plant-Based Meat & Protein"] },
     { key: "cosmetics", icon: industryIcons["Cosmetics & Personal Care"] },
@@ -176,11 +204,21 @@ export default function Home() {
   ];
 
   // Trust items from translations
-  const trustItemKeys = ["certifications", "traceability", "documentation", "capacity", "support"];
+  const trustItemKeys = [
+    "certifications",
+    "traceability",
+    "documentation",
+    "capacity",
+    "support",
+  ];
   const trustItemIcons = [Shield, MapPin, FileText, Factory, Headphones];
 
   // Resilience items from translations
-  const resilienceItemKeys = ["supply_continuity", "procurement_confidence", "farm_to_shipment"];
+  const resilienceItemKeys = [
+    "supply_continuity",
+    "procurement_confidence",
+    "farm_to_shipment",
+  ];
   const resilienceItemIcons = [Globe2, PackageCheck, Route];
 
   return (
@@ -195,7 +233,10 @@ export default function Home() {
         <div className="relative container py-32 lg:py-40">
           <div className="max-w-2xl">
             <p className="text-harvest-gold font-heading font-medium text-sm uppercase tracking-widest mb-4">
-              {t("homepage.hero_subtitle", "From Heilongjiang Black Soil to Stable Global Formulations")}
+              {t(
+                "homepage.hero_subtitle",
+                "From Heilongjiang Black Soil to Stable Global Formulations"
+              )}
             </p>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
               {t("homepage.hero_title_line1", "Natural Phospholipids")}
@@ -205,24 +246,33 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-white/85 text-lg md:text-xl leading-relaxed mb-4 max-w-xl">
-              {t("homepage.hero_description", "ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China.")}
+              {t(
+                "homepage.hero_description",
+                "ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China."
+              )}
             </p>
             <p className="text-harvest-gold/90 text-sm font-semibold mb-8 border-l-2 border-harvest-gold pl-4">
-              {t("homepage.hero_guarantee", "Guaranteed supply stability amidst global sourcing uncertainty.")}
+              {t(
+                "homepage.hero_guarantee",
+                "Guaranteed supply stability amidst global sourcing uncertainty."
+              )}
             </p>
 
             <div className="flex flex-wrap gap-3 mb-8">
-              {["ISO 22000", "FSSC 22000", "10,000T Capacity", "Non-GMO IP"].map(
-                (badge) => (
-                  <span
-                    key={badge}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-harvest-gold/20 border border-harvest-gold/40 rounded text-harvest-gold text-xs font-heading font-semibold uppercase tracking-wide"
-                  >
-                    <Shield className="w-3.5 h-3.5" />
-                    {badge}
-                  </span>
-                )
-              )}
+              {[
+                "ISO 22000",
+                "FSSC 22000",
+                "10,000T Capacity",
+                "Non-GMO IP",
+              ].map(badge => (
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-harvest-gold/20 border border-harvest-gold/40 rounded text-harvest-gold text-xs font-heading font-semibold uppercase tracking-wide"
+                >
+                  <Shield className="w-3.5 h-3.5" />
+                  {badge}
+                </span>
+              ))}
             </div>
 
             <div className="flex flex-wrap gap-4">
@@ -263,7 +313,9 @@ export default function Home() {
               const Icon = item.icon;
               return (
                 <FadeIn key={item.key} delay={i * 60}>
-                  <Link href={buildLocalizedPath(locale, "/industry-solutions")}>
+                  <Link
+                    href={buildLocalizedPath(locale, "/industry-solutions")}
+                  >
                     <div className="group bg-white rounded-lg p-6 border border-transparent hover:border-earth-green shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                       <Icon className="w-8 h-8 text-earth-green mb-4 group-hover:scale-110 transition-transform" />
                       <h3 className="font-heading font-semibold text-deep-brown text-base mb-2">
@@ -296,9 +348,11 @@ export default function Home() {
           </FadeIn>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-            {[0, 1, 2, 3, 4, 5].map((i) => (
+            {[0, 1, 2, 3, 4, 5].map(i => (
               <FadeIn key={i} delay={i * 80}>
-                <div className={`bg-gradient-to-br ${productSystemColors[i]} rounded-lg p-6 border border-earth-green/10 hover:border-earth-green/30 transition-all duration-200 hover:-translate-y-1`}>
+                <div
+                  className={`bg-gradient-to-br ${productSystemColors[i]} rounded-lg p-6 border border-earth-green/10 hover:border-earth-green/30 transition-all duration-200 hover:-translate-y-1`}
+                >
                   <div className="w-10 h-10 rounded-full bg-earth-green/10 flex items-center justify-center mb-4">
                     <span className="font-heading font-bold text-earth-green text-lg">
                       {i + 1}
@@ -362,16 +416,25 @@ export default function Home() {
                   {t("homepage.resilience_subtitle", "Supply Chain Resilience")}
                 </p>
                 <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown mb-5">
-                  {t("homepage.resilience_title", "Your Safe Harbor in Global Ingredient Sourcing")}
+                  {t(
+                    "homepage.resilience_title",
+                    "Your Safe Harbor in Global Ingredient Sourcing"
+                  )}
                 </h2>
                 <p className="text-medium-gray text-lg leading-relaxed mb-6">
-                  {t("homepage.resilience_description", "When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control.")}
+                  {t(
+                    "homepage.resilience_description",
+                    "When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control."
+                  )}
                 </p>
                 <Link
                   href={QUALITY_LINK}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
                 >
-                  {t("homepage.verify_quality", "Verify Quality & Traceability")}
+                  {t(
+                    "homepage.verify_quality",
+                    "Verify Quality & Traceability"
+                  )}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -412,7 +475,10 @@ export default function Home() {
               {t("homepage.cta_title", "From Field to Formulation")}
             </h2>
             <p className="text-warm-ivory/70 text-lg max-w-2xl mx-auto mb-8">
-              {t("homepage.cta_description", "Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing.")}
+              {t(
+                "homepage.cta_description",
+                "Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing."
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -421,15 +487,6 @@ export default function Home() {
               >
                 <Mail className="w-4 h-4" />
                 {t("homepage.email_inquiry", "Email Inquiry")}
-              </a>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-harvest-gold text-harvest-gold font-medium rounded-md hover:bg-harvest-gold hover:text-white transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                {t("homepage.whatsapp_contact", "WhatsApp Contact")}
               </a>
             </div>
           </FadeIn>

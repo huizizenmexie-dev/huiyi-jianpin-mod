@@ -17,7 +17,10 @@ export type TranslationStatus = "draft" | "reviewed" | "ready";
  * As of 2026-07-01 only English has complete product content.
  * Other languages have UI chrome translated but NOT product data.
  */
-export const LOCALE_STATUS: Record<Locale, { label: string; status: TranslationStatus }> = {
+export const LOCALE_STATUS: Record<
+  Locale,
+  { label: string; status: TranslationStatus }
+> = {
   en: { label: "English", status: "ready" },
   "zh-CN": { label: "简体中文", status: "draft" },
   "pt-BR": { label: "Português (Brasil)", status: "draft" },
@@ -28,10 +31,10 @@ export const LOCALE_STATUS: Record<Locale, { label: string; status: TranslationS
 
 /** Locales that are fully translated and should be indexed */
 export const INDEXABLE_LOCALES: Locale[] = LOCALES.filter(
-  (l) => LOCALE_STATUS[l].status === "ready"
+  l => LOCALE_STATUS[l].status === "ready"
 );
 export const NOINDEX_LOCALES: Locale[] = LOCALES.filter(
-  (l) => LOCALE_STATUS[l].status !== "ready"
+  l => LOCALE_STATUS[l].status !== "ready"
 );
 
 /** All product slugs — must match productData.ts */
@@ -52,16 +55,16 @@ export type ProductSlug = (typeof PRODUCT_SLUGS)[number];
 
 /** English insight article slugs — must match insights.ts */
 export const INSIGHT_SLUGS = [
-  "soy-lecithin-aquafeed-guide",
-  "liquid-vs-powder-lecithin-aquafeed",
-  "feed-grade-lecithin-buyer-checklist",
-  "soy-lecithin-shrimp-feed",
-  "soy-lecithin-fish-feed",
-  "liquid-lecithin-feed-mill-handling",
-  "food-grade-soy-lecithin-selection",
-  "soy-lecithin-bakery-applications",
-  "soy-lecithin-chocolate-confectionery",
-  "water-dispersible-lecithin-instant-beverages",
+  "phosphatidylcholine-health-supplement-guide",
+  "phosphatidylserine-brain-health-guide",
+  "water-soluble-phospholipid-powder-beverages",
+  "high-purity-lecithin-granules-guide",
+  "sunflower-lecithin-clean-label-guide",
+  "soy-lecithin-sports-nutrition-guide",
+  "phospholipid-supplements-children-guide",
+  "pc-ps-middle-aged-elderly-health-guide",
+  "soy-lecithin-plant-based-diet-guide",
+  "functional-phospholipids-food-formulation-guide",
 ] as const;
 
 export type InsightSlug = (typeof INSIGHT_SLUGS)[number];

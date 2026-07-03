@@ -44,7 +44,7 @@ describe("route SEO resolver", () => {
       urls,
     });
 
-    expect(seo.jsonLd.map((entry) => entry.id)).toEqual([
+    expect(seo.jsonLd.map(entry => entry.id)).toEqual([
       "ld-organization",
       "ld-website",
       "ld-webpage",
@@ -61,15 +61,21 @@ describe("route SEO resolver", () => {
     });
 
     const schemas = Object.fromEntries(
-      seo.jsonLd.map((entry) => [entry.id, entry.data])
+      seo.jsonLd.map(entry => [entry.id, entry.data])
     ) as Record<string, any>;
 
-    expect(schemas["ld-organization"]["@id"]).toBe("https://example.com/#organization");
-    expect(schemas["ld-website"].publisher["@id"]).toBe("https://example.com/#organization");
+    expect(schemas["ld-organization"]["@id"]).toBe(
+      "https://example.com/#organization"
+    );
+    expect(schemas["ld-website"].publisher["@id"]).toBe(
+      "https://example.com/#organization"
+    );
     expect(schemas["ld-webpage"].mainEntity["@id"]).toBe(
       "https://example.com/site-preview/en/products/soy-lecithin-granules/#product"
     );
-    expect(schemas["ld-product"].manufacturer["@id"]).toBe("https://example.com/#organization");
+    expect(schemas["ld-product"].manufacturer["@id"]).toBe(
+      "https://example.com/#organization"
+    );
     expect(schemas["ld-product"].additionalProperty.length).toBeGreaterThan(0);
   });
 
@@ -81,7 +87,7 @@ describe("route SEO resolver", () => {
     });
 
     const schemas = Object.fromEntries(
-      seo.jsonLd.map((entry) => [entry.id, entry.data])
+      seo.jsonLd.map(entry => [entry.id, entry.data])
     ) as Record<string, any>;
 
     expect(seo.robots).toBe("index,follow");
@@ -95,5 +101,38 @@ describe("route SEO resolver", () => {
     expect(schemas["ld-breadcrumb"].itemListElement.at(-1).item).toBe(
       "https://example.com/site-preview/en/insights/"
     );
+  });
+
+  it("keeps health article schema limited to ordinary Article data", () => {
+    const seo = resolveRouteSEO({
+      locale: "en",
+      routePath: "/insights/phosphatidylcholine-health-supplement-guide",
+      urls,
+    });
+
+    const schemas = Object.fromEntries(
+      seo.jsonLd.map(entry => [entry.id, entry.data])
+    ) as Record<string, any>;
+    const serialized = JSON.stringify(schemas);
+
+    expect(schemas["ld-article"]["@type"]).toBe("Article");
+    expect(serialized).not.toContain("MedicalClaim");
+    expect(serialized).not.toContain("Drug");
+    expect(serialized).not.toContain("Offer");
+    expect(serialized).not.toContain("Review");
+    expect(serialized).not.toContain("AggregateRating");
+    expect(serialized).not.toContain("Certification");
+    expect(serialized).not.toContain("@bohrium");
+  });
+
+  it("does not emit Article JSON-LD for non-indexable localized insight pages", () => {
+    const seo = resolveRouteSEO({
+      locale: "zh-CN",
+      routePath: "/zh-CN/insights/phosphatidylcholine-health-supplement-guide",
+      urls,
+    });
+
+    expect(seo.robots).toBe("noindex,follow");
+    expect(seo.jsonLd.map(entry => entry.id)).not.toContain("ld-article");
   });
 });

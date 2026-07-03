@@ -5,14 +5,9 @@ import {
   PAGE_PATHS,
   type Locale,
 } from "./routes";
-import {
-  SITE_LEGAL_NAME,
-  SITE_NAME,
-  CONTACT,
-  DEFAULT_OG_IMAGE,
-} from "./site";
+import { SITE_LEGAL_NAME, SITE_NAME, CONTACT, DEFAULT_OG_IMAGE } from "./site";
 import { getProductBySlug } from "../lib/productData";
-import { getInsightBySlug } from "./insights";
+import { getInsightBySlug, getInsightContent } from "./insights";
 import { URLS, buildRoutePath, createUrlSystem, stripLocale } from "./url";
 
 type UrlSystem = ReturnType<typeof createUrlSystem>;
@@ -43,9 +38,13 @@ export type RouteSEO = {
   jsonLd: ManagedJsonLd[];
 };
 
-export const PAGE_SEO: Record<(typeof PAGE_PATHS)[number], { title: string; description: string }> = {
+export const PAGE_SEO: Record<
+  (typeof PAGE_PATHS)[number],
+  { title: string; description: string }
+> = {
   "/": {
-    title: "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
+    title:
+      "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
     description:
       "Secure your formulation against global supply chain disruptions with Huiyi Jianpin soy lecithin, phospholipid, soy protein and fiber systems.",
   },
@@ -70,9 +69,10 @@ export const PAGE_SEO: Record<(typeof PAGE_PATHS)[number], { title: string; desc
       "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications.",
   },
   "/insights": {
-    title: "Soy Lecithin B2B Insights | Procurement and Application Guides",
+    title:
+      "Phospholipid & Lecithin Insights | PC, PS and Food Formulation Guides",
     description:
-      "Read practical soy lecithin sourcing, application, documentation and RFQ guides for feed, food, bakery, beverage and confectionery buyers.",
+      "Read crawlable B2B guides on phosphatidylcholine, phosphatidylserine, lecithin, clean-label ingredients, functional beverages and food formulation.",
   },
   "/contact": {
     title: "Contact Huiyi Jianpin | Request a Quote for Soy Lecithin",
@@ -99,20 +99,24 @@ function productSeo(slug: string) {
   };
 }
 
-function insightSeo(slug: string) {
+function insightSeo(slug: string, locale: Locale) {
   const article = getInsightBySlug(slug);
-  if (!article) throw new Error(`Unknown insight slug: ${slug}`);
+  const content = getInsightContent(article, locale);
+  if (!article || !content) throw new Error(`Unknown insight slug: ${slug}`);
   return {
-    title: article.metaTitle,
-    description: article.metaDescription,
+    title: content.metaTitle,
+    description: content.metaDescription,
   };
 }
 
-function routeTitleDescription(routePath: string): { title: string; description: string; image?: string } {
+function routeTitleDescription(
+  routePath: string,
+  locale: Locale
+): { title: string; description: string; image?: string } {
   const slug = productSlug(routePath);
   const insight = insightSlug(routePath);
   if (slug) return productSeo(slug);
-  if (insight) return insightSeo(insight);
+  if (insight) return insightSeo(insight, locale);
   return pageSeo(routePath);
 }
 
@@ -158,7 +162,14 @@ function organizationSchema(urls: UrlSystem) {
       "@type": "ContactPoint",
       telephone: CONTACT.phone.replace(/\s+/g, ""),
       contactType: "sales",
-      availableLanguage: ["English", "Chinese", "Portuguese", "French", "Arabic", "Spanish"],
+      availableLanguage: [
+        "English",
+        "Chinese",
+        "Portuguese",
+        "French",
+        "Arabic",
+        "Spanish",
+      ],
     },
   };
 }
@@ -213,15 +224,26 @@ function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
         ? null
         : normalized === "/"
           ? null
-          : { name: pageSeo(normalized).title.split("|")[0].trim(), path: normalized },
+          : {
+              name: pageSeo(normalized).title.split("|")[0].trim(),
+              path: normalized,
+            },
   ].filter(Boolean) as Array<{ name: string; path: string }>;
 
   if (slug) {
-    items.push({ name: getProductBySlug(slug)?.name || slug, path: `/products/${slug}` });
+    items.push({
+      name: getProductBySlug(slug)?.name || slug,
+      path: `/products/${slug}`,
+    });
   }
 
   if (articleSlug) {
-    items.push({ name: getInsightBySlug(articleSlug)?.title || articleSlug, path: `/insights/${articleSlug}` });
+    items.push({
+      name:
+        getInsightContent(getInsightBySlug(articleSlug), locale)?.title ||
+        articleSlug,
+      path: `/insights/${articleSlug}`,
+    });
   }
 
   return {
@@ -241,7 +263,15 @@ function articleSchema(locale: Locale, routePath: string, urls: UrlSystem) {
   if (!slug) return null;
 
   const article = getInsightBySlug(slug);
-  if (!article || article.localeStatus[locale] !== "ready") return null;
+  const content = getInsightContent(article, locale);
+  if (
+    !article ||
+    !content ||
+    LOCALE_STATUS[locale].status !== "ready" ||
+    article.localeStatus[locale] !== "ready"
+  ) {
+    return null;
+  }
 
   const canonical = urls.canonicalUrl(locale, routePath);
 
@@ -249,13 +279,13 @@ function articleSchema(locale: Locale, routePath: string, urls: UrlSystem) {
     "@context": "https://schema.org",
     "@type": "Article",
     "@id": `${canonical}#article`,
-    headline: article.title,
-    description: article.metaDescription,
+    headline: content.title,
+    description: content.metaDescription,
     mainEntityOfPage: { "@id": webpageId(canonical) },
     inLanguage: locale,
     author: { "@id": organizationId(urls) },
     publisher: { "@id": organizationId(urls) },
-    about: article.productSlugs.map((productSlug) => ({
+    about: article.productSlugs.map(productSlug => ({
       "@id": `${urls.canonicalUrl(locale, `/products/${productSlug}`)}#product`,
     })),
   };
@@ -281,7 +311,7 @@ function productSchema(locale: Locale, routePath: string, urls: UrlSystem) {
     brand: { "@type": "Brand", name: SITE_NAME },
     manufacturer: { "@id": organizationId(urls) },
     category: product.category.join(", "),
-    additionalProperty: product.specifications.map((spec) => ({
+    additionalProperty: product.specifications.map(spec => ({
       "@type": "PropertyValue",
       name: spec.label,
       value: spec.value,
@@ -307,7 +337,7 @@ export function resolveRouteSEO({
   image?: string;
 }): RouteSEO {
   const normalizedRoute = stripLocale(routePath);
-  const baseSeo = routeTitleDescription(normalizedRoute);
+  const baseSeo = routeTitleDescription(normalizedRoute, locale);
   const resolvedTitle = title || baseSeo.title;
   const resolvedDescription = description || baseSeo.description;
   const resolvedImage = image || baseSeo.image || DEFAULT_OG_IMAGE;
@@ -317,12 +347,17 @@ export function resolveRouteSEO({
   const articleSlug = insightSlug(normalizedRoute);
   const alternates = ready
     ? [
-        ...INDEXABLE_LOCALES.map((alternateLocale) => ({
+        ...INDEXABLE_LOCALES.map(alternateLocale => ({
           hreflang: alternateLocale,
           href: urls.canonicalUrl(alternateLocale, normalizedRoute),
         })),
         ...(LOCALE_STATUS[DEFAULT_LOCALE].status === "ready"
-          ? [{ hreflang: "x-default", href: urls.canonicalUrl(DEFAULT_LOCALE, normalizedRoute) }]
+          ? [
+              {
+                hreflang: "x-default",
+                href: urls.canonicalUrl(DEFAULT_LOCALE, normalizedRoute),
+              },
+            ]
           : []),
       ]
     : [];
@@ -332,9 +367,18 @@ export function resolveRouteSEO({
     { id: "ld-website", data: websiteSchema(locale, urls) },
     {
       id: "ld-webpage",
-      data: webPageSchema(locale, normalizedRoute, urls, resolvedTitle, resolvedDescription),
+      data: webPageSchema(
+        locale,
+        normalizedRoute,
+        urls,
+        resolvedTitle,
+        resolvedDescription
+      ),
     },
-    { id: "ld-breadcrumb", data: breadcrumbSchema(locale, normalizedRoute, urls) },
+    {
+      id: "ld-breadcrumb",
+      data: breadcrumbSchema(locale, normalizedRoute, urls),
+    },
   ];
 
   const product = productSchema(locale, normalizedRoute, urls);
