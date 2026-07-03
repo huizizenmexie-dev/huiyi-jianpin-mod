@@ -68,7 +68,19 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Download Pages artifact for sitemap
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: pages-artifact
+
+      - name: Extract Pages artifact
+        run: |
+          mkdir -p dist/public
+          tar -xf pages-artifact/artifact.tar -C dist/public
+
       - name: Submit published URLs to IndexNow
         env:
           SITE_ORIGIN: https://lecprima.com
+          INDEXNOW_SITEMAP_PATH: dist/public/sitemap.xml
         run: node scripts/submit-indexnow.mjs

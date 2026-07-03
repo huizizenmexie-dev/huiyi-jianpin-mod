@@ -1,22 +1,45 @@
+import { readFile } from "node:fs/promises";
+
 const siteOrigin = (process.env.SITE_ORIGIN || "https://lecprima.com").replace(/\/$/, "");
 const key = "fe393f1f46b7ffcb746b5cff3661cfbfb127389f73ff6e422e73edfa9802fdba";
 const sitemapUrl = `${siteOrigin}/sitemap.xml`;
+const sitemapPath = process.env.INDEXNOW_SITEMAP_PATH || "dist/public/sitemap.xml";
 
-const sitemapResponse = await fetch(sitemapUrl, {
-  headers: { "User-Agent": "Lecprima-IndexNow/1.0" },
-});
+async function loadSitemap() {
+  try {
+    const sitemap = await readFile(sitemapPath, "utf-8");
+    console.log(`Loaded sitemap from ${sitemapPath}`);
+    return sitemap;
+  } catch (error) {
+    if (error?.code !== "ENOENT") {
+      throw error;
+    }
+  }
 
-if (!sitemapResponse.ok) {
-  throw new Error(`Could not fetch sitemap (${sitemapResponse.status}) from ${sitemapUrl}`);
+  const sitemapResponse = await fetch(sitemapUrl, {
+    headers: { "User-Agent": "Lecprima-IndexNow/1.0" },
+  });
+
+  if (!sitemapResponse.ok) {
+    throw new Error(`Could not fetch sitemap (${sitemapResponse.status}) from ${sitemapUrl}`);
+  }
+
+  console.log(`Fetched sitemap from ${sitemapUrl}`);
+  return sitemapResponse.text();
 }
 
-const sitemap = await sitemapResponse.text();
+const sitemap = await loadSitemap();
 const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map((match) => match[1])
   .slice(0, 10_000);
 
 if (urlList.length === 0) {
   throw new Error("No URLs found in sitemap.");
+}
+
+if (process.env.INDEXNOW_DRY_RUN === "1") {
+  console.log(`IndexNow dry run found ${urlList.length} URL(s).`);
+  process.exit(0);
 }
 
 const response = await fetch("https://api.indexnow.org/indexnow", {
