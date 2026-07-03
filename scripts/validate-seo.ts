@@ -131,8 +131,11 @@ function validate() {
   const urls = sitemapUrls();
   const urlSet = new Set(urls);
   const robotsUrl = robotsSitemapUrl();
+  const robotsText = readFileSync(join(DIST, "robots.txt"), "utf-8");
   check(robotsUrl === buildSitemapUrl(), "robots.txt points to the generated absolute sitemap URL");
   check(!robotsUrl.includes("/https://"), "robots.txt sitemap URL is not malformed");
+  check(/User-agent: OAI-SearchBot\nAllow: \//.test(robotsText), "robots.txt explicitly allows OAI-SearchBot");
+  check(/User-agent: GPTBot\nAllow: \//.test(robotsText), "robots.txt explicitly allows GPTBot");
 
   for (const route of routes) {
     const file = htmlPath(route.locale, route.routePath);
@@ -153,6 +156,7 @@ function validate() {
     check(root.length > 1000, `${buildRoutePath(route.locale, route.routePath)} root contains real HTML`);
     check(h1Count >= 1, `${buildRoutePath(route.locale, route.routePath)} has H1`);
     check(bodyText.length > 300, `${buildRoutePath(route.locale, route.routePath)} has visible body text`);
+    check(!/\b(?:homepage|common|footer|about_page|quality_page|contact_page|products_page|industry_solutions)\.[a-z0-9_.-]+\b/i.test(bodyText), `${buildRoutePath(route.locale, route.routePath)} has no unresolved i18n keys`);
     check(canonical === expectedCanonical, `${buildRoutePath(route.locale, route.routePath)} has self canonical`);
     check(canonical.endsWith("/"), `${buildRoutePath(route.locale, route.routePath)} canonical uses trailing slash`);
     check(content.includes(`property="og:url" content="${expectedCanonical}"`), `${buildRoutePath(route.locale, route.routePath)} OG URL matches canonical`);
@@ -179,6 +183,8 @@ function validate() {
       check(content.includes('"@type":"BreadcrumbList"'), `${expectedCanonical} has BreadcrumbList schema`);
       check(content.includes('"@type":"Organization"'), `${expectedCanonical} has Organization schema`);
       check(content.includes('"@type":"WebSite"'), `${expectedCanonical} has WebSite schema`);
+      check(content.includes('"@type":"ItemPage"'), `${expectedCanonical} has ItemPage schema`);
+      check(content.includes('"additionalProperty"'), `${expectedCanonical} has visible product properties in JSON-LD`);
       for (const forbidden of ["Offer", "price", "availability", "aggregateRating", "review", "gtin", "mpn"]) {
         check(!content.includes(`"${forbidden}"`) && !content.includes(`"@type":"${forbidden}"`), `${expectedCanonical} schema omits ${forbidden}`);
       }
@@ -193,6 +199,7 @@ function validate() {
       check(content.includes('"@type":"BreadcrumbList"'), `${expectedCanonical} has BreadcrumbList schema`);
       check(content.includes('"@type":"Organization"'), `${expectedCanonical} has Organization schema`);
       check(content.includes('"@type":"WebSite"'), `${expectedCanonical} has WebSite schema`);
+      check(content.includes('"@type":"ArticlePage"'), `${expectedCanonical} has ArticlePage schema`);
       check(!content.includes('"@type":"Product"'), `${expectedCanonical} article page omits Product schema`);
     }
   }

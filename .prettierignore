@@ -10,6 +10,7 @@ build/
 # Generated files
 *.tsbuildinfo
 coverage/
+.agents/
 
 # Package files
 package-lock.json

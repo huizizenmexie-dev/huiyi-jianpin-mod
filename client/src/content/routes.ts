@@ -73,5 +73,6 @@ export const PAGE_PATHS = [
   "/about",
   "/quality",
   "/industry-solutions",
+  "/insights",
   "/contact",
 ] as const;

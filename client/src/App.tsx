@@ -14,6 +14,7 @@ import ProductDetail from "./pages/ProductDetail";
 import IndustrySolutions from "./pages/IndustrySolutions";
 import Quality from "./pages/Quality";
 import Contact from "./pages/Contact";
+import Insights from "./pages/Insights";
 import InsightsArticle from "./pages/InsightsArticle";
 import { ROUTER_BASE_PATH, stripBasePath } from "@/content/url";
 
@@ -119,6 +120,13 @@ function Router() {
             {(params) => (
               <LocaleGuard params={params}>
                 <Contact />
+              </LocaleGuard>
+            )}
+          </Route>
+          <Route path="/:lang/insights">
+            {(params) => (
+              <LocaleGuard params={params}>
+                <Insights />
               </LocaleGuard>
             )}
           </Route>

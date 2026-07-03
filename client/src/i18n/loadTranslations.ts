@@ -1,101 +1,37 @@
 import { DEFAULT_LOCALE, type Locale } from "./config";
-import { buildPublicAssetPath } from "@/content/url";
+import { getMessages, type TranslationData } from "./messages";
 
-type TranslationData = Record<string, any>;
-
-// Cache loaded translations
-const translationCache: Map<Locale, TranslationData> = new Map();
-
-// Loading promises cache to avoid duplicate requests
-const loadingPromises: Map<Locale, Promise<TranslationData>> = new Map();
-
-// Load translation file for a locale
-async function loadTranslationFile(locale: Locale): Promise<TranslationData> {
-  const response = await fetch(buildPublicAssetPath(`/locales/${locale}/translation.json`));
-
-  if (!response.ok) {
-    throw new Error(`Failed to load translation for ${locale}: ${response.status}`);
-  }
-
-  return response.json();
-}
-
-// Load translations with fallback
+/**
+ * Kept as an async-compatible API for existing callers. Messages are bundled
+ * at build time, so server rendering never depends on browser fetch().
+ */
 export async function loadTranslations(locale: Locale): Promise<TranslationData> {
-  // Check cache first
-  if (translationCache.has(locale)) {
-    return translationCache.get(locale)!;
-  }
-
-  // Check if already loading
-  if (loadingPromises.has(locale)) {
-    return loadingPromises.get(locale)!;
-  }
-
-  // Start loading
-  const loadPromise = loadTranslationFile(locale)
-    .then((data) => {
-      translationCache.set(locale, data);
-      loadingPromises.delete(locale);
-      return data;
-    })
-    .catch((error) => {
-      console.warn(`Failed to load ${locale} translations:`, error);
-      loadingPromises.delete(locale);
-
-      // Fallback to default locale if not already loading it
-      if (locale !== DEFAULT_LOCALE) {
-        return loadTranslations(DEFAULT_LOCALE);
-      }
-
-      // Return empty object as last resort
-      return {};
-    });
-
-  loadingPromises.set(locale, loadPromise);
-  return loadPromise;
+  return getMessages(locale);
 }
 
-// Get translation value by dot-separated path
 export function getTranslationValue(
   data: TranslationData,
   key: string,
   fallback?: string
 ): string {
   const keys = key.split(".");
-  let current: any = data;
+  let current: unknown = data;
 
-  for (const k of keys) {
-    if (current === null || current === undefined) {
+  for (const segment of keys) {
+    if (typeof current !== "object" || current === null || !(segment in current)) {
       return fallback ?? key;
     }
-    current = current[k];
+    current = (current as Record<string, unknown>)[segment];
   }
 
-  // Return the value if it's a string, otherwise return fallback or key
-  if (typeof current === "string") {
-    return current;
-  }
-
-  return fallback ?? key;
+  return typeof current === "string" ? current : fallback ?? key;
 }
 
-// Clear translation cache (useful for testing or hot reload)
-export function clearTranslationCache(): void {
-  translationCache.clear();
-  loadingPromises.clear();
-}
-
-// Check if translations are cached
+/** No network cache is needed because messages are bundled with the app. */
+export function clearTranslationCache(): void {}
 export function hasCachedTranslations(locale: Locale): boolean {
-  return translationCache.has(locale);
+  return Boolean(getMessages(locale));
 }
+export function preloadTranslations(_locale: Locale): void {}
 
-// Preload translations for a locale
-export function preloadTranslations(locale: Locale): void {
-  if (!translationCache.has(locale) && !loadingPromises.has(locale)) {
-    loadTranslations(locale).catch(() => {
-      // Silent preload
-    });
-  }
-}
+export { DEFAULT_LOCALE };

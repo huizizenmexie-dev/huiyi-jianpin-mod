@@ -45,6 +45,7 @@ function Navbar() {
     { label: t("common.products", "Products"), href: buildLocalizedPath(locale, "/products"), dropdown: true },
     { label: t("common.industry_solutions", "Industry Solutions"), href: buildLocalizedPath(locale, "/industry-solutions") },
     { label: t("common.quality", "Quality"), href: buildLocalizedPath(locale, "/quality") },
+    { label: t("common.insights", "Insights"), href: buildLocalizedPath(locale, "/insights") },
     { label: t("common.about", "About"), href: buildLocalizedPath(locale, "/about") },
     { label: t("common.contact", "Contact"), href: buildLocalizedPath(locale, "/contact") },
   ];

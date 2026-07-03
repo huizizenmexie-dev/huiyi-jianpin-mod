@@ -103,8 +103,8 @@ function injectHtml(template: string, route: RouteConfig, body: string) {
   const isRtl = RTL_LOCALES.includes(route.locale);
   return template
     .replace(/<html[^>]*>/, `<html lang="${route.locale}" dir="${isRtl ? "rtl" : "ltr"}">`)
-    .replace(/<title>[\s\S]*?<\/title>/, "")
-    .replace(/<meta[^>]+name="description"[^>]*>/, "")
+    .replace(/<title>[\s\S]*?<\/title>/i, "")
+    .replace(/<meta[^>]+name=["'](?:description|keywords)["'][^>]*>/gi, "")
     .replace("</head>", `    ${headFor(route)}\n  </head>`)
     .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${body}</div>`);
 }
@@ -126,7 +126,17 @@ function writeSitemap(routes: RouteConfig[]) {
 }
 
 function writeRobots() {
-  const robots = `User-agent: *\nAllow: /\nSitemap: ${buildSitemapUrl()}\n`;
+  const robots = `User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: ${buildSitemapUrl()}
+`;
   writeFileSync(join(DIST, "robots.txt"), robots, "utf-8");
 }
 
@@ -147,7 +157,7 @@ function main() {
   }
 
   const rootTarget = buildPublicPath(DEFAULT_LOCALE, "/");
-  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
+  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="shenma-site-verification" content="bcf60bf98a5703c9072a1f73c65b24e5_1783044058" /><meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
   writeFileSync(join(DIST, "index.html"), rootRedirect, "utf-8");
 
   writeFileSync(

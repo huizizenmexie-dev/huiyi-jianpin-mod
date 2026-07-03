@@ -69,6 +69,11 @@ export const PAGE_SEO: Record<(typeof PAGE_PATHS)[number], { title: string; desc
     description:
       "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications.",
   },
+  "/insights": {
+    title: "Soy Lecithin B2B Insights | Procurement and Application Guides",
+    description:
+      "Read practical soy lecithin sourcing, application, documentation and RFQ guides for feed, food, bakery, beverage and confectionery buyers.",
+  },
   "/contact": {
     title: "Contact Huiyi Jianpin | Request a Quote for Soy Lecithin",
     description:
@@ -121,13 +126,34 @@ function insightSlug(routePath: string) {
   return segments[0] === "insights" && segments[1] ? segments[1] : "";
 }
 
+function organizationId(urls: UrlSystem) {
+  return `${urls.siteOrigin}/#organization`;
+}
+
+function websiteId(urls: UrlSystem) {
+  return `${urls.siteOrigin}/#website`;
+}
+
+function webpageId(canonical: string) {
+  return `${canonical}#webpage`;
+}
+
 function organizationSchema(urls: UrlSystem) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": organizationId(urls),
     name: SITE_NAME,
     legalName: SITE_LEGAL_NAME,
     url: urls.siteOrigin,
+    email: CONTACT.email,
+    telephone: CONTACT.phone.replace(/\s+/g, ""),
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Harbin",
+      addressRegion: "Heilongjiang Province",
+      addressCountry: "CN",
+    },
     contactPoint: {
       "@type": "ContactPoint",
       telephone: CONTACT.phone.replace(/\s+/g, ""),
@@ -141,8 +167,37 @@ function websiteSchema(locale: Locale, urls: UrlSystem) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": websiteId(urls),
     name: SITE_NAME,
     url: urls.canonicalUrl(locale, "/"),
+    publisher: { "@id": organizationId(urls) },
+    inLanguage: locale,
+  };
+}
+
+function webPageSchema(
+  locale: Locale,
+  routePath: string,
+  urls: UrlSystem,
+  title: string,
+  description: string
+) {
+  const canonical = urls.canonicalUrl(locale, routePath);
+  const slug = productSlug(routePath);
+  const articleSlug = insightSlug(routePath);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": slug ? "ItemPage" : articleSlug ? "ArticlePage" : "WebPage",
+    "@id": webpageId(canonical),
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: locale,
+    isPartOf: { "@id": websiteId(urls) },
+    about: { "@id": organizationId(urls) },
+    ...(slug ? { mainEntity: { "@id": `${canonical}#product` } } : {}),
+    ...(articleSlug ? { mainEntity: { "@id": `${canonical}#article` } } : {}),
   };
 }
 
@@ -156,9 +211,9 @@ function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
       ? { name: "Products", path: "/products" }
       : articleSlug
         ? null
-      : normalized === "/"
-        ? null
-        : { name: pageSeo(normalized).title.split("|")[0].trim(), path: normalized },
+        : normalized === "/"
+          ? null
+          : { name: pageSeo(normalized).title.split("|")[0].trim(), path: normalized },
   ].filter(Boolean) as Array<{ name: string; path: string }>;
 
   if (slug) {
@@ -186,23 +241,23 @@ function articleSchema(locale: Locale, routePath: string, urls: UrlSystem) {
   if (!slug) return null;
 
   const article = getInsightBySlug(slug);
-  if (!article) return null;
-  if (article.localeStatus[locale] !== "ready") return null;
+  if (!article || article.localeStatus[locale] !== "ready") return null;
+
+  const canonical = urls.canonicalUrl(locale, routePath);
 
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${canonical}#article`,
     headline: article.title,
     description: article.metaDescription,
-    mainEntityOfPage: urls.canonicalUrl(locale, routePath),
-    author: {
-      "@type": "Organization",
-      name: SITE_LEGAL_NAME,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_LEGAL_NAME,
-    },
+    mainEntityOfPage: { "@id": webpageId(canonical) },
+    inLanguage: locale,
+    author: { "@id": organizationId(urls) },
+    publisher: { "@id": organizationId(urls) },
+    about: article.productSlugs.map((productSlug) => ({
+      "@id": `${urls.canonicalUrl(locale, `/products/${productSlug}`)}#product`,
+    })),
   };
 }
 
@@ -213,18 +268,24 @@ function productSchema(locale: Locale, routePath: string, urls: UrlSystem) {
   const product = getProductBySlug(slug);
   if (!product) return null;
 
+  const canonical = urls.canonicalUrl(locale, routePath);
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${canonical}#product`,
+    url: canonical,
     name: product.name,
     description: `${product.subtitle}. ${product.quickSpecs}`,
     image: urls.absoluteAssetUrl(product.image),
     brand: { "@type": "Brand", name: SITE_NAME },
-    manufacturer: {
-      "@type": "Organization",
-      name: SITE_LEGAL_NAME,
-    },
+    manufacturer: { "@id": organizationId(urls) },
     category: product.category.join(", "),
+    additionalProperty: product.specifications.map((spec) => ({
+      "@type": "PropertyValue",
+      name: spec.label,
+      value: spec.value,
+    })),
   };
 }
 
@@ -269,18 +330,18 @@ export function resolveRouteSEO({
   const jsonLd: ManagedJsonLd[] = [
     { id: "ld-organization", data: organizationSchema(urls) },
     { id: "ld-website", data: websiteSchema(locale, urls) },
+    {
+      id: "ld-webpage",
+      data: webPageSchema(locale, normalizedRoute, urls, resolvedTitle, resolvedDescription),
+    },
     { id: "ld-breadcrumb", data: breadcrumbSchema(locale, normalizedRoute, urls) },
   ];
 
   const product = productSchema(locale, normalizedRoute, urls);
-  if (product) {
-    jsonLd.push({ id: "ld-product", data: product });
-  }
+  if (product) jsonLd.push({ id: "ld-product", data: product });
 
   const article = articleSchema(locale, normalizedRoute, urls);
-  if (article) {
-    jsonLd.push({ id: "ld-article", data: article });
-  }
+  if (article) jsonLd.push({ id: "ld-article", data: article });
 
   return {
     locale,

@@ -17,13 +17,13 @@ const plugins = [
 ];
 
 export default defineConfig({
-  base: normalizeBasePath(process.env.BASE_PATH || process.env.VITE_BASE_PATH || "/"),
+  base: normalizeBasePath(
+    process.env.BASE_PATH || process.env.VITE_BASE_PATH || "/"
+  ),
   plugins,
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
   envDir: path.resolve(import.meta.dirname),
