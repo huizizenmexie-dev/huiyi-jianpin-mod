@@ -83,4 +83,7 @@ jobs:
         env:
           SITE_ORIGIN: https://lecprima.com
           INDEXNOW_SITEMAP_PATH: dist/public/sitemap.xml
+          INDEXNOW_STRICT: "0"
+          INDEXNOW_MAX_ATTEMPTS: "3"
+          INDEXNOW_RETRY_DELAY_MS: "15000"
         run: node scripts/submit-indexnow.mjs

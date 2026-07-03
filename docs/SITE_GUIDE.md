@@ -116,6 +116,8 @@ The site must not imply that:
 - `BASE_PATH` / `VITE_BASE_PATH`: deployment base path. Use `/` for a custom domain root.
 - `WEB3FORMS_ACCESS_KEY` / `VITE_WEB3FORMS_ACCESS_KEY`: contact form access key.
 - `INDEXNOW_KEY`: optional IndexNow key. The key file in `client/public` must match the submitted key.
+- `INDEXNOW_STRICT`: set to `1` to make IndexNow submission failures fail CI. The deploy workflow keeps it at `0` because IndexNow is a post-deploy discovery notification; build, SEO, and static validation still remain blocking checks.
+- `INDEXNOW_KEY_LOCATION`: optional public URL for the IndexNow key file. The submission script verifies this file before sending URLs.
 
 Common commands:
 
