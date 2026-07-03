@@ -339,6 +339,19 @@ function validate() {
     }
 
     if (route.type === "insight") {
+      check(
+        content.includes(
+          "Technical content reviewed by Huiyi Jianpin Product &amp; Application Team"
+        ) ||
+          content.includes(
+            "Technical content reviewed by Huiyi Jianpin Product & Application Team"
+          ),
+        `${expectedCanonical} has enterprise content reviewer`
+      );
+      check(
+        !content.includes("Author: Manus AI") && !content.includes("Manus AI"),
+        `${expectedCanonical} omits Manus AI author text`
+      );
       if (indexable) {
         check(
           content.includes('"@type":"Article"'),

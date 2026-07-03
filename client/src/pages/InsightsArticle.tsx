@@ -31,6 +31,9 @@ const CTA_COPY = {
   },
 } as const;
 
+const REVIEWED_BY =
+  "Technical content reviewed by Huiyi Jianpin Product & Application Team";
+
 function mailtoFor(title: string) {
   const subject = `RFQ - ${title}`;
   const body = [
@@ -207,6 +210,9 @@ export default function InsightsArticle() {
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-relaxed text-medium-gray">
             {content.summary}
+          </p>
+          <p className="mt-4 text-sm font-medium text-medium-gray">
+            {REVIEWED_BY}
           </p>
         </div>
       </header>
