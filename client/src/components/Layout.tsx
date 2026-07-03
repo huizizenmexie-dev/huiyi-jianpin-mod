@@ -125,7 +125,7 @@ function Navbar() {
             className="inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
           >
             <Mail className="w-4 h-4" />
-            Get a Quote
+            {t("common.get_a_quote", "Get a Quote")}
           </a>
         </div>
 

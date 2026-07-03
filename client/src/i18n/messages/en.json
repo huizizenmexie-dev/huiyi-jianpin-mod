@@ -5,8 +5,10 @@
     "industry_solutions": "Industry Solutions",
     "quality": "Quality",
     "about": "About",
+    "insights": "Insights",
     "contact": "Contact",
     "get_a_quote": "Get a Quote",
+    "all_products": "All Products",
     "view_details": "View Details",
     "learn_more": "Learn More",
     "loading": "Loading...",
@@ -115,6 +117,21 @@
     "cta_description": "Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing.",
     "email_inquiry": "Email Inquiry",
     "whatsapp_contact": "WhatsApp Contact"
+  },
+  "insights_page": {
+    "seo_title": "Phospholipid & Lecithin Insights | PC, PS and Food Formulation Guides",
+    "seo_description": "Read crawlable B2B guides on phosphatidylcholine, phosphatidylserine, lecithin, clean-label ingredients, functional beverages and food formulation.",
+    "seo_keywords": "phospholipid insights, phosphatidylcholine guide, phosphatidylserine guide, lecithin procurement guide, functional food formulation",
+    "eyebrow": "Ingredient Guides",
+    "hero_title": "Phospholipid, Lecithin and Functional Food Insights",
+    "hero_description": "Practical B2B guides for phosphatidylcholine, phosphatidylserine, lecithin, clean-label ingredients, functional beverages, and application-led formulation.",
+    "intro_title": "Application-led reading for formulation and procurement teams",
+    "intro_description": "These articles are written as safe selection guides. They connect buyers to real product pages and avoid unsupported claims about certifications, performance, pricing, stock, delivery time, or universal use rates.",
+    "context_title": "Grounded sourcing context",
+    "context_description": "Start with the application, product form, documentation need, destination, and quantity range before discussing samples or commercial terms.",
+    "application_label": "Application",
+    "procurement_label": "Procurement",
+    "read_guide": "Read guide"
   },
   "contact_page": {
     "seo_title": "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry",

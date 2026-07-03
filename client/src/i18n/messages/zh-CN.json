@@ -5,8 +5,10 @@
     "industry_solutions": "行业解决方案",
     "quality": "质量",
     "about": "关于我们",
+    "insights": "行业洞察",
     "contact": "联系我们",
     "get_a_quote": "获取报价",
+    "all_products": "全部产品",
     "view_details": "查看详情",
     "learn_more": "了解更多",
     "loading": "加载中...",
@@ -115,6 +117,21 @@
     "cta_description": "每一步都精准控制。告诉我们您的产品需求。我们的农业和应用工程师为稳定的长期磷脂采购提供定制建议。",
     "email_inquiry": "邮件询盘",
     "whatsapp_contact": "WhatsApp联系"
+  },
+  "insights_page": {
+    "seo_title": "磷脂与卵磷脂文章 | PC、PS与食品配方指南",
+    "seo_description": "阅读可抓取的B2B指南，涵盖磷脂酰胆碱、磷脂酰丝氨酸、卵磷脂、清洁标签原料、功能饮料和食品配方。",
+    "seo_keywords": "磷脂文章, 磷脂酰胆碱指南, 磷脂酰丝氨酸指南, 卵磷脂采购指南, 功能食品配方",
+    "eyebrow": "原料指南",
+    "hero_title": "磷脂、卵磷脂与功能食品洞察",
+    "hero_description": "面向B2B采购和配方团队的实用指南，涵盖磷脂酰胆碱、磷脂酰丝氨酸、卵磷脂、清洁标签原料、功能饮料和应用导向配方。",
+    "intro_title": "面向配方与采购团队的应用导向阅读",
+    "intro_description": "这些文章作为安全的选型指南撰写。它们会把买家连接到真实产品页面，并避免对认证、性能、价格、库存、交付时间或通用使用比例作出无支持依据的声明。",
+    "context_title": "有依据的采购场景",
+    "context_description": "先明确应用场景、产品形态、所需文件、目的地和数量范围，再讨论样品或商业条款。",
+    "application_label": "应用",
+    "procurement_label": "采购",
+    "read_guide": "阅读指南"
   },
   "contact_page": {
     "seo_title": "联系慧意建品 | 稳定大豆卵磷脂供应询盘",

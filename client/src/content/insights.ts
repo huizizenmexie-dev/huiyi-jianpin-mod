@@ -1148,12 +1148,12 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
   },
   {
     slug: "high-purity-lecithin-granules-guide",
-    ctaType: "procurement",
-    productSlugs: ["soy-lecithin-granules", "soy-lecithin-powder"],
+    ctaType: "application",
+    productSlugs: ["soy-lecithin-liquid", "soy-lecithin-powder"],
     relatedSlugs: [
-      "sunflower-lecithin-clean-label-guide",
       "soy-lecithin-sports-nutrition-guide",
-      "water-soluble-phospholipid-powder-beverages",
+      "soy-lecithin-plant-based-diet-guide",
+      "functional-phospholipids-food-formulation-guide",
     ],
     localeStatus: {
       en: "ready",
@@ -1166,20 +1166,21 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
     content: {
       en: {
         title:
-          "High-Quality Lecithin Granules (Acetone Insoluble≥96%): The Pure Choice for Pharmaceutical Excipients and Premium Health Products",
+          "Soy Lecithin in Aquafeed: A 40-Year-Proven Phospholipid Solution for a High-Volume Market",
         metaTitle:
-          "High-Quality Lecithin Granules (Acetone Insoluble≥96%): The Pure Choice for Pha…",
+          "Soy Lecithin in Aquafeed | 40-Year Phospholipid Solution for Feed Formulation",
         metaDescription:
-          "In the fields of pharmaceutical excipients and high-end health products, there are extremely stringent requirements for the purity, stability, and functio…",
+          "Soy lecithin has been evaluated in aquafeed studies spanning 1983 to 2023. Learn how HXY-1SP and HXY-PLE support phospholipid and emulsification strategies for fish, shrimp, and plant-protein aquafeed systems.",
         summary:
-          "In the fields of pharmaceutical excipients and high-end health products, there are extremely stringent requirements for the purity, stability, and functionality of raw materials. High-Quality Lecithin Granules (Acid Insoluble, Acetone Insoluble≥96%) are speci…",
+          "Aquafeed is one of the most established and high-volume application markets for soybean lecithin. Its value is not based on a short-term formulation trend: soybean lecithin has been evaluated in aquafeed studies spanning four decades, from 1983 to 2023. As aquaculture production expands and feed mills continue to optimize cost, growth performance, feed utilization, and raw-material sustainability, phospholipid ingredients remain an important part of practical feed formulation.",
         intent:
-          "Support ingredient buyers and formulators with crawlable guidance on application fit, selection criteria, and related Lecprima product lines.",
+          "Support aquafeed buyers, nutritionists, and feed formulators with crawlable guidance on soybean lecithin selection, plant-protein formulation, and related HXY product lines.",
         keywords: [
-          "high purity lecithin granules",
-          "acetone insoluble lecithin",
-          "pharmaceutical excipient lecithin",
-          "premium health products",
+          "soy lecithin aquafeed",
+          "aquafeed phospholipid solution",
+          "HXY-1SP",
+          "HXY-PLE",
+          "fish and shrimp feed lecithin",
         ],
         sections: [
           {
@@ -1187,92 +1188,103 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
             blocks: [
               {
                 type: "paragraph",
-                text: "In the fields of pharmaceutical excipients and high-end health products, there are extremely stringent requirements for the purity, stability, and functionality of raw materials. **High-Quality Lecithin Granules (Acid Insoluble, Acetone Insoluble≥96%)** are specifically designed to meet these high standards. As a naturally derived phospholipid, it is not only a crucial component of cell membranes but also demonstrates irreplaceable value in drug formulations, nutritional supplements, and other areas due to its excellent emulsifying, dispersing, and biological activities. This article will delve into the application advantages of high-quality lecithin granules in pharmaceutical excipients and high-end health products, and provide you with a professional buying guide to help you select pure and efficient lecithin products, safeguarding your health and product innovation.",
+                text: "Aquafeed is one of the most established and high-volume application markets for soybean lecithin. Its value is not based on a short-term formulation trend: soybean lecithin has been evaluated in aquafeed studies spanning four decades, from 1983 to 2023 [1]. As aquaculture production expands and feed mills continue to optimize cost, growth performance, feed utilization, and raw-material sustainability, phospholipid ingredients remain an important part of practical feed formulation.",
+              },
+              {
+                type: "paragraph",
+                text: "The continued replacement of fishmeal and fish oil with plant-origin ingredients further increases the importance of a balanced nutritional strategy. High-soybean-meal diets require careful amino-acid balancing and attention to lipid digestion and utilization; soybean lecithin provides phospholipids and emulsification support within that formulation framework [2][5]. For feed manufacturers, HXY-1SP and HXY-PLE provide soybean-lecithin options for evaluating aquafeed formulations across fish, shrimp, and other aquaculture species.",
+              },
+              {
+                type: "paragraph",
+                text: "This article explains the role of soybean lecithin in aquafeed, the formulation value of phospholipids in plant-protein systems, and the key factors for selecting an aquafeed lecithin product.",
               },
             ],
           },
           {
             heading:
-              "Core Component Analysis: The Unique Value of High-Quality Lecithin Granules",
+              "Core Component Analysis: Why Soy Lecithin Matters in Aquafeed",
             blocks: [
               {
                 type: "paragraph",
-                text: "Lecithin is a mixture of various phospholipids, including phosphatidylcholine, phosphatidylethanolamine, and phosphatidylinositol, with phosphatidylcholine (PC) being its main active component. High-quality lecithin granules, especially those with Acetone Insoluble≥96%, mean that their acid-insoluble content is extremely low, and their purity is exceptionally high. This gives them unique advantages in high-end applications:",
+                text: "Soy lecithin is a complex mixture of phospholipids, typically including phosphatidylcholine (PC), phosphatidylethanolamine (PE), phosphatidylinositol (PI), fatty acids, and other lipid components. In aquafeed, these components provide a combination of nutritional and process-related value.",
               },
               {
                 type: "list",
                 ordered: true,
                 items: [
-                  "**Excellent Biocompatibility and Safety**: Lecithin is an inherent component of human cells, possessing excellent biocompatibility and rarely causing immune reactions. High purity ensures its safety in pharmaceutical and high-end health product applications [1].",
-                  "**Efficient Emulsifying and Dispersing Properties**: The amphiphilic nature of lecithin makes it a natural emulsifier, capable of stabilizing oil-water mixed systems. In drug formulations, it can be used to prepare liposomes, nanoemulsions, microemulsions, and other drug carriers, improving the solubility and bioavailability of poorly soluble drugs [2]. In health products, it aids in the absorption of fat-soluble vitamins and other nutrients.",
-                  "**Promoting Drug Absorption and Targeted Delivery**: As a pharmaceutical excipient, lecithin can form micelles or liposomes, encapsulating drug molecules, protecting drugs from degradation, and potentially achieving targeted drug delivery to enhance therapeutic effects [3].",
-                  "**Nutritional Supplementation and Health Benefits**: Lecithin itself is an important nutrient, rich in phosphatidylcholine, which has positive effects on liver health, brain function, and lipid metabolism. High-purity lecithin granules, as a high-end health product, can more efficiently provide these health benefits [4].",
+                  "**A practical phospholipid source for early life stages**: Larval and juvenile aquatic animals have limited capacity to synthesize phospholipids de novo. Dietary phospholipids are therefore important for rapid growth, membrane development, lipid transport, and feed utilization during early development [1].",
+                  "**Emulsification and lipid-utilization support**: Lecithin's amphiphilic structure helps disperse lipid droplets, increasing the contact area available to digestive enzymes. This makes soybean lecithin a valuable formulation component in feeds where oil dispersion and lipid digestion are important [1].",
+                  "**A useful partner in plant-protein formulations**: Soybean meal and other plant proteins can reduce dependence on marine ingredients, but they do not remove the need for a balanced amino-acid profile and efficient lipid management. Soy lecithin does not replace amino-acid correction; instead, it contributes phospholipid nutrition and emulsification support to the overall formula [2][5].",
+                  "**Commercial availability and cost practicality**: Compared with marine lecithin sources, soybean lecithin is widely available and has been widely considered a practical, cost-effective phospholipid option for aquafeed formulation [1].",
                 ],
               },
             ],
           },
           {
             heading:
-              "Product Advantages and Features: Our High-Quality Lecithin Granules, a Model of Purity and Efficacy",
+              "Product Advantages and Features: HXY-1SP and HXY-PLE for Aquafeed Formulation",
             blocks: [
               {
                 type: "paragraph",
-                text: "Our high-quality lecithin granules, with their ultra-high purity of Acetone Insoluble≥96%, are an ideal choice for pharmaceutical excipients and high-end health product markets. We are committed to providing lecithin products that meet the highest international standards, helping our customers achieve excellent product performance.",
+                text: "HXY-1SP and HXY-PLE are designed to support feed manufacturers evaluating soy-lecithin solutions for aquaculture nutrition. Their role is to supply phospholipid functionality that can be integrated into practical aquafeed systems.",
               },
               {
                 type: "list",
                 ordered: false,
                 items: [
-                  "**Ultra-High Purity, Excellent Quality**: The Acetone Insoluble≥96% indicator means that the content of non-phospholipid impurities in the product is extremely low, ensuring the purity and stability of the product, meeting the stringent purity requirements for pharmaceutical-grade and high-end health products.",
-                  "**Selected Raw Materials, Safe and Reliable**: We select non-GMO high-quality soybeans as raw materials, and through advanced extraction and purification processes, we ensure the naturalness, safety, and traceability of our products from the source.",
-                  "**Strong Functionality, Wide Application**: With its excellent emulsifying, dispersing, and solubilizing properties, our high-quality lecithin granules can be widely used in:",
-                  "**Pharmaceutical Field**: As a key component of liposomes, nanoparticles, microemulsions, and other drug carriers, used in injections, oral liquids, topical preparations, etc.",
-                  "**High-End Health Products**: As a high-purity nutritional supplement, directly used in capsules, powders, and other products, or added as a functional ingredient to other health foods.",
-                  "**Strict Quality Control System**: From raw material selection to production processing and finished product testing, we strictly adhere to international quality management systems such as GMP and ISO, ensuring that every batch of product meets the highest standards.",
+                  "**A stable source of soybean phospholipids**: Soy lecithin provides a practical phospholipid component for feeds intended for fish, shrimp, and other aquatic species.",
+                  "**Support for lipid dispersion and feed utilization**: Its emulsifying properties help formulators evaluate oil-phase distribution and lipid-use strategies in complete-feed systems.",
+                  "**Relevant to plant-protein and fishmeal-reduction strategies**: As feed formulas increase their use of soybean meal and other plant-origin ingredients, lecithin can be considered as part of the phospholipid and lipid-utilization strategy.",
+                  "**Process-oriented selection**: HXY-1SP can be evaluated for liquid-addition and oil-phase process routes. HXY-PLE can be selected according to the feed mill's actual formula, processing route, and finished-feed requirements.",
+                  "**Broad aquafeed applicability**: The products can be evaluated for larval feeds, juvenile feeds, shrimp feeds, high-energy diets, and plant-protein-oriented aquafeed programs.",
                 ],
               },
             ],
           },
           {
-            heading:
-              "Buying Guide: How to Choose High-Quality Lecithin Granules",
+            heading: "Buying Guide: How to Choose Soy Lecithin for Aquafeed",
             blocks: [
               {
                 type: "paragraph",
-                text: "When choosing high-quality lecithin granules for pharmaceutical excipients or high-end health products, the following factors are crucial to ensure you get a high-quality product that meets your needs:",
+                text: "When selecting soybean lecithin for aquafeed, buyers should evaluate the ingredient together with the target species, life stage, formula composition, processing route, and commercial requirements.",
               },
               {
                 type: "table",
                 headers: [
                   "Selection Factor",
                   "Evaluation Criteria",
-                  "Our Advantage (High-Quality Lecithin Granules)",
+                  "HXY Aquafeed Solution",
                 ],
                 rows: [
                   [
-                    "**Purity Index**",
-                    "Focus on Acetone Insoluble content; higher Acetone Insoluble content means higher purity",
-                    "Offers ultra-high purity products with Acetone Insoluble≥96%",
+                    "**Target Species and Life Stage**",
+                    "Larval, juvenile, grow-out fish, shrimp, or other aquaculture species may have different phospholipid needs",
+                    "Select HXY-1SP or HXY-PLE according to the species, developmental stage, and formula objective",
                   ],
                   [
-                    "**Phosphatidylcholine (PC) Content**",
-                    "PC is the main active ingredient; higher content means more significant efficacy",
-                    "High PC content ensures product efficacy",
+                    "**Plant-Protein Inclusion Level**",
+                    "Higher soybean-meal or plant-protein inclusion requires greater attention to amino-acid balance and lipid utilization",
+                    "Soy lecithin can be assessed as part of the formula's phospholipid and emulsification strategy",
                   ],
                   [
-                    "**Source**",
-                    "Prefer non-GMO soybean sources to avoid potential risks",
-                    "Uses non-GMO high-quality soybeans, natural and safe",
+                    "**Oil Addition and Processing Route**",
+                    "Consider liquid addition, oil-phase mixing, post-pelleting application, and feed-mill equipment",
+                    "HXY-1SP is suitable for evaluation in liquid-addition and oil-phase process routes",
                   ],
                   [
-                    "**Production Process**",
-                    "Advanced extraction and purification technology ensures product quality and stability",
-                    "Leading production process guarantees excellent product quality",
+                    "**Phospholipid Quality and Batch Consistency**",
+                    "Review product specifications, batch consistency, and technical documentation",
+                    "Confirm the applicable HXY grade and technical parameters before commercial use",
                   ],
                   [
-                    "**Quality Certifications**",
-                    "Whether it has passed international certifications such as GMP, ISO, Kosher, Halal",
-                    "Complies with multiple international quality standards and certifications",
+                    "**Feed Performance Objective**",
+                    "Define whether the priority is early-stage nutrition, feed utilization, oil dispersion, or plant-protein formula optimization",
+                    "Match the selected HXY product with the formulation objective and trial design",
+                  ],
+                  [
+                    "**Commercial Feasibility**",
+                    "Assess supply planning, packaging, cost-in-use, and delivery requirements",
+                    "Discuss the appropriate HXY supply arrangement against the confirmed order and destination requirements",
                   ],
                 ],
               },
@@ -1280,40 +1292,32 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
           },
           {
             heading:
-              "Application Scenarios: The Diverse Value of High-Quality Lecithin Granules",
+              "Application Scenarios: The Value of Soy Lecithin Across Aquafeed Systems",
             blocks: [
               {
                 type: "list",
                 ordered: false,
                 items: [
-                  "**Drug Formulations**: Used to prepare intravenous emulsions, liposomal drugs, oral nanopreparations, improving drug stability, solubility, and bioavailability.",
-                  "**High-End Nutritional Supplements**: As a high-purity PC source, used in the production of capsules or powder products for liver protection, brain nutrition, and cardiovascular health.",
-                  "**Foods for Special Medical Purposes**: Provides high-quality phospholipid nutrition for patients requiring specific nutritional support.",
-                  "**Cosmetics and Personal Care Products**: As a natural emulsifier and active ingredient carrier, enhancing product efficacy and skin feel.",
+                  "**Larval and Juvenile Fish Diets**: Supports the supply of dietary phospholipids during life stages with limited endogenous phospholipid synthesis capacity.",
+                  "**Shrimp and Crustacean Feeds**: Can be evaluated as a phospholipid ingredient in nutritional strategies for growth, lipid metabolism, and feed utilization.",
+                  "**High-Plant-Protein Diets**: Works alongside amino-acid balancing, protein-source selection, and oil-management strategies in soybean-meal-oriented formulas.",
+                  "**High-Energy Fish Diets**: Helps formulators evaluate oil dispersion and lipid-utilization approaches where dietary energy density is important.",
+                  "**Feed-Mill Process Optimization**: Relevant to liquid addition, oil-phase mixing, and other routes where lecithin functionality is considered during production.",
                 ],
               },
             ],
           },
           {
             heading:
-              "Brand Recommendation: Choose Us, Choose Pharmaceutical-Grade Quality and an Innovative Future",
+              "Brand Recommendation: Choose HXY for a Practical Aquafeed Phospholipid Strategy",
             blocks: [
               {
                 type: "paragraph",
-                text: "We deeply understand the extreme pursuit of quality in the pharmaceutical and high-end health product industries. The high-quality lecithin granules we provide are not just a raw material but also the cornerstone of your product innovation and success. By choosing us, you will gain:",
-              },
-              {
-                type: "list",
-                ordered: false,
-                items: [
-                  "**Unparalleled Purity**: Acetone Insoluble≥96%, ensuring your products meet the highest standards.",
-                  "**Strict Quality Assurance**: From source to finished product, fully controllable, safe and worry-free.",
-                  "**Professional Solutions**: Providing technical support to assist your product development.",
-                ],
+                text: "Aquafeed formulation is a long-term, data-driven field. It requires ingredients that are not only technically relevant, but also practical for large-scale feed production and continuous sourcing. Soy lecithin has accumulated more than 40 years of aquafeed research and application history, giving it a strong position in sustainable, high-volume aquatic nutrition.",
               },
               {
                 type: "paragraph",
-                text: "Let us work together to create a new chapter in pharmaceutical excipients and high-end health products with excellent quality, contributing to human health!",
+                text: "By choosing HXY-1SP and HXY-PLE, feed manufacturers can evaluate a soybean-lecithin solution that connects phospholipid nutrition, emulsification, plant-protein formulation, and practical production requirements. Whether the objective is to support larval nutrition, improve lipid-use strategy, optimize a high-soybean-meal diet, or build a more sustainable aquafeed program, HXY provides a professional starting point for formulation discussion and product selection.",
               },
             ],
           },
@@ -1324,20 +1328,24 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
                 type: "references",
                 items: [
                   {
-                    text: "[1] Van Hoogevest, P., & Fahr, A. (2017). Phospholipids as Pharmaceutical Excipients. *Journal of Pharmaceutical Sciences*, 106(10), 2835-2849. [DOI: 10.1016/j.xphs.2017.07.015](https://pubmed.ncbi.nlm.nih.gov/28756910/)",
+                    text: "[1] Wee, W., Téllez-Isaías, G., Abdul Kari, Z., Cheadoloh, R., Kabir, M. A., Mat, K., Mohamad Sukri, S. A., Rahman, M. M., Rusli, N. D., & Lee, S. W. (2023). The roles of soybean lecithin in aquafeed: a crucial need and update. *Frontiers in Veterinary Science*, 10, 1188659. [DOI: 10.3389/fvets.2023.1188659](https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1188659/full)",
                     authoritative: true,
                   },
                   {
-                    text: "[2] Torchilin, V. P. (2005). Recent advances with liposomes as pharmaceutical carriers. *Nature Reviews Drug Discovery*, 4(2), 145-160. [DOI: 10.1038/nrd1632](https://www.nature.com/articles/nrd1632)",
+                    text: "[2] Lin, Y.-H., Chen, K.-H., & Wu, P.-C. (2022). Effects of the diet based on soybean meal supplemented with soy lecithin on growth, biochemical parameters and digestibility of nutrients in grouper, *Epinephelus lanceolatus*. *Aquaculture Research*, 53, 700-706. DOI: 10.1111/are.15593.",
                     authoritative: true,
                   },
                   {
-                    text: "[3] Akbarzadeh, A., Rezaei-Sadabady, R., Davaran, S., Joo, S. W., Zarghami, N., Hanifehpour, Y., ... & Nejati-Koshki, M. (2013). Liposome: classification, preparation, and applications. *Nanoscale Research Letters*, 8(1), 102. [DOI: 10.1186/1556-276X-8-102](https://nanoscalereslett.springeropen.com/articles/10.1186/1556-276X-8-102)",
+                    text: "[3] El-Naggar, K., Mohamed, R. E., El-katcha, M. I., Abdo, S. E., & Soltan, M. A. (2021). Plant ingredient diet supplemented with lecithin as fish meal and fish oil alternative affects growth performance, serum biochemical, lipid metabolism and growth-related gene expression in Nile tilapia. *Aquaculture Research*, 52, 6308-6321. DOI: 10.1111/are.15494.",
                     authoritative: true,
                   },
                   {
-                    text: "[4] Küllenberg, D., Taylor, L. A., Schneider, M., & Hanisch, M. (2012). Health effects of dietary phospholipids. *Lipids in Health and Disease*, 11(1), 3. [DOI: 10.1186/1476-511X-11-3](https://lipidworld.biomedcentral.com/articles/10.1186/1476-511X-11-3)",
+                    text: "[4] Coutteau, P., Geurden, I., Camara, M. R., Bergot, P., & Sorgeloos, P. (1997). Review on the dietary effects of phospholipids in fish and crustacean larviculture. *Aquaculture*, 155, 149-164. DOI: 10.1016/S0044-8486(97)00125-7.",
                     authoritative: true,
+                  },
+                  {
+                    text: "[5] Bohrium Citation: @bohrium:Godfred2026_972e.",
+                    authoritative: false,
                   },
                 ],
               },
@@ -1347,20 +1355,20 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       },
       "zh-CN": {
         title:
-          "高品质卵磷脂颗粒 (丙酮不溶物≥96%)：医药辅料与高端保健品的纯净之选",
-        metaTitle:
-          "高品质卵磷脂颗粒 (丙酮不溶物≥96%)：医药辅料与高端保健品的纯净之选 | Lecprima 洞察",
+          "大豆卵磷脂在水产饲料中的应用与选购指南：40年验证的高体量磷脂解决方案",
+        metaTitle: "大豆卵磷脂水产饲料指南 | 40年验证的磷脂解决方案",
         metaDescription:
-          "在医药辅料和高端保健品领域，对原料的纯度、稳定性和功能性有着极其严苛的要求。高品质卵磷脂颗粒 (Acid Insoluble, 丙酮不溶物≥96%) 正是为满足这些高标准而生。作为一种天然来源的磷脂，它不仅是细胞膜的重要组成部分，更以其卓越的乳化、分散和生物活性，在药物制剂、营养补充剂等领域展现出不可替代的…",
+          "大豆卵磷脂在1983年至2023年的水产饲料研究中持续被验证。了解HXY-1SP、HXY-PLE如何支持鱼类、虾类和高植物蛋白水产饲料体系中的磷脂与乳化策略。",
         summary:
-          "在医药辅料和高端保健品领域，对原料的纯度、稳定性和功能性有着极其严苛的要求。高品质卵磷脂颗粒 (Acid Insoluble, 丙酮不溶物≥96%) 正是为满足这些高标准而生。作为一种天然来源的磷脂，它不仅是细胞膜的重要组成部分，更以其卓越的乳化、分散和生物活性，在药物制剂、营养补充剂等领域展现出不可替代的价值。本文将深入探讨高品质卵磷脂颗粒在医药辅料和高端保健品中的应用优势，并为您提供专业的选购指南，帮助您甄选出纯净、高效的卵磷脂产品，为您的健康和产品创新保驾护航。",
+          "水产饲料是大豆卵磷脂最成熟、体量最大的应用市场之一。它的价值并非来自短期配方热点：从1983年至2023年，大豆卵磷脂在水产饲料中的应用已积累了40余年的研究与验证历史。随着全球水产养殖规模持续扩张，饲料企业对成本、增重表现、饲料利用率和原料可持续性的优化需求不断提升，磷脂类原料仍是实际配方体系中的重要组成部分。",
         intent:
-          "为原料采购、配方开发和应用评估提供可抓取的中英文磷脂内容，并连接相关 Lecprima 产品线。",
+          "为水产饲料采购、营养师和配方开发人员提供可抓取的大豆卵磷脂选型、高植物蛋白配方和相关HXY产品线指南。",
         keywords: [
-          "高纯度卵磷脂颗粒",
-          "丙酮不溶物96",
-          "医药辅料",
-          "保健品原料",
+          "水产饲料大豆卵磷脂",
+          "水产磷脂解决方案",
+          "HXY-1SP",
+          "HXY-PLE",
+          "鱼虾饲料卵磷脂",
         ],
         sections: [
           {
@@ -1368,128 +1376,128 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
             blocks: [
               {
                 type: "paragraph",
-                text: "在医药辅料和高端保健品领域，对原料的纯度、稳定性和功能性有着极其严苛的要求。**高品质卵磷脂颗粒 (Acid Insoluble, 丙酮不溶物≥96%)** 正是为满足这些高标准而生。作为一种天然来源的磷脂，它不仅是细胞膜的重要组成部分，更以其卓越的乳化、分散和生物活性，在药物制剂、营养补充剂等领域展现出不可替代的价值。本文将深入探讨高品质卵磷脂颗粒在医药辅料和高端保健品中的应用优势，并为您提供专业的选购指南，帮助您甄选出纯净、高效的卵磷脂产品，为您的健康和产品创新保驾护航。",
+                text: "水产饲料是大豆卵磷脂最成熟、体量最大的应用市场之一。它的价值并非来自短期配方热点：从1983年至2023年，大豆卵磷脂在水产饲料中的应用已积累了40余年的研究与验证历史 [1]。随着全球水产养殖规模持续扩张，饲料企业对成本、增重表现、饲料利用率和原料可持续性的优化需求不断提升，磷脂类原料仍是实际配方体系中的重要组成部分。",
+              },
+              {
+                type: "paragraph",
+                text: "鱼粉、鱼油向植物蛋白和植物油脂原料的替代趋势，也进一步凸显了均衡营养策略的重要性。高豆粕日粮需要更加重视氨基酸平衡、脂肪消化与利用；大豆卵磷脂能够在这一配方框架中提供磷脂营养和乳化支持 [2][5]。对于水产饲料企业而言，HXY-1SP、HXY-PLE可作为评估鱼类、虾类及其他水产动物饲料配方的大豆卵磷脂产品选择。",
+              },
+              {
+                type: "paragraph",
+                text: "本文将深入解析大豆卵磷脂在水产饲料中的作用，说明其在高植物蛋白体系中的配方价值，并为您提供专业的水产饲料卵磷脂选购指南。",
               },
             ],
           },
           {
-            heading: "核心成分解析：高品质卵磷脂颗粒的独特价值",
+            heading: "核心成分解析：为什么大豆卵磷脂对水产饲料如此重要",
             blocks: [
               {
                 type: "paragraph",
-                text: "卵磷脂是磷脂酰胆碱、磷脂酰乙醇胺、磷脂酰肌醇等多种磷脂的混合物，其中磷脂酰胆碱（PC）是其主要活性成分。高品质卵磷脂颗粒，特别是丙酮不溶物≥96%的产品，意味着其酸不溶物含量极低，纯度极高，这赋予了它在高端应用中独特的优势：",
+                text: "大豆卵磷脂是由磷脂酰胆碱（PC）、磷脂酰乙醇胺（PE）、磷脂酰肌醇（PI）、脂肪酸及其他脂类成分组成的复合物。在水产饲料中，这些成分能够同时提供营养价值和工艺价值。",
               },
               {
                 type: "list",
                 ordered: true,
                 items: [
-                  "**卓越的生物相容性与安全性**：卵磷脂是人体细胞固有的组成部分，具有极佳的生物相容性，不易引起免疫反应。高纯度确保了其在医药和高端保健品应用中的安全性 [1]。",
-                  "**高效的乳化与分散性能**：卵磷脂的两亲性使其成为天然的乳化剂，能够稳定油水混合体系。在药物制剂中，它可用于制备脂质体、纳米乳、微乳等药物载体，提高难溶性药物的溶解度和生物利用度 [2]。在保健品中，则有助于脂溶性维生素等营养素的吸收。",
-                  "**促进药物吸收与靶向递送**：作为药物辅料，卵磷脂能够形成胶束或脂质体，包裹药物分子，保护药物免受降解，并可能实现药物的靶向递送，提高治疗效果 [3]。",
-                  "**营养补充与健康益处**：卵磷脂本身就是重要的营养素，富含磷脂酰胆碱，对肝脏健康、脑部功能和脂质代谢具有积极作用。高纯度卵磷脂颗粒作为高端保健品，能更高效地提供这些健康益处 [4]。",
+                  "**仔稚鱼阶段实用的磷脂来源**：仔鱼和幼鱼自身合成磷脂的能力有限，日粮磷脂对快速生长、细胞膜发育、脂质转运及饲料利用具有重要意义 [1]。",
+                  "**乳化与脂肪利用支持**：卵磷脂的两亲性结构有助于分散脂肪液滴，增加脂肪与消化酶的接触面积。因此，在重视油脂分散和脂肪消化的饲料体系中，大豆卵磷脂具有重要的配方价值 [1]。",
+                  "**高植物蛋白日粮的有效配方伙伴**：豆粕及其他植物蛋白能够降低对海洋原料的依赖，但并不意味着可以忽视氨基酸平衡和脂肪管理。大豆卵磷脂不能替代氨基酸校正，但能够为整体配方提供磷脂营养和乳化支持 [2][5]。",
+                  "**供应与成本上的现实优势**：与海洋来源卵磷脂相比，大豆卵磷脂供应广泛，在水产饲料配方中长期被视为兼具实用性和成本可行性的磷脂选择 [1]。",
                 ],
               },
             ],
           },
           {
-            heading: "产品优势与特点：我们的高品质卵磷脂颗粒，纯净与效能的典范",
+            heading: "产品优势与特点：HXY-1SP、HXY-PLE助力水产饲料配方",
             blocks: [
               {
                 type: "paragraph",
-                text: "我们提供的高品质卵磷脂颗粒，以其丙酮不溶物≥96%的超高纯度，成为医药辅料和高端保健品市场的理想选择。我们致力于提供符合国际最高标准的卵磷脂产品，助力客户实现卓越的产品性能。",
+                text: "HXY-1SP、HXY-PLE面向水产营养应用，为饲料企业评估大豆卵磷脂解决方案提供支持。其核心价值在于将磷脂功能纳入实际可执行的水产饲料体系。",
               },
               {
                 type: "list",
                 ordered: false,
                 items: [
-                  "**超高纯度，品质卓越**：丙酮不溶物≥96%的指标意味着产品中非磷脂杂质含量极低，确保了产品的纯净度和稳定性，满足医药级和高端保健品对纯度的严苛要求。",
-                  "**精选原料，安全可靠**：我们选用非转基因优质大豆作为原料，通过先进的提取和纯化工艺，从源头保障产品的天然、安全和可追溯性。",
-                  "**功能性强，应用广泛**：凭借其优异的乳化、分散和增溶性能，我们的高品质卵磷脂颗粒可广泛应用于：",
-                  "**医药领域**：作为脂质体、纳米粒、微乳等药物载体的关键组分，用于注射剂、口服液、外用制剂等。",
-                  "**高端保健品**：作为高纯度营养补充剂，直接用于胶囊、粉剂等产品，或作为功能性成分添加到其他保健食品中。",
-                  "**严格的质量控制体系**：从原料筛选到生产加工，再到成品检测，我们严格遵循GMP、ISO等国际质量管理体系，确保每一批产品都达到最高标准。",
+                  "**稳定的大豆磷脂来源**：为鱼类、虾类及其他水产动物饲料提供实用的磷脂原料选择。",
+                  "**支持脂肪分散与饲料利用**：其乳化特性有助于配方师评估全价饲料中的油相分布和脂肪利用策略。",
+                  "**适配植物蛋白和鱼粉减量思路**：当饲料配方提高豆粕及其他植物来源原料的使用比例时，卵磷脂可作为磷脂和脂肪利用策略的一部分进行评估。",
+                  "**面向工艺的产品选择**：HXY-1SP可用于液体添加和油相工艺路线的评估；HXY-PLE可根据饲料厂的实际配方、加工路线和成品要求进行选择。",
+                  "**覆盖多类水产饲料场景**：可用于仔稚鱼饲料、幼鱼饲料、虾料、高能量饲料及高植物蛋白水产饲料项目的评估。",
                 ],
               },
             ],
           },
           {
-            heading: "选购指南：如何挑选高品质卵磷脂颗粒",
+            heading: "选购指南：如何挑选适合水产饲料的大豆卵磷脂",
             blocks: [
               {
                 type: "paragraph",
-                text: "在选择用于医药辅料或高端保健品的高品质卵磷脂颗粒时，以下因素至关重要：",
+                text: "在选择用于水产饲料的大豆卵磷脂时，应结合目标物种、生长阶段、配方组成、加工路线及商业化要求进行整体评估。",
               },
               {
                 type: "table",
-                headers: [
-                  "选购要素",
-                  "考量标准",
-                  "我们的优势 (高品质卵磷脂颗粒)",
-                ],
+                headers: ["选购要素", "考量标准", "HXY水产饲料解决方案"],
                 rows: [
                   [
-                    "**纯度指标**",
-                    "关注丙酮不溶物含量，丙酮不溶物含量越高，纯度越高",
-                    "提供丙酮不溶物≥96%的超高纯度产品",
+                    "**目标物种与生长阶段**",
+                    "仔稚鱼、幼鱼、成鱼、虾类或其他水产动物，对磷脂的需求存在差异",
+                    "根据物种、生长阶段和配方目标选择HXY-1SP或HXY-PLE",
                   ],
                   [
-                    "**磷脂酰胆碱 (PC) 含量**",
-                    "PC是主要活性成分，含量越高，功效越显著",
-                    "PC含量高，确保产品效能",
+                    "**植物蛋白使用比例**",
+                    "豆粕或植物蛋白比例越高，越需关注氨基酸平衡和脂肪利用",
+                    "大豆卵磷脂可作为配方中磷脂和乳化策略的一部分进行评估",
                   ],
                   [
-                    "**来源**",
-                    "优选非转基因大豆来源，避免潜在风险",
-                    "采用非转基因优质大豆，天然安全",
+                    "**油脂添加与加工路线**",
+                    "需考虑液体添加、油相混合、制粒后喷涂及饲料厂设备条件",
+                    "HXY-1SP适用于液体添加和油相工艺路线的评估",
                   ],
                   [
-                    "**生产工艺**",
-                    "采用先进的提取纯化技术，确保产品质量和稳定性",
-                    "领先的生产工艺，保障产品卓越品质",
+                    "**磷脂品质与批次稳定性**",
+                    "关注产品规格、批次一致性及技术文件",
+                    "商业应用前确认适用的HXY型号及技术参数",
                   ],
                   [
-                    "**质量认证**",
-                    "是否通过GMP、ISO、Kosher、Halal等国际认证",
-                    "符合多项国际质量标准和认证",
+                    "**饲料性能目标**",
+                    "明确是针对仔稚鱼营养、饲料利用、油脂分散还是植物蛋白配方优化",
+                    "使HXY产品选择与配方目标及试验设计相匹配",
+                  ],
+                  [
+                    "**商业化可行性**",
+                    "评估供应计划、包装、使用成本及交付要求",
+                    "根据确认的订单与目的地要求沟通适合的HXY供货方案",
                   ],
                 ],
               },
             ],
           },
           {
-            heading: "应用场景：高品质卵磷脂颗粒的多元价值",
+            heading: "应用场景：大豆卵磷脂在不同水产饲料体系中的价值",
             blocks: [
               {
                 type: "list",
                 ordered: false,
                 items: [
-                  "**药物制剂**：用于制备静脉注射乳剂、脂质体药物、口服纳米制剂，提高药物稳定性、溶解度和生物利用度。",
-                  "**高端营养补充剂**：作为高纯度PC来源，用于生产肝脏保护、脑部营养、心血管健康等领域的胶囊或粉剂产品。",
-                  "**特殊医学用途配方食品**：为需要特定营养支持的患者提供高品质磷脂营养。",
-                  "**化妆品与个人护理品**：作为天然乳化剂和活性成分载体，提升产品功效和肤感。",
+                  "**仔稚鱼与幼鱼饲料**：在自身磷脂合成能力有限的生长阶段，为日粮提供磷脂支持。",
+                  "**虾类与甲壳类饲料**：可作为生长、脂质代谢和饲料利用相关营养策略中的磷脂原料进行评估。",
+                  "**高植物蛋白日粮**：与氨基酸平衡、蛋白源选择和油脂管理策略协同，用于以豆粕为代表的植物蛋白配方。",
+                  "**高能量鱼类饲料**：在重视日粮能量密度的配方中，帮助配方师评估油脂分散与脂肪利用方案。",
+                  "**饲料厂工艺优化**：适用于液体添加、油相混合及其他需要考虑卵磷脂功能的生产工艺路线。",
                 ],
               },
             ],
           },
           {
-            heading: "品牌推荐：选择我们，选择医药级品质与创新未来",
+            heading: "品牌推荐：选择HXY，选择务实的水产饲料磷脂策略",
             blocks: [
               {
                 type: "paragraph",
-                text: "我们深知医药和高端保健品行业对品质的极致追求。我们提供的高品质卵磷脂颗粒，不仅仅是一种原料，更是您产品创新和成功的基石。选择我们，您将获得：",
-              },
-              {
-                type: "list",
-                ordered: false,
-                items: [
-                  "**无与伦比的纯度**：丙酮不溶物≥96%，确保您的产品达到最高标准。",
-                  "**严格的质量保障**：从源头到成品，全程可控，安全无忧。",
-                  "**专业的解决方案**：提供技术支持，助力您的产品研发。",
-                ],
+                text: "水产饲料配方是一个长期、数据驱动的领域。它不仅需要具备技术相关性的原料，也需要适合大规模饲料生产和持续供应的实际条件。大豆卵磷脂在水产饲料中积累了40余年的研究与应用基础，因此在可持续、高体量水产营养领域占据了稳固位置。",
               },
               {
                 type: "paragraph",
-                text: "让我们携手，以卓越的品质，共同开创医药辅料和高端保健品领域的新篇章，为人类健康贡献力量！",
+                text: "选择HXY-1SP、HXY-PLE，饲料企业可以评估一套连接磷脂营养、乳化功能、植物蛋白配方和实际生产要求的大豆卵磷脂方案。无论您的目标是支持仔稚鱼营养、优化脂肪利用策略、改善高豆粕日粮，还是建立更具可持续性的水产饲料项目，HXY都能为您的配方讨论和产品选择提供专业起点。",
               },
             ],
           },
@@ -1500,20 +1508,24 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
                 type: "references",
                 items: [
                   {
-                    text: "[1] Van Hoogevest, P., & Fahr, A. (2017). Phospholipids as Pharmaceutical Excipients. *Journal of Pharmaceutical Sciences*, 106(10), 2835-2849. [DOI: 10.1016/j.xphs.2017.07.015](https://pubmed.ncbi.nlm.nih.gov/28756910/)",
+                    text: "[1] Wee, W., Téllez-Isaías, G., Abdul Kari, Z., Cheadoloh, R., Kabir, M. A., Mat, K., Mohamad Sukri, S. A., Rahman, M. M., Rusli, N. D., & Lee, S. W. (2023). The roles of soybean lecithin in aquafeed: a crucial need and update. *Frontiers in Veterinary Science*, 10, 1188659. [DOI: 10.3389/fvets.2023.1188659](https://www.frontiersin.org/journals/veterinary-science/articles/10.3389/fvets.2023.1188659/full)",
                     authoritative: true,
                   },
                   {
-                    text: "[2] Torchilin, V. P. (2005). Recent advances with liposomes as pharmaceutical carriers. *Nature Reviews Drug Discovery*, 4(2), 145-160. [DOI: 10.1038/nrd1632](https://www.nature.com/articles/nrd1632)",
+                    text: "[2] Lin, Y.-H., Chen, K.-H., & Wu, P.-C. (2022). Effects of the diet based on soybean meal supplemented with soy lecithin on growth, biochemical parameters and digestibility of nutrients in grouper, *Epinephelus lanceolatus*. *Aquaculture Research*, 53, 700-706. DOI: 10.1111/are.15593.",
                     authoritative: true,
                   },
                   {
-                    text: "[3] Akbarzadeh, A., Rezaei-Sadabady, R., Davaran, S., Joo, S. W., Zarghami, N., Hanifehpour, Y., ... & Nejati-Koshki, M. (2013). Liposome: classification, preparation, and applications. *Nanoscale Research Letters*, 8(1), 102. [DOI: 10.1186/1556-276X-8-102](https://nanoscalereslett.springeropen.com/articles/10.1186/1556-276X-8-102)",
+                    text: "[3] El-Naggar, K., Mohamed, R. E., El-katcha, M. I., Abdo, S. E., & Soltan, M. A. (2021). Plant ingredient diet supplemented with lecithin as fish meal and fish oil alternative affects growth performance, serum biochemical, lipid metabolism and growth-related gene expression in Nile tilapia. *Aquaculture Research*, 52, 6308-6321. DOI: 10.1111/are.15494.",
                     authoritative: true,
                   },
                   {
-                    text: "[4] Küllenberg, D., Taylor, L. A., Schneider, M., & Hanisch, M. (2012). Health effects of dietary phospholipids. *Lipids in Health and Disease*, 11(1), 3. [DOI: 10.1186/1476-511X-11-3](https://lipidworld.biomedcentral.com/articles/10.1186/1476-511X-11-3)",
+                    text: "[4] Coutteau, P., Geurden, I., Camara, M. R., Bergot, P., & Sorgeloos, P. (1997). Review on the dietary effects of phospholipids in fish and crustacean larviculture. *Aquaculture*, 155, 149-164. DOI: 10.1016/S0044-8486(97)00125-7.",
                     authoritative: true,
+                  },
+                  {
+                    text: "[5] Bohrium Citation: @bohrium:Godfred2026_972e.",
+                    authoritative: false,
                   },
                 ],
               },
