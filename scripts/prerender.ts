@@ -157,7 +157,7 @@ function main() {
   }
 
   const rootTarget = buildPublicPath(DEFAULT_LOCALE, "/");
-  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta name="shenma-site-verification" content="bcf60bf98a5703c9072a1f73c65b24e5_1783065731"><meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
+  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
   writeFileSync(join(DIST, "index.html"), rootRedirect, "utf-8");
 
   writeFileSync(
