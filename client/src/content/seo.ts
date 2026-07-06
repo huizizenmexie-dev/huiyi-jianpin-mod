@@ -5,7 +5,17 @@ import {
   PAGE_PATHS,
   type Locale,
 } from "./routes";
-import { SITE_LEGAL_NAME, SITE_NAME, CONTACT, DEFAULT_OG_IMAGE } from "./site";
+import {
+  CONTACT,
+  DEFAULT_OG_IMAGE,
+  LIAOCHENG_FACILITY,
+  SITE_BRAND_NAME,
+  SITE_BRAND_STATEMENT,
+  SITE_COMPANY_SHORT_NAME,
+  SITE_LEGAL_NAME,
+  SITE_LEGAL_NAME_ZH,
+  SITE_NAME,
+} from "./site";
 import { getProductBySlug } from "../lib/productData";
 import { getInsightBySlug, getInsightContent } from "./insights";
 import { URLS, buildRoutePath, createUrlSystem, stripLocale } from "./url";
@@ -44,24 +54,24 @@ export const PAGE_SEO: Record<
 > = {
   "/": {
     title:
-      "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
+      "Stable Soy Lecithin Supplier | Lecprima B2B Phospholipid Supply",
     description:
-      "Secure your formulation against global supply chain disruptions with Huiyi Jianpin soy lecithin, phospholipid, soy protein and fiber systems.",
+      "Secure your formulation against global supply chain disruptions with Lecprima soy lecithin, phospholipid, soy protein and fiber systems.",
   },
   "/products": {
     title: "Soy Lecithin & Phospholipid Products | Stable B2B Supply",
     description:
-      "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Huiyi Jianpin.",
+      "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Lecprima.",
   },
   "/about": {
-    title: "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China",
+    title: "About Lecprima | Stable Phospholipid Supply from China",
     description:
-      "Learn how Huiyi Jianpin connects Heilongjiang soybean sourcing with GMP-standard phospholipid production.",
+      "Learn how Lecprima connects Harbin export operations with Liaocheng phospholipid production and Heilongjiang soybean sourcing.",
   },
   "/quality": {
     title: "Quality & Traceability | Secure Soy Lecithin Supply Chain",
     description:
-      "Verify Huiyi Jianpin quality systems, certifications, COA documentation and batch traceability.",
+      "Verify Lecprima quality systems, certifications, COA documentation and batch traceability.",
   },
   "/industry-solutions": {
     title: "Industry Solutions | Stable Phospholipid Applications",
@@ -75,9 +85,9 @@ export const PAGE_SEO: Record<
       "Read crawlable B2B guides on phosphatidylcholine, phosphatidylserine, lecithin, clean-label ingredients, functional beverages and food formulation.",
   },
   "/contact": {
-    title: "Contact Huiyi Jianpin | Request a Quote for Soy Lecithin",
+    title: "Contact Lecprima | Request a Quote for Soy Lecithin",
     description:
-      "Contact Huiyi Jianpin for soy lecithin, phospholipid quote requests, samples and documentation.",
+      "Contact Lecprima for soy lecithin, phospholipid quote requests, samples and documentation.",
   },
 };
 
@@ -134,8 +144,16 @@ function organizationId(urls: UrlSystem) {
   return `${urls.siteOrigin}/#organization`;
 }
 
+function brandId(urls: UrlSystem) {
+  return `${urls.siteOrigin}/#brand`;
+}
+
 function websiteId(urls: UrlSystem) {
   return `${urls.siteOrigin}/#website`;
+}
+
+function liaochengFacilityId(urls: UrlSystem) {
+  return `${urls.siteOrigin}/#liaocheng-facility`;
 }
 
 function webpageId(canonical: string) {
@@ -147,11 +165,15 @@ function organizationSchema(urls: UrlSystem) {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": organizationId(urls),
-    name: SITE_NAME,
+    name: SITE_LEGAL_NAME,
     legalName: SITE_LEGAL_NAME,
+    alternateName: [SITE_LEGAL_NAME_ZH, SITE_COMPANY_SHORT_NAME],
     url: urls.siteOrigin,
+    description: SITE_BRAND_STATEMENT,
     email: CONTACT.email,
     telephone: CONTACT.phone.replace(/\s+/g, ""),
+    brand: { "@id": brandId(urls) },
+    location: { "@id": liaochengFacilityId(urls) },
     address: {
       "@type": "PostalAddress",
       addressLocality: "Harbin",
@@ -174,15 +196,52 @@ function organizationSchema(urls: UrlSystem) {
   };
 }
 
+function brandSchema(urls: UrlSystem) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    "@id": brandId(urls),
+    name: SITE_BRAND_NAME,
+    url: urls.siteOrigin,
+    description: SITE_BRAND_STATEMENT,
+    parentOrganization: { "@id": organizationId(urls) },
+  };
+}
+
 function websiteSchema(locale: Locale, urls: UrlSystem) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": websiteId(urls),
-    name: SITE_NAME,
+    name: SITE_BRAND_NAME,
     url: urls.canonicalUrl(locale, "/"),
     publisher: { "@id": organizationId(urls) },
+    about: { "@id": brandId(urls) },
     inLanguage: locale,
+  };
+}
+
+function liaochengFacilitySchema(urls: UrlSystem) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "@id": liaochengFacilityId(urls),
+    name: LIAOCHENG_FACILITY.name,
+    description: LIAOCHENG_FACILITY.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: LIAOCHENG_FACILITY.locality,
+      addressRegion: LIAOCHENG_FACILITY.region,
+      addressCountry: LIAOCHENG_FACILITY.country,
+    },
+    operator: { "@id": organizationId(urls) },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Manufacturing and export relationship",
+        value: SITE_BRAND_STATEMENT,
+      },
+    ],
   };
 }
 
@@ -206,7 +265,7 @@ function webPageSchema(
     description,
     inLanguage: locale,
     isPartOf: { "@id": websiteId(urls) },
-    about: { "@id": organizationId(urls) },
+    about: { "@id": brandId(urls) },
     ...(slug ? { mainEntity: { "@id": `${canonical}#product` } } : {}),
     ...(articleSlug ? { mainEntity: { "@id": `${canonical}#article` } } : {}),
   };
@@ -308,7 +367,7 @@ function productSchema(locale: Locale, routePath: string, urls: UrlSystem) {
     name: product.name,
     description: `${product.subtitle}. ${product.quickSpecs}`,
     image: urls.absoluteAssetUrl(product.image),
-    brand: { "@type": "Brand", name: SITE_NAME },
+    brand: { "@id": brandId(urls) },
     manufacturer: { "@id": organizationId(urls) },
     category: product.category.join(", "),
     additionalProperty: product.specifications.map(spec => ({
@@ -364,7 +423,9 @@ export function resolveRouteSEO({
 
   const jsonLd: ManagedJsonLd[] = [
     { id: "ld-organization", data: organizationSchema(urls) },
+    { id: "ld-brand", data: brandSchema(urls) },
     { id: "ld-website", data: websiteSchema(locale, urls) },
+    { id: "ld-liaocheng-facility", data: liaochengFacilitySchema(urls) },
     {
       id: "ld-webpage",
       data: webPageSchema(

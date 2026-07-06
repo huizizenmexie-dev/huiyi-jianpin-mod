@@ -16,14 +16,15 @@
     "not_found": "页面未找到"
   },
   "homepage": {
-    "seo_title": "稳定大豆卵磷脂供应商 | 弹性供应链 | 慧意建品",
-    "seo_description": "保护您的配方免受全球供应链中断影响。慧意建品提供年产10,000吨、非转基因IP可追溯性、来自中国的稳定磷脂供应。",
-    "seo_keywords": "稳定大豆卵磷脂供应商, 弹性磷脂供应链, 非转基因IP卵磷脂中国, 安全原料采购, 磷脂酰胆碱供应商, 磷脂酰丝氨酸供应商, 慧意建品",
+    "seo_title": "稳定大豆卵磷脂供应商 | Lecprima B2B 磷脂供应",
+    "seo_description": "保护您的配方免受全球供应链中断影响。Lecprima 提供年产10,000吨、非转基因IP可追溯性、来自中国的稳定磷脂供应。",
+    "seo_keywords": "稳定大豆卵磷脂供应商, 弹性磷脂供应链, 非转基因IP卵磷脂中国, 安全原料采购, 磷脂酰胆碱供应商, 磷脂酰丝氨酸供应商, Lecprima",
     "hero_subtitle": "从黑龙江黑土地到全球稳定配方",
     "hero_title_line1": "天然磷脂",
     "hero_title_line2": "为稳定供应而设计",
     "hero_description": "ISO 22000认证的大豆卵磷脂和高纯度磷脂衍生物，年产10,000吨，非转基因IP可追溯性，来自中国的可靠供应连续性。",
     "hero_guarantee": "在全球采购不确定性中保证供应稳定。",
+    "brand_statement": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
     "explore_products": "探索产品系统",
     "contact_engineer": "联系工程师",
     "industries_subtitle": "服务全球行业",
@@ -97,7 +98,7 @@
     },
     "resilience_subtitle": "供应链韧性",
     "resilience_title": "全球原料采购的安全港湾",
-    "resilience_description": "当关税、物流瓶颈和供应商不稳定性扰乱全球食品原料采购时，慧意建品提供稳定的磷脂供应链，依托可追溯的黑龙江非转基因大豆、GMP生产和文档化的批次级质量控制。",
+    "resilience_description": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
     "verify_quality": "验证质量和可追溯性",
     "resilience": {
       "supply_continuity": {
@@ -134,17 +135,19 @@
     "read_guide": "阅读指南"
   },
   "contact_page": {
-    "seo_title": "联系慧意建品 | 稳定大豆卵磷脂供应询盘",
-    "seo_description": "联系慧意建品获取大豆卵磷脂、磷脂、大豆蛋白和纤维报价请求、文档、样品和稳定全球供应支持。",
-    "seo_keywords": "联系大豆卵磷脂供应商, 磷脂报价请求, 稳定原料供应询盘, 慧意建品联系方式",
+    "seo_title": "联系 Lecprima | 稳定大豆卵磷脂供应询盘",
+    "seo_description": "联系 Lecprima 获取大豆卵磷脂、磷脂、大豆蛋白和纤维报价请求、文档、样品和稳定全球供应支持。",
+    "seo_keywords": "联系大豆卵磷脂供应商, 磷脂报价请求, 稳定原料供应询盘, Lecprima 联系方式",
     "hero_subtitle": "从黑龙江黑土地",
-    "hero_title": "联系我们",
+    "hero_title": "联系 Lecprima",
     "hero_description": "告诉我们您的应用、目标剂量、所需规格和供应时间表。我们的团队将在1个工作日内回复。",
+    "brand_statement": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
+    "facility_operator_statement": "我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
     "hero_image_alt": "大豆田和GMP工厂，稳定原料供应",
     "company_name": "哈尔滨慧意建品进出口贸易有限公司",
     "headquarters": "总部",
     "headquarters_address": "中国黑龙江省哈尔滨市",
-    "factory": "工厂",
+    "factory": "聊城制造基地",
     "factory_address": "中国山东省聊城市（7,000㎡ GMP）",
     "whatsapp_wechat": "WhatsApp / 微信",
     "email": "邮箱",
@@ -179,7 +182,9 @@
     }
   },
   "footer": {
+    "brand_name": "Lecprima",
     "company_name": "哈尔滨慧意建品进出口贸易有限公司",
+    "brand_statement": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
     "tagline": "从黑土地到全球健康。",
     "quick_links": "快速链接",
     "contact": "联系方式",

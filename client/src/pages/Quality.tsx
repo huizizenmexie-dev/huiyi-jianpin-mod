@@ -116,7 +116,7 @@ export default function Quality() {
   // Apply unified SEO
   usePageSEO({
     title: t("quality_page.seo_title", "Quality & Traceability | Secure Soy Lecithin Supply Chain"),
-    description: t("quality_page.seo_description", "Verify Huiyi Jianpin quality systems, certifications, COA documentation and batch traceability for secure soy lecithin and phospholipid sourcing."),
+    description: t("quality_page.seo_description", "Verify Lecprima quality systems, certifications, COA documentation and batch traceability for secure soy lecithin and phospholipid sourcing."),
     keywords: t("quality_page.seo_keywords", "soy lecithin quality, phospholipid traceability, COA documentation, secure ingredient sourcing, Non-GMO IP traceability, FSSC 22000 lecithin supplier"),
     path: "/quality",
     image: QUALITY_IMG,

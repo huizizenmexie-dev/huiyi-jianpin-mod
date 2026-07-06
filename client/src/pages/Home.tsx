@@ -152,15 +152,15 @@ export default function Home() {
   // SEO data from translations
   const seoTitle = t(
     "homepage.seo_title",
-    "Stable Soy Lecithin Supplier | Huiyi Jianpin"
+    "Stable Soy Lecithin Supplier | Lecprima"
   );
   const seoDescription = t(
     "homepage.seo_description",
-    "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability."
+    "Secure your formulation against global supply chain disruptions. Lecprima offers 10,000T annual capacity, Non-GMO IP traceability."
   );
   const seoKeywords = t(
     "homepage.seo_keywords",
-    "soy lecithin, phospholipids, phosphatidylcholine, Huiyi Jianpin"
+    "soy lecithin, phospholipids, phosphatidylcholine, Lecprima"
   );
 
   // Apply unified SEO
@@ -294,6 +294,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Brand Statement */}
+      <section className="border-b border-earth-green/10 bg-warm-ivory py-8">
+        <div className="container">
+          <p className="max-w-4xl text-base md:text-lg leading-relaxed text-deep-brown">
+            {t(
+              "homepage.brand_statement",
+              "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
+            )}
+          </p>
+        </div>
+      </section>
+
       {/* Industries Section */}
       <section className="py-20 lg:py-28 bg-warm-ivory">
         <div className="container">
@@ -424,7 +436,7 @@ export default function Home() {
                 <p className="text-medium-gray text-lg leading-relaxed mb-6">
                   {t(
                     "homepage.resilience_description",
-                    "When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control."
+                    "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
                   )}
                 </p>
                 <Link

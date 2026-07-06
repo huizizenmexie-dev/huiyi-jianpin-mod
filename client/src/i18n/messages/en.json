@@ -16,14 +16,15 @@
     "not_found": "Page Not Found"
   },
   "homepage": {
-    "seo_title": "Stable Soy Lecithin Supplier | Resilient Supply Chain | Huiyi Jianpin",
-    "seo_description": "Secure your formulation against global supply chain disruptions. Huiyi Jianpin offers 10,000T annual capacity, Non-GMO IP traceability, and stable phospholipid supply from China.",
-    "seo_keywords": "stable soy lecithin supplier, resilient phospholipid supply chain, Non-GMO IP lecithin China, secure ingredient sourcing, phosphatidylcholine supplier, phosphatidylserine supplier, Huiyi Jianpin",
+    "seo_title": "Stable Soy Lecithin Supplier | Lecprima B2B Phospholipid Supply",
+    "seo_description": "Secure your formulation against global supply chain disruptions. Lecprima offers 10,000T annual capacity, Non-GMO IP traceability, and stable phospholipid supply from China.",
+    "seo_keywords": "stable soy lecithin supplier, resilient phospholipid supply chain, Non-GMO IP lecithin China, secure ingredient sourcing, phosphatidylcholine supplier, phosphatidylserine supplier, Lecprima",
     "hero_subtitle": "From Heilongjiang Black Soil to Stable Global Formulations",
     "hero_title_line1": "Natural Phospholipids",
     "hero_title_line2": "Engineered for Stable Supply",
     "hero_description": "ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China.",
     "hero_guarantee": "Guaranteed supply stability amidst global sourcing uncertainty.",
+    "brand_statement": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
     "explore_products": "Explore Product Systems",
     "contact_engineer": "Contact an Engineer",
     "industries_subtitle": "Serving Global Industries",
@@ -97,7 +98,7 @@
     },
     "resilience_subtitle": "Supply Chain Resilience",
     "resilience_title": "Your Safe Harbor in Global Ingredient Sourcing",
-    "resilience_description": "When tariffs, logistics bottlenecks, and supplier instability disrupt global food ingredient procurement, Huiyi Jianpin provides a stable phospholipid supply chain backed by traceable Heilongjiang Non-GMO soybeans, GMP production, and documented batch-level quality control.",
+    "resilience_description": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
     "verify_quality": "Verify Quality & Traceability",
     "resilience": {
       "supply_continuity": {
@@ -134,17 +135,19 @@
     "read_guide": "Read guide"
   },
   "contact_page": {
-    "seo_title": "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry",
-    "seo_description": "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.",
-    "seo_keywords": "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact",
+    "seo_title": "Contact Lecprima | Stable Soy Lecithin Supply Inquiry",
+    "seo_description": "Contact Lecprima for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.",
+    "seo_keywords": "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Lecprima contact",
     "hero_subtitle": "From Heilongjiang Black Soil",
-    "hero_title": "Get in Touch",
+    "hero_title": "Contact Lecprima",
     "hero_description": "Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.",
+    "brand_statement": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
+    "facility_operator_statement": "We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
     "hero_image_alt": "Soybean field and GMP factory for stable ingredient supply",
     "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
     "headquarters": "Headquarters",
     "headquarters_address": "Harbin, Heilongjiang Province, China",
-    "factory": "Factory",
+    "factory": "Liaocheng Manufacturing Facility",
     "factory_address": "Liaocheng, Shandong Province, China (7,000㎡ GMP)",
     "whatsapp_wechat": "WhatsApp / WeChat",
     "email": "Email",
@@ -179,7 +182,9 @@
     }
   },
   "footer": {
+    "brand_name": "Lecprima",
     "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
+    "brand_statement": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
     "tagline": "From Black Soil to Global Health.",
     "quick_links": "Quick Links",
     "contact": "Contact",

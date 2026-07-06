@@ -67,7 +67,7 @@ function Navbar() {
         {/* Logo */}
         <Link href={buildLocalizedPath(locale, "/")} className="flex items-center shrink-0">
           <span className="font-heading font-semibold text-deep-brown text-base lg:text-lg tracking-tight">
-            Huiyi Jianpin
+            Lecprima
           </span>
         </Link>
 
@@ -227,11 +227,17 @@ function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <span className="font-heading font-semibold text-warm-ivory text-lg">
-                Huiyi Jianpin
+                {t("footer.brand_name", "Lecprima")}
               </span>
             </div>
             <p className="text-sm text-warm-ivory/70 leading-relaxed">
               {t("footer.company_name", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.")}
+            </p>
+            <p className="text-xs text-warm-ivory/60 mt-2 leading-relaxed">
+              {t(
+                "footer.brand_statement",
+                "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
+              )}
             </p>
             <p className="text-xs text-warm-ivory/50 mt-2">
               {t("footer.tagline", "From Black Soil to Global Health.")}

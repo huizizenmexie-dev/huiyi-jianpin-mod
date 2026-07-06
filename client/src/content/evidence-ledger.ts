@@ -18,6 +18,21 @@ export interface EvidenceLedgerEntry {
 
 export const evidenceLedger: EvidenceLedgerEntry[] = [
   {
+    claimId: "business-relationship-own-liaocheng-facility",
+    exactPublicWording:
+      "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
+    productGrade: "All Lecprima export product lines",
+    sourceDocument: "Business owner direct confirmation in Codex thread",
+    sourceOwner: "Business owner",
+    sourceDate: "2026-07-06",
+    applicableMarket: "Global B2B website",
+    verificationStatus: "approved",
+    reviewer: "Business owner",
+    expiryDate: "No fixed expiry; review on company relationship change",
+    pageUsage: ["/", "/about/", "/contact/", "/quality/"],
+    publicationStatus: "publishable",
+  },
+  {
     claimId: "cert-fssc-22000-public-certificate",
     exactPublicWording: "FSSC 22000",
     productGrade: "Small packaging production and selected documented scope",

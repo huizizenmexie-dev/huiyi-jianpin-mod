@@ -44,7 +44,7 @@ describe("web3Forms helpers", () => {
   });
 
   it("uses a branded Web3Forms sender name", () => {
-    expect(WEBSITE_FROM_NAME).toBe("Huiyi Jianpin Website Inquiry");
+    expect(WEBSITE_FROM_NAME).toBe("Lecprima Website Inquiry");
   });
 
   it("accepts a complete quote request with monthlyQuantity and tracking fields", () => {

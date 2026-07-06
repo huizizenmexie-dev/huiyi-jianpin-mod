@@ -341,10 +341,10 @@ function validate() {
     if (route.type === "insight") {
       check(
         content.includes(
-          "Technical content reviewed by Huiyi Jianpin Product &amp; Application Team"
+          "Technical content reviewed by Lecprima Product &amp; Application Team"
         ) ||
           content.includes(
-            "Technical content reviewed by Huiyi Jianpin Product & Application Team"
+            "Technical content reviewed by Lecprima Product & Application Team"
           ),
         `${expectedCanonical} has enterprise content reviewer`
       );

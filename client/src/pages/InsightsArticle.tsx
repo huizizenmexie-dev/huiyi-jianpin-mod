@@ -32,7 +32,7 @@ const CTA_COPY = {
 } as const;
 
 const REVIEWED_BY =
-  "Technical content reviewed by Huiyi Jianpin Product & Application Team";
+  "Technical content reviewed by Lecprima Product & Application Team";
 
 function mailtoFor(title: string) {
   const subject = `RFQ - ${title}`;

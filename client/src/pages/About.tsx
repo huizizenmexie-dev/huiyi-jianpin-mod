@@ -86,9 +86,9 @@ export default function About() {
 
   // Apply unified SEO
   usePageSEO({
-    title: t("about_page.seo_title", "About Huiyi Jianpin | Stable Phospholipid Manufacturer from China"),
-    description: t("about_page.seo_description", "Learn how Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production for stable, traceable global supply."),
-    keywords: t("about_page.seo_keywords", "Huiyi Jianpin manufacturer, stable phospholipid manufacturer China, Non-GMO soybean sourcing, GMP soy lecithin factory, reliable lecithin supplier"),
+    title: t("about_page.seo_title", "About Lecprima | Stable Phospholipid Supply from China"),
+    description: t("about_page.seo_description", "Learn how Lecprima connects Harbin export operations with Liaocheng phospholipid production and Heilongjiang soybean sourcing for stable, traceable global supply."),
+    keywords: t("about_page.seo_keywords", "Lecprima phospholipid supplier, stable phospholipid manufacturer China, Non-GMO soybean sourcing, GMP soy lecithin factory, reliable lecithin supplier"),
     path: "/about",
     image: GMP_IMG,
     jsonLd: [
@@ -115,7 +115,7 @@ export default function About() {
             <span className="text-white">About Us</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            About Huiyi Jianpin
+            About Lecprima
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
             Rooted in black soil. Built for stable global supply.
@@ -137,13 +137,13 @@ export default function About() {
                 </h2>
                 <div className="space-y-4 text-medium-gray leading-relaxed">
                   <p>
-                    Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. originates from China's premier non-GMO soybean belt — Heilongjiang Province. We are a modern agricultural technology enterprise integrating deep processing of soybeans, R&D of high-purity phospholipid derivatives, production, and global distribution.
+                    Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.
                   </p>
                   <p>
-                    Huiyi Jianpin connects Heilongjiang Non-GMO soybean sourcing with GMP-standard phospholipid production, helping global buyers reduce procurement uncertainty through reliable capacity, traceable raw materials, and verified quality documentation.
+                    From Harbin and Liaocheng, Lecprima connects export service, production planning, quality management and documentation for global B2B buyers of soy lecithin, phospholipids and soy ingredient systems.
                   </p>
                   <p>
-                    Headquartered in Harbin, our 7,000㎡ GMP-certified manufacturing facility is located in Liaocheng, Shandong Province, operating three independent computer-controlled automated production lines with an annual processing capacity of 10,000 tons for soy lecithin series products.
+                    The Liaocheng manufacturing facility includes a 7,000㎡ GMP-certified workshop in Shandong Province, operating three independent computer-controlled automated production lines with an annual processing capacity of 10,000 tons for soy lecithin series products.
                   </p>
                   <p>
                     We maintain full quality control from seed to shipment: raw materials sourced from Heilongjiang Non-GMO Identity Preserved (IP) farms; production executed under ISO 22000, FSSC 22000, and HACCP systems. Every batch undergoes rigorous testing for Acetone Insoluble, Acid Value, Peroxide Value, and Heavy Metals, with traceable Certificates of Analysis provided.

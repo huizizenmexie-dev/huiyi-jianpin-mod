@@ -78,9 +78,9 @@ export default function Contact() {
     utm_campaign: "",
   });
 
-  const seoTitle = t("contact_page.seo_title", "Contact Huiyi Jianpin | Stable Soy Lecithin Supply Inquiry");
-  const seoDescription = t("contact_page.seo_description", "Contact Huiyi Jianpin for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.");
-  const seoKeywords = t("contact_page.seo_keywords", "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Huiyi Jianpin contact");
+  const seoTitle = t("contact_page.seo_title", "Contact Lecprima | Stable Soy Lecithin Supply Inquiry");
+  const seoDescription = t("contact_page.seo_description", "Contact Lecprima for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.");
+  const seoKeywords = t("contact_page.seo_keywords", "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Lecprima contact");
 
   // Apply unified SEO
   usePageSEO({
@@ -207,11 +207,23 @@ export default function Contact() {
                 <p className="max-w-md text-sm leading-relaxed text-white/85">
                   {t("contact_page.hero_description", "Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.")}
                 </p>
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-white/90">
+                  {t(
+                    "contact_page.brand_statement",
+                    "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
+                  )}
+                </p>
 
                 <div className="mt-8 space-y-4 rounded-xl border border-white/15 bg-white/90 p-5 backdrop-blur-sm">
                   <h2 className="font-heading text-lg font-semibold text-deep-brown">
                     {t("contact_page.company_name", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.")}
                   </h2>
+                  <p className="text-sm leading-relaxed text-medium-gray">
+                    {t(
+                      "contact_page.facility_operator_statement",
+                      "We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
+                    )}
+                  </p>
                   <div className="space-y-3">
                     <ContactDetail icon={MapPin} title={t("contact_page.headquarters", "Headquarters")}>
                       {t("contact_page.headquarters_address", "Harbin, Heilongjiang Province, China")}
@@ -251,7 +263,7 @@ export default function Contact() {
                 onSubmit={(event) => handleSubmit(event, "quoteForm", [...QUOTE_REQUIRED_FIELDS])}
                 className="rounded-xl border border-border bg-warm-ivory p-5 shadow-sm sm:p-6"
               >
-                <HiddenWeb3Fields formType="Get a Quote" subject="New Quote Request from Huiyi Jianpin Website" />
+                <HiddenWeb3Fields formType="Get a Quote" subject="New Quote Request from Lecprima Website" />
                 {/* Hidden fields for tracking */}
                 <input type="hidden" name="locale" value={locale} />
                 <input type="hidden" name="page_url" value={trackingFields.page_url} />

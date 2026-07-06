@@ -23,7 +23,7 @@ export default function ProductDetail() {
 
   usePageSEO({
     path: product ? `/products/${product.slug}` : "/products",
-    title: product ? `${product.name} | Huiyi Jianpin` : "Product Not Found | Huiyi Jianpin",
+    title: product ? `${product.name} | Lecprima` : "Product Not Found | Lecprima",
     description: product
       ? `${product.subtitle}. ${product.quickSpecs}`
       : "The requested product could not be found.",

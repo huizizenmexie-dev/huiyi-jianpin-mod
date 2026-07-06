@@ -53,7 +53,7 @@ export default function Products() {
   // Apply unified SEO
   usePageSEO({
     title: t("products_page.seo_title", "Soy Lecithin & Phospholipid Products | Stable B2B Supply"),
-    description: t("products_page.seo_description", "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Huiyi Jianpin, built for reliable sourcing and global B2B supply."),
+    description: t("products_page.seo_description", "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Lecprima, built for reliable sourcing and global B2B supply."),
     keywords: t("products_page.seo_keywords", "soy lecithin products, phospholipid systems, phosphatidylcholine supplier, phosphatidylserine supplier, reliable lecithin sourcing, stable B2B ingredient supply"),
     path: "/products",
     image: HEADER_IMG,

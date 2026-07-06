@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import { useI18nContext, type Locale } from "@/i18n";
 import { resolveRouteSEO } from "@/content/seo";
 import { buildCanonicalUrl } from "@/content/url";
-import { SITE_LEGAL_NAME, SITE_NAME, CONTACT } from "@/content/site";
+import {
+  CONTACT,
+  LIAOCHENG_FACILITY,
+  SITE_BRAND_NAME,
+  SITE_BRAND_STATEMENT,
+  SITE_LEGAL_NAME,
+  SITE_LEGAL_NAME_ZH,
+} from "@/content/site";
 
 interface SEOData {
   title?: string;
@@ -145,9 +152,16 @@ export function buildOrganizationSchema(): object {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: SITE_NAME,
+    name: SITE_LEGAL_NAME,
     url: buildCanonicalUrl("en", "/").replace(/\/en\/$/, ""),
     logo: buildCanonicalUrl("en", "/logo.png"),
+    legalName: SITE_LEGAL_NAME,
+    alternateName: [SITE_LEGAL_NAME_ZH, "Huiyi Jianpin"],
+    description: SITE_BRAND_STATEMENT,
+    brand: {
+      "@type": "Brand",
+      name: SITE_BRAND_NAME,
+    },
     contactPoint: {
       "@type": "ContactPoint",
       telephone: CONTACT.phone.replace(/\s+/g, ""),
@@ -160,7 +174,16 @@ export function buildOrganizationSchema(): object {
       addressRegion: "Heilongjiang",
       addressCountry: "CN",
     },
-    legalName: SITE_LEGAL_NAME,
+    location: {
+      "@type": "Place",
+      name: LIAOCHENG_FACILITY.name,
+      address: LIAOCHENG_FACILITY.address,
+      additionalProperty: {
+        "@type": "PropertyValue",
+        name: "Manufacturing and export relationship",
+        value: SITE_BRAND_STATEMENT,
+      },
+    },
   };
 }
 
@@ -179,7 +202,7 @@ export function buildProductSchema(product: {
     sku: product.sku,
     brand: {
       "@type": "Brand",
-      name: SITE_NAME,
+      name: SITE_BRAND_NAME,
     },
     manufacturer: {
       "@type": "Organization",

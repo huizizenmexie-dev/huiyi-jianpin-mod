@@ -1,6 +1,6 @@
 export const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 export const WEB3FORMS_ACCESS_KEY = "6e721c0e-322e-43c8-8dc7-723514cb3f2b";
-export const WEBSITE_FROM_NAME = "Huiyi Jianpin Website Inquiry";
+export const WEBSITE_FROM_NAME = "Lecprima Website Inquiry";
 
 export const QUOTE_REQUIRED_FIELDS = [
   "company",
