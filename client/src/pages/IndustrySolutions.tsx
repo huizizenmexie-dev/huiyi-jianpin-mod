@@ -183,7 +183,7 @@ export default function IndustrySolutions() {
   return (
     <div>
       {/* Header */}
-      <section className="relative h-[35vh] min-h-[280px] flex items-end overflow-hidden">
+      <section className="relative h-[40vh] min-h-[360px] flex items-end overflow-hidden pt-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HEADER_IMG})` }}

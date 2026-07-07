@@ -131,7 +131,7 @@ export default function Quality() {
   return (
     <div>
       {/* Header */}
-      <section className="relative h-[45vh] min-h-[350px] flex items-end overflow-hidden">
+      <section className="relative h-[45vh] min-h-[390px] flex items-end overflow-hidden pt-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${QUALITY_IMG})` }}
