@@ -86,10 +86,10 @@ export default function Products() {
             <span className="text-white">Products</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            Natural Phospholipid Systems
+            Select Lecithin & Phospholipids by Application Problem
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            Reliable sourcing for stable global B2B supply.
+            Compare form, specification, documentation and validation fit.
           </p>
         </div>
       </section>
@@ -98,7 +98,7 @@ export default function Products() {
       <section className="py-8 bg-warm-ivory border-b border-border sticky top-16 z-30 backdrop-blur-sm" style={{ backgroundColor: "rgba(245, 242, 235, 0.95)" }}>
         <div className="container">
           <p className="text-medium-gray text-sm mb-4 max-w-3xl">
-            From standard soy lecithin to high-purity phospholipid derivatives, our product systems support food, nutrition, pharma, cosmetics, feed, and plant-based applications. Each product is backed by stable production capacity, documented specifications, and batch-level quality traceability.
+            Start with the formulation or procurement problem, then compare form, grade, specification, documentation and buyer-side validation needs. Each product page keeps core specs and application context visible for QA, R&D and purchasing review.
           </p>
           <div className="flex flex-wrap gap-2">
             {filterCategories.map((cat) => (
@@ -129,8 +129,10 @@ export default function Products() {
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={buildPublicAssetPath(product.image)}
-                        alt={`${product.name} for stable ingredient sourcing`}
+                        alt={`${product.name} for application-led ingredient evaluation`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
@@ -141,6 +143,14 @@ export default function Products() {
                       <p className="text-medium-gray text-sm mb-3 line-clamp-2">
                         {product.subtitle}
                       </p>
+                      {product.applications[0] && (
+                        <p className="text-xs leading-relaxed text-medium-gray mb-3">
+                          <span className="font-heading font-semibold text-deep-brown">
+                            Problem fit:
+                          </span>{" "}
+                          {product.applications[0].painPoint}
+                        </p>
+                      )}
                       <div className="mt-auto pt-3 border-t border-border">
                         <p className="text-xs font-mono text-earth-green font-medium">
                           {product.listingSpecs}

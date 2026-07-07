@@ -241,4 +241,23 @@ describe("route SEO resolver", () => {
       /guaranteed viscosity|guaranteed delivery|price|availability|Offer/i
     );
   });
+
+  it("product pages keep product schema but do not emit offer-style commercial claims", () => {
+    const seo = resolveRouteSEO({
+      locale: "en",
+      routePath: "/products/soy-lecithin-liquid",
+      urls,
+    });
+    const schemas = Object.fromEntries(
+      seo.jsonLd.map(entry => [entry.id, entry.data])
+    ) as Record<string, any>;
+    const serialized = JSON.stringify(schemas);
+
+    expect(seo.title).toContain("Soy Lecithin Liquid");
+    expect(schemas["ld-product"]["@type"]).toBe("Product");
+    expect(serialized).toContain("Acetone Insoluble");
+    expect(serialized).not.toMatch(
+      /"Offer"|"price"|"availability"|"aggregateRating"|"review"|"gtin"|"mpn"/
+    );
+  });
 });
