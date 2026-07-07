@@ -20,8 +20,6 @@ import { buildCanonicalUrl, buildPublicPath, buildRoutePath, buildSitemapUrl } f
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST = join(ROOT, "dist", "public");
-const SHENMA_SITE_VERIFICATION_META =
-  '<meta name="shenma-site-verification" content="bcf60bf98a5703c9072a1f73c65b24e5_1783383359" />';
 
 type RouteType = "page" | "product" | "insight";
 
@@ -159,7 +157,7 @@ function main() {
   }
 
   const rootTarget = buildPublicPath(DEFAULT_LOCALE, "/");
-  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" />${SHENMA_SITE_VERIFICATION_META}<meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
+  const rootRedirect = `<!doctype html><html lang="en"><head><meta charset="UTF-8" /><meta http-equiv="refresh" content="0;url=${rootTarget}" /><link rel="canonical" href="${buildCanonicalUrl(DEFAULT_LOCALE, "/")}" /></head><body><a href="${rootTarget}">Continue to English homepage</a></body></html>`;
   writeFileSync(join(DIST, "index.html"), rootRedirect, "utf-8");
 
   writeFileSync(

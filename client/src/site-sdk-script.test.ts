@@ -26,14 +26,4 @@ describe("site SDK script injection", () => {
     );
   });
 
-  it("embeds the Shenma homepage verification meta tag in client/index.html", () => {
-    const html = readFileSync(
-      resolve(process.cwd(), "client/index.html"),
-      "utf-8"
-    );
-
-    expect(html).toContain(
-      '<meta name="shenma-site-verification" content="bcf60bf98a5703c9072a1f73c65b24e5_1783383359" />'
-    );
-  });
 });
