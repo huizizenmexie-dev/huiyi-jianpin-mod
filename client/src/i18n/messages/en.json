@@ -16,19 +16,19 @@
     "not_found": "Page Not Found"
   },
   "homepage": {
-    "seo_title": "Stable Soy Lecithin Supplier | Lecprima B2B Phospholipid Supply",
-    "seo_description": "Secure your formulation against global supply chain disruptions. Lecprima offers 10,000T annual capacity, Non-GMO IP traceability, and stable phospholipid supply from China.",
-    "seo_keywords": "stable soy lecithin supplier, resilient phospholipid supply chain, Non-GMO IP lecithin China, secure ingredient sourcing, phosphatidylcholine supplier, phosphatidylserine supplier, Lecprima",
-    "hero_subtitle": "From Heilongjiang Black Soil to Stable Global Formulations",
-    "hero_title_line1": "Natural Phospholipids",
-    "hero_title_line2": "Engineered for Stable Supply",
-    "hero_description": "ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China.",
-    "hero_guarantee": "Guaranteed supply stability amidst global sourcing uncertainty.",
+    "seo_title": "Make Every Batch Perform | Lecprima Lecithin & Phospholipids",
+    "seo_description": "Application-fit lecithin and phospholipid ingredients for formulation confidence, with clear specifications, batch documentation and technical support from sample evaluation to scale-up.",
+    "seo_keywords": "application-fit lecithin, formulation confidence, soy lecithin supplier, phospholipid ingredients, technical data lecithin, COA TDS lecithin, phosphatidylcholine supplier, phosphatidylserine supplier, Lecprima",
+    "hero_subtitle": "Application-fit lecithin and phospholipid ingredients",
+    "hero_title_line1": "Make Every",
+    "hero_title_line2": "Batch Perform",
+    "hero_description": "Clear specifications, batch documentation and responsive technical support help food, nutrition, pharma, personal care and feed teams move from sample evaluation to production discussion.",
+    "hero_guarantee": "Built for formulation confidence: match the problem, verify the specs, then scale with documented quality.",
     "brand_statement": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
-    "explore_products": "Explore Product Systems",
-    "contact_engineer": "Contact an Engineer",
-    "industries_subtitle": "Serving Global Industries",
-    "industries_title": "Application Industries",
+    "explore_products": "Find the Right Ingredient",
+    "contact_engineer": "Request Technical Data",
+    "industries_subtitle": "Start With the Formulation Problem",
+    "industries_title": "Problems Buyers Ask Us to Solve",
     "industries": {
       "chocolate": {
         "title": "Chocolate & Confectionery",
@@ -63,8 +63,8 @@
         "desc": "Energy source, pellet binding"
       }
     },
-    "systems_subtitle": "Comprehensive Solutions",
-    "systems_title": "Six Functional Systems",
+    "systems_subtitle": "Product Systems",
+    "systems_title": "Select by Form, Function and Documentation Need",
     "systems": [
       "Liquid Emulsifier Systems",
       "Dry Emulsifier Systems",
@@ -96,26 +96,26 @@
         "desc": "Direct Access to Application Engineers"
       }
     },
-    "resilience_subtitle": "Supply Chain Resilience",
-    "resilience_title": "Your Safe Harbor in Global Ingredient Sourcing",
-    "resilience_description": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
-    "verify_quality": "Verify Quality & Traceability",
+    "resilience_subtitle": "Formulation Confidence",
+    "resilience_title": "Clear Answers for QA, Procurement and R&D",
+    "resilience_description": "Every ingredient discussion should connect a real application problem to specifications, documentation and sample validation. Lecprima keeps those pieces visible so your team can evaluate fit before commercial scale-up.",
+    "verify_quality": "Review Quality Documents",
     "resilience": {
       "supply_continuity": {
-        "title": "China-Based Supply Continuity",
-        "desc": "Stable production planning from sourcing base to GMP workshop."
+        "title": "Application-Fit Selection",
+        "desc": "Start from the formulation issue, then compare forms, grades and usage context."
       },
       "procurement_confidence": {
-        "title": "Documented Procurement Confidence",
+        "title": "Documented Procurement Review",
         "desc": "COA, TDS, MSDS and certification files support supplier qualification."
       },
       "farm_to_shipment": {
-        "title": "Traceable Farm-to-Shipment Control",
+        "title": "Batch-Level Verification",
         "desc": "Heilongjiang Non-GMO IP sourcing linked to batch-level quality records."
       }
     },
-    "cta_title": "From Field to Formulation",
-    "cta_description": "Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing.",
+    "cta_title": "Tell Us the Problem Your Formula Needs to Solve",
+    "cta_description": "Share your application, target specification, documentation needs, sample request and quantity range. We will help route the discussion to the right lecithin or phospholipid system.",
     "email_inquiry": "Email Inquiry",
     "whatsapp_contact": "WhatsApp Contact"
   },
@@ -135,9 +135,9 @@
     "read_guide": "Read guide"
   },
   "contact_page": {
-    "seo_title": "Contact Lecprima | Stable Soy Lecithin Supply Inquiry",
-    "seo_description": "Contact Lecprima for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.",
-    "seo_keywords": "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Lecprima contact",
+    "seo_title": "Request Technical Data, Samples or Quote | Lecprima",
+    "seo_description": "Contact Lecprima with your application, target specification, documentation needs, sample request, quantity range and destination details.",
+    "seo_keywords": "lecithin technical data request, phospholipid quote request, COA TDS lecithin, lecithin sample request, Lecprima contact",
     "hero_subtitle": "From Heilongjiang Black Soil",
     "hero_title": "Contact Lecprima",
     "hero_description": "Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.",

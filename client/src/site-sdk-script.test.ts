@@ -26,4 +26,17 @@ describe("site SDK script injection", () => {
     );
   });
 
+  it("loads Clarity and the NetEase site SDK after the page can render", () => {
+    const html = readFileSync(
+      resolve(process.cwd(), "client/index.html"),
+      "utf-8"
+    );
+
+    expect(html).toContain("window.addEventListener('load'");
+    expect(html).toContain("requestIdleCallback");
+    expect(html.indexOf("cloud.umami.is/script.js")).toBeLessThan(
+      html.indexOf("www.clarity.ms/tag/")
+    );
+  });
+
 });

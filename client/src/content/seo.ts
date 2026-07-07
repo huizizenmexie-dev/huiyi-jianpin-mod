@@ -53,30 +53,29 @@ export const PAGE_SEO: Record<
   { title: string; description: string }
 > = {
   "/": {
-    title:
-      "Stable Soy Lecithin Supplier | Lecprima B2B Phospholipid Supply",
+    title: "Make Every Batch Perform | Lecprima Lecithin & Phospholipids",
     description:
-      "Secure your formulation against global supply chain disruptions with Lecprima soy lecithin, phospholipid, soy protein and fiber systems.",
+      "Application-fit lecithin and phospholipid ingredients for formulation confidence, with clear specifications, batch documentation and technical support from sample evaluation to scale-up.",
   },
   "/products": {
-    title: "Soy Lecithin & Phospholipid Products | Stable B2B Supply",
+    title: "Lecithin & Phospholipid Products by Application | Lecprima",
     description:
-      "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Lecprima.",
+      "Select soy lecithin, sunflower lecithin, phosphatidylcholine, phosphatidylserine, protein and fiber systems by form, specification and application problem.",
   },
   "/about": {
-    title: "About Lecprima | Stable Phospholipid Supply from China",
+    title: "About Lecprima | Formulation-Focused Ingredient Support",
     description:
-      "Learn how Lecprima connects Harbin export operations with Liaocheng phospholipid production and Heilongjiang soybean sourcing.",
+      "Learn how Lecprima connects export service, manufacturing, documentation and application support for B2B lecithin and phospholipid buyers.",
   },
   "/quality": {
-    title: "Quality & Traceability | Secure Soy Lecithin Supply Chain",
+    title: "Quality Documents & Batch Verification | Lecprima",
     description:
-      "Verify Lecprima quality systems, certifications, COA documentation and batch traceability.",
+      "Review Lecprima quality systems, certificates, COA documentation, TDS support and traceability inputs for supplier qualification.",
   },
   "/industry-solutions": {
-    title: "Industry Solutions | Stable Phospholipid Applications",
+    title: "Lecithin Application Guide | Problem-to-Product Matching",
     description:
-      "Match soy lecithin, phospholipid, soy protein and dietary fiber systems to food, nutrition, cosmetics, feed and industrial applications.",
+      "Use a problem-to-product guide to match chocolate viscosity, instant beverage dispersion, bakery texture, clean-label substitution and PC/PS selection needs to Lecprima ingredient systems.",
   },
   "/insights": {
     title:
@@ -85,9 +84,9 @@ export const PAGE_SEO: Record<
       "Read crawlable B2B guides on phosphatidylcholine, phosphatidylserine, lecithin, clean-label ingredients, functional beverages and food formulation.",
   },
   "/contact": {
-    title: "Contact Lecprima | Request a Quote for Soy Lecithin",
+    title: "Request Technical Data, Samples or Quote | Lecprima",
     description:
-      "Contact Lecprima for soy lecithin, phospholipid quote requests, samples and documentation.",
+      "Contact Lecprima with your application, target specification, documentation needs, sample request, quantity range and destination details.",
   },
 };
 

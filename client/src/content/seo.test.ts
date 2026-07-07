@@ -196,4 +196,68 @@ describe("route SEO resolver", () => {
     expect(seo.robots).toBe("noindex,follow");
     expect(seo.jsonLd.map(entry => entry.id)).not.toContain("ld-article");
   });
+
+  it("frames ready page SEO around formulation problems instead of supply disruption", () => {
+    const homepage = resolveRouteSEO({ locale: "en", routePath: "/", urls });
+    const products = resolveRouteSEO({
+      locale: "en",
+      routePath: "/products",
+      urls,
+    });
+    const industry = resolveRouteSEO({
+      locale: "en",
+      routePath: "/industry-solutions",
+      urls,
+    });
+
+    expect(homepage.title).toContain("Make Every Batch Perform");
+    expect(homepage.description).toContain("formulation");
+    expect(homepage.description).toContain("technical support");
+    expect(products.description).toContain("application");
+    expect(industry.description).toContain("problem-to-product");
+
+    const combined = [
+      homepage.title,
+      homepage.description,
+      products.title,
+      products.description,
+      industry.title,
+      industry.description,
+    ].join(" ");
+
+    expect(combined).not.toMatch(/disruption|safe harbor|war|conflict/i);
+  });
+
+  it("keeps the public brand promise separate from unsupported guarantees", () => {
+    const seo = resolveRouteSEO({ locale: "en", routePath: "/", urls });
+    const schemas = Object.fromEntries(
+      seo.jsonLd.map(entry => [entry.id, entry.data])
+    ) as Record<string, any>;
+    const serialized = JSON.stringify(schemas);
+
+    expect(serialized).toContain("Make Every Batch Perform");
+    expect(serialized).toContain("clear specifications");
+    expect(serialized).not.toMatch(
+      /guaranteed viscosity|guaranteed delivery|price|availability|Offer/i
+    );
+  });
+
+  it("product pages keep product schema but do not emit offer-style commercial claims", () => {
+    const seo = resolveRouteSEO({
+      locale: "en",
+      routePath: "/products/soy-lecithin-liquid",
+      urls,
+    });
+    const schemas = Object.fromEntries(
+      seo.jsonLd.map(entry => [entry.id, entry.data])
+    ) as Record<string, any>;
+    const serialized = JSON.stringify(schemas);
+
+    expect(seo.title).toContain("Soy Lecithin Liquid");
+    expect(schemas["ld-product"]["@type"]).toBe("Product");
+    expect(serialized).toContain("Acetone Insoluble");
+    expect(serialized).not.toMatch(
+      /"Offer"|"price"|"availability"|"aggregateRating"|"review"|"gtin"|"mpn"/
+    );
+  });
 });

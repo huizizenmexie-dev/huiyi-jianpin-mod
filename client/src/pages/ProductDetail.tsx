@@ -87,6 +87,9 @@ export default function ProductDetail() {
                 src={productImage}
                 alt={product.name}
                 className="w-full h-[320px] lg:h-[400px] object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = PRODUCT_IMG;
                 }}
@@ -107,6 +110,29 @@ export default function ProductDetail() {
                 </p>
               </div>
 
+              <div className="bg-white rounded-lg border border-border p-5 mb-6 shadow-sm">
+                <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-2">
+                  What this product helps evaluate
+                </p>
+                <ul className="space-y-2">
+                  {product.applications.slice(0, 2).map(app => (
+                    <li
+                      key={`${app.industry}-${app.product}`}
+                      className="text-sm text-medium-gray leading-relaxed"
+                    >
+                      <span className="font-heading font-semibold text-deep-brown">
+                        {app.industry}:
+                      </span>{" "}
+                      {app.painPoint}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-4 text-sm text-medium-gray leading-relaxed">
+                  Request COA, TDS, SDS/MSDS or a sample before supplier
+                  qualification, formula trials or production scale-up.
+                </p>
+              </div>
+
               {/* Actions */}
               <div className="flex flex-wrap gap-3">
                 <LocalizedLink
@@ -116,6 +142,13 @@ export default function ProductDetail() {
                   <ArrowLeft className="w-4 h-4" />
                   Back to Products
                 </LocalizedLink>
+                <a
+                  href={emailLink}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-earth-green text-white rounded-md hover:bg-earth-green-dark transition-colors text-sm font-medium"
+                >
+                  <Mail className="w-4 h-4" />
+                  Request COA / TDS / Sample
+                </a>
               </div>
             </div>
           </div>
