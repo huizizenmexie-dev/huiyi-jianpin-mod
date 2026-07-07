@@ -9,7 +9,7 @@ export const SITE_BRAND_NAME = "Lecprima";
 export const SITE_COMPANY_SHORT_NAME = "Huiyi Jianpin";
 export const SITE_LEGAL_NAME = "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.";
 export const SITE_LEGAL_NAME_ZH = "哈尔滨慧意建品进出口贸易有限公司";
-export const SITE_TAGLINE = "From Black Soil to Global Health";
+export const SITE_TAGLINE = "Make Every Batch Perform";
 export const SITE_MANUFACTURING_STATEMENT =
   "We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.";
 export const SITE_BRAND_STATEMENT =
