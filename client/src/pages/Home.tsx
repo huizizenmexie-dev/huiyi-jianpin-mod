@@ -203,6 +203,39 @@ export default function Home() {
     "from-lime-600/20 to-lime-600/5",
   ];
 
+  const formulationProblems = [
+    {
+      title: "Chocolate viscosity and molding flow",
+      body: "Start with liquid soy lecithin grades for flow, molding and fat-system evaluation in buyer-validated chocolate formulas.",
+      icon: Candy,
+    },
+    {
+      title: "Instant beverage wetting and dispersion",
+      body: "Compare modified lecithin and powder formats when clumping, floating fat or slow wetting blocks scale-up.",
+      icon: Milk,
+    },
+    {
+      title: "Bakery dough handling and texture",
+      body: "Use powder or liquid lecithin systems to evaluate dough handling, fat distribution and finished-product texture.",
+      icon: Croissant,
+    },
+    {
+      title: "Clean-label soy-free substitution",
+      body: "Review sunflower lecithin options when the formula needs a soy-free source and buyer-approved allergen positioning.",
+      icon: Leaf,
+    },
+    {
+      title: "PC/PS purity selection",
+      body: "Select phosphatidylcholine or phosphatidylserine grades by target purity, storage condition and documentation needs.",
+      icon: Brain,
+    },
+    {
+      title: "QA documentation and batch verification",
+      body: "Request COA, TDS, SDS/MSDS and certificate files before supplier qualification or production trials.",
+      icon: FileText,
+    },
+  ];
+
   // Trust items from translations
   const trustItemKeys = [
     "certifications",
@@ -225,9 +258,13 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HERO_IMG})` }}
+        <img
+          src={HERO_IMG}
+          alt="Soybean field representing Lecprima lecithin and phospholipid ingredient sourcing"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         <div className="relative container py-32 lg:py-40">
@@ -260,10 +297,10 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-3 mb-8">
               {[
-                "ISO 22000",
-                "FSSC 22000",
-                "10,000T Capacity",
-                "Non-GMO IP",
+                "Clear Specs",
+                "Batch COA",
+                "Application Fit",
+                "Sample to Scale",
               ].map(badge => (
                 <span
                   key={badge}
@@ -320,21 +357,21 @@ export default function Home() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {industries.map((item, i) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {formulationProblems.map((item, i) => {
               const Icon = item.icon;
               return (
-                <FadeIn key={item.key} delay={i * 60}>
+                <FadeIn key={item.title} delay={i * 60}>
                   <Link
                     href={buildLocalizedPath(locale, "/industry-solutions")}
                   >
                     <div className="group bg-white rounded-lg p-6 border border-transparent hover:border-earth-green shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
                       <Icon className="w-8 h-8 text-earth-green mb-4 group-hover:scale-110 transition-transform" />
                       <h3 className="font-heading font-semibold text-deep-brown text-base mb-2">
-                        {t(`homepage.industries.${item.key}.title`, item.key)}
+                        {item.title}
                       </h3>
                       <p className="text-medium-gray text-sm leading-relaxed">
-                        {t(`homepage.industries.${item.key}.desc`, "")}
+                        {item.body}
                       </p>
                     </div>
                   </Link>
