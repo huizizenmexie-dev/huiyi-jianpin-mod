@@ -115,9 +115,9 @@ export default function Quality() {
 
   // Apply unified SEO
   usePageSEO({
-    title: t("quality_page.seo_title", "Quality & Traceability | Secure Soy Lecithin Supply Chain"),
-    description: t("quality_page.seo_description", "Verify Lecprima quality systems, certifications, COA documentation and batch traceability for secure soy lecithin and phospholipid sourcing."),
-    keywords: t("quality_page.seo_keywords", "soy lecithin quality, phospholipid traceability, COA documentation, secure ingredient sourcing, Non-GMO IP traceability, FSSC 22000 lecithin supplier"),
+    title: t("quality_page.seo_title", "Quality Documents & Batch Verification | Lecprima"),
+    description: t("quality_page.seo_description", "Review Lecprima quality systems, certificates, COA documentation, TDS support and traceability inputs for supplier qualification."),
+    keywords: t("quality_page.seo_keywords", "soy lecithin COA, lecithin TDS, phospholipid quality documents, supplier qualification lecithin, batch verification lecithin"),
     path: "/quality",
     image: QUALITY_IMG,
     jsonLd: [
@@ -144,10 +144,10 @@ export default function Quality() {
             <span className="text-white">Quality & Compliance</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            Quality Assurance & Compliance
+            Quality Documents for Formulation Confidence
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            Certified. Traceable. Verifiable for secure sourcing.
+            COA, TDS, certificate and batch inputs for supplier qualification.
           </p>
         </div>
       </section>
@@ -164,7 +164,7 @@ export default function Quality() {
                 Certifications
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                Every shipment is supported by verifiable documentation for supplier qualification, procurement audits, and long-term ingredient sourcing confidence.
+                Certificates, COA, TDS and related records help QA and procurement teams verify supplier fit before formulation trials and production discussions.
               </p>
             </div>
           </FadeIn>
@@ -205,7 +205,7 @@ export default function Quality() {
                 Quality Control System
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                Every batch tested and shipped with COA and TDS to support secure procurement and repeatable formulation performance.
+                Batch testing and technical documents support repeatable formulation decisions, procurement review and buyer-side qualification workflows.
               </p>
             </div>
           </FadeIn>
@@ -305,7 +305,7 @@ export default function Quality() {
                 Documentation Download Center
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                COA, certification files, inspection reports and standards help buyers verify stable, compliant phospholipid supply before purchase.
+                COA, certificate files, inspection reports and standards help buyers verify documented phospholipid inputs before purchase or sample evaluation.
               </p>
             </div>
           </FadeIn>

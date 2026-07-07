@@ -78,9 +78,9 @@ export default function Contact() {
     utm_campaign: "",
   });
 
-  const seoTitle = t("contact_page.seo_title", "Contact Lecprima | Stable Soy Lecithin Supply Inquiry");
-  const seoDescription = t("contact_page.seo_description", "Contact Lecprima for soy lecithin, phospholipid, soy protein and fiber quote requests, documentation, samples and stable global supply support.");
-  const seoKeywords = t("contact_page.seo_keywords", "contact soy lecithin supplier, phospholipid quote request, stable ingredient supply inquiry, Lecprima contact");
+  const seoTitle = t("contact_page.seo_title", "Request Technical Data, Samples or Quote | Lecprima");
+  const seoDescription = t("contact_page.seo_description", "Contact Lecprima with your application, target specification, documentation needs, sample request, quantity range and destination details.");
+  const seoKeywords = t("contact_page.seo_keywords", "lecithin technical data request, phospholipid quote request, COA TDS lecithin, lecithin sample request, Lecprima contact");
 
   // Apply unified SEO
   usePageSEO({
@@ -205,7 +205,7 @@ export default function Contact() {
                   {t("contact_page.hero_title", "Get in Touch")}
                 </h1>
                 <p className="max-w-md text-sm leading-relaxed text-white/85">
-                  {t("contact_page.hero_description", "Tell us your application, target dosage, required specification, and supply timeline. Our team will respond within 1 business day.")}
+                  {t("contact_page.hero_description", "Tell us your application problem, target specification, documentation needs, sample request, quantity range and destination details. Our team will route the discussion to the right product system.")}
                 </p>
                 <p className="mt-3 max-w-md text-sm leading-relaxed text-white/90">
                   {t(
