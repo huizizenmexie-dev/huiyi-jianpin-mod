@@ -15,28 +15,34 @@ describe("site SDK script injection", () => {
     expect(html).toContain("(window, document, '__siteSDK__');");
   });
 
-  it("embeds the Umami analytics script in client/index.html", () => {
+  it("embeds the Microsoft Clarity snippet in client/index.html", () => {
     const html = readFileSync(
       resolve(process.cwd(), "client/index.html"),
       "utf-8"
     );
 
+    expect(html).toContain('<script type="text/javascript">');
     expect(html).toContain(
-      '<script defer src="https://cloud.umami.is/script.js" data-website-id="3a39b74e-2aa4-4489-85c3-e07802e8fc18"></script>'
+      "c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};"
+    );
+    expect(html).toContain('t.src="https://www.clarity.ms/tag/"+i;');
+    expect(html).toContain(
+      '})(window, document, "clarity", "script", "xjm8do23p8");'
     );
   });
 
-  it("loads Clarity and the NetEase site SDK after the page can render", () => {
+  it("keeps Clarity and the NetEase site SDK in the document head", () => {
     const html = readFileSync(
       resolve(process.cwd(), "client/index.html"),
       "utf-8"
     );
 
-    expect(html).toContain("window.addEventListener('load'");
-    expect(html).toContain("requestIdleCallback");
-    expect(html.indexOf("cloud.umami.is/script.js")).toBeLessThan(
-      html.indexOf("www.clarity.ms/tag/")
+    const head = html.slice(html.indexOf("<head>"), html.indexOf("</head>"));
+
+    expect(head).toContain("www.clarity.ms/tag/");
+    expect(head).toContain("https://sirius-it-site.lx.netease.com/site-sdk.js");
+    expect(head.indexOf("www.clarity.ms/tag/")).toBeLessThan(
+      head.indexOf("https://sirius-it-site.lx.netease.com/site-sdk.js")
     );
   });
-
 });
