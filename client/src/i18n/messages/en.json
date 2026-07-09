@@ -13,7 +13,10 @@
     "learn_more": "Learn More",
     "loading": "Loading...",
     "error": "Error",
-    "not_found": "Page Not Found"
+    "not_found": "Page Not Found",
+    "whatsapp": "WhatsApp",
+    "wechat_contact": "WeChat: +86 18646556618",
+    "contact_options": "Contact options"
   },
   "homepage": {
     "seo_title": "Make Every Batch Perform | Lecprima Lecithin & Phospholipids",
@@ -311,11 +314,26 @@
     "certifications_title": "Certifications",
     "certifications_description": "Certificates, COA, TDS and related records help QA and procurement teams verify supplier fit before formulation trials and production discussions.",
     "certifications": [
-      { "name": "ISO 22000:2018", "desc": "Food Safety Management System - Full production lines" },
-      { "name": "FSSC 22000", "desc": "GFSI Recognized - Full production lines" },
-      { "name": "HACCP", "desc": "Hazard Analysis Critical Control Points - Full production lines" },
-      { "name": "Halal Certification", "desc": "Selected product lines" },
-      { "name": "Non-GMO IP", "desc": "Identity Preserved - Designated grades" }
+      {
+        "name": "ISO 22000:2018",
+        "desc": "Food Safety Management System - Full production lines"
+      },
+      {
+        "name": "FSSC 22000",
+        "desc": "GFSI Recognized - Full production lines"
+      },
+      {
+        "name": "HACCP",
+        "desc": "Hazard Analysis Critical Control Points - Full production lines"
+      },
+      {
+        "name": "Halal Certification",
+        "desc": "Selected product lines"
+      },
+      {
+        "name": "Non-GMO IP",
+        "desc": "Identity Preserved - Designated grades"
+      }
     ],
     "qc_eyebrow": "Rigorous Testing",
     "qc_title": "Quality Control System",
@@ -324,31 +342,79 @@
     "parameter": "Parameter",
     "testing_method": "Testing Method",
     "qc_params": [
-      { "param": "Acetone Insoluble", "method": "AOCS Ja 4-46" },
-      { "param": "Acid Value", "method": "AOCS Ja 6-55" },
-      { "param": "Peroxide Value", "method": "GB 5009.227" },
-      { "param": "Moisture", "method": "GB 5009.3" },
-      { "param": "Heavy Metals", "method": "ICP-MS" }
+      {
+        "param": "Acetone Insoluble",
+        "method": "AOCS Ja 4-46"
+      },
+      {
+        "param": "Acid Value",
+        "method": "AOCS Ja 6-55"
+      },
+      {
+        "param": "Peroxide Value",
+        "method": "GB 5009.227"
+      },
+      {
+        "param": "Moisture",
+        "method": "GB 5009.3"
+      },
+      {
+        "param": "Heavy Metals",
+        "method": "ICP-MS"
+      }
     ],
     "traceability_eyebrow": "Seed to Shipment",
     "traceability_title": "Traceability Chain",
     "traceability": [
-      { "title": "Heilongjiang Non-GMO Farm", "desc": "Identity Preserved sourcing from certified farms" },
-      { "title": "IP Segregated Handling", "desc": "Dedicated storage and transport channels" },
-      { "title": "GMP Production", "desc": "Computer-controlled automated production lines" },
-      { "title": "Batch Testing", "desc": "Full parameter testing per AOCS/GB standards" },
-      { "title": "COA Issued", "desc": "Traceable Certificate of Analysis per batch" }
+      {
+        "title": "Heilongjiang Non-GMO Farm",
+        "desc": "Identity Preserved sourcing from certified farms"
+      },
+      {
+        "title": "IP Segregated Handling",
+        "desc": "Dedicated storage and transport channels"
+      },
+      {
+        "title": "GMP Production",
+        "desc": "Computer-controlled automated production lines"
+      },
+      {
+        "title": "Batch Testing",
+        "desc": "Full parameter testing per AOCS/GB standards"
+      },
+      {
+        "title": "COA Issued",
+        "desc": "Traceable Certificate of Analysis per batch"
+      }
     ],
     "documents_eyebrow": "Technical Resources",
     "documents_title": "Documentation Download Center",
     "documents_description": "COA, certificate files, inspection reports and standards help buyers verify documented phospholipid inputs before purchase or sample evaluation.",
     "documents": [
-      { "name": "FSSC 22000 Certificate", "desc": "Food safety system certification copy" },
-      { "name": "ISO 22000 Certificate", "desc": "Food safety management system certificate" },
-      { "name": "HACCP Certificate", "desc": "Hazard analysis and critical control points certification" },
-      { "name": "Container Inspection Report", "desc": "Loading and container inspection documentation" },
-      { "name": "GB 1886.358-2022 Standard", "desc": "Applicable China national standard reference" },
-      { "name": "Non-GMO Testing Report 1SP", "desc": "Reference report for HXY-1SP grade" }
+      {
+        "name": "FSSC 22000 Certificate",
+        "desc": "Food safety system certification copy"
+      },
+      {
+        "name": "ISO 22000 Certificate",
+        "desc": "Food safety management system certificate"
+      },
+      {
+        "name": "HACCP Certificate",
+        "desc": "Hazard analysis and critical control points certification"
+      },
+      {
+        "name": "Container Inspection Report",
+        "desc": "Loading and container inspection documentation"
+      },
+      {
+        "name": "GB 1886.358-2022 Standard",
+        "desc": "Applicable China national standard reference"
+      },
+      {
+        "name": "Non-GMO Testing Report 1SP",
+        "desc": "Reference report for HXY-1SP grade"
+      }
     ],
     "open_fssc": "Open FSSC 22000 Certificate"
   },
@@ -435,5 +501,49 @@
     "location_liaocheng": "Liaocheng (Factory)",
     "certifications": "Certifications",
     "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. All rights reserved."
+  },
+  "about_page": {
+    "seo_title": "About Lecprima | Stable Phospholipid Supply from China",
+    "seo_description": "Learn how Lecprima connects Harbin export operations with Liaocheng phospholipid production and Heilongjiang soybean sourcing for stable, traceable global supply.",
+    "seo_keywords": "Lecprima phospholipid supplier, stable phospholipid manufacturer China, Non-GMO soybean sourcing, GMP soy lecithin factory, reliable lecithin supplier",
+    "breadcrumb": "About Us",
+    "hero_title": "About Lecprima",
+    "hero_description": "Rooted in black soil. Built for stable global supply.",
+    "story_eyebrow": "Our Story",
+    "story_title": "From China's Premier Soybean Belt to the World",
+    "story_paragraphs": [
+      "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
+      "From Harbin and Liaocheng, Lecprima connects export service, production planning, quality management and documentation for global B2B buyers of soy lecithin, phospholipids and soy ingredient systems.",
+      "The Liaocheng manufacturing facility includes a 7,000㎡ GMP-certified workshop in Shandong Province, operating three independent computer-controlled automated production lines with an annual processing capacity of 10,000 tons for soy lecithin series products.",
+      "We maintain full quality control from seed to shipment: raw materials sourced from Heilongjiang Non-GMO Identity Preserved (IP) farms; production executed under ISO 22000, FSSC 22000, and HACCP systems. Every batch undergoes rigorous testing for Acetone Insoluble, Acid Value, Peroxide Value, and Heavy Metals, with traceable Certificates of Analysis provided."
+    ],
+    "story_image_alt": "Quality control technician verifying traceable phospholipid supply",
+    "stats": {
+      "gmp_workshop": "GMP Workshop",
+      "automated_lines": "Automated Production Lines",
+      "annual_capacity": "Annual Capacity (Tons)",
+      "batch_traceability": "Batch Traceability"
+    },
+    "philosophy_eyebrow": "Our Philosophy",
+    "philosophy_title": "Guided by Purpose",
+    "vision_title": "Vision",
+    "vision_description": "Unlocking the full value of every Heilongjiang soybean for global health industries while supporting secure, long-term ingredient sourcing.",
+    "quality_policy_title": "Quality Policy",
+    "quality_policy_description": "Standards define quality. Every batch tested. Every batch traceable. Every shipment documented for procurement confidence.",
+    "presence_eyebrow": "Our Presence",
+    "locations_title": "Locations",
+    "headquarters_title": "Headquarters & Sourcing Base",
+    "headquarters_location": "Harbin, Heilongjiang Province, China",
+    "factory_title": "Manufacturing Facility",
+    "factory_location": "Liaocheng, Shandong Province, China (GMP Standard)"
+  },
+  "error_boundary": {
+    "dev_title": "An unexpected error occurred.",
+    "reload_page": "Reload Page",
+    "title": "Something Went Wrong",
+    "description": "We apologize for the inconvenience. Our team has been notified and is working to fix this issue.",
+    "try_again": "Try Again",
+    "go_home": "Go to Homepage",
+    "contact_prefix": "If this problem persists, please contact us at"
   }
 }

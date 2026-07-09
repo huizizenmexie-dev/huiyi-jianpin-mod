@@ -106,6 +106,10 @@ const PAGE_TRANSLATION_KEYS: Partial<
     title: "products_page.seo_title",
     description: "products_page.seo_description",
   },
+  "/about": {
+    title: "about_page.seo_title",
+    description: "about_page.seo_description",
+  },
   "/quality": {
     title: "quality_page.seo_title",
     description: "quality_page.seo_description",
@@ -346,20 +350,25 @@ function webPageSchema(
   };
 }
 
-function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
+function breadcrumbSchema(
+  locale: Locale,
+  routePath: string,
+  urls: UrlSystem,
+  translate?: SeoTranslator
+) {
   const slug = productSlug(routePath);
   const articleSlug = insightSlug(routePath);
   const normalized = stripLocale(routePath).replace(/\/$/, "") || "/";
   const items = [
-    { name: "Home", path: "/" },
+    { name: translate?.("common.home", "Home") || "Home", path: "/" },
     slug
-      ? { name: "Products", path: "/products" }
+      ? { name: translate?.("common.products", "Products") || "Products", path: "/products" }
       : articleSlug
-        ? null
+        ? { name: translate?.("common.insights", "Insights") || "Insights", path: "/insights" }
         : normalized === "/"
           ? null
           : {
-              name: pageSeo(normalized, locale).title.split("|")[0].trim(),
+              name: pageSeo(normalized, locale, translate).title.split("|")[0].trim(),
               path: normalized,
             },
   ].filter(Boolean) as Array<{ name: string; path: string }>;
@@ -519,7 +528,7 @@ export function resolveRouteSEO({
     },
     {
       id: "ld-breadcrumb",
-      data: breadcrumbSchema(locale, normalizedRoute, urls),
+      data: breadcrumbSchema(locale, normalizedRoute, urls, translate),
     },
   ];
 

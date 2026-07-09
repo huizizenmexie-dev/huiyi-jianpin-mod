@@ -13,7 +13,10 @@
     "learn_more": "了解更多",
     "loading": "加载中...",
     "error": "错误",
-    "not_found": "页面未找到"
+    "not_found": "页面未找到",
+    "whatsapp": "WhatsApp",
+    "wechat_contact": "微信：+86 18646556618",
+    "contact_options": "联系方式"
   },
   "homepage": {
     "seo_title": "让每一批配方表现稳定 | Lecprima 卵磷脂与磷脂",
@@ -311,11 +314,26 @@
     "certifications_title": "认证",
     "certifications_description": "证书、COA、TDS 和相关记录帮助 QA 与采购团队在配方试验和生产讨论前验证供应商匹配度。",
     "certifications": [
-      { "name": "ISO 22000:2018", "desc": "食品安全管理体系 - 全生产线" },
-      { "name": "FSSC 22000", "desc": "GFSI 认可 - 全生产线" },
-      { "name": "HACCP", "desc": "危害分析与关键控制点 - 全生产线" },
-      { "name": "清真认证", "desc": "适用于部分产品线" },
-      { "name": "非转基因 IP", "desc": "身份保持 - 指定等级" }
+      {
+        "name": "ISO 22000:2018",
+        "desc": "食品安全管理体系 - 全生产线"
+      },
+      {
+        "name": "FSSC 22000",
+        "desc": "GFSI 认可 - 全生产线"
+      },
+      {
+        "name": "HACCP",
+        "desc": "危害分析与关键控制点 - 全生产线"
+      },
+      {
+        "name": "清真认证",
+        "desc": "适用于部分产品线"
+      },
+      {
+        "name": "非转基因 IP",
+        "desc": "身份保持 - 指定等级"
+      }
     ],
     "qc_eyebrow": "严格检测",
     "qc_title": "质量控制体系",
@@ -324,31 +342,79 @@
     "parameter": "参数",
     "testing_method": "检测方法",
     "qc_params": [
-      { "param": "丙酮不溶物", "method": "AOCS Ja 4-46" },
-      { "param": "酸值", "method": "AOCS Ja 6-55" },
-      { "param": "过氧化值", "method": "GB 5009.227" },
-      { "param": "水分", "method": "GB 5009.3" },
-      { "param": "重金属", "method": "ICP-MS" }
+      {
+        "param": "丙酮不溶物",
+        "method": "AOCS Ja 4-46"
+      },
+      {
+        "param": "酸值",
+        "method": "AOCS Ja 6-55"
+      },
+      {
+        "param": "过氧化值",
+        "method": "GB 5009.227"
+      },
+      {
+        "param": "水分",
+        "method": "GB 5009.3"
+      },
+      {
+        "param": "重金属",
+        "method": "ICP-MS"
+      }
     ],
     "traceability_eyebrow": "从种植到装运",
     "traceability_title": "追溯链",
     "traceability": [
-      { "title": "黑龙江非转基因农场", "desc": "来自认证农场的身份保持采购" },
-      { "title": "IP 隔离处理", "desc": "专用储存和运输通道" },
-      { "title": "GMP 生产", "desc": "计算机控制自动化生产线" },
-      { "title": "批次检测", "desc": "按 AOCS/GB 标准进行全参数检测" },
-      { "title": "出具 COA", "desc": "每批次可追溯分析证书" }
+      {
+        "title": "黑龙江非转基因农场",
+        "desc": "来自认证农场的身份保持采购"
+      },
+      {
+        "title": "IP 隔离处理",
+        "desc": "专用储存和运输通道"
+      },
+      {
+        "title": "GMP 生产",
+        "desc": "计算机控制自动化生产线"
+      },
+      {
+        "title": "批次检测",
+        "desc": "按 AOCS/GB 标准进行全参数检测"
+      },
+      {
+        "title": "出具 COA",
+        "desc": "每批次可追溯分析证书"
+      }
     ],
     "documents_eyebrow": "技术资源",
     "documents_title": "文件下载中心",
     "documents_description": "COA、证书文件、验柜报告和标准帮助买家在采购或样品评估前验证有文件支撑的磷脂输入。",
     "documents": [
-      { "name": "FSSC 22000 证书", "desc": "食品安全体系认证副本" },
-      { "name": "ISO 22000 证书", "desc": "食品安全管理体系证书" },
-      { "name": "HACCP 证书", "desc": "危害分析与关键控制点认证" },
-      { "name": "集装箱验柜报告", "desc": "装柜和集装箱检查文件" },
-      { "name": "GB 1886.358-2022 标准", "desc": "适用中国国家标准参考" },
-      { "name": "1SP 非转基因检测报告", "desc": "HXY-1SP 等级参考报告" }
+      {
+        "name": "FSSC 22000 证书",
+        "desc": "食品安全体系认证副本"
+      },
+      {
+        "name": "ISO 22000 证书",
+        "desc": "食品安全管理体系证书"
+      },
+      {
+        "name": "HACCP 证书",
+        "desc": "危害分析与关键控制点认证"
+      },
+      {
+        "name": "集装箱验柜报告",
+        "desc": "装柜和集装箱检查文件"
+      },
+      {
+        "name": "GB 1886.358-2022 标准",
+        "desc": "适用中国国家标准参考"
+      },
+      {
+        "name": "1SP 非转基因检测报告",
+        "desc": "HXY-1SP 等级参考报告"
+      }
     ],
     "open_fssc": "打开 FSSC 22000 证书"
   },
@@ -411,7 +477,17 @@
       "sending": "发送中...",
       "success": "谢谢！我们将在24小时内回复。",
       "error": "出现问题，请重试。",
-      "error_required": "请填写必填字段并提供有效邮箱。"
+      "error_required": "请填写必填字段并提供有效邮箱。",
+      "application": "应用/行业",
+      "application_placeholder": "食品、医药、化妆品...",
+      "monthly_quantity": "预计月用量",
+      "monthly_quantity_placeholder": "100千克、1吨、10吨...",
+      "port": "目的港/贸易术语",
+      "port_placeholder": "FOB、CIF、上海港...",
+      "sample": "样品需求",
+      "sample_select": "请选择...",
+      "sample_yes": "是，需要样品",
+      "sample_no": "暂不需要"
     }
   },
   "footer": {
@@ -425,5 +501,49 @@
     "location_liaocheng": "聊城（工厂）",
     "certifications": "认证",
     "copyright": "哈尔滨慧意建品进出口贸易有限公司 版权所有"
+  },
+  "about_page": {
+    "seo_title": "关于 Lecprima | 来自中国的稳定磷脂供应",
+    "seo_description": "了解 Lecprima 如何连接哈尔滨出口运营、聊城磷脂生产和黑龙江大豆原料，为全球客户提供稳定、可追溯的供应。",
+    "seo_keywords": "Lecprima 磷脂供应商, 中国磷脂生产商, 非转基因大豆来源, GMP 大豆卵磷脂工厂, 稳定卵磷脂供应商",
+    "breadcrumb": "关于我们",
+    "hero_title": "关于 Lecprima",
+    "hero_description": "扎根黑土地，服务稳定的全球供应。",
+    "story_eyebrow": "品牌故事",
+    "story_title": "从中国核心大豆产区走向世界",
+    "story_paragraphs": [
+      "Lecprima 是由哈尔滨惠益健品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城运营自有制造基地，为全球客户提供可靠的生产、质量管理和出口服务。",
+      "依托哈尔滨与聊城，Lecprima 将出口服务、生产计划、质量管理和文件支持连接起来，服务采购大豆卵磷脂、磷脂和大豆配料系统的全球 B2B 客户。",
+      "聊城制造基地拥有位于山东省的 7,000㎡ GMP 标准车间，配置三条独立的计算机控制自动化生产线，大豆卵磷脂系列产品年处理能力为 10,000 吨。",
+      "我们从种植到发货保持质量控制：原料来自黑龙江非转基因身份保持（IP）农场；生产在 ISO 22000、FSSC 22000 和 HACCP 体系下执行。每批产品检测丙酮不溶物、酸值、过氧化值和重金属，并提供可追溯的 COA。"
+    ],
+    "story_image_alt": "质量控制人员验证可追溯磷脂供应",
+    "stats": {
+      "gmp_workshop": "GMP 车间",
+      "automated_lines": "自动化生产线",
+      "annual_capacity": "年产能（吨）",
+      "batch_traceability": "批次可追溯"
+    },
+    "philosophy_eyebrow": "我们的理念",
+    "philosophy_title": "以长期价值为导向",
+    "vision_title": "愿景",
+    "vision_description": "释放每一粒黑龙江大豆的价值，服务全球健康产业，同时支持安全、长期的配料采购。",
+    "quality_policy_title": "质量方针",
+    "quality_policy_description": "标准定义质量。每批检测，每批可追溯，每票发货都有文件支持，让采购更有把握。",
+    "presence_eyebrow": "业务布局",
+    "locations_title": "地点",
+    "headquarters_title": "总部与原料基地",
+    "headquarters_location": "中国黑龙江省哈尔滨市",
+    "factory_title": "制造基地",
+    "factory_location": "中国山东省聊城市（GMP 标准）"
+  },
+  "error_boundary": {
+    "dev_title": "发生了意外错误。",
+    "reload_page": "重新加载页面",
+    "title": "页面出现问题",
+    "description": "很抱歉给您带来不便。我们已经收到问题信息，并会尽快处理。",
+    "try_again": "重试",
+    "go_home": "返回首页",
+    "contact_prefix": "如果问题持续存在，请联系我们："
   }
 }

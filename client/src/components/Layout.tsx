@@ -327,11 +327,11 @@ function FloatingContact() {
             className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors"
           >
             <Phone className="w-5 h-5 text-earth-green" />
-            <span className="text-sm font-medium text-deep-brown">WhatsApp</span>
+            <span className="text-sm font-medium text-deep-brown">{t("common.whatsapp", "WhatsApp")}</span>
           </a>
           <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors cursor-default">
             <MessageCircle className="w-5 h-5 text-earth-green" />
-            <span className="text-sm font-medium text-deep-brown">WeChat: +86 18646556618</span>
+            <span className="text-sm font-medium text-deep-brown">{t("common.wechat_contact", "WeChat: +86 18646556618")}</span>
           </div>
         </div>
       )}
@@ -342,7 +342,7 @@ function FloatingContact() {
             ? "bg-deep-brown text-white rotate-45"
             : "bg-earth-green text-white hover:bg-earth-green-dark hover:shadow-xl"
         }`}
-        aria-label="Contact options"
+        aria-label={t("common.contact_options", "Contact options")}
       >
         {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </button>
