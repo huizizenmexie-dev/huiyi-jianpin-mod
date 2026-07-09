@@ -4,7 +4,7 @@
  */
 import { useState, useEffect, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
-import { productListingNames } from "@/lib/productData";
+import { getProductListingNames } from "@/lib/productData";
 import {
   ChevronDown,
   Menu,
@@ -25,6 +25,7 @@ function Navbar() {
   const [prodOpen, setProdOpen] = useState(false);
   const [location] = useLocation();
   const { isRTL, t, locale } = useI18nContext();
+  const productListingNames = getProductListingNames(locale);
 
   // Build localized links
   const QUOTE_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#quoteForm");

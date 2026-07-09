@@ -14,19 +14,25 @@
     "not_found": "Página No Encontrada"
   },
   "homepage": {
-    "seo_title": "Proveedor Estable de Lecitina de Soja | Cadena de Suministro Resiliente | Lecprima",
-    "seo_description": "Proteja su formulación contra interrupciones en la cadena de suministro global. Lecprima ofrece capacidad anual de 10,000T, trazabilidad Non-GMO IP y suministro estable de fosfolípidos desde China.",
-    "seo_keywords": "proveedor estable lecitina de soja, cadena suministro resiliente fosfolípidos, lecitina Non-GMO IP China, suministro seguro ingredientes, proveedor fosfatidilcolina, proveedor fosfatidilserina, Lecprima",
-    "hero_subtitle": "Del Suelo Negro de Heilongjiang a las Formulaciones Globales Estables",
-    "hero_title_line1": "Fosfolípidos Naturales",
-    "hero_title_line2": "Diseñados para Suministro Estable",
-    "hero_description": "Lecitina de soja certificada ISO 22000 y derivados de fosfolípidos de alta pureza con capacidad anual de 10,000 toneladas, trazabilidad Non-GMO IP y continuidad de suministro confiable desde China.",
-    "hero_guarantee": "Estabilidad garantizada en el suministro en medio de la incertidumbre global de abastecimiento.",
+    "seo_title": "Haga que Cada Lote Funcione | Lecprima Lecitina y Fosfolípidos",
+    "seo_description": "Lecitina y fosfolípidos ajustados a la aplicación, con especificaciones claras, documentación por lote y soporte técnico desde la evaluación de muestras hasta el escalado.",
+    "seo_keywords": "lecitina ajustada a la aplicación, confianza de formulación, proveedor de lecitina de soja, ingredientes fosfolípidos, datos técnicos lecitina, COA TDS lecitina, proveedor fosfatidilcolina, proveedor fosfatidilserina, Lecprima",
+    "hero_subtitle": "Lecitina y fosfolípidos ajustados a la aplicación",
+    "hero_title_line1": "Haga que Cada",
+    "hero_title_line2": "Lote Funcione",
+    "hero_description": "Especificaciones claras, documentación por lote y soporte técnico ágil ayudan a equipos de alimentos, nutrición, pharma, personal care y feed a pasar de la evaluación de muestras a la discusión de producción.",
+    "hero_guarantee": "Creado para la confianza de formulación: relacione el problema, verifique las especificaciones y escale con calidad documentada.",
+    "hero_badges": {
+      "clear_specs": "Especificaciones Claras",
+      "batch_coa": "COA por Lote",
+      "application_fit": "Ajuste a la Aplicación",
+      "sample_to_scale": "De Muestra a Escala"
+    },
     "brand_statement": "Lecprima es una marca global B2B operada por Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Operamos nuestra propia planta de fabricación en Liaocheng, Shandong, China, proporcionando a clientes globales producción, gestión de calidad y servicios de exportación confiables.",
-    "explore_products": "Explorar Sistemas de Productos",
-    "contact_engineer": "Contactar un Ingeniero",
-    "industries_subtitle": "Sirviendo a Industrias Globales",
-    "industries_title": "Industrias de Aplicación",
+    "explore_products": "Encontrar el Ingrediente Correcto",
+    "contact_engineer": "Solicitar Datos Técnicos",
+    "industries_subtitle": "Empiece por el Problema de Formulación",
+    "industries_title": "Problemas que los Compradores nos Piden Resolver",
     "industries": {
       "chocolate": {
         "title": "Chocolate y Confitería",
@@ -61,8 +67,34 @@
         "desc": "Fuente de energía, unión de pellets"
       }
     },
-    "systems_subtitle": "Soluciones Integrales",
-    "systems_title": "Seis Sistemas Funcionales",
+    "problem_cards": {
+      "chocolate": {
+        "title": "Viscosidad del chocolate y flujo de moldeo",
+        "body": "Empiece con grados líquidos de lecitina de soja para evaluar flujo, moldeo y sistema graso en fórmulas de chocolate validadas por el comprador."
+      },
+      "beverage": {
+        "title": "Humectación y dispersión en bebidas instantáneas",
+        "body": "Compare lecitina modificada y formatos en polvo cuando la formación de grumos, grasa flotante o lenta humectación bloquean el escalado."
+      },
+      "bakery": {
+        "title": "Manejo de masa y textura en panadería",
+        "body": "Use sistemas de lecitina en polvo o líquido para evaluar manejo de masa, distribución de grasa y textura del producto terminado."
+      },
+      "clean_label": {
+        "title": "Sustitución clean-label sin soja",
+        "body": "Revise opciones de lecitina de girasol cuando la fórmula requiere una fuente sin soja y posicionamiento alergénico aprobado por el comprador."
+      },
+      "purity": {
+        "title": "Selección de pureza PC/PS",
+        "body": "Seleccione fosfatidilcolina o fosfatidilserina por pureza objetivo, condición de almacenamiento y necesidades de documentación."
+      },
+      "qa": {
+        "title": "Documentación QA y verificación por lote",
+        "body": "Solicite COA, TDS, SDS/MSDS y certificados antes de la calificación del proveedor o pruebas de producción."
+      }
+    },
+    "systems_subtitle": "Sistemas de Producto",
+    "systems_title": "Seleccione por Forma, Función y Necesidad de Documentación",
     "systems": [
       "Sistemas Emulsionantes Líquidos",
       "Sistemas Emulsionantes Secos",
@@ -94,26 +126,26 @@
         "desc": "Acceso Directo a Ingenieros de Aplicación"
       }
     },
-    "resilience_subtitle": "Resiliencia de la Cadena de Suministro",
-    "resilience_title": "Su Puerto Seguro en el Abastecimiento Global de Ingredientes",
-    "resilience_description": "Lecprima es una marca global B2B operada por Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Operamos nuestra propia planta de fabricación en Liaocheng, Shandong, China, proporcionando a clientes globales producción, gestión de calidad y servicios de exportación confiables.",
-    "verify_quality": "Verificar Calidad y Trazabilidad",
+    "resilience_subtitle": "Confianza de Formulación",
+    "resilience_title": "Respuestas Claras para QA, Compras e I+D",
+    "resilience_description": "Cada conversación sobre ingredientes debe conectar un problema real de aplicación con especificaciones, documentación y validación de muestras. Lecprima mantiene visibles esos elementos para evaluar el ajuste antes del escalado comercial.",
+    "verify_quality": "Revisar Documentos de Calidad",
     "resilience": {
       "supply_continuity": {
-        "title": "Continuidad de Suministro desde China",
-        "desc": "Planificación estable de producción desde la base de abastecimiento hasta el taller GMP."
+        "title": "Selección Ajustada a la Aplicación",
+        "desc": "Empiece por el problema de formulación y compare formas, grados y contexto de uso."
       },
       "procurement_confidence": {
-        "title": "Confianza de Compra Documentada",
+        "title": "Revisión de Compra Documentada",
         "desc": "COA, TDS, MSDS y archivos de certificación apoyan la calificación de proveedores."
       },
       "farm_to_shipment": {
-        "title": "Control Trazable de la Granja al Embarque",
+        "title": "Verificación por Lote",
         "desc": "Abastecimiento Non-GMO IP de Heilongjiang vinculado a registros de calidad por lote."
       }
     },
-    "cta_title": "De la Granja a la Formulación",
-    "cta_description": "Precisión controlada en cada paso. Cuéntenos sobre sus necesidades de producto. Nuestros ingenieros agrícolas y de aplicación proporcionan recomendaciones personalizadas para un suministro estable y a largo plazo de fosfolípidos.",
+    "cta_title": "Cuéntenos el Problema que su Fórmula Debe Resolver",
+    "cta_description": "Comparta su aplicación, especificación objetivo, necesidades de documentación, solicitud de muestra y rango de cantidad. Ayudaremos a dirigir la conversación al sistema correcto de lecitina o fosfolípidos.",
     "email_inquiry": "Consulta por Correo",
     "whatsapp_contact": "Contacto WhatsApp"
   },
@@ -171,5 +203,40 @@
     "location_liaocheng": "Liaocheng (Fábrica)",
     "certifications": "Certificaciones",
     "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Todos los derechos reservados."
+  },
+  "products_page": {
+    "seo_title": "Productos de lecitina y fosfolípidos por aplicación | Lecprima",
+    "seo_description": "Seleccione lecitina de soja, fosfatidilcolina, fosfatidilserina, lecitina de girasol, proteína y fibra de soja por problema de aplicación, especificación y documentación.",
+    "seo_keywords": "productos de lecitina, fosfolípidos por aplicación, COA TDS lecitina, proveedor fosfatidilcolina, proveedor fosfatidilserina",
+    "hero_title": "Seleccione lecitina y fosfolípidos por problema de aplicación",
+    "hero_description": "Compare forma, especificación, documentación y ajuste de validación.",
+    "intro": "Empiece por el problema de formulación o compras; después compare forma, grado, especificación, documentación y necesidades de validación del comprador. Cada página de producto mantiene visibles las especificaciones clave y el contexto de aplicación para QA, I+D y compras.",
+    "problem_fit_label": "Adecuado para el problema",
+    "no_products": "Ningún producto coincide con el filtro seleccionado.",
+    "filters": {
+      "all": "Todos",
+      "liquid": "Líquidos",
+      "powder": "Polvos",
+      "high_purity": "Alta pureza",
+      "allergen_free": "Sin alérgenos",
+      "protein_fiber": "Proteína/Fibra"
+    }
+  },
+  "product_detail": {
+    "not_found_title": "Producto no encontrado | Lecprima",
+    "not_found_description": "No se encontró el producto solicitado.",
+    "not_found_heading": "Producto no encontrado",
+    "back_to_products": "Volver a productos",
+    "evaluation_title": "Qué ayuda a evaluar este producto",
+    "evaluation_description": "Solicite COA, TDS, SDS/MSDS o muestra antes de la cualificación del proveedor, ensayos de formulación o escalado de producción.",
+    "request_docs_sample": "Solicitar COA / TDS / Muestra",
+    "specifications_tab": "Especificaciones",
+    "applications_tab": "Aplicaciones y puntos críticos",
+    "specifications_title": "Especificaciones del producto",
+    "applications_title": "Aplicaciones y puntos críticos",
+    "pain_point_label": "Punto crítico",
+    "recommended_product_label": "Producto recomendado",
+    "dosage_label": "Dosificación",
+    "technical_effect_label": "Efecto técnico"
   }
 }

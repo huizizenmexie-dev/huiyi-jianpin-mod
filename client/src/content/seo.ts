@@ -1,8 +1,12 @@
 import {
   DEFAULT_LOCALE,
-  INDEXABLE_LOCALES,
+  LOCALES,
   LOCALE_STATUS,
   PAGE_PATHS,
+  isPageRouteReady,
+  isProductRouteReady,
+  pageRouteIndexableLocales,
+  productRouteIndexableLocales,
   type Locale,
 } from "./routes";
 import {
@@ -21,6 +25,7 @@ import { getInsightBySlug, getInsightContent } from "./insights";
 import { URLS, buildRoutePath, createUrlSystem, stripLocale } from "./url";
 
 type UrlSystem = ReturnType<typeof createUrlSystem>;
+type SeoTranslator = (key: string, fallback: string) => string;
 
 export type ManagedJsonLd = {
   id: string;
@@ -90,16 +95,60 @@ export const PAGE_SEO: Record<
   },
 };
 
-function pageSeo(routePath: string) {
+const PAGE_TRANSLATION_KEYS: Partial<
+  Record<(typeof PAGE_PATHS)[number], { title: string; description: string }>
+> = {
+  "/": {
+    title: "homepage.seo_title",
+    description: "homepage.seo_description",
+  },
+  "/products": {
+    title: "products_page.seo_title",
+    description: "products_page.seo_description",
+  },
+  "/quality": {
+    title: "quality_page.seo_title",
+    description: "quality_page.seo_description",
+  },
+  "/industry-solutions": {
+    title: "industry_page.seo_title",
+    description: "industry_page.seo_description",
+  },
+  "/insights": {
+    title: "insights_page.seo_title",
+    description: "insights_page.seo_description",
+  },
+  "/contact": {
+    title: "contact_page.seo_title",
+    description: "contact_page.seo_description",
+  },
+};
+
+function pageSeo(
+  routePath: string,
+  locale: Locale,
+  translate?: SeoTranslator
+) {
   const normalized = stripLocale(routePath).replace(/\/$/, "") || "/";
   if (!PAGE_PATHS.includes(normalized as (typeof PAGE_PATHS)[number])) {
     throw new Error(`Unknown page route: ${routePath}`);
   }
-  return PAGE_SEO[normalized as (typeof PAGE_PATHS)[number]];
+  const pagePath = normalized as (typeof PAGE_PATHS)[number];
+  const baseSeo = PAGE_SEO[pagePath];
+  const translationKeys = PAGE_TRANSLATION_KEYS[pagePath];
+  if (!translationKeys || !translate) return baseSeo;
+
+  return {
+    title: translate(translationKeys.title, baseSeo.title),
+    description: translate(
+      translationKeys.description,
+      baseSeo.description
+    ),
+  };
 }
 
-function productSeo(slug: string) {
-  const product = getProductBySlug(slug);
+function productSeo(slug: string, locale: Locale) {
+  const product = getProductBySlug(slug, locale);
   if (!product) throw new Error(`Unknown product slug: ${slug}`);
   return {
     title: `${product.name} | ${SITE_NAME}`,
@@ -120,13 +169,14 @@ function insightSeo(slug: string, locale: Locale) {
 
 function routeTitleDescription(
   routePath: string,
-  locale: Locale
+  locale: Locale,
+  translate?: SeoTranslator
 ): { title: string; description: string; image?: string } {
   const slug = productSlug(routePath);
   const insight = insightSlug(routePath);
-  if (slug) return productSeo(slug);
+  if (slug) return productSeo(slug, locale);
   if (insight) return insightSeo(insight, locale);
-  return pageSeo(routePath);
+  return pageSeo(routePath, locale, translate);
 }
 
 function productSlug(routePath: string) {
@@ -137,6 +187,31 @@ function productSlug(routePath: string) {
 function insightSlug(routePath: string) {
   const segments = stripLocale(routePath).split("/").filter(Boolean);
   return segments[0] === "insights" && segments[1] ? segments[1] : "";
+}
+
+function isInsightRouteReady(locale: Locale, slug: string) {
+  return (
+    LOCALE_STATUS[locale].status === "ready" &&
+    getInsightBySlug(slug)?.localeStatus[locale] === "ready"
+  );
+}
+
+function isRouteReady(locale: Locale, routePath: string) {
+  const slug = productSlug(routePath);
+  const articleSlug = insightSlug(routePath);
+  if (slug) return isProductRouteReady(locale);
+  if (articleSlug) return isInsightRouteReady(locale, articleSlug);
+  return isPageRouteReady(locale, routePath);
+}
+
+function indexableLocalesForRoute(routePath: string) {
+  const slug = productSlug(routePath);
+  const articleSlug = insightSlug(routePath);
+  if (slug) return productRouteIndexableLocales();
+  if (articleSlug) {
+    return LOCALES.filter(locale => isInsightRouteReady(locale, articleSlug));
+  }
+  return pageRouteIndexableLocales(routePath);
 }
 
 function organizationId(urls: UrlSystem) {
@@ -190,6 +265,7 @@ function organizationSchema(urls: UrlSystem) {
         "French",
         "Arabic",
         "Spanish",
+        "Russian",
       ],
     },
   };
@@ -283,14 +359,14 @@ function breadcrumbSchema(locale: Locale, routePath: string, urls: UrlSystem) {
         : normalized === "/"
           ? null
           : {
-              name: pageSeo(normalized).title.split("|")[0].trim(),
+              name: pageSeo(normalized, locale).title.split("|")[0].trim(),
               path: normalized,
             },
   ].filter(Boolean) as Array<{ name: string; path: string }>;
 
   if (slug) {
     items.push({
-      name: getProductBySlug(slug)?.name || slug,
+      name: getProductBySlug(slug, locale)?.name || slug,
       path: `/products/${slug}`,
     });
   }
@@ -353,7 +429,7 @@ function productSchema(locale: Locale, routePath: string, urls: UrlSystem) {
   const slug = productSlug(routePath);
   if (!slug) return null;
 
-  const product = getProductBySlug(slug);
+  const product = getProductBySlug(slug, locale);
   if (!product) return null;
 
   const canonical = urls.canonicalUrl(locale, routePath);
@@ -385,6 +461,7 @@ export function resolveRouteSEO({
   description,
   keywords,
   image,
+  translate,
 }: {
   locale: Locale;
   routePath: string;
@@ -393,23 +470,28 @@ export function resolveRouteSEO({
   description?: string;
   keywords?: string;
   image?: string;
+  translate?: SeoTranslator;
 }): RouteSEO {
   const normalizedRoute = stripLocale(routePath);
-  const baseSeo = routeTitleDescription(normalizedRoute, locale);
+  const baseSeo =
+    title && description
+      ? { title, description, image }
+      : routeTitleDescription(normalizedRoute, locale, translate);
   const resolvedTitle = title || baseSeo.title;
   const resolvedDescription = description || baseSeo.description;
   const resolvedImage = image || baseSeo.image || DEFAULT_OG_IMAGE;
-  const ready = LOCALE_STATUS[locale].status === "ready";
+  const ready = isRouteReady(locale, normalizedRoute);
   const canonical = urls.canonicalUrl(locale, normalizedRoute);
   const slug = productSlug(normalizedRoute);
   const articleSlug = insightSlug(normalizedRoute);
+  const indexableLocales = indexableLocalesForRoute(normalizedRoute);
   const alternates = ready
     ? [
-        ...INDEXABLE_LOCALES.map(alternateLocale => ({
+        ...indexableLocales.map(alternateLocale => ({
           hreflang: alternateLocale,
           href: urls.canonicalUrl(alternateLocale, normalizedRoute),
         })),
-        ...(LOCALE_STATUS[DEFAULT_LOCALE].status === "ready"
+        ...(isRouteReady(DEFAULT_LOCALE, normalizedRoute)
           ? [
               {
                 hreflang: "x-default",

@@ -89,6 +89,15 @@ const solutions: SolutionRow[] = [
 
 const filterTags = ["All", "Food", "Pharma/Supplements", "Cosmetics", "Industrial", "Feed"];
 
+const filterLabelKeys: Record<string, string> = {
+  All: "industry_page.filters.all",
+  Food: "industry_page.filters.food",
+  "Pharma/Supplements": "industry_page.filters.pharma_supplements",
+  Cosmetics: "industry_page.filters.cosmetics",
+  Industrial: "industry_page.filters.industrial",
+  Feed: "industry_page.filters.feed",
+};
+
 const problemAnswers = [
   {
     question: "Which lecithin helps evaluate chocolate viscosity and molding flow?",
@@ -191,15 +200,15 @@ export default function IndustrySolutions() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-10">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">{t("common.home", "Home")}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white">Industry Solutions</span>
+            <span className="text-white">{t("common.industry_solutions", "Industry Solutions")}</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            Problem-to-Product Application Guide
+            {t("industry_page.hero_title", "Problem-to-Product Application Guide")}
           </h1>
           <p className="text-white/70 text-lg mt-2 max-w-2xl">
-            Match the formulation issue to product form, specification, documentation and buyer-side validation needs.
+            {t("industry_page.hero_description", "Match the formulation issue to product form, specification, documentation and buyer-side validation needs.")}
           </p>
         </div>
       </section>
@@ -210,16 +219,13 @@ export default function IndustrySolutions() {
           <FadeIn>
             <div className="mb-10">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Answers Buyers Search For
+                {t("industry_page.answers_eyebrow", "Answers Buyers Search For")}
               </p>
               <h2 className="font-heading font-bold text-3xl text-deep-brown mb-4">
-                Start with the problem, then compare the ingredient system
+                {t("industry_page.answers_title", "Start with the problem, then compare the ingredient system")}
               </h2>
               <p className="text-medium-gray max-w-3xl text-sm leading-relaxed">
-                These application answers connect common buyer questions to
-                Lecprima product systems and documentation needs. They are
-                starting points for technical discussion, not universal
-                performance guarantees.
+                {t("industry_page.answers_description", "These application answers connect common buyer questions to Lecprima product systems and documentation needs. They are starting points for technical discussion, not universal performance guarantees.")}
               </p>
             </div>
           </FadeIn>
@@ -229,10 +235,10 @@ export default function IndustrySolutions() {
               <FadeIn key={item.question} delay={i * 60}>
                 <article className="h-full bg-white rounded-lg border border-border p-5 shadow-sm">
                   <h3 className="font-heading font-semibold text-deep-brown text-base mb-2">
-                    {item.question}
+                    {t(`industry_page.problem_answers.${i}.question`, item.question)}
                   </h3>
                   <p className="text-medium-gray text-sm leading-relaxed">
-                    {item.answer}
+                    {t(`industry_page.problem_answers.${i}.answer`, item.answer)}
                   </p>
                 </article>
               </FadeIn>
@@ -251,7 +257,7 @@ export default function IndustrySolutions() {
                       : "bg-white text-medium-gray border border-border hover:border-earth-green hover:text-earth-green"
                   }`}
                 >
-                  {tag}
+                  {t(filterLabelKeys[tag] ?? "industry_page.filters.all", tag)}
                 </button>
               ))}
             </div>
@@ -262,15 +268,17 @@ export default function IndustrySolutions() {
               <table className="w-full min-w-[900px]">
                 <thead>
                   <tr className="bg-earth-green text-white">
-                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">Industry</th>
-                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">Key Pain Points</th>
-                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">Recommended Products</th>
-                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">Dosage</th>
-                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">Technical Effect</th>
+                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">{t("industry_page.table.industry", "Industry")}</th>
+                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">{t("industry_page.table.pain_points", "Key Pain Points")}</th>
+                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">{t("industry_page.table.products", "Recommended Products")}</th>
+                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">{t("industry_page.table.dosage", "Dosage")}</th>
+                    <th className="px-4 py-3 text-left text-sm font-heading font-semibold">{t("industry_page.table.effect", "Technical Effect")}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filtered.map((row, i) => (
+                  {filtered.map((row, i) => {
+                    const rowIndex = solutions.indexOf(row);
+                    return (
                     <tr
                       key={row.industry}
                       className={`${
@@ -278,22 +286,23 @@ export default function IndustrySolutions() {
                       } hover:bg-soft-green transition-colors`}
                     >
                       <td className="px-4 py-3 text-sm font-heading font-semibold text-deep-brown align-top whitespace-nowrap">
-                        {row.industry}
+                        {t(`industry_page.solutions.${rowIndex}.industry`, row.industry)}
                       </td>
                       <td className="px-4 py-3 text-sm text-medium-gray align-top">
-                        {row.painPoints}
+                        {t(`industry_page.solutions.${rowIndex}.pain_points`, row.painPoints)}
                       </td>
                       <td className="px-4 py-3 text-sm text-earth-green font-medium align-top">
-                        {row.products}
+                        {t(`industry_page.solutions.${rowIndex}.products`, row.products)}
                       </td>
                       <td className="px-4 py-3 text-sm font-mono text-medium-gray align-top">
-                        {row.dosage}
+                        {t(`industry_page.solutions.${rowIndex}.dosage`, row.dosage)}
                       </td>
                       <td className="px-4 py-3 text-sm text-medium-gray align-top">
-                        {row.effect}
+                        {t(`industry_page.solutions.${rowIndex}.effect`, row.effect)}
                       </td>
                     </tr>
-                  ))}
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -301,8 +310,8 @@ export default function IndustrySolutions() {
 
           <FadeIn delay={200}>
             <div className="mt-6 bg-white rounded-lg p-5 border border-border text-sm text-medium-gray space-y-1">
-              <p>* Recommended dosages are typical ranges. Adjust based on specific formulation and process.</p>
-              <p>* For custom specifications, documentation review, sample requests or buyer-side validation questions, contact our application team.</p>
+              <p>{t("industry_page.notes.dosage", "* Recommended dosages are typical ranges. Adjust based on specific formulation and process.")}</p>
+              <p>{t("industry_page.notes.custom", "* For custom specifications, documentation review, sample requests or buyer-side validation questions, contact our application team.")}</p>
             </div>
           </FadeIn>
 
@@ -313,7 +322,7 @@ export default function IndustrySolutions() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                Discuss Technical Data or Samples
+                {t("industry_page.cta", "Discuss Technical Data or Samples")}
               </a>
             </div>
           </FadeIn>

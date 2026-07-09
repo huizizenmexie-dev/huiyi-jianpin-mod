@@ -2,21 +2,22 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Router as WouterRouter, Switch, useLocation } from "wouter";
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Layout from "./components/Layout";
 import { I18nProvider, useI18nContext, DEFAULT_LOCALE, buildLocalizedPath, isValidLocale } from "@/i18n";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import IndustrySolutions from "./pages/IndustrySolutions";
-import Quality from "./pages/Quality";
-import Contact from "./pages/Contact";
-import Insights from "./pages/Insights";
-import InsightsArticle from "./pages/InsightsArticle";
 import { ROUTER_BASE_PATH, stripBasePath } from "@/content/url";
+
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Products = lazy(() => import("./pages/Products"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const IndustrySolutions = lazy(() => import("./pages/IndustrySolutions"));
+const Quality = lazy(() => import("./pages/Quality"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Insights = lazy(() => import("./pages/Insights"));
+const InsightsArticle = lazy(() => import("./pages/InsightsArticle"));
 
 // Loading fallback component
 function LoadingFallback() {
@@ -72,7 +73,8 @@ function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Layout>
-      <Switch>
+      <Suspense fallback={<LoadingFallback />}>
+        <Switch>
           {/* Language-prefixed routes with locale guard */}
           <Route path="/:lang/">
             {(params) => (
@@ -144,7 +146,8 @@ function Router() {
           {/* 404 */}
           <Route path="/404" component={NotFound} />
           <Route component={NotFound} />
-      </Switch>
+        </Switch>
+      </Suspense>
     </Layout>
   );
 }

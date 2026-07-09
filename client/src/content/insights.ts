@@ -57,6 +57,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -421,6 +422,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -804,6 +806,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -1162,6 +1165,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -1551,6 +1555,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -1921,6 +1926,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -2294,6 +2300,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -2700,6 +2707,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -3142,6 +3150,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {
@@ -3518,6 +3527,7 @@ export const INSIGHT_ARTICLES: InsightArticle[] = [
       fr: "draft",
       ar: "draft",
       es: "draft",
+      ru: "draft",
     },
     content: {
       en: {

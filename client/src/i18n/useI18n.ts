@@ -1,15 +1,46 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { type Locale, DEFAULT_LOCALE, isRTLLocale } from "./config";
 import { getLocaleFromPath } from "./locale";
-import { getTranslationValue } from "./loadTranslations";
-import { getMessages } from "./messages";
+import {
+  getCachedMessages,
+  getTranslationValue,
+  loadTranslations,
+} from "./loadTranslations";
+import type { TranslationData } from "./messages";
 
 export function useI18n() {
   const [location] = useLocation();
   const locale = getLocaleFromPath(location);
   const isRTL = isRTLLocale(locale);
-  const messages = useMemo(() => getMessages(locale), [locale]);
+  const [messages, setMessages] = useState<TranslationData>(
+    () => getCachedMessages(locale) || {}
+  );
+  const [loading, setLoading] = useState(() => !getCachedMessages(locale));
+
+  useEffect(() => {
+    let active = true;
+    const cached = getCachedMessages(locale);
+
+    if (cached) {
+      setMessages(cached);
+      setLoading(false);
+      return () => {
+        active = false;
+      };
+    }
+
+    setLoading(true);
+    void loadTranslations(locale).then((nextMessages) => {
+      if (!active) return;
+      setMessages(nextMessages);
+      setLoading(false);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [locale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -24,7 +55,7 @@ export function useI18n() {
   return {
     t,
     locale,
-    loading: false,
+    loading,
     isRTL,
   };
 }

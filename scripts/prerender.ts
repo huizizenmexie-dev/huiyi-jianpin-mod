@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { renderToString } from "react-dom/server";
+import { Writable } from "node:stream";
+import { renderToPipeableStream } from "react-dom/server";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import App from "../client/src/App";
@@ -12,11 +13,16 @@ import {
   INSIGHT_SLUGS,
   PRODUCT_SLUGS,
   RTL_LOCALES,
+  isPageRouteReady,
+  isProductRouteReady,
   type Locale,
 } from "../client/src/content/routes";
 import { getInsightBySlug } from "../client/src/content/insights";
 import { resolveRouteSEO } from "../client/src/content/seo";
 import { buildCanonicalUrl, buildPublicPath, buildRoutePath, buildSitemapUrl } from "../client/src/content/url";
+import { getTranslationValue } from "../client/src/i18n/loadTranslations";
+import { setCachedMessages } from "../client/src/i18n/messages";
+import { getMessagesSync } from "../client/src/i18n/messages.sync";
 
 const ROOT = join(import.meta.dirname, "..");
 const DIST = join(ROOT, "dist", "public");
@@ -62,8 +68,27 @@ function scriptTag(id: string, data: object) {
   return `<script id="${id}" data-managed-seo="route" type="application/ld+json">${JSON.stringify(data).replace(/</g, "\\u003c")}</script>`;
 }
 
+function i18nScript(locale: Locale) {
+  const payload = {
+    locale,
+    messages: getMessagesSync(locale),
+  };
+
+  return `<script id="lecprima-i18n" type="application/json">${JSON.stringify(payload).replace(/</g, "\\u003c")}</script>`;
+}
+
+function translateFor(locale: Locale) {
+  const messages = getMessagesSync(locale);
+  return (key: string, fallback: string) =>
+    getTranslationValue(messages, key, fallback);
+}
+
 function headFor(route: RouteConfig) {
-  const seo = resolveRouteSEO({ locale: route.locale, routePath: route.routePath });
+  const seo = resolveRouteSEO({
+    locale: route.locale,
+    routePath: route.routePath,
+    translate: translateFor(route.locale),
+  });
 
   return [
     `<title>${escapeHtml(seo.title)}</title>`,
@@ -87,9 +112,36 @@ function headFor(route: RouteConfig) {
     .join("\n    ");
 }
 
+function renderToString(element: React.ReactElement): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let html = "";
+    let didError = false;
+    const stream = renderToPipeableStream(element, {
+      onAllReady() {
+        const writable = new Writable({
+          write(chunk, _encoding, callback) {
+            html += chunk.toString();
+            callback();
+          },
+        });
+        writable.on("finish", () => {
+          didError ? reject(new Error("React stream render failed")) : resolve(html);
+        });
+        writable.on("error", reject);
+        stream.pipe(writable);
+      },
+      onError(error) {
+        didError = true;
+        console.error(error);
+      },
+    });
+  });
+}
+
 function renderRoute(route: RouteConfig) {
   const queryClient = new QueryClient();
   const ssrPath = buildPublicPath(route.locale, route.routePath);
+  setCachedMessages(route.locale, getMessagesSync(route.locale));
   return renderToString(
     React.createElement(
       QueryClientProvider,
@@ -105,20 +157,27 @@ function injectHtml(template: string, route: RouteConfig, body: string) {
     .replace(/<html[^>]*>/, `<html lang="${route.locale}" dir="${isRtl ? "rtl" : "ltr"}">`)
     .replace(/<title>[\s\S]*?<\/title>/i, "")
     .replace(/<meta[^>]+name=["'](?:description|keywords)["'][^>]*>/gi, "")
-    .replace("</head>", `    ${headFor(route)}\n  </head>`)
+    .replace("</head>", `    ${headFor(route)}\n    ${i18nScript(route.locale)}\n  </head>`)
     .replace(/<div id="root">[\s\S]*?<\/div>/, `<div id="root">${body}</div>`);
+}
+
+function isIndexableRoute(route: RouteConfig) {
+  if (route.type === "page") {
+    return isPageRouteReady(route.locale, route.routePath);
+  }
+  if (route.type === "product") {
+    return isProductRouteReady(route.locale);
+  }
+  const slug = route.routePath.split("/").filter(Boolean)[1];
+  return (
+    LOCALE_STATUS[route.locale].status === "ready" &&
+    getInsightBySlug(slug)?.localeStatus[route.locale] === "ready"
+  );
 }
 
 function writeSitemap(routes: RouteConfig[]) {
   const urls = routes
-    .filter((route) => {
-      if (LOCALE_STATUS[route.locale].status !== "ready") return false;
-      if (route.type === "insight") {
-        const slug = route.routePath.split("/").filter(Boolean)[1];
-        return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
-      }
-      return true;
-    })
+    .filter(isIndexableRoute)
     .map((route) => `  <url><loc>${buildCanonicalUrl(route.locale, route.routePath)}</loc></url>`)
     .join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
@@ -140,7 +199,7 @@ Sitemap: ${buildSitemapUrl()}
   writeFileSync(join(DIST, "robots.txt"), robots, "utf-8");
 }
 
-function main() {
+async function main() {
   const builtIndex = join(DIST, "index.html");
   if (!existsSync(builtIndex)) {
     throw new Error("dist/public/index.html not found. Run vite build first.");
@@ -152,7 +211,7 @@ function main() {
   for (const route of routes) {
     const outputPath = relativeOutputPath(route.locale, route.routePath);
     mkdirSync(dirname(outputPath), { recursive: true });
-    writeFileSync(outputPath, injectHtml(template, route, renderRoute(route)), "utf-8");
+    writeFileSync(outputPath, injectHtml(template, route, await renderRoute(route)), "utf-8");
     console.log(`  rendered ${buildRoutePath(route.locale, route.routePath)}`);
   }
 
@@ -165,7 +224,7 @@ function main() {
     injectHtml(
       template,
       { locale: DEFAULT_LOCALE, routePath: "/", type: "page" },
-      renderRoute({ locale: DEFAULT_LOCALE, routePath: "/404", type: "page" })
+      await renderRoute({ locale: DEFAULT_LOCALE, routePath: "/404", type: "page" })
     ),
     "utf-8"
   );
@@ -175,16 +234,12 @@ function main() {
   console.log(`Pre-rendered ${routes.length} localized static pages.`);
   console.log(
     `Sitemap contains ${
-      routes.filter((route) => {
-        if (LOCALE_STATUS[route.locale].status !== "ready") return false;
-        if (route.type === "insight") {
-          const slug = route.routePath.split("/").filter(Boolean)[1];
-          return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
-        }
-        return true;
-      }).length
+      routes.filter(isIndexableRoute).length
     } indexable URLs.`
   );
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

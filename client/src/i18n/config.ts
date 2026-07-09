@@ -1,7 +1,7 @@
 // i18n Configuration
 // URL determines language, no browser detection override
 
-export const LOCALES = ["en", "zh-CN", "pt-BR", "fr", "ar", "es"] as const;
+export const LOCALES = ["en", "zh-CN", "pt-BR", "fr", "ar", "es", "ru"] as const;
 export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "en";
@@ -17,6 +17,7 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   fr: "Français",
   ar: "العربية",
   es: "Español",
+  ru: "Русский",
 };
 
 // Locale flags
@@ -27,6 +28,7 @@ export const LOCALE_FLAGS: Record<Locale, string> = {
   fr: "🇫🇷",
   ar: "🇸🇦",
   es: "🇪🇸",
+  ru: "🇷🇺",
 };
 
 // Validate locale

@@ -24,6 +24,12 @@
     "hero_title_line2": "Batch Perform",
     "hero_description": "Clear specifications, batch documentation and responsive technical support help food, nutrition, pharma, personal care and feed teams move from sample evaluation to production discussion.",
     "hero_guarantee": "Built for formulation confidence: match the problem, verify the specs, then scale with documented quality.",
+    "hero_badges": {
+      "clear_specs": "Clear Specs",
+      "batch_coa": "Batch COA",
+      "application_fit": "Application Fit",
+      "sample_to_scale": "Sample to Scale"
+    },
     "brand_statement": "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.",
     "explore_products": "Find the Right Ingredient",
     "contact_engineer": "Request Technical Data",
@@ -61,6 +67,32 @@
       "animal": {
         "title": "Animal Nutrition & Feed",
         "desc": "Energy source, pellet binding"
+      }
+    },
+    "problem_cards": {
+      "chocolate": {
+        "title": "Chocolate viscosity and molding flow",
+        "body": "Start with liquid soy lecithin grades for flow, molding and fat-system evaluation in buyer-validated chocolate formulas."
+      },
+      "beverage": {
+        "title": "Instant beverage wetting and dispersion",
+        "body": "Compare modified lecithin and powder formats when clumping, floating fat or slow wetting blocks scale-up."
+      },
+      "bakery": {
+        "title": "Bakery dough handling and texture",
+        "body": "Use powder or liquid lecithin systems to evaluate dough handling, fat distribution and finished-product texture."
+      },
+      "clean_label": {
+        "title": "Clean-label soy-free substitution",
+        "body": "Review sunflower lecithin options when the formula needs a soy-free source and buyer-approved allergen positioning."
+      },
+      "purity": {
+        "title": "PC/PS purity selection",
+        "body": "Select phosphatidylcholine or phosphatidylserine grades by target purity, storage condition and documentation needs."
+      },
+      "qa": {
+        "title": "QA documentation and batch verification",
+        "body": "Request COA, TDS, SDS/MSDS and certificate files before supplier qualification or production trials."
       }
     },
     "systems_subtitle": "Product Systems",
@@ -119,6 +151,207 @@
     "email_inquiry": "Email Inquiry",
     "whatsapp_contact": "WhatsApp Contact"
   },
+  "products_page": {
+    "seo_title": "Application-Fit Lecithin & Phospholipid Products | Lecprima",
+    "seo_description": "Select soy lecithin, phosphatidylcholine, phosphatidylserine, sunflower lecithin, soy protein and fiber systems by application problem, specification and documentation need.",
+    "seo_keywords": "application-fit lecithin products, phospholipid product selection, soy lecithin technical data, phosphatidylcholine supplier, phosphatidylserine supplier, COA TDS lecithin",
+    "hero_title": "Select Lecithin & Phospholipids by Application Problem",
+    "hero_description": "Compare form, specification, documentation and validation fit.",
+    "intro": "Start with the formulation or procurement problem, then compare form, grade, specification, documentation and buyer-side validation needs. Each product page keeps core specs and application context visible for QA, R&D and purchasing review.",
+    "problem_fit_label": "Problem fit",
+    "no_products": "No products match this filter.",
+    "filters": {
+      "all": "All",
+      "liquid": "Liquid",
+      "powder": "Powder",
+      "high_purity": "High-Purity",
+      "allergen_free": "Allergen-Free",
+      "protein_fiber": "Protein/Fiber"
+    }
+  },
+  "product_detail": {
+    "not_found_title": "Product Not Found | Lecprima",
+    "not_found_description": "The requested product could not be found.",
+    "not_found_heading": "Product Not Found",
+    "back_to_products": "Back to Products",
+    "evaluation_title": "What this product helps evaluate",
+    "evaluation_description": "Request COA, TDS, SDS/MSDS or a sample before supplier qualification, formula trials or production scale-up.",
+    "request_docs_sample": "Request COA / TDS / Sample",
+    "specifications_tab": "Specifications",
+    "applications_tab": "Applications & Pain Points",
+    "specifications_title": "Product Specifications",
+    "applications_title": "Applications & Pain Points",
+    "pain_point_label": "Pain Point",
+    "recommended_product_label": "Recommended Product",
+    "dosage_label": "Dosage",
+    "technical_effect_label": "Technical Effect"
+  },
+  "industry_page": {
+    "seo_title": "Problem-to-Product Application Guide | Lecprima",
+    "seo_description": "Use a problem-to-product guide to match formulation issues to lecithin, phospholipid, soy protein and dietary fiber systems with documentation and buyer-side validation guidance.",
+    "seo_keywords": "lecithin application problems, phospholipid formulation guide, food emulsifier selection, supplement phospholipid ingredients, technical data lecithin",
+    "hero_title": "Problem-to-Product Application Guide",
+    "hero_description": "Match the formulation issue to product form, specification, documentation and buyer-side validation needs.",
+    "answers_eyebrow": "Answers Buyers Search For",
+    "answers_title": "Start with the problem, then compare the ingredient system",
+    "answers_description": "These application answers connect common buyer questions to Lecprima product systems and documentation needs. They are starting points for technical discussion, not universal performance guarantees.",
+    "problem_answers": [
+      {
+        "question": "Which lecithin helps evaluate chocolate viscosity and molding flow?",
+        "answer": "Liquid soy lecithin grades such as HXY-1SP and HXY-3SP are typical starting points for buyer-led chocolate flow, molding and fat-system trials. Final dosage and process fit should be validated in the buyer's formula."
+      },
+      {
+        "question": "What should instant beverage teams compare when powders clump or wet slowly?",
+        "answer": "Modified lecithin, hydrolyzed liquid lecithin and powder systems can be compared by wetting behavior, fat dispersion, sedimentation and documentation needs before scale-up."
+      },
+      {
+        "question": "How should bakery teams approach dough handling and texture questions?",
+        "answer": "Powder and liquid lecithin systems can be evaluated for dough handling, fat distribution and finished-product texture while QA reviews specifications, COA and process suitability."
+      },
+      {
+        "question": "When is sunflower lecithin worth evaluating?",
+        "answer": "Sunflower lecithin is the practical comparison point when the product brief needs a soy-free source, clean-label positioning or buyer-reviewed allergen documentation."
+      },
+      {
+        "question": "How do supplement and nutrition teams select PC or PS grades?",
+        "answer": "Start with target purity, storage condition, intended format and documentation requirements. High-purity PC and PS grades should remain buyer-reviewed formulation inputs, not medical claims."
+      },
+      {
+        "question": "Which documents should procurement request before qualification?",
+        "answer": "Ask for COA, TDS, SDS/MSDS, certificate copies where applicable, packaging details, storage conditions and batch-specific records needed by the buyer's QA workflow."
+      }
+    ],
+    "filters": {
+      "all": "All",
+      "food": "Food",
+      "pharma_supplements": "Pharma/Supplements",
+      "cosmetics": "Cosmetics",
+      "industrial": "Industrial",
+      "feed": "Feed"
+    },
+    "table": {
+      "industry": "Industry",
+      "pain_points": "Key Pain Points",
+      "products": "Recommended Products",
+      "dosage": "Dosage",
+      "effect": "Technical Effect"
+    },
+    "solutions": [
+      {
+        "industry": "Chocolate & Bakery",
+        "pain_points": "High viscosity, molding difficulty, poor dough extensibility, milk powder clumping",
+        "products": "Soy Lecithin Liquid HXY-1SP / HXY-3SP, Lecithin Powder HXY-PLP",
+        "dosage": "Chocolate: 0.3-0.5% of total fat; Bakery: 0.3-1% of flour; Milk powder: 0.5-2% spray",
+        "effect": "Supports flow, dough handling, and powder dispersion targets after buyer-side validation"
+      },
+      {
+        "industry": "Dairy & Instant Beverages",
+        "pain_points": "Powder clumping, slow dissolution, fat floating, uneven emulsification",
+        "products": "Modified Lecithin HXY-PLW, Soy Lecithin Liquid HXY-1SPN, Small Pack Oligosaccharide",
+        "dosage": "0.2-2% dry/wet addition, spray or dry blend",
+        "effect": "Supports dispersion, emulsion stability, and mouthfeel targets after buyer-side validation"
+      },
+      {
+        "industry": "Nutraceuticals / Supplements",
+        "pain_points": "Ingredient dispersion and formulation stability screening",
+        "products": "PC 50-90% (Liposome/Softgel), PS 20-70%, Modified Lecithin HXY-PLW",
+        "dosage": "PC high-purity solution/softgel, PS oil-based softgel, Modified powder dry blend",
+        "effect": "Supports buyer-led dispersibility, stability, and sensory evaluation"
+      },
+      {
+        "industry": "Cosmetics / Skincare",
+        "pain_points": "Emulsion separation, poor active dispersion, allergen risk",
+        "products": "Sunflower Lecithin HXY-SFL / HXY-SFP, PC 30-50%",
+        "dosage": "0.5-2% in creams/lotions",
+        "effect": "Stable emulsion, enhanced moisturization, reduced allergen risk"
+      },
+      {
+        "industry": "Paints / Coatings / Leather",
+        "pain_points": "Uneven pigment dispersion, emulsion separation, poor film leveling",
+        "products": "Modified Lecithin HXY-2SP, Soy Lecithin Liquid HXY-1SP",
+        "dosage": "0.3-1% of solids content",
+        "effect": "Improves emulsion stability, enhances pigment distribution, improves film smoothness and adhesion"
+      },
+      {
+        "industry": "Protein Beverages / Meat Products",
+        "pain_points": "Protein precipitation, fat separation, low yield",
+        "products": "Gel-Type Soy Protein J7501, Soy Dietary Fiber J8000/J18000, Lecithin Powder HXY-PLP",
+        "dosage": "Meat: 2-4% direct protein addition; Beverage: 0.5-2% fiber or lecithin",
+        "effect": "Stabilizes protein network, prevents fat separation, increases yield, smooth beverage texture"
+      },
+      {
+        "industry": "Feed / Animal Nutrition",
+        "pain_points": "Low lipophilic nutrient absorption, powder caking, poor stability",
+        "products": "Small Pack Soy Protein/Oligosaccharide, Soy Dietary Fiber",
+        "dosage": "Mix into feed formula",
+        "effect": "Uniform nutrition, improves gut health, powder free-flowing"
+      },
+      {
+        "industry": "High-Fiber Foods",
+        "pain_points": "High-fiber formulation and texture needs",
+        "products": "Soy Dietary Fiber J18000, Small Pack Soy Oligosaccharide",
+        "dosage": "1-5% addition",
+        "effect": "Supports fiber-content and texture formulation targets after buyer validation"
+      }
+    ],
+    "notes": {
+      "dosage": "* Recommended dosages are typical ranges. Adjust based on specific formulation and process.",
+      "custom": "* For custom specifications, documentation review, sample requests or buyer-side validation questions, contact our application team."
+    },
+    "cta": "Discuss Technical Data or Samples"
+  },
+  "quality_page": {
+    "seo_title": "Quality Documents & Batch Verification | Lecprima",
+    "seo_description": "Review Lecprima quality systems, certificates, COA documentation, TDS support and traceability inputs for supplier qualification.",
+    "seo_keywords": "soy lecithin COA, lecithin TDS, phospholipid quality documents, supplier qualification lecithin, batch verification lecithin",
+    "breadcrumb": "Quality & Compliance",
+    "hero_title": "Quality Documents for Formulation Confidence",
+    "hero_description": "COA, TDS, certificate and batch inputs for supplier qualification.",
+    "certifications_eyebrow": "Globally Recognized",
+    "certifications_title": "Certifications",
+    "certifications_description": "Certificates, COA, TDS and related records help QA and procurement teams verify supplier fit before formulation trials and production discussions.",
+    "certifications": [
+      { "name": "ISO 22000:2018", "desc": "Food Safety Management System - Full production lines" },
+      { "name": "FSSC 22000", "desc": "GFSI Recognized - Full production lines" },
+      { "name": "HACCP", "desc": "Hazard Analysis Critical Control Points - Full production lines" },
+      { "name": "Halal Certification", "desc": "Selected product lines" },
+      { "name": "Non-GMO IP", "desc": "Identity Preserved - Designated grades" }
+    ],
+    "qc_eyebrow": "Rigorous Testing",
+    "qc_title": "Quality Control System",
+    "qc_description": "Batch testing and technical documents support repeatable formulation decisions, procurement review and buyer-side qualification workflows.",
+    "monitored_parameters": "Monitored Parameters",
+    "parameter": "Parameter",
+    "testing_method": "Testing Method",
+    "qc_params": [
+      { "param": "Acetone Insoluble", "method": "AOCS Ja 4-46" },
+      { "param": "Acid Value", "method": "AOCS Ja 6-55" },
+      { "param": "Peroxide Value", "method": "GB 5009.227" },
+      { "param": "Moisture", "method": "GB 5009.3" },
+      { "param": "Heavy Metals", "method": "ICP-MS" }
+    ],
+    "traceability_eyebrow": "Seed to Shipment",
+    "traceability_title": "Traceability Chain",
+    "traceability": [
+      { "title": "Heilongjiang Non-GMO Farm", "desc": "Identity Preserved sourcing from certified farms" },
+      { "title": "IP Segregated Handling", "desc": "Dedicated storage and transport channels" },
+      { "title": "GMP Production", "desc": "Computer-controlled automated production lines" },
+      { "title": "Batch Testing", "desc": "Full parameter testing per AOCS/GB standards" },
+      { "title": "COA Issued", "desc": "Traceable Certificate of Analysis per batch" }
+    ],
+    "documents_eyebrow": "Technical Resources",
+    "documents_title": "Documentation Download Center",
+    "documents_description": "COA, certificate files, inspection reports and standards help buyers verify documented phospholipid inputs before purchase or sample evaluation.",
+    "documents": [
+      { "name": "FSSC 22000 Certificate", "desc": "Food safety system certification copy" },
+      { "name": "ISO 22000 Certificate", "desc": "Food safety management system certificate" },
+      { "name": "HACCP Certificate", "desc": "Hazard analysis and critical control points certification" },
+      { "name": "Container Inspection Report", "desc": "Loading and container inspection documentation" },
+      { "name": "GB 1886.358-2022 Standard", "desc": "Applicable China national standard reference" },
+      { "name": "Non-GMO Testing Report 1SP", "desc": "Reference report for HXY-1SP grade" }
+    ],
+    "open_fssc": "Open FSSC 22000 Certificate"
+  },
   "insights_page": {
     "seo_title": "Phospholipid & Lecithin Insights | PC, PS and Food Formulation Guides",
     "seo_description": "Read crawlable B2B guides on phosphatidylcholine, phosphatidylserine, lecithin, clean-label ingredients, functional beverages and food formulation.",
@@ -165,6 +398,16 @@
       "country": "Country / Region",
       "product": "Product of Interest",
       "product_placeholder": "Soy lecithin, PC, PS...",
+      "application": "Application / Industry",
+      "application_placeholder": "Food, Pharma, Cosmetics...",
+      "monthly_quantity": "Estimated Monthly Quantity",
+      "monthly_quantity_placeholder": "100 kg, 1 ton, 10 tons...",
+      "port": "Destination Port / Incoterm",
+      "port_placeholder": "FOB, CIF, Shanghai Port...",
+      "sample": "Sample Request",
+      "sample_select": "Select...",
+      "sample_yes": "Yes, I need samples",
+      "sample_no": "No, not now",
       "quantity": "Quantity",
       "quantity_placeholder": "Trial order, 200 kg, 1 FCL...",
       "requirements": "Requirements / Message",

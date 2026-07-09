@@ -139,15 +139,15 @@ export default function Quality() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-12">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">{t("common.home", "Home")}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white">Quality & Compliance</span>
+            <span className="text-white">{t("quality_page.breadcrumb", "Quality & Compliance")}</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            Quality Documents for Formulation Confidence
+            {t("quality_page.hero_title", "Quality Documents for Formulation Confidence")}
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            COA, TDS, certificate and batch inputs for supplier qualification.
+            {t("quality_page.hero_description", "COA, TDS, certificate and batch inputs for supplier qualification.")}
           </p>
         </div>
       </section>
@@ -158,13 +158,13 @@ export default function Quality() {
           <FadeIn>
             <div className="text-center mb-14">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Globally Recognized
+                {t("quality_page.certifications_eyebrow", "Globally Recognized")}
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                Certifications
+                {t("quality_page.certifications_title", "Certifications")}
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                Certificates, COA, TDS and related records help QA and procurement teams verify supplier fit before formulation trials and production discussions.
+                {t("quality_page.certifications_description", "Certificates, COA, TDS and related records help QA and procurement teams verify supplier fit before formulation trials and production discussions.")}
               </p>
             </div>
           </FadeIn>
@@ -183,9 +183,9 @@ export default function Quality() {
                     <cert.icon className="w-7 h-7 text-harvest-gold" />
                   </div>
                   <h3 className="font-heading font-semibold text-deep-brown text-base mb-1">
-                    {cert.name}
+                    {t(`quality_page.certifications.${i}.name`, cert.name)}
                   </h3>
-                  <p className="text-medium-gray text-sm">{cert.desc}</p>
+                  <p className="text-medium-gray text-sm">{t(`quality_page.certifications.${i}.desc`, cert.desc)}</p>
                 </div>
               </FadeIn>
             ))}
@@ -199,13 +199,13 @@ export default function Quality() {
           <FadeIn>
             <div className="text-center mb-12">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Rigorous Testing
+                {t("quality_page.qc_eyebrow", "Rigorous Testing")}
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                Quality Control System
+                {t("quality_page.qc_title", "Quality Control System")}
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                Batch testing and technical documents support repeatable formulation decisions, procurement review and buyer-side qualification workflows.
+                {t("quality_page.qc_description", "Batch testing and technical documents support repeatable formulation decisions, procurement review and buyer-side qualification workflows.")}
               </p>
             </div>
           </FadeIn>
@@ -214,17 +214,17 @@ export default function Quality() {
             <div className="max-w-3xl mx-auto bg-white rounded-xl overflow-hidden shadow-sm border border-border">
               <div className="bg-earth-green px-6 py-3">
                 <h3 className="text-white font-heading font-semibold text-sm">
-                  Monitored Parameters
+                  {t("quality_page.monitored_parameters", "Monitored Parameters")}
                 </h3>
               </div>
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="px-6 py-3 text-left text-sm font-heading font-semibold text-deep-brown">
-                      Parameter
+                      {t("quality_page.parameter", "Parameter")}
                     </th>
                     <th className="px-6 py-3 text-left text-sm font-heading font-semibold text-deep-brown">
-                      Testing Method
+                      {t("quality_page.testing_method", "Testing Method")}
                     </th>
                   </tr>
                 </thead>
@@ -235,10 +235,10 @@ export default function Quality() {
                       className={`${i % 2 === 0 ? "bg-light-green/30" : "bg-white"}`}
                     >
                       <td className="px-6 py-3 text-sm text-deep-brown font-medium">
-                        {item.param}
+                        {t(`quality_page.qc_params.${i}.param`, item.param)}
                       </td>
                       <td className="px-6 py-3 text-sm font-mono text-medium-gray">
-                        {item.method}
+                        {t(`quality_page.qc_params.${i}.method`, item.method)}
                       </td>
                     </tr>
                   ))}
@@ -255,10 +255,10 @@ export default function Quality() {
           <FadeIn>
             <div className="text-center mb-14">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Seed to Shipment
+                {t("quality_page.traceability_eyebrow", "Seed to Shipment")}
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                Traceability Chain
+                {t("quality_page.traceability_title", "Traceability Chain")}
               </h2>
             </div>
           </FadeIn>
@@ -280,10 +280,10 @@ export default function Quality() {
                       </span>
                     </div>
                     <h4 className="font-heading font-semibold text-deep-brown text-sm mb-1">
-                      {step.title}
+                      {t(`quality_page.traceability.${i}.title`, step.title)}
                     </h4>
                     <p className="text-medium-gray text-xs leading-relaxed">
-                      {step.desc}
+                      {t(`quality_page.traceability.${i}.desc`, step.desc)}
                     </p>
                   </div>
                 </FadeIn>
@@ -299,13 +299,13 @@ export default function Quality() {
           <FadeIn>
             <div className="text-center mb-12">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Technical Resources
+                {t("quality_page.documents_eyebrow", "Technical Resources")}
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                Documentation Download Center
+                {t("quality_page.documents_title", "Documentation Download Center")}
               </h2>
               <p className="text-medium-gray mt-3 max-w-2xl mx-auto">
-                COA, certificate files, inspection reports and standards help buyers verify documented phospholipid inputs before purchase or sample evaluation.
+                {t("quality_page.documents_description", "COA, certificate files, inspection reports and standards help buyers verify documented phospholipid inputs before purchase or sample evaluation.")}
               </p>
             </div>
           </FadeIn>
@@ -324,9 +324,9 @@ export default function Quality() {
                     <FileText className="w-5 h-5 text-earth-green shrink-0 mt-0.5" />
                     <div className="flex-1 flex flex-col justify-center">
                       <h4 className="font-heading font-semibold text-deep-brown text-sm group-hover:text-earth-green transition-colors">
-                        {doc.name}
+                        {t(`quality_page.documents.${i}.name`, doc.name)}
                       </h4>
-                      <p className="text-medium-gray text-xs mt-1">{doc.desc}</p>
+                      <p className="text-medium-gray text-xs mt-1">{t(`quality_page.documents.${i}.desc`, doc.desc)}</p>
                     </div>
                     <ExternalLink className="w-4 h-4 text-medium-gray group-hover:text-earth-green transition-colors shrink-0 mt-0.5" />
                   </div>
@@ -344,7 +344,7 @@ export default function Quality() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
                 <Download className="w-4 h-4" />
-                Open FSSC 22000 Certificate
+                {t("quality_page.open_fssc", "Open FSSC 22000 Certificate")}
               </a>
             </div>
           </FadeIn>

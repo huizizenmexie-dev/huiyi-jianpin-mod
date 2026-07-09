@@ -180,7 +180,7 @@ export default function InsightsArticle() {
   const cta = CTA_COPY[article.ctaType];
   const contactHref = buildLocalizedPublicPath(locale, "/contact#quoteForm");
   const mappedProducts = article.productSlugs
-    .map(productSlug => getProductBySlug(productSlug))
+    .map(productSlug => getProductBySlug(productSlug, locale))
     .filter((product): product is Product => Boolean(product));
 
   return (
