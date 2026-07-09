@@ -15,23 +15,17 @@ describe("site SDK script injection", () => {
     expect(html).toContain("(window, document, '__siteSDK__');");
   });
 
-  it("embeds the Microsoft Clarity snippet in client/index.html", () => {
+  it("does not embed the Microsoft Clarity snippet in client/index.html", () => {
     const html = readFileSync(
       resolve(process.cwd(), "client/index.html"),
       "utf-8"
     );
 
-    expect(html).toContain('<script type="text/javascript">');
-    expect(html).toContain(
-      "c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};"
-    );
-    expect(html).toContain('t.src="https://www.clarity.ms/tag/"+i;');
-    expect(html).toContain(
-      '})(window, document, "clarity", "script", "xjm8do23p8");'
-    );
+    expect(html).not.toContain("www.clarity.ms/tag/");
+    expect(html).not.toContain("xjm8do23p8");
   });
 
-  it("keeps Clarity and the NetEase site SDK in the document head", () => {
+  it("keeps the NetEase site SDK in the document head", () => {
     const html = readFileSync(
       resolve(process.cwd(), "client/index.html"),
       "utf-8"
@@ -39,10 +33,6 @@ describe("site SDK script injection", () => {
 
     const head = html.slice(html.indexOf("<head>"), html.indexOf("</head>"));
 
-    expect(head).toContain("www.clarity.ms/tag/");
     expect(head).toContain("https://sirius-it-site.lx.netease.com/site-sdk.js");
-    expect(head.indexOf("www.clarity.ms/tag/")).toBeLessThan(
-      head.indexOf("https://sirius-it-site.lx.netease.com/site-sdk.js")
-    );
   });
 });
