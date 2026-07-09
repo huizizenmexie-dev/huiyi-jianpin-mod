@@ -11,16 +11,16 @@ describe("route SEO resolver", () => {
   const brandStatement =
     "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.";
 
-  it("keeps non-ready localized pages self-canonical and out of alternates", () => {
+  it("keeps non-ready localized routes self-canonical and out of alternates", () => {
     const seo = resolveRouteSEO({
       locale: "ar",
-      routePath: "/products/soy-lecithin-granules",
+      routePath: "/about",
       urls,
     });
 
     expect(seo.robots).toBe("noindex,follow");
     expect(seo.canonical).toBe(
-      "https://example.com/site-preview/ar/products/soy-lecithin-granules/"
+      "https://example.com/site-preview/ar/about/"
     );
     expect(seo.alternates).toEqual([]);
   });
@@ -258,6 +258,29 @@ describe("route SEO resolver", () => {
     expect(serialized).toContain("Acetone Insoluble");
     expect(serialized).not.toMatch(
       /"Offer"|"price"|"availability"|"aggregateRating"|"review"|"gtin"|"mpn"/
+    );
+  });
+
+  it("uses localized product master data in non-English product metadata and schema", () => {
+    const seo = resolveRouteSEO({
+      locale: "ru",
+      routePath: "/products/soy-lecithin-liquid",
+      urls,
+    });
+    const schemas = Object.fromEntries(
+      seo.jsonLd.map(entry => [entry.id, entry.data])
+    ) as Record<string, any>;
+
+    expect(seo.title).toContain("Система жидкого соевого лецитина");
+    expect(seo.description).toContain("Фосфолипиды");
+    expect(schemas["ld-product"].name).toBe(
+      "Система жидкого соевого лецитина"
+    );
+    expect(schemas["ld-product"].additionalProperty[0].name).toBe(
+      "Форма продукта"
+    );
+    expect(JSON.stringify(schemas["ld-product"])).not.toContain(
+      "Soy Lecithin Liquid System"
     );
   });
 });

@@ -2,13 +2,14 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import {
   DEFAULT_LOCALE,
-  INDEXABLE_LOCALES,
   LOCALES,
   LOCALE_STATUS,
   PAGE_PATHS,
   INSIGHT_SLUGS,
   PRODUCT_SLUGS,
   RTL_LOCALES,
+  isPageRouteReady,
+  isProductRouteReady,
   type Locale,
 } from "../client/src/content/routes";
 import { getInsightBySlug } from "../client/src/content/insights";
@@ -61,12 +62,22 @@ function allRoutes() {
 }
 
 function isIndexableRoute(route: ReturnType<typeof allRoutes>[number]) {
-  if (LOCALE_STATUS[route.locale].status !== "ready") return false;
+  if (route.type === "page") return isPageRouteReady(route.locale, route.routePath);
+  if (route.type === "product") return isProductRouteReady(route.locale);
   if (route.type === "insight") {
     const slug = route.routePath.split("/").filter(Boolean)[1];
-    return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
+    return (
+      LOCALE_STATUS[route.locale].status === "ready" &&
+      getInsightBySlug(slug)?.localeStatus[route.locale] === "ready"
+    );
   }
-  return true;
+  return false;
+}
+
+function indexableLocalesFor(route: ReturnType<typeof allRoutes>[number]) {
+  return LOCALES.filter(locale =>
+    isIndexableRoute({ ...route, locale } as ReturnType<typeof allRoutes>[number])
+  );
 }
 
 function collectFiles(dir: string, suffix: string): string[] {
@@ -142,7 +153,7 @@ function validateSourceLinks() {
     ...collectFiles(join(ROOT, "client", "src"), ".ts"),
   ];
   const bareLinkPattern =
-    /href=["']\/(?!\/|en\/|zh-CN\/|pt-BR\/|fr\/|ar\/|es\/|products\/soy-lecithin-granules\.png|api\/)/;
+    /href=["']\/(?!\/|en\/|zh-CN\/|pt-BR\/|fr\/|ar\/|es\/|ru\/|products\/soy-lecithin-granules\.png|api\/)/;
   const bareSetLocationPattern = /setLocation\(["']\//;
   for (const file of sourceFiles) {
     const content = readFileSync(file, "utf-8");
@@ -260,7 +271,7 @@ function validate() {
         urlSet.has(expectedCanonical),
         `${expectedCanonical} appears in sitemap`
       );
-      for (const alt of INDEXABLE_LOCALES) {
+      for (const alt of indexableLocalesFor(route)) {
         check(
           content.includes(
             `hreflang="${alt}" href="${buildCanonicalUrl(alt, route.routePath)}"`
@@ -268,10 +279,16 @@ function validate() {
           `${expectedCanonical} has hreflang ${alt}`
         );
       }
+      const defaultReady = isIndexableRoute({
+        ...route,
+        locale: DEFAULT_LOCALE,
+      } as ReturnType<typeof allRoutes>[number]);
       check(
-        content.includes(
-          `hreflang="x-default" href="${buildCanonicalUrl(DEFAULT_LOCALE, route.routePath)}"`
-        ),
+        defaultReady
+          ? content.includes(
+              `hreflang="x-default" href="${buildCanonicalUrl(DEFAULT_LOCALE, route.routePath)}"`
+            )
+          : !content.includes('hreflang="x-default"'),
         `${expectedCanonical} has x-default`
       );
     } else {

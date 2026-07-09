@@ -7,6 +7,8 @@ import {
   PAGE_PATHS,
   INSIGHT_SLUGS,
   PRODUCT_SLUGS,
+  isPageRouteReady,
+  isProductRouteReady,
   type Locale,
 } from "../client/src/content/routes";
 import { getInsightBySlug } from "../client/src/content/insights";
@@ -46,12 +48,16 @@ function allRoutes() {
 }
 
 function isIndexableRoute(route: ReturnType<typeof allRoutes>[number]) {
-  if (LOCALE_STATUS[route.locale].status !== "ready") return false;
+  if (route.type === "page") return isPageRouteReady(route.locale, route.routePath);
+  if (route.type === "product") return isProductRouteReady(route.locale);
   if (route.type === "insight") {
     const slug = route.routePath.split("/").filter(Boolean)[1];
-    return getInsightBySlug(slug)?.localeStatus[route.locale] === "ready";
+    return (
+      LOCALE_STATUS[route.locale].status === "ready" &&
+      getInsightBySlug(slug)?.localeStatus[route.locale] === "ready"
+    );
   }
-  return true;
+  return false;
 }
 
 function htmlPath(locale: Locale, routePath: string) {

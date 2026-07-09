@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useI18nContext, type Locale } from "@/i18n";
-import { resolveRouteSEO } from "@/content/seo";
 import { buildCanonicalUrl } from "@/content/url";
 import {
   CONTACT,
@@ -90,48 +89,58 @@ export function usePageSEO(seoData: SEOData) {
   const { locale } = useI18nContext();
 
   useEffect(() => {
-    const seo = resolveRouteSEO({
-      locale,
-      routePath: seoData.path,
-      title: seoData.title,
-      description: seoData.description,
-      keywords: seoData.keywords,
-      image: seoData.image,
+    let active = true;
+
+    void import("@/content/seo").then(({ resolveRouteSEO }) => {
+      if (!active) return;
+
+      const seo = resolveRouteSEO({
+        locale,
+        routePath: seoData.path,
+        title: seoData.title,
+        description: seoData.description,
+        keywords: seoData.keywords,
+        image: seoData.image,
+      });
+
+      document.title = seo.title;
+      setMetaTag("description", seo.description);
+      if (seo.keywords) {
+        setMetaTag("keywords", seo.keywords);
+      }
+
+      setMetaTag("robots", seo.robots);
+      setLinkTag("canonical", seo.canonical);
+
+      const nextHreflangs = new Set(seo.alternates.map((alternate) => alternate.hreflang));
+      removeStaleAlternates(nextHreflangs);
+      for (const alternate of seo.alternates) {
+        setLinkTag("alternate", alternate.href, { hreflang: alternate.hreflang });
+      }
+
+      setMetaTag("og:title", seo.og.title, "property");
+      setMetaTag("og:description", seo.og.description, "property");
+      setMetaTag("og:url", seo.og.url, "property");
+      setMetaTag("og:locale", seo.og.locale, "property");
+      setMetaTag("og:type", seo.og.type, "property");
+      setMetaTag("og:site_name", seo.og.siteName, "property");
+      if (seo.og.image) {
+        setMetaTag("og:image", seo.og.image, "property");
+      }
+
+      document.documentElement.lang = locale;
+      document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+
+      const nextJsonLdIds = new Set(seo.jsonLd.map((entry) => entry.id));
+      removeStaleJsonLd(nextJsonLdIds);
+      for (const entry of seo.jsonLd) {
+        setJsonLd(entry.id, entry.data);
+      }
     });
 
-    document.title = seo.title;
-    setMetaTag("description", seo.description);
-    if (seo.keywords) {
-      setMetaTag("keywords", seo.keywords);
-    }
-
-    setMetaTag("robots", seo.robots);
-    setLinkTag("canonical", seo.canonical);
-
-    const nextHreflangs = new Set(seo.alternates.map((alternate) => alternate.hreflang));
-    removeStaleAlternates(nextHreflangs);
-    for (const alternate of seo.alternates) {
-      setLinkTag("alternate", alternate.href, { hreflang: alternate.hreflang });
-    }
-
-    setMetaTag("og:title", seo.og.title, "property");
-    setMetaTag("og:description", seo.og.description, "property");
-    setMetaTag("og:url", seo.og.url, "property");
-    setMetaTag("og:locale", seo.og.locale, "property");
-    setMetaTag("og:type", seo.og.type, "property");
-    setMetaTag("og:site_name", seo.og.siteName, "property");
-    if (seo.og.image) {
-      setMetaTag("og:image", seo.og.image, "property");
-    }
-
-    document.documentElement.lang = locale;
-    document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-
-    const nextJsonLdIds = new Set(seo.jsonLd.map((entry) => entry.id));
-    removeStaleJsonLd(nextJsonLdIds);
-    for (const entry of seo.jsonLd) {
-      setJsonLd(entry.id, entry.data);
-    }
+    return () => {
+      active = false;
+    };
   }, [seoData.description, seoData.image, seoData.keywords, seoData.path, seoData.title, locale]);
 }
 

@@ -14,19 +14,25 @@
     "not_found": "Page Non Trouvée"
   },
   "homepage": {
-    "seo_title": "Fournisseur Stable de Lécithine de Soja | Chaîne d'Approvisionnement Résiliente | Lecprima",
-    "seo_description": "Protégez votre formulation contre les perturbations de la chaîne d'approvisionnement mondiale. Lecprima offre une capacité annuelle de 10 000T, une traçabilité Non-GMO IP et un approvisionnement stable en phospholipides de Chine.",
-    "seo_keywords": "fournisseur stable lécithine de soja, chaîne approvisionnement résiliente phospholipides, lécithine Non-GMO IP Chine, approvisionnement sûr ingrédients, fournisseur phosphatidylcholine, fournisseur phosphatidylsérine, Lecprima",
-    "hero_subtitle": "Des Sols Noirs de Heilongjiang aux Formulations Mondiales Stables",
-    "hero_title_line1": "Phospholipides Naturels",
-    "hero_title_line2": "Conçus pour un Approvisionnement Stable",
-    "hero_description": "Lécithine de soja certifiée ISO 22000 et dérivés de phospholipides de haute pureté avec une capacité annuelle de 10 000 tonnes, une traçabilité Non-GMO IP et une continuité d'approvisionnement fiable de Chine.",
-    "hero_guarantee": "Stabilité d'approvisionnement garantie face à l'incertitude mondiale de l'approvisionnement.",
+    "seo_title": "Faire Performer Chaque Lot | Lecprima Lécithine et Phospholipides",
+    "seo_description": "Lécithines et phospholipides adaptés aux applications, avec spécifications claires, documentation par lot et support technique de l'évaluation d'échantillon au scale-up.",
+    "seo_keywords": "lécithine adaptée à l'application, confiance formulation, fournisseur lécithine soja, ingrédients phospholipides, données techniques lécithine, COA TDS lécithine, fournisseur phosphatidylcholine, fournisseur phosphatidylsérine, Lecprima",
+    "hero_subtitle": "Lécithine et phospholipides adaptés à l'application",
+    "hero_title_line1": "Faire Performer",
+    "hero_title_line2": "Chaque Lot",
+    "hero_description": "Des spécifications claires, une documentation par lot et un support technique réactif aident les équipes food, nutrition, pharma, personal care et feed à passer de l'évaluation d'échantillon à la discussion de production.",
+    "hero_guarantee": "Conçu pour la confiance de formulation : relier le problème, vérifier les spécifications, puis industrialiser avec une qualité documentée.",
+    "hero_badges": {
+      "clear_specs": "Spécifications Claires",
+      "batch_coa": "COA par Lot",
+      "application_fit": "Adapté à l'Application",
+      "sample_to_scale": "De l'Échantillon au Scale-up"
+    },
     "brand_statement": "Lecprima est une marque B2B mondiale exploitée par Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Nous exploitons notre propre site de fabrication à Liaocheng, Shandong, Chine, offrant aux clients mondiaux une production, une gestion de la qualité et des services d'exportation fiables.",
-    "explore_products": "Explorer les Systèmes de Produits",
-    "contact_engineer": "Contacter un Ingénieur",
-    "industries_subtitle": "Au Service des Industries Mondiales",
-    "industries_title": "Industries d'Application",
+    "explore_products": "Trouver le Bon Ingrédient",
+    "contact_engineer": "Demander les Données Techniques",
+    "industries_subtitle": "Commencer par le Problème de Formulation",
+    "industries_title": "Problèmes que les Acheteurs Nous Demandent de Résoudre",
     "industries": {
       "chocolate": {
         "title": "Chocolat et Confiserie",
@@ -61,8 +67,34 @@
         "desc": "Source d'énergie, liaison des granulés"
       }
     },
-    "systems_subtitle": "Solutions Complètes",
-    "systems_title": "Six Systèmes Fonctionnels",
+    "problem_cards": {
+      "chocolate": {
+        "title": "Viscosité du chocolat et écoulement au moulage",
+        "body": "Commencez par des grades liquides de lécithine de soja pour évaluer l'écoulement, le moulage et le système gras dans des formules chocolat validées par l'acheteur."
+      },
+      "beverage": {
+        "title": "Mouillage et dispersion des boissons instantanées",
+        "body": "Comparez la lécithine modifiée et les formats poudre lorsque l'agglomération, la graisse flottante ou le mouillage lent bloquent le scale-up."
+      },
+      "bakery": {
+        "title": "Travail de la pâte et texture en boulangerie",
+        "body": "Utilisez des systèmes de lécithine poudre ou liquide pour évaluer le travail de la pâte, la distribution des graisses et la texture du produit fini."
+      },
+      "clean_label": {
+        "title": "Substitution clean-label sans soja",
+        "body": "Étudiez les options de lécithine de tournesol lorsque la formule exige une source sans soja et un positionnement allergène validé par l'acheteur."
+      },
+      "purity": {
+        "title": "Choix de pureté PC/PS",
+        "body": "Sélectionnez phosphatidylcholine ou phosphatidylsérine selon la pureté cible, les conditions de stockage et les besoins documentaires."
+      },
+      "qa": {
+        "title": "Documentation QA et vérification de lot",
+        "body": "Demandez COA, TDS, SDS/MSDS et certificats avant la qualification fournisseur ou les essais de production."
+      }
+    },
+    "systems_subtitle": "Systèmes Produits",
+    "systems_title": "Sélectionner par Forme, Fonction et Besoin Documentaire",
     "systems": [
       "Systèmes Émulsifiants Liquides",
       "Systèmes Émulsifiants Secs",
@@ -94,26 +126,26 @@
         "desc": "Accès Direct aux Ingénieurs d'Application"
       }
     },
-    "resilience_subtitle": "Résilience de la Chaîne d'Approvisionnement",
-    "resilience_title": "Votre Port sûr pour l'Approvisionnement Mondial en Ingrédients",
-    "resilience_description": "Lecprima est une marque B2B mondiale exploitée par Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Nous exploitons notre propre site de fabrication à Liaocheng, Shandong, Chine, offrant aux clients mondiaux une production, une gestion de la qualité et des services d'exportation fiables.",
-    "verify_quality": "Vérifier la Qualité et la Traçabilité",
+    "resilience_subtitle": "Confiance de Formulation",
+    "resilience_title": "Des Réponses Claires pour QA, Achats et R&D",
+    "resilience_description": "Chaque discussion ingrédient doit relier un problème d'application réel aux spécifications, à la documentation et à la validation d'échantillons. Lecprima rend ces éléments visibles pour évaluer l'adéquation avant le scale-up commercial.",
+    "verify_quality": "Consulter les Documents Qualité",
     "resilience": {
       "supply_continuity": {
-        "title": "Continuité d'Approvisionnement Basée en Chine",
-        "desc": "Planification stable de la production de la base d'approvisionnement à l'atelier GMP."
+        "title": "Sélection Adaptée à l'Application",
+        "desc": "Partir du problème de formulation, puis comparer les formes, grades et contextes d'usage."
       },
       "procurement_confidence": {
-        "title": "Confiance d'Achat Documentée",
+        "title": "Revue d'Achat Documentée",
         "desc": "COA, TDS, MSDS et fichiers de certification soutiennent la qualification des fournisseurs."
       },
       "farm_to_shipment": {
-        "title": "Contrôle Traçable de la Ferme à l'Expédition",
+        "title": "Vérification par Lot",
         "desc": "Approvisionnement Non-GMO IP de Heilongjiang lié aux enregistrements de qualité par lot."
       }
     },
-    "cta_title": "De la Ferme à la Formulation",
-    "cta_description": "Précision contrôlée à chaque étape. Parlez-nous de vos besoins en produits. Nos ingénieurs agricoles et d'application fournissent des recommandations sur mesure pour un approvisionnement stable et à long terme en phospholipides.",
+    "cta_title": "Dites-nous le Problème que Votre Formule Doit Résoudre",
+    "cta_description": "Partagez votre application, spécification cible, besoins documentaires, demande d'échantillon et plage de quantité. Nous aiderons à orienter la discussion vers le bon système de lécithine ou phospholipide.",
     "email_inquiry": "Demande par E-mail",
     "whatsapp_contact": "Contact WhatsApp"
   },
@@ -171,5 +203,40 @@
     "location_liaocheng": "Liaocheng (Usine)",
     "certifications": "Certifications",
     "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Tous droits réservés."
+  },
+  "products_page": {
+    "seo_title": "Produits lécithine et phospholipides par application | Lecprima",
+    "seo_description": "Sélectionnez lécithine de soja, phosphatidylcholine, phosphatidylsérine, lécithine de tournesol, protéine et fibre de soja selon le problème d’application, la spécification et les besoins documentaires.",
+    "seo_keywords": "produits lécithine, phospholipides par application, COA TDS lécithine, fournisseur phosphatidylcholine, fournisseur phosphatidylsérine",
+    "hero_title": "Sélectionner lécithines et phospholipides par problème d’application",
+    "hero_description": "Comparez forme, spécification, documentation et adéquation de validation.",
+    "intro": "Commencez par le problème de formulation ou d’achat, puis comparez forme, grade, spécification, documentation et besoins de validation côté acheteur. Chaque page produit garde les spécifications clés et le contexte d’application visibles pour QA, R&D et achats.",
+    "problem_fit_label": "Adapté au problème",
+    "no_products": "Aucun produit ne correspond au filtre sélectionné.",
+    "filters": {
+      "all": "Tous",
+      "liquid": "Liquides",
+      "powder": "Poudres",
+      "high_purity": "Haute pureté",
+      "allergen_free": "Sans allergènes",
+      "protein_fiber": "Protéine/Fibre"
+    }
+  },
+  "product_detail": {
+    "not_found_title": "Produit introuvable | Lecprima",
+    "not_found_description": "Le produit demandé est introuvable.",
+    "not_found_heading": "Produit introuvable",
+    "back_to_products": "Retour aux produits",
+    "evaluation_title": "Ce que ce produit aide à évaluer",
+    "evaluation_description": "Demandez COA, TDS, SDS/MSDS ou échantillon avant qualification fournisseur, essais formulation ou scale-up production.",
+    "request_docs_sample": "Demander COA / TDS / Échantillon",
+    "specifications_tab": "Spécifications",
+    "applications_tab": "Applications et points de douleur",
+    "specifications_title": "Spécifications produit",
+    "applications_title": "Applications et points de douleur",
+    "pain_point_label": "Point de douleur",
+    "recommended_product_label": "Produit recommandé",
+    "dosage_label": "Dosage",
+    "technical_effect_label": "Effet technique"
   }
 }

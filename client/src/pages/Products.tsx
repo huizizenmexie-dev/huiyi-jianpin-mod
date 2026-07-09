@@ -5,13 +5,22 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { ChevronRight, ArrowRight } from "lucide-react";
-import { products, filterCategories } from "@/lib/productData";
+import { getProducts, filterCategories } from "@/lib/productData";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
 import { buildPublicAssetPath } from "@/content/url";
 
 const HEADER_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
+
+const filterLabelKeys: Record<string, string> = {
+  All: "products_page.filters.all",
+  Liquid: "products_page.filters.liquid",
+  Powder: "products_page.filters.powder",
+  "High-Purity": "products_page.filters.high_purity",
+  "Allergen-Free": "products_page.filters.allergen_free",
+  "Protein/Fiber": "products_page.filters.protein_fiber",
+};
 
 function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -49,6 +58,7 @@ function FadeIn({ children, className = "", delay = 0 }: { children: React.React
 export default function Products() {
   const [activeFilter, setActiveFilter] = useState("All");
   const { t, locale } = useI18nContext();
+  const products = getProducts(locale);
 
   // Apply unified SEO
   usePageSEO({
@@ -81,15 +91,15 @@ export default function Products() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-10">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">{t("common.home", "Home")}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white">Products</span>
+            <span className="text-white">{t("common.products", "Products")}</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            Select Lecithin & Phospholipids by Application Problem
+            {t("products_page.hero_title", "Select Lecithin & Phospholipids by Application Problem")}
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            Compare form, specification, documentation and validation fit.
+            {t("products_page.hero_description", "Compare form, specification, documentation and validation fit.")}
           </p>
         </div>
       </section>
@@ -98,7 +108,7 @@ export default function Products() {
       <section className="py-8 bg-warm-ivory border-b border-border sticky top-16 z-30 backdrop-blur-sm" style={{ backgroundColor: "rgba(245, 242, 235, 0.95)" }}>
         <div className="container">
           <p className="text-medium-gray text-sm mb-4 max-w-3xl">
-            Start with the formulation or procurement problem, then compare form, grade, specification, documentation and buyer-side validation needs. Each product page keeps core specs and application context visible for QA, R&D and purchasing review.
+            {t("products_page.intro", "Start with the formulation or procurement problem, then compare form, grade, specification, documentation and buyer-side validation needs. Each product page keeps core specs and application context visible for QA, R&D and purchasing review.")}
           </p>
           <div className="flex flex-wrap gap-2">
             {filterCategories.map((cat) => (
@@ -111,7 +121,7 @@ export default function Products() {
                     : "bg-white text-medium-gray border border-border hover:border-earth-green hover:text-earth-green"
                 }`}
               >
-                {cat}
+                {t(filterLabelKeys[cat] ?? "products_page.filters.all", cat)}
               </button>
             ))}
           </div>
@@ -146,7 +156,7 @@ export default function Products() {
                       {product.applications[0] && (
                         <p className="text-xs leading-relaxed text-medium-gray mb-3">
                           <span className="font-heading font-semibold text-deep-brown">
-                            Problem fit:
+                            {t("products_page.problem_fit_label", "Problem fit")}:
                           </span>{" "}
                           {product.applications[0].painPoint}
                         </p>
@@ -157,7 +167,7 @@ export default function Products() {
                         </p>
                       </div>
                       <div className="flex items-center gap-1 mt-3 text-earth-green text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        View Details
+                        {t("common.view_details", "View Details")}
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
                     </div>
@@ -169,7 +179,7 @@ export default function Products() {
 
           {filtered.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-medium-gray">No products match this filter.</p>
+              <p className="text-medium-gray">{t("products_page.no_products", "No products match this filter.")}</p>
             </div>
           )}
         </div>

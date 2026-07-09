@@ -9,6 +9,7 @@ import { getProductBySlug } from "@/lib/productData";
 import LocalizedLink from "@/components/LocalizedLink";
 import { usePageSEO } from "@/lib/usePageSEO";
 import { buildPublicAssetPath } from "@/content/url";
+import { useI18nContext } from "@/i18n";
 
 const CONTACT_EMAIL_BASE = "mailto:jojowei@huiyijianpin.cn?subject=";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
@@ -17,16 +18,17 @@ const PRODUCT_IMG =
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const product = getProductBySlug(slug || "");
+  const { t, locale } = useI18nContext();
+  const product = getProductBySlug(slug || "", locale);
   const [activeTab, setActiveTab] = useState<"specs" | "apps">("specs");
   const [showStickyCta, setShowStickyCta] = useState(false);
 
   usePageSEO({
     path: product ? `/products/${product.slug}` : "/products",
-    title: product ? `${product.name} | Lecprima` : "Product Not Found | Lecprima",
+    title: product ? `${product.name} | Lecprima` : t("product_detail.not_found_title", "Product Not Found | Lecprima"),
     description: product
       ? `${product.subtitle}. ${product.quickSpecs}`
-      : "The requested product could not be found.",
+      : t("product_detail.not_found_description", "The requested product could not be found."),
     image: product?.image,
   });
 
@@ -46,14 +48,14 @@ export default function ProductDetail() {
       <div className="min-h-screen flex items-center justify-center bg-warm-ivory">
         <div className="text-center">
           <h2 className="font-heading font-bold text-2xl text-deep-brown mb-4">
-            Product Not Found
+            {t("product_detail.not_found_heading", "Product Not Found")}
           </h2>
           <LocalizedLink
             to="/products"
             className="inline-flex items-center gap-2 text-earth-green hover:underline"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Products
+            {t("product_detail.back_to_products", "Back to Products")}
           </LocalizedLink>
         </div>
       </div>
@@ -73,9 +75,9 @@ export default function ProductDetail() {
       <section className="pt-24 pb-8 bg-white border-b border-border">
         <div className="container">
           <nav className="flex items-center gap-2 text-sm text-medium-gray mb-6">
-            <LocalizedLink to="/" className="hover:text-earth-green transition-colors">Home</LocalizedLink>
+            <LocalizedLink to="/" className="hover:text-earth-green transition-colors">{t("common.home", "Home")}</LocalizedLink>
             <ChevronRight className="w-3.5 h-3.5" />
-            <LocalizedLink to="/products" className="hover:text-earth-green transition-colors">Products</LocalizedLink>
+            <LocalizedLink to="/products" className="hover:text-earth-green transition-colors">{t("common.products", "Products")}</LocalizedLink>
             <ChevronRight className="w-3.5 h-3.5" />
             <span className="text-deep-brown font-medium">{product.name}</span>
           </nav>
@@ -112,7 +114,7 @@ export default function ProductDetail() {
 
               <div className="bg-white rounded-lg border border-border p-5 mb-6 shadow-sm">
                 <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-2">
-                  What this product helps evaluate
+                  {t("product_detail.evaluation_title", "What this product helps evaluate")}
                 </p>
                 <ul className="space-y-2">
                   {product.applications.slice(0, 2).map(app => (
@@ -128,8 +130,7 @@ export default function ProductDetail() {
                   ))}
                 </ul>
                 <p className="mt-4 text-sm text-medium-gray leading-relaxed">
-                  Request COA, TDS, SDS/MSDS or a sample before supplier
-                  qualification, formula trials or production scale-up.
+                  {t("product_detail.evaluation_description", "Request COA, TDS, SDS/MSDS or a sample before supplier qualification, formula trials or production scale-up.")}
                 </p>
               </div>
 
@@ -140,14 +141,14 @@ export default function ProductDetail() {
                   className="inline-flex items-center gap-2 px-4 py-2.5 border border-border text-medium-gray rounded-md hover:border-earth-green hover:text-earth-green transition-colors text-sm"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Back to Products
+                  {t("product_detail.back_to_products", "Back to Products")}
                 </LocalizedLink>
                 <a
                   href={emailLink}
                   className="inline-flex items-center gap-2 px-4 py-2.5 bg-earth-green text-white rounded-md hover:bg-earth-green-dark transition-colors text-sm font-medium"
                 >
                   <Mail className="w-4 h-4" />
-                  Request COA / TDS / Sample
+                  {t("product_detail.request_docs_sample", "Request COA / TDS / Sample")}
                 </a>
               </div>
             </div>
@@ -168,7 +169,7 @@ export default function ProductDetail() {
                   : "border-transparent text-medium-gray hover:text-deep-brown"
               }`}
             >
-              Specifications
+              {t("product_detail.specifications_tab", "Specifications")}
             </button>
             <button
               onClick={() => setActiveTab("apps")}
@@ -178,7 +179,7 @@ export default function ProductDetail() {
                   : "border-transparent text-medium-gray hover:text-deep-brown"
               }`}
             >
-              Applications & Pain Points
+              {t("product_detail.applications_tab", "Applications & Pain Points")}
             </button>
           </div>
 
@@ -186,7 +187,7 @@ export default function ProductDetail() {
           <div className="space-y-8">
             <div className="bg-white rounded-xl p-6 lg:p-8 shadow-sm border border-border">
               <h2 className="font-heading font-bold text-2xl text-deep-brown mb-5">
-                Product Specifications
+                {t("product_detail.specifications_title", "Product Specifications")}
               </h2>
               <div className="max-w-full overflow-x-auto">
                 <table className="w-full min-w-[560px]">
@@ -213,7 +214,7 @@ export default function ProductDetail() {
 
             <div className="space-y-4">
               <h2 className="font-heading font-bold text-2xl text-deep-brown">
-                Applications & Pain Points
+                {t("product_detail.applications_title", "Applications & Pain Points")}
               </h2>
               {product.applications.map((app, i) => (
                 <div
@@ -226,13 +227,13 @@ export default function ProductDetail() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div>
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
-                        Pain Point
+                        {t("product_detail.pain_point_label", "Pain Point")}
                       </p>
                       <p className="text-sm text-medium-gray">{app.painPoint}</p>
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
-                        Recommended Product
+                        {t("product_detail.recommended_product_label", "Recommended Product")}
                       </p>
                       <p className="text-sm text-earth-green font-medium">
                         {app.product}
@@ -240,7 +241,7 @@ export default function ProductDetail() {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
-                        Dosage
+                        {t("product_detail.dosage_label", "Dosage")}
                       </p>
                       <p className="text-sm font-mono text-medium-gray">
                         {app.dosage}
@@ -248,7 +249,7 @@ export default function ProductDetail() {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
-                        Technical Effect
+                        {t("product_detail.technical_effect_label", "Technical Effect")}
                       </p>
                       <p className="text-sm text-medium-gray">{app.effect}</p>
                     </div>
@@ -276,7 +277,7 @@ export default function ProductDetail() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
             >
               <Mail className="w-4 h-4" />
-              Email Inquiry
+              {t("homepage.email_inquiry", "Email Inquiry")}
             </a>
             <a
               href={WHATSAPP_LINK}

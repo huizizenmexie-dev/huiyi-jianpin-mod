@@ -16,19 +16,25 @@
     "not_found": "页面未找到"
   },
   "homepage": {
-    "seo_title": "稳定大豆卵磷脂供应商 | Lecprima B2B 磷脂供应",
-    "seo_description": "保护您的配方免受全球供应链中断影响。Lecprima 提供年产10,000吨、非转基因IP可追溯性、来自中国的稳定磷脂供应。",
-    "seo_keywords": "稳定大豆卵磷脂供应商, 弹性磷脂供应链, 非转基因IP卵磷脂中国, 安全原料采购, 磷脂酰胆碱供应商, 磷脂酰丝氨酸供应商, Lecprima",
-    "hero_subtitle": "从黑龙江黑土地到全球稳定配方",
-    "hero_title_line1": "天然磷脂",
-    "hero_title_line2": "为稳定供应而设计",
-    "hero_description": "ISO 22000认证的大豆卵磷脂和高纯度磷脂衍生物，年产10,000吨，非转基因IP可追溯性，来自中国的可靠供应连续性。",
-    "hero_guarantee": "在全球采购不确定性中保证供应稳定。",
+    "seo_title": "让每一批配方表现稳定 | Lecprima 卵磷脂与磷脂",
+    "seo_description": "面向应用问题匹配的卵磷脂与磷脂原料，提供清晰规格、批次文件和技术支持，帮助配方从样品评估走向放大讨论。",
+    "seo_keywords": "应用匹配卵磷脂, 配方信心, 大豆卵磷脂供应商, 磷脂原料, 卵磷脂技术资料, COA TDS 卵磷脂, 磷脂酰胆碱供应商, 磷脂酰丝氨酸供应商, Lecprima",
+    "hero_subtitle": "面向应用匹配的卵磷脂与磷脂原料",
+    "hero_title_line1": "让每一批",
+    "hero_title_line2": "配方表现稳定",
+    "hero_description": "清晰规格、批次文件和及时技术支持，帮助食品、营养、制药、个护和饲料团队从样品评估推进到生产讨论。",
+    "hero_guarantee": "为配方信心而建：先匹配问题，再验证规格，最后以有文件支撑的质量放大。",
+    "hero_badges": {
+      "clear_specs": "清晰规格",
+      "batch_coa": "批次 COA",
+      "application_fit": "应用匹配",
+      "sample_to_scale": "样品到放大"
+    },
     "brand_statement": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
-    "explore_products": "探索产品系统",
-    "contact_engineer": "联系工程师",
-    "industries_subtitle": "服务全球行业",
-    "industries_title": "应用行业",
+    "explore_products": "查找合适原料",
+    "contact_engineer": "索取技术资料",
+    "industries_subtitle": "从配方问题开始",
+    "industries_title": "买家希望我们解决的问题",
     "industries": {
       "chocolate": {
         "title": "巧克力和糖果",
@@ -63,8 +69,34 @@
         "desc": "能量来源，颗粒粘合"
       }
     },
-    "systems_subtitle": "综合解决方案",
-    "systems_title": "六大功能系统",
+    "problem_cards": {
+      "chocolate": {
+        "title": "巧克力粘度与浇模流动性",
+        "body": "从液体大豆卵磷脂等级开始，用于买方验证的巧克力配方中评估流动、浇模和脂肪体系。"
+      },
+      "beverage": {
+        "title": "速溶饮料润湿与分散",
+        "body": "当结团、脂肪上浮或润湿速度慢影响放大时，对比改性卵磷脂和粉末形式。"
+      },
+      "bakery": {
+        "title": "烘焙面团操作性与质构",
+        "body": "使用粉末或液体卵磷脂体系评估面团操作性、脂肪分布和成品质构。"
+      },
+      "clean_label": {
+        "title": "清洁标签无大豆替代",
+        "body": "当配方需要无大豆来源和买方认可的过敏原定位时，评估葵花卵磷脂选项。"
+      },
+      "purity": {
+        "title": "PC/PS 纯度选择",
+        "body": "根据目标纯度、储存条件和文件需求选择磷脂酰胆碱或磷脂酰丝氨酸等级。"
+      },
+      "qa": {
+        "title": "QA 文件与批次验证",
+        "body": "在供应商资质审核或生产试验前，索取 COA、TDS、SDS/MSDS 和证书文件。"
+      }
+    },
+    "systems_subtitle": "产品系统",
+    "systems_title": "按形态、功能和文件需求选择",
     "systems": [
       "液体乳化剂系统",
       "干式乳化剂系统",
@@ -96,28 +128,229 @@
         "desc": "直接联系应用工程师"
       }
     },
-    "resilience_subtitle": "供应链韧性",
-    "resilience_title": "全球原料采购的安全港湾",
-    "resilience_description": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
-    "verify_quality": "验证质量和可追溯性",
+    "resilience_subtitle": "配方信心",
+    "resilience_title": "为 QA、采购和研发提供清晰答案",
+    "resilience_description": "每一次原料讨论都应把真实应用问题连接到规格、文件和样品验证。Lecprima 将这些要素清晰呈现，帮助您的团队在商业放大前评估匹配度。",
+    "verify_quality": "查看质量文件",
     "resilience": {
       "supply_continuity": {
-        "title": "中国基地供应连续性",
-        "desc": "从采购基地到GMP车间的稳定生产计划。"
+        "title": "应用匹配选型",
+        "desc": "从配方问题出发，再比较形态、等级和使用场景。"
       },
       "procurement_confidence": {
-        "title": "文档化采购信心",
+        "title": "有文件支撑的采购审核",
         "desc": "COA、TDS、MSDS和认证文件支持供应商资质审核。"
       },
       "farm_to_shipment": {
-        "title": "可追溯的农场到装运控制",
+        "title": "批次级验证",
         "desc": "黑龙江非转基因IP采购与批次级质量记录相关联。"
       }
     },
-    "cta_title": "从田间到配方",
-    "cta_description": "每一步都精准控制。告诉我们您的产品需求。我们的农业和应用工程师为稳定的长期磷脂采购提供定制建议。",
+    "cta_title": "告诉我们您的配方需要解决什么问题",
+    "cta_description": "请分享应用场景、目标规格、文件需求、样品请求和数量范围。我们会帮助将讨论导向合适的卵磷脂或磷脂体系。",
     "email_inquiry": "邮件询盘",
     "whatsapp_contact": "WhatsApp联系"
+  },
+  "products_page": {
+    "seo_title": "按应用匹配的卵磷脂与磷脂产品 | Lecprima",
+    "seo_description": "按应用问题、规格和文件需求选择大豆卵磷脂、磷脂酰胆碱、磷脂酰丝氨酸、葵花卵磷脂、大豆蛋白和纤维体系。",
+    "seo_keywords": "应用匹配卵磷脂产品, 磷脂产品选型, 大豆卵磷脂技术资料, 磷脂酰胆碱供应商, 磷脂酰丝氨酸供应商, COA TDS 卵磷脂",
+    "hero_title": "按应用问题选择卵磷脂与磷脂",
+    "hero_description": "比较形态、规格、文件和验证匹配度。",
+    "intro": "从配方或采购问题开始，再比较形态、等级、规格、文件和买方验证需求。每个产品页面都保留核心规格和应用场景，便于 QA、研发和采购审核。",
+    "problem_fit_label": "问题匹配",
+    "no_products": "没有产品匹配该筛选条件。",
+    "filters": {
+      "all": "全部",
+      "liquid": "液体",
+      "powder": "粉末",
+      "high_purity": "高纯度",
+      "allergen_free": "无过敏原",
+      "protein_fiber": "蛋白/纤维"
+    }
+  },
+  "product_detail": {
+    "not_found_title": "产品未找到 | Lecprima",
+    "not_found_description": "未找到请求的产品。",
+    "not_found_heading": "产品未找到",
+    "back_to_products": "返回产品",
+    "evaluation_title": "该产品可帮助评估什么",
+    "evaluation_description": "在供应商资质审核、配方试验或生产放大前，索取 COA、TDS、SDS/MSDS 或样品。",
+    "request_docs_sample": "索取 COA / TDS / 样品",
+    "specifications_tab": "规格",
+    "applications_tab": "应用与痛点",
+    "specifications_title": "产品规格",
+    "applications_title": "应用与痛点",
+    "pain_point_label": "痛点",
+    "recommended_product_label": "推荐产品",
+    "dosage_label": "用量",
+    "technical_effect_label": "技术效果"
+  },
+  "industry_page": {
+    "seo_title": "从问题到产品的应用指南 | Lecprima",
+    "seo_description": "将配方问题匹配到卵磷脂、磷脂、大豆蛋白和膳食纤维体系，并提供文件与买方验证参考。",
+    "seo_keywords": "卵磷脂应用问题, 磷脂配方指南, 食品乳化剂选择, 营养补充剂磷脂原料, 卵磷脂技术资料",
+    "hero_title": "从问题到产品的应用指南",
+    "hero_description": "将配方问题匹配到产品形态、规格、文件和买方验证需求。",
+    "answers_eyebrow": "买家会搜索的答案",
+    "answers_title": "先从问题开始，再比较原料体系",
+    "answers_description": "这些应用答案把常见买家问题连接到 Lecprima 产品体系和文件需求。它们是技术讨论的起点，不是通用性能保证。",
+    "problem_answers": [
+      {
+        "question": "哪种卵磷脂可用于评估巧克力粘度和浇模流动性？",
+        "answer": "HXY-1SP、HXY-3SP 等液体大豆卵磷脂等级通常可作为买方主导的巧克力流动性、浇模和脂肪体系试验起点。最终用量和工艺匹配需在买方配方中验证。"
+      },
+      {
+        "question": "速溶饮料粉末结团或润湿慢时应比较什么？",
+        "answer": "可按润湿行为、脂肪分散、沉降和文件需求，对比改性卵磷脂、水解液体卵磷脂和粉末体系，再进入放大。"
+      },
+      {
+        "question": "烘焙团队如何处理面团操作性和质构问题？",
+        "answer": "可评估粉末和液体卵磷脂体系对面团操作性、脂肪分布和成品质构的影响，同时由 QA 审核规格、COA 和工艺适用性。"
+      },
+      {
+        "question": "什么时候值得评估葵花卵磷脂？",
+        "answer": "当产品简报需要无大豆来源、清洁标签定位或买方审核的过敏原文件时，葵花卵磷脂是实际可比选项。"
+      },
+      {
+        "question": "补充剂和营养团队如何选择 PC 或 PS 等级？",
+        "answer": "从目标纯度、储存条件、目标剂型和文件要求开始。高纯 PC 和 PS 等级应作为买方审核的配方输入，而不是医疗宣称。"
+      },
+      {
+        "question": "采购在供应商资质审核前应索取哪些文件？",
+        "answer": "索取 COA、TDS、SDS/MSDS、适用证书副本、包装信息、储存条件以及买方 QA 流程所需的批次记录。"
+      }
+    ],
+    "filters": {
+      "all": "全部",
+      "food": "食品",
+      "pharma_supplements": "制药/补充剂",
+      "cosmetics": "化妆品",
+      "industrial": "工业",
+      "feed": "饲料"
+    },
+    "table": {
+      "industry": "行业",
+      "pain_points": "关键痛点",
+      "products": "推荐产品",
+      "dosage": "用量",
+      "effect": "技术效果"
+    },
+    "solutions": [
+      {
+        "industry": "巧克力与烘焙",
+        "pain_points": "高粘度、浇模困难、面团延展性差、奶粉结团",
+        "products": "大豆卵磷脂液体 HXY-1SP / HXY-3SP、卵磷脂粉 HXY-PLP",
+        "dosage": "巧克力：总脂肪 0.3-0.5%；烘焙：面粉 0.3-1%；奶粉：0.5-2% 喷涂",
+        "effect": "经买方验证后，支持流动性、面团操作性和粉末分散目标"
+      },
+      {
+        "industry": "乳制品与速溶饮料",
+        "pain_points": "粉末结团、溶解慢、脂肪上浮、乳化不均",
+        "products": "改性卵磷脂 HXY-PLW、大豆卵磷脂液体 HXY-1SPN、小包装低聚糖",
+        "dosage": "0.2-2% 干/湿添加、喷涂或干混",
+        "effect": "经买方验证后，支持分散、乳化稳定和口感目标"
+      },
+      {
+        "industry": "营养品/补充剂",
+        "pain_points": "原料分散性和配方稳定性筛选",
+        "products": "PC 50-90%（脂质体/软胶囊）、PS 20-70%、改性卵磷脂 HXY-PLW",
+        "dosage": "PC 高纯溶液/软胶囊、PS 油基软胶囊、改性粉末干混",
+        "effect": "支持买方主导的分散性、稳定性和感官评估"
+      },
+      {
+        "industry": "化妆品/护肤",
+        "pain_points": "乳液分层、活性物分散差、过敏原风险",
+        "products": "葵花卵磷脂 HXY-SFL / HXY-SFP、PC 30-50%",
+        "dosage": "霜/乳液中 0.5-2%",
+        "effect": "稳定乳化、增强保湿、降低过敏原风险"
+      },
+      {
+        "industry": "涂料/皮革",
+        "pain_points": "颜料分散不均、乳液分层、流平差",
+        "products": "改性卵磷脂 HXY-2SP、大豆卵磷脂液体 HXY-1SP",
+        "dosage": "固含量的 0.3-1%",
+        "effect": "改善乳液稳定性、增强颜料分布、改善膜面平滑度和附着力"
+      },
+      {
+        "industry": "蛋白饮料/肉制品",
+        "pain_points": "蛋白沉淀、脂肪分离、出品率低",
+        "products": "凝胶型大豆分离蛋白 J7501、大豆膳食纤维 J8000/J18000、卵磷脂粉 HXY-PLP",
+        "dosage": "肉制品：直接添加 2-4% 蛋白；饮料：0.5-2% 纤维或卵磷脂",
+        "effect": "稳定蛋白网络，防止脂肪分离，提高出品率，改善饮料顺滑度"
+      },
+      {
+        "industry": "饲料/动物营养",
+        "pain_points": "脂溶性营养吸收低、粉末结块、稳定性差",
+        "products": "小包装大豆蛋白/低聚糖、大豆膳食纤维",
+        "dosage": "混入饲料配方",
+        "effect": "营养分布均匀，改善肠道健康，粉末流动性更好"
+      },
+      {
+        "industry": "高纤维食品",
+        "pain_points": "高纤维配方和质构需求",
+        "products": "大豆膳食纤维 J18000、小包装大豆低聚糖",
+        "dosage": "添加 1-5%",
+        "effect": "经买方验证后，支持纤维含量和质构配方目标"
+      }
+    ],
+    "notes": {
+      "dosage": "* 推荐用量为典型范围，请根据具体配方和工艺调整。",
+      "custom": "* 如需定制规格、文件审核、样品请求或买方验证问题，请联系应用团队。"
+    },
+    "cta": "讨论技术资料或样品"
+  },
+  "quality_page": {
+    "seo_title": "质量文件与批次验证 | Lecprima",
+    "seo_description": "查看 Lecprima 质量体系、证书、COA 文件、TDS 支持和可追溯输入，用于供应商资质审核。",
+    "seo_keywords": "大豆卵磷脂 COA, 卵磷脂 TDS, 磷脂质量文件, 卵磷脂供应商资质审核, 卵磷脂批次验证",
+    "breadcrumb": "质量与合规",
+    "hero_title": "支撑配方信心的质量文件",
+    "hero_description": "COA、TDS、证书和批次输入，用于供应商资质审核。",
+    "certifications_eyebrow": "国际认可",
+    "certifications_title": "认证",
+    "certifications_description": "证书、COA、TDS 和相关记录帮助 QA 与采购团队在配方试验和生产讨论前验证供应商匹配度。",
+    "certifications": [
+      { "name": "ISO 22000:2018", "desc": "食品安全管理体系 - 全生产线" },
+      { "name": "FSSC 22000", "desc": "GFSI 认可 - 全生产线" },
+      { "name": "HACCP", "desc": "危害分析与关键控制点 - 全生产线" },
+      { "name": "清真认证", "desc": "适用于部分产品线" },
+      { "name": "非转基因 IP", "desc": "身份保持 - 指定等级" }
+    ],
+    "qc_eyebrow": "严格检测",
+    "qc_title": "质量控制体系",
+    "qc_description": "批次检测和技术文件支持可重复的配方决策、采购审核和买方资质评估流程。",
+    "monitored_parameters": "监控参数",
+    "parameter": "参数",
+    "testing_method": "检测方法",
+    "qc_params": [
+      { "param": "丙酮不溶物", "method": "AOCS Ja 4-46" },
+      { "param": "酸值", "method": "AOCS Ja 6-55" },
+      { "param": "过氧化值", "method": "GB 5009.227" },
+      { "param": "水分", "method": "GB 5009.3" },
+      { "param": "重金属", "method": "ICP-MS" }
+    ],
+    "traceability_eyebrow": "从种植到装运",
+    "traceability_title": "追溯链",
+    "traceability": [
+      { "title": "黑龙江非转基因农场", "desc": "来自认证农场的身份保持采购" },
+      { "title": "IP 隔离处理", "desc": "专用储存和运输通道" },
+      { "title": "GMP 生产", "desc": "计算机控制自动化生产线" },
+      { "title": "批次检测", "desc": "按 AOCS/GB 标准进行全参数检测" },
+      { "title": "出具 COA", "desc": "每批次可追溯分析证书" }
+    ],
+    "documents_eyebrow": "技术资源",
+    "documents_title": "文件下载中心",
+    "documents_description": "COA、证书文件、验柜报告和标准帮助买家在采购或样品评估前验证有文件支撑的磷脂输入。",
+    "documents": [
+      { "name": "FSSC 22000 证书", "desc": "食品安全体系认证副本" },
+      { "name": "ISO 22000 证书", "desc": "食品安全管理体系证书" },
+      { "name": "HACCP 证书", "desc": "危害分析与关键控制点认证" },
+      { "name": "集装箱验柜报告", "desc": "装柜和集装箱检查文件" },
+      { "name": "GB 1886.358-2022 标准", "desc": "适用中国国家标准参考" },
+      { "name": "1SP 非转基因检测报告", "desc": "HXY-1SP 等级参考报告" }
+    ],
+    "open_fssc": "打开 FSSC 22000 证书"
   },
   "insights_page": {
     "seo_title": "磷脂与卵磷脂文章 | PC、PS与食品配方指南",

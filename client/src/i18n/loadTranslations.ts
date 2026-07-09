@@ -1,12 +1,20 @@
 import { DEFAULT_LOCALE, type Locale } from "./config";
-import { getMessages, type TranslationData } from "./messages";
+import {
+  clearCachedMessages,
+  getCachedMessages,
+  hasCachedMessages,
+  loadMessages,
+  preloadMessages,
+  type TranslationData,
+} from "./messages";
 
 /**
- * Kept as an async-compatible API for existing callers. Messages are bundled
- * at build time, so server rendering never depends on browser fetch().
+ * Locale messages are split by language for the browser. Static pre-rendering
+ * seeds the current locale into the page so hydration starts with translated
+ * text and later language switches load only the selected JSON chunk.
  */
 export async function loadTranslations(locale: Locale): Promise<TranslationData> {
-  return getMessages(locale);
+  return loadMessages(locale);
 }
 
 export function getTranslationValue(
@@ -27,11 +35,16 @@ export function getTranslationValue(
   return typeof current === "string" ? current : fallback ?? key;
 }
 
-/** No network cache is needed because messages are bundled with the app. */
-export function clearTranslationCache(): void {}
-export function hasCachedTranslations(locale: Locale): boolean {
-  return Boolean(getMessages(locale));
+export function clearTranslationCache(): void {
+  clearCachedMessages();
 }
-export function preloadTranslations(_locale: Locale): void {}
+export function hasCachedTranslations(locale: Locale): boolean {
+  return hasCachedMessages(locale);
+}
+export function preloadTranslations(locale: Locale): void {
+  preloadMessages(locale);
+}
+
+export { getCachedMessages };
 
 export { DEFAULT_LOCALE };

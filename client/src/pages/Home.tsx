@@ -205,33 +205,66 @@ export default function Home() {
 
   const formulationProblems = [
     {
-      title: "Chocolate viscosity and molding flow",
-      body: "Start with liquid soy lecithin grades for flow, molding and fat-system evaluation in buyer-validated chocolate formulas.",
+      title: t(
+        "homepage.problem_cards.chocolate.title",
+        "Chocolate viscosity and molding flow"
+      ),
+      body: t(
+        "homepage.problem_cards.chocolate.body",
+        "Start with liquid soy lecithin grades for flow, molding and fat-system evaluation in buyer-validated chocolate formulas."
+      ),
       icon: Candy,
     },
     {
-      title: "Instant beverage wetting and dispersion",
-      body: "Compare modified lecithin and powder formats when clumping, floating fat or slow wetting blocks scale-up.",
+      title: t(
+        "homepage.problem_cards.beverage.title",
+        "Instant beverage wetting and dispersion"
+      ),
+      body: t(
+        "homepage.problem_cards.beverage.body",
+        "Compare modified lecithin and powder formats when clumping, floating fat or slow wetting blocks scale-up."
+      ),
       icon: Milk,
     },
     {
-      title: "Bakery dough handling and texture",
-      body: "Use powder or liquid lecithin systems to evaluate dough handling, fat distribution and finished-product texture.",
+      title: t(
+        "homepage.problem_cards.bakery.title",
+        "Bakery dough handling and texture"
+      ),
+      body: t(
+        "homepage.problem_cards.bakery.body",
+        "Use powder or liquid lecithin systems to evaluate dough handling, fat distribution and finished-product texture."
+      ),
       icon: Croissant,
     },
     {
-      title: "Clean-label soy-free substitution",
-      body: "Review sunflower lecithin options when the formula needs a soy-free source and buyer-approved allergen positioning.",
+      title: t(
+        "homepage.problem_cards.clean_label.title",
+        "Clean-label soy-free substitution"
+      ),
+      body: t(
+        "homepage.problem_cards.clean_label.body",
+        "Review sunflower lecithin options when the formula needs a soy-free source and buyer-approved allergen positioning."
+      ),
       icon: Leaf,
     },
     {
-      title: "PC/PS purity selection",
-      body: "Select phosphatidylcholine or phosphatidylserine grades by target purity, storage condition and documentation needs.",
+      title: t("homepage.problem_cards.purity.title", "PC/PS purity selection"),
+      body: t(
+        "homepage.problem_cards.purity.body",
+        "Select phosphatidylcholine or phosphatidylserine grades by target purity, storage condition and documentation needs."
+      ),
       icon: Brain,
     },
     {
-      title: "QA documentation and batch verification",
-      body: "Request COA, TDS, SDS/MSDS and certificate files before supplier qualification or production trials.",
+      title: t(
+        "homepage.problem_cards.qa.title",
+        "QA documentation and batch verification"
+      ),
+      body: t(
+        "homepage.problem_cards.qa.body",
+        "Request COA, TDS, SDS/MSDS and certificate files before supplier qualification or production trials."
+      ),
       icon: FileText,
     },
   ];
@@ -297,10 +330,10 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-3 mb-8">
               {[
-                "Clear Specs",
-                "Batch COA",
-                "Application Fit",
-                "Sample to Scale",
+                t("homepage.hero_badges.clear_specs", "Clear Specs"),
+                t("homepage.hero_badges.batch_coa", "Batch COA"),
+                t("homepage.hero_badges.application_fit", "Application Fit"),
+                t("homepage.hero_badges.sample_to_scale", "Sample to Scale"),
               ].map(badge => (
                 <span
                   key={badge}
