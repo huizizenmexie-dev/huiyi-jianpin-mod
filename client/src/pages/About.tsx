@@ -110,15 +110,15 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-12">
           <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">Home</Link>
+            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">{t("common.home", "Home")}</Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white">About Us</span>
+            <span className="text-white">{t("about_page.breadcrumb", "About Us")}</span>
           </nav>
           <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            About Lecprima
+            {t("about_page.hero_title", "About Lecprima")}
           </h1>
           <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            Rooted in black soil. Built for stable global supply.
+            {t("about_page.hero_description", "Rooted in black soil. Built for stable global supply.")}
           </p>
         </div>
       </section>
@@ -130,23 +130,23 @@ export default function About() {
             <FadeIn>
               <div>
                 <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                  Our Story
+                  {t("about_page.story_eyebrow", "Our Story")}
                 </p>
                 <h2 className="font-heading font-bold text-3xl text-deep-brown mb-6">
-                  From China's Premier Soybean Belt to the World
+                  {t("about_page.story_title", "From China's Premier Soybean Belt to the World")}
                 </h2>
                 <div className="space-y-4 text-medium-gray leading-relaxed">
                   <p>
-                    Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.
+                    {t("about_page.story_paragraphs.0", "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services.")}
                   </p>
                   <p>
-                    From Harbin and Liaocheng, Lecprima connects export service, production planning, quality management and documentation for global B2B buyers of soy lecithin, phospholipids and soy ingredient systems.
+                    {t("about_page.story_paragraphs.1", "From Harbin and Liaocheng, Lecprima connects export service, production planning, quality management and documentation for global B2B buyers of soy lecithin, phospholipids and soy ingredient systems.")}
                   </p>
                   <p>
-                    The Liaocheng manufacturing facility includes a 7,000㎡ GMP-certified workshop in Shandong Province, operating three independent computer-controlled automated production lines with an annual processing capacity of 10,000 tons for soy lecithin series products.
+                    {t("about_page.story_paragraphs.2", "The Liaocheng manufacturing facility includes a 7,000㎡ GMP-certified workshop in Shandong Province, operating three independent computer-controlled automated production lines with an annual processing capacity of 10,000 tons for soy lecithin series products.")}
                   </p>
                   <p>
-                    We maintain full quality control from seed to shipment: raw materials sourced from Heilongjiang Non-GMO Identity Preserved (IP) farms; production executed under ISO 22000, FSSC 22000, and HACCP systems. Every batch undergoes rigorous testing for Acetone Insoluble, Acid Value, Peroxide Value, and Heavy Metals, with traceable Certificates of Analysis provided.
+                    {t("about_page.story_paragraphs.3", "We maintain full quality control from seed to shipment: raw materials sourced from Heilongjiang Non-GMO Identity Preserved (IP) farms; production executed under ISO 22000, FSSC 22000, and HACCP systems. Every batch undergoes rigorous testing for Acetone Insoluble, Acid Value, Peroxide Value, and Heavy Metals, with traceable Certificates of Analysis provided.")}
                   </p>
                 </div>
               </div>
@@ -155,7 +155,7 @@ export default function About() {
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <img
                   src={QUALITY_IMG}
-                  alt="Quality control technician verifying traceable phospholipid supply"
+                  alt={t("about_page.story_image_alt", "Quality control technician verifying traceable phospholipid supply")}
                   className="w-full h-[400px] object-cover"
                 />
               </div>
@@ -169,10 +169,10 @@ export default function About() {
         <div className="container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { ...counter1, label: "GMP Workshop" },
-              { ...counter2, label: "Automated Production Lines", suffix: "" },
-              { ...counter3, label: "Annual Capacity (Tons)" },
-              { ...counter4, label: "Batch Traceability" },
+              { ...counter1, label: t("about_page.stats.gmp_workshop", "GMP Workshop") },
+              { ...counter2, label: t("about_page.stats.automated_lines", "Automated Production Lines"), suffix: "" },
+              { ...counter3, label: t("about_page.stats.annual_capacity", "Annual Capacity (Tons)") },
+              { ...counter4, label: t("about_page.stats.batch_traceability", "Batch Traceability") },
             ].map((item, i) => (
               <div key={i} ref={item.ref} className="text-center">
                 <div className="font-heading font-bold text-4xl md:text-5xl text-white mb-2">
@@ -194,10 +194,10 @@ export default function About() {
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center mb-14">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Our Philosophy
+                {t("about_page.philosophy_eyebrow", "Our Philosophy")}
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                Guided by Purpose
+                {t("about_page.philosophy_title", "Guided by Purpose")}
               </h2>
             </div>
           </FadeIn>
@@ -209,10 +209,10 @@ export default function About() {
                   <Eye className="w-6 h-6 text-earth-green" />
                 </div>
                 <h3 className="font-heading font-semibold text-deep-brown text-xl mb-3">
-                  Vision
+                  {t("about_page.vision_title", "Vision")}
                 </h3>
                 <p className="text-medium-gray leading-relaxed">
-                  Unlocking the full value of every Heilongjiang soybean for global health industries while supporting secure, long-term ingredient sourcing.
+                  {t("about_page.vision_description", "Unlocking the full value of every Heilongjiang soybean for global health industries while supporting secure, long-term ingredient sourcing.")}
                 </p>
               </div>
             </FadeIn>
@@ -222,10 +222,10 @@ export default function About() {
                   <ShieldCheck className="w-6 h-6 text-earth-green" />
                 </div>
                 <h3 className="font-heading font-semibold text-deep-brown text-xl mb-3">
-                  Quality Policy
+                  {t("about_page.quality_policy_title", "Quality Policy")}
                 </h3>
                 <p className="text-medium-gray leading-relaxed">
-                  Standards define quality. Every batch tested. Every batch traceable. Every shipment documented for procurement confidence.
+                  {t("about_page.quality_policy_description", "Standards define quality. Every batch tested. Every batch traceable. Every shipment documented for procurement confidence.")}
                 </p>
               </div>
             </FadeIn>
@@ -239,10 +239,10 @@ export default function About() {
           <FadeIn>
             <div className="text-center mb-14">
               <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                Our Presence
+                {t("about_page.presence_eyebrow", "Our Presence")}
               </p>
               <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                Locations
+                {t("about_page.locations_title", "Locations")}
               </h2>
             </div>
           </FadeIn>
@@ -252,10 +252,10 @@ export default function About() {
               <div className="h-full min-h-[220px] bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 text-center flex flex-col items-center justify-center">
                 <MapPin className="w-8 h-8 text-earth-green mx-auto mb-4" />
                 <h3 className="font-heading font-semibold text-deep-brown text-lg mb-2">
-                  Headquarters & Sourcing Base
+                  {t("about_page.headquarters_title", "Headquarters & Sourcing Base")}
                 </h3>
                 <p className="text-medium-gray">
-                  Harbin, Heilongjiang Province, China
+                  {t("about_page.headquarters_location", "Harbin, Heilongjiang Province, China")}
                 </p>
               </div>
             </FadeIn>
@@ -263,10 +263,10 @@ export default function About() {
               <div className="h-full min-h-[220px] bg-white rounded-xl p-8 shadow-sm border border-earth-green/10 text-center flex flex-col items-center justify-center">
                 <MapPin className="w-8 h-8 text-earth-green mx-auto mb-4" />
                 <h3 className="font-heading font-semibold text-deep-brown text-lg mb-2">
-                  Manufacturing Facility
+                  {t("about_page.factory_title", "Manufacturing Facility")}
                 </h3>
                 <p className="text-medium-gray">
-                  Liaocheng, Shandong Province, China (GMP Standard)
+                  {t("about_page.factory_location", "Liaocheng, Shandong Province, China (GMP Standard)")}
                 </p>
               </div>
             </FadeIn>

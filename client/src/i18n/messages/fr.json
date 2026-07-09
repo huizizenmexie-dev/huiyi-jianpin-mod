@@ -11,7 +11,12 @@
     "learn_more": "En Savoir Plus",
     "loading": "Chargement...",
     "error": "Erreur",
-    "not_found": "Page Non Trouvée"
+    "not_found": "Page Non Trouvée",
+    "insights": "Guides",
+    "all_products": "Tous les Produits",
+    "whatsapp": "WhatsApp",
+    "wechat_contact": "WeChat : +86 18646556618",
+    "contact_options": "Options de contact"
   },
   "homepage": {
     "seo_title": "Faire Performer Chaque Lot | Lecprima Lécithine et Phospholipides",
@@ -191,8 +196,20 @@
       "sending": "Envoi en cours...",
       "success": "Merci ! Nous répondrons dans les 24 heures.",
       "error": "Une erreur s'est produite. Veuillez réessayer.",
-      "error_required": "Veuillez remplir les champs obligatoires avec un e-mail valide."
-    }
+      "error_required": "Veuillez remplir les champs obligatoires avec un e-mail valide.",
+      "application": "Application / Industrie",
+      "application_placeholder": "Alimentaire, pharma, cosmétiques...",
+      "monthly_quantity": "Quantité Mensuelle Estimée",
+      "monthly_quantity_placeholder": "100 kg, 1 tonne, 10 tonnes...",
+      "port": "Port de Destination / Incoterm",
+      "port_placeholder": "FOB, CIF, Port de Shanghai...",
+      "sample": "Demande d'Échantillon",
+      "sample_select": "Sélectionner...",
+      "sample_yes": "Oui, j'ai besoin d'échantillons",
+      "sample_no": "Non, pas maintenant"
+    },
+    "brand_statement": "A Lecprima é uma marca global B2B operada pela Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Operamos nossa própria unidade de fabricação em Liaocheng, Shandong, China, oferecendo produção, gestão de qualidade e serviços de exportação confiáveis.",
+    "facility_operator_statement": "Operamos nossa própria unidade de fabricação em Liaocheng, Shandong, China, oferecendo produção, gestão de qualidade e serviços de exportação confiáveis."
   },
   "footer": {
     "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
@@ -202,7 +219,9 @@
     "location_harbin": "Harbin (Siège)",
     "location_liaocheng": "Liaocheng (Usine)",
     "certifications": "Certifications",
-    "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Tous droits réservés."
+    "copyright": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Tous droits réservés.",
+    "brand_name": "Lecprima",
+    "brand_statement": "A Lecprima é uma marca global B2B operada pela Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Operamos nossa própria unidade de fabricação em Liaocheng, Shandong, China, oferecendo produção, gestão de qualidade e serviços de exportação confiáveis."
   },
   "products_page": {
     "seo_title": "Produits lécithine et phospholipides par application | Lecprima",
@@ -238,5 +257,293 @@
     "recommended_product_label": "Produit recommandé",
     "dosage_label": "Dosage",
     "technical_effect_label": "Effet technique"
+  },
+  "about_page": {
+    "seo_title": "À propos de Lecprima | Approvisionnement stable en phospholipides depuis la Chine",
+    "seo_description": "Découvrez comment Lecprima relie les opérations export à Harbin, la production de phospholipides à Liaocheng et l'approvisionnement en soja du Heilongjiang pour un approvisionnement mondial stable et traçable.",
+    "seo_keywords": "fournisseur phospholipides Lecprima, fabricant phospholipides Chine, soja Non-GMO, usine GMP lécithine de soja, fournisseur fiable lécithine",
+    "breadcrumb": "À propos",
+    "hero_title": "À propos de Lecprima",
+    "hero_description": "Ancrée dans les sols noirs. Conçue pour un approvisionnement mondial stable.",
+    "story_eyebrow": "Notre histoire",
+    "story_title": "Du premier bassin soja de Chine au monde",
+    "story_paragraphs": [
+      "Lecprima est une marque B2B mondiale exploitée par Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. Nous exploitons notre propre site de fabrication à Liaocheng, Shandong, Chine, avec production, gestion qualité et services export fiables.",
+      "Depuis Harbin et Liaocheng, Lecprima relie service export, planification de production, gestion qualité et documentation pour les acheteurs B2B mondiaux de lécithine de soja, phospholipides et systèmes d'ingrédients de soja.",
+      "Le site de Liaocheng comprend un atelier GMP de 7 000㎡ dans le Shandong, trois lignes automatisées indépendantes contrôlées par ordinateur et une capacité annuelle de 10 000 tonnes pour les produits de lécithine de soja.",
+      "Nous maintenons le contrôle qualité de la graine à l'expédition : matières premières issues de fermes Non-GMO IP du Heilongjiang ; production sous ISO 22000, FSSC 22000 et HACCP. Chaque lot est testé pour les insolubles dans l'acétone, l'indice d'acide, l'indice de peroxyde et les métaux lourds, avec COA traçable."
+    ],
+    "story_image_alt": "Technicien qualité vérifiant un approvisionnement traçable en phospholipides",
+    "stats": {
+      "gmp_workshop": "Atelier GMP",
+      "automated_lines": "Lignes Automatisées",
+      "annual_capacity": "Capacité Annuelle (tonnes)",
+      "batch_traceability": "Traçabilité des Lots"
+    },
+    "philosophy_eyebrow": "Notre philosophie",
+    "philosophy_title": "Guidés par l'objectif",
+    "vision_title": "Vision",
+    "vision_description": "Libérer la valeur de chaque soja du Heilongjiang pour les industries mondiales de la santé tout en soutenant un sourcing sécurisé et durable.",
+    "quality_policy_title": "Politique Qualité",
+    "quality_policy_description": "Les standards définissent la qualité. Chaque lot est testé, traçable et documenté pour donner confiance aux achats.",
+    "presence_eyebrow": "Notre présence",
+    "locations_title": "Implantations",
+    "headquarters_title": "Siège et base d'approvisionnement",
+    "headquarters_location": "Harbin, Province du Heilongjiang, Chine",
+    "factory_title": "Site de fabrication",
+    "factory_location": "Liaocheng, Province du Shandong, Chine (standard GMP)"
+  },
+  "industry_page": {
+    "seo_title": "Guide application problème-produit | Lecprima",
+    "seo_description": "Associez les problèmes de formulation aux systèmes lécithine, phospholipides, protéine de soja et fibres avec documentation et validation côté acheteur.",
+    "seo_keywords": "problèmes application lécithine, guide formulation phospholipides, sélection émulsifiant alimentaire, ingrédients phospholipides compléments, données techniques lécithine",
+    "hero_title": "Guide application problème-produit",
+    "hero_description": "Relier le problème de formulation à la forme produit, aux spécifications, à la documentation et aux besoins de validation.",
+    "answers_eyebrow": "Réponses recherchées par les acheteurs",
+    "answers_title": "Commencer par le problème, puis comparer le système ingrédient",
+    "answers_description": "Ces réponses relient les questions fréquentes des acheteurs aux systèmes produits Lecprima et aux besoins documentaires. Elles servent de point de départ technique, sans promesse de performance universelle.",
+    "problem_answers": [
+      {
+        "question": "Quelle lécithine aide à évaluer la viscosité et l'écoulement du chocolat ?",
+        "answer": "Les grades liquides de lécithine de soja comme HXY-1SP et HXY-3SP sont des points de départ courants pour les essais d'écoulement, de moulage et de système gras menés par l'acheteur. Le dosage final doit être validé dans la formule du client."
+      },
+      {
+        "question": "Que comparer quand les boissons instantanées font des grumeaux ou se mouillent lentement ?",
+        "answer": "La lécithine modifiée, la lécithine liquide hydrolysée et les systèmes poudre peuvent être comparés selon le mouillage, la dispersion des graisses, la sédimentation et les besoins documentaires avant le scale-up."
+      },
+      {
+        "question": "Comment aborder les questions de travail de pâte et de texture en boulangerie ?",
+        "answer": "Les systèmes poudre et liquide peuvent être évalués pour le travail de pâte, la distribution des graisses et la texture finale pendant que QA examine les spécifications, le COA et l'adéquation procédé."
+      },
+      {
+        "question": "Quand évaluer la lécithine de tournesol ?",
+        "answer": "La lécithine de tournesol est pertinente lorsque le cahier des charges exige une source sans soja, un positionnement clean-label ou une documentation allergènes examinée par l'acheteur."
+      },
+      {
+        "question": "Comment choisir des grades PC ou PS ?",
+        "answer": "Commencez par la pureté cible, les conditions de stockage, le format prévu et les documents requis. Les grades PC et PS haute pureté restent des intrants de formulation à valider par l'acheteur, pas des allégations médicales."
+      },
+      {
+        "question": "Quels documents demander avant qualification fournisseur ?",
+        "answer": "Demandez COA, TDS, SDS/MSDS, certificats applicables, détails d'emballage, conditions de stockage et enregistrements de lot nécessaires au flux QA de l'acheteur."
+      }
+    ],
+    "filters": {
+      "all": "Tous",
+      "food": "Alimentaire",
+      "pharma_supplements": "Pharma/Compléments",
+      "cosmetics": "Cosmétiques",
+      "industrial": "Industriel",
+      "feed": "Nutrition animale"
+    },
+    "table": {
+      "industry": "Industrie",
+      "pain_points": "Points critiques",
+      "products": "Produits recommandés",
+      "dosage": "Dosage",
+      "effect": "Effet technique"
+    },
+    "solutions": [
+      {
+        "industry": "Chocolat et boulangerie",
+        "pain_points": "Viscosité élevée, moulage difficile, extensibilité de pâte insuffisante, grumeaux dans le lait en poudre",
+        "products": "Lécithine de soja liquide HXY-1SP / HXY-3SP, lécithine poudre HXY-PLP",
+        "dosage": "Chocolat : 0,3-0,5% de la graisse totale ; boulangerie : 0,3-1% de la farine ; lait en poudre : spray 0,5-2%",
+        "effect": "Soutient les objectifs d'écoulement, de travail de pâte et de dispersion après validation acheteur"
+      },
+      {
+        "industry": "Produits laitiers et boissons instantanées",
+        "pain_points": "Agglomération, dissolution lente, graisse flottante, émulsification irrégulière",
+        "products": "Lécithine modifiée HXY-PLW, lécithine de soja liquide HXY-1SPN, oligosaccharide petit conditionnement",
+        "dosage": "0,2-2% en ajout sec/humide, spray ou mélange sec",
+        "effect": "Soutient dispersion, stabilité d'émulsion et sensation en bouche après validation acheteur"
+      },
+      {
+        "industry": "Nutraceutique / compléments",
+        "pain_points": "Criblage de dispersion et de stabilité des ingrédients",
+        "products": "PC 50-90% (liposome/softgel), PS 20-70%, lécithine modifiée HXY-PLW",
+        "dosage": "PC haute pureté en solution/softgel, PS softgel huileux, poudre modifiée en mélange sec",
+        "effect": "Soutient l'évaluation acheteur de dispersibilité, stabilité et sensoriel"
+      },
+      {
+        "industry": "Cosmétiques / soin",
+        "pain_points": "Séparation d'émulsion, mauvaise dispersion des actifs, risque allergène",
+        "products": "Lécithine de tournesol HXY-SFL / HXY-SFP, PC 30-50%",
+        "dosage": "0,5-2% dans crèmes/lotions",
+        "effect": "Émulsion stable, hydratation améliorée, risque allergène réduit"
+      },
+      {
+        "industry": "Peintures / revêtements / cuir",
+        "pain_points": "Dispersion inégale des pigments, séparation d'émulsion, faible nivellement du film",
+        "products": "Lécithine modifiée HXY-2SP, lécithine de soja liquide HXY-1SP",
+        "dosage": "0,3-1% des solides",
+        "effect": "Améliore stabilité d'émulsion, distribution pigmentaire, lissé et adhérence du film"
+      },
+      {
+        "industry": "Boissons protéinées / produits carnés",
+        "pain_points": "Précipitation des protéines, séparation des graisses, rendement faible",
+        "products": "Protéine de soja type gel J7501, fibre alimentaire de soja J8000/J18000, lécithine poudre HXY-PLP",
+        "dosage": "Viande : 2-4% protéine directe ; boisson : 0,5-2% fibre ou lécithine",
+        "effect": "Stabilise le réseau protéique, limite la séparation des graisses, augmente le rendement et adoucit la texture"
+      },
+      {
+        "industry": "Nutrition animale",
+        "pain_points": "Faible absorption des nutriments lipophiles, mottage des poudres, stabilité insuffisante",
+        "products": "Protéine/oligosaccharide soja petit conditionnement, fibre alimentaire de soja",
+        "dosage": "Incorporation dans la formule d'aliment",
+        "effect": "Nutrition uniforme, soutien intestinal et meilleure fluidité des poudres"
+      },
+      {
+        "industry": "Aliments riches en fibres",
+        "pain_points": "Besoins de formulation et de texture riches en fibres",
+        "products": "Fibre alimentaire de soja J18000, oligosaccharide de soja petit conditionnement",
+        "dosage": "Ajout de 1-5%",
+        "effect": "Soutient les objectifs de teneur en fibres et de texture après validation acheteur"
+      }
+    ],
+    "notes": {
+      "dosage": "* Les dosages indiqués sont des plages typiques. Ajuster selon la formulation et le procédé.",
+      "custom": "* Pour spécifications sur mesure, documents, échantillons ou validation acheteur, contactez notre équipe application."
+    },
+    "cta": "Discuter données techniques ou échantillons"
+  },
+  "quality_page": {
+    "seo_title": "Documents qualité et vérification de lot | Lecprima",
+    "seo_description": "Consultez les systèmes qualité, certificats, COA, support TDS et éléments de traçabilité Lecprima pour qualifier les fournisseurs.",
+    "seo_keywords": "COA lécithine soja, TDS lécithine, documents qualité phospholipides, qualification fournisseur lécithine, vérification lot lécithine",
+    "breadcrumb": "Qualité et conformité",
+    "hero_title": "Documents qualité pour la confiance de formulation",
+    "hero_description": "COA, TDS, certificats et données de lot pour la qualification fournisseur.",
+    "certifications_eyebrow": "Reconnaissance mondiale",
+    "certifications_title": "Certifications",
+    "certifications_description": "Certificats, COA, TDS et enregistrements aident QA et achats à vérifier l'adéquation fournisseur avant essais et discussions de production.",
+    "certifications": [
+      {
+        "name": "ISO 22000:2018",
+        "desc": "Système de management de la sécurité alimentaire - lignes complètes"
+      },
+      {
+        "name": "FSSC 22000",
+        "desc": "Reconnu GFSI - lignes complètes"
+      },
+      {
+        "name": "HACCP",
+        "desc": "Analyse des dangers et points critiques - lignes complètes"
+      },
+      {
+        "name": "Certification Halal",
+        "desc": "Lignes produit sélectionnées"
+      },
+      {
+        "name": "Non-GMO IP",
+        "desc": "Identité préservée - grades désignés"
+      }
+    ],
+    "qc_eyebrow": "Tests rigoureux",
+    "qc_title": "Système de contrôle qualité",
+    "qc_description": "Tests de lot et documents techniques soutiennent les décisions de formulation, l'examen achats et les workflows de qualification.",
+    "monitored_parameters": "Paramètres suivis",
+    "parameter": "Paramètre",
+    "testing_method": "Méthode d'essai",
+    "qc_params": [
+      {
+        "param": "Insolubles dans l'acétone",
+        "method": "AOCS Ja 4-46"
+      },
+      {
+        "param": "Indice d'acide",
+        "method": "AOCS Ja 6-55"
+      },
+      {
+        "param": "Indice de peroxyde",
+        "method": "GB 5009.227"
+      },
+      {
+        "param": "Humidité",
+        "method": "GB 5009.3"
+      },
+      {
+        "param": "Métaux lourds",
+        "method": "ICP-MS"
+      }
+    ],
+    "traceability_eyebrow": "De la graine à l'expédition",
+    "traceability_title": "Chaîne de traçabilité",
+    "traceability": [
+      {
+        "title": "Ferme Non-GMO du Heilongjiang",
+        "desc": "Approvisionnement identité préservée auprès de fermes certifiées"
+      },
+      {
+        "title": "Manipulation IP séparée",
+        "desc": "Canaux dédiés de stockage et transport"
+      },
+      {
+        "title": "Production GMP",
+        "desc": "Lignes automatisées contrôlées par ordinateur"
+      },
+      {
+        "title": "Tests de lot",
+        "desc": "Paramètres complets selon AOCS/GB"
+      },
+      {
+        "title": "COA émis",
+        "desc": "Certificat d'analyse traçable par lot"
+      }
+    ],
+    "documents_eyebrow": "Ressources techniques",
+    "documents_title": "Centre de téléchargement documentaire",
+    "documents_description": "COA, certificats, rapports d'inspection et standards aident les acheteurs à vérifier les intrants phospholipidiques avant achat ou échantillon.",
+    "documents": [
+      {
+        "name": "Certificat FSSC 22000",
+        "desc": "Copie de certification sécurité alimentaire"
+      },
+      {
+        "name": "Certificat ISO 22000",
+        "desc": "Certificat de management sécurité alimentaire"
+      },
+      {
+        "name": "Certificat HACCP",
+        "desc": "Certification analyse des dangers et points critiques"
+      },
+      {
+        "name": "Rapport d'inspection conteneur",
+        "desc": "Documentation de chargement et inspection"
+      },
+      {
+        "name": "Standard GB 1886.358-2022",
+        "desc": "Référence du standard national chinois applicable"
+      },
+      {
+        "name": "Rapport Non-GMO 1SP",
+        "desc": "Rapport de référence pour le grade HXY-1SP"
+      }
+    ],
+    "open_fssc": "Ouvrir le certificat FSSC 22000"
+  },
+  "insights_page": {
+    "seo_title": "Guides phospholipides et lécithine | PC, PS et formulation alimentaire",
+    "seo_description": "Guides B2B explorables sur phosphatidylcholine, phosphatidylsérine, lécithine, ingrédients clean-label, boissons fonctionnelles et formulation.",
+    "seo_keywords": "guides phospholipides, guide phosphatidylcholine, guide phosphatidylsérine, guide achat lécithine, formulation aliments fonctionnels",
+    "eyebrow": "Guides ingrédients",
+    "hero_title": "Guides phospholipides, lécithine et aliments fonctionnels",
+    "hero_description": "Guides pratiques B2B pour PC, PS, lécithine, ingrédients clean-label, boissons fonctionnelles et formulation orientée application.",
+    "intro_title": "Lecture orientée application pour formulation et achats",
+    "intro_description": "Ces articles sont des guides de sélection prudents. Ils relient les acheteurs aux pages produits réelles et évitent les affirmations non étayées sur certificats, performance, prix, stock, délais ou taux d'usage universels.",
+    "context_title": "Contexte d'approvisionnement fondé",
+    "context_description": "Commencez par application, forme produit, besoin documentaire, destination et volume avant de discuter échantillons ou conditions commerciales.",
+    "application_label": "Application",
+    "procurement_label": "Achats",
+    "read_guide": "Lire le guide"
+  },
+  "error_boundary": {
+    "dev_title": "Une erreur inattendue est survenue.",
+    "reload_page": "Recharger la page",
+    "title": "Une erreur est survenue",
+    "description": "Nous sommes désolés pour la gêne occasionnée. Notre équipe a été informée et travaille à la résolution du problème.",
+    "try_again": "Réessayer",
+    "go_home": "Retour à l’accueil",
+    "contact_prefix": "Si le problème persiste, contactez-nous à"
   }
 }

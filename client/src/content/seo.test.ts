@@ -283,4 +283,35 @@ describe("route SEO resolver", () => {
       "Soy Lecithin Liquid System"
     );
   });
+
+  it("uses localized page SEO and breadcrumb labels for non-English page routes", () => {
+    const translate = (key: string, fallback: string) => {
+      const values: Record<string, string> = {
+        "common.home": "الرئيسية",
+        "about_page.seo_title": "عن Lecprima | توريد مستقر للفوسفوليبيدات من الصين",
+        "about_page.seo_description": "تعرّف كيف تربط Lecprima عمليات التصدير في هاربين وإنتاج الفوسفوليبيدات في لياوتشنغ ومصادر الصويا في خيلونغجيانغ لتوريد عالمي مستقر وقابل للتتبع.",
+      };
+      return values[key] || fallback;
+    };
+
+    const seo = resolveRouteSEO({
+      locale: "ar",
+      routePath: "/about",
+      urls,
+      translate,
+    });
+    const schemas = Object.fromEntries(
+      seo.jsonLd.map(entry => [entry.id, entry.data])
+    ) as Record<string, any>;
+
+    expect(seo.title).toBe("عن Lecprima | توريد مستقر للفوسفوليبيدات من الصين");
+    expect(seo.description).toContain("تعرّف كيف تربط Lecprima");
+    expect(schemas["ld-breadcrumb"].itemListElement[0].name).toBe("الرئيسية");
+    expect(schemas["ld-breadcrumb"].itemListElement.at(-1).name).toBe(
+      "عن Lecprima"
+    );
+    expect(JSON.stringify(schemas["ld-breadcrumb"])).not.toContain(
+      "About Lecprima"
+    );
+  });
 });

@@ -1,5 +1,9 @@
 import { cn } from "@/lib/utils";
 import { buildPublicPath } from "@/content/url";
+import { getLocaleFromPath } from "@/i18n/locale";
+import { DEFAULT_LOCALE, type Locale } from "@/i18n/config";
+import { getTranslationValue } from "@/i18n/loadTranslations";
+import { getMessagesSync } from "@/i18n/messages.sync";
 import { AlertTriangle, RotateCcw, Home } from "lucide-react";
 import { Component, ReactNode } from "react";
 
@@ -10,6 +14,15 @@ interface Props {
 interface State {
   hasError: boolean;
   error: Error | null;
+}
+
+function currentLocale(): Locale {
+  if (typeof window === "undefined") return DEFAULT_LOCALE;
+  return getLocaleFromPath(window.location.pathname);
+}
+
+function errorCopy(key: string, fallback: string): string {
+  return getTranslationValue(getMessagesSync(currentLocale()), `error_boundary.${key}`, fallback);
 }
 
 class ErrorBoundary extends Component<Props, State> {
@@ -42,7 +55,7 @@ class ErrorBoundary extends Component<Props, State> {
                 className="text-destructive mb-6 flex-shrink-0"
               />
 
-              <h2 className="text-xl mb-4">An unexpected error occurred.</h2>
+              <h2 className="text-xl mb-4">{errorCopy("dev_title", "An unexpected error occurred.")}</h2>
 
               <div className="p-4 w-full rounded bg-muted overflow-auto mb-6">
                 <pre className="text-sm text-muted-foreground whitespace-break-spaces">
@@ -59,7 +72,7 @@ class ErrorBoundary extends Component<Props, State> {
                 )}
               >
                 <RotateCcw size={16} />
-                Reload Page
+                {errorCopy("reload_page", "Reload Page")}
               </button>
             </div>
           </div>
@@ -76,11 +89,11 @@ class ErrorBoundary extends Component<Props, State> {
             />
 
             <h1 className="font-heading text-3xl font-bold text-deep-brown mb-4">
-              Something Went Wrong
+              {errorCopy("title", "Something Went Wrong")}
             </h1>
 
             <p className="text-medium-gray mb-8 leading-relaxed">
-              We apologize for the inconvenience. Our team has been notified and is working to fix this issue.
+              {errorCopy("description", "We apologize for the inconvenience. Our team has been notified and is working to fix this issue.")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 w-full">
@@ -93,7 +106,7 @@ class ErrorBoundary extends Component<Props, State> {
                 )}
               >
                 <RotateCcw size={18} />
-                Try Again
+                {errorCopy("try_again", "Try Again")}
               </button>
 
               <a
@@ -105,12 +118,12 @@ class ErrorBoundary extends Component<Props, State> {
                 )}
               >
                 <Home size={18} />
-                Go to Homepage
+                {errorCopy("go_home", "Go to Homepage")}
               </a>
             </div>
 
             <p className="text-xs text-medium-gray mt-8">
-              If this problem persists, please contact us at{" "}
+              {errorCopy("contact_prefix", "If this problem persists, please contact us at")}{" "}
               <a href="mailto:jojowei@huiyijianpin.cn" className="text-earth-green hover:underline">
                 jojowei@huiyijianpin.cn
               </a>
