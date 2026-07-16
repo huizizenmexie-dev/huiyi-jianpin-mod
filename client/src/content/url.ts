@@ -41,12 +41,12 @@ const RAW_SITE_ORIGIN =
 
 const RAW_BASE_PATH =
   EXPLICIT_BASE_PATH ||
-  (REQUIRES_EXPLICIT_SITE_ORIGIN
-    ? SITE_CONFIG.productionBasePath
-    : SITE_CONFIG.localBasePath) ||
   (typeof import.meta !== "undefined"
     ? import.meta.env?.BASE_URL
     : undefined) ||
+  (REQUIRES_EXPLICIT_SITE_ORIGIN
+    ? SITE_CONFIG.productionBasePath
+    : SITE_CONFIG.localBasePath) ||
   "/";
 
 export function normalizeSiteOrigin(origin: string) {
@@ -90,14 +90,17 @@ export function stripBasePath(path: string, basePath = BASE_PATH) {
 }
 
 export function stripLocale(path: string) {
-  const clean = withTrailingSlash(stripBasePath(path))
-    .split("#")[0]
-    .split("?")[0];
+  const withoutBase = stripBasePath(path);
+  const [pathAndSearch, hash = ""] = withoutBase.split("#", 2);
+  const [pathname, search = ""] = pathAndSearch.split("?", 2);
+  const clean = withTrailingSlash(pathname);
   const segments = clean.split("/").filter(Boolean);
+  const suffix = `${search ? `?${search}` : ""}${hash ? `#${hash}` : ""}`;
+
   if (LOCALES.includes(segments[0] as Locale)) {
-    return withTrailingSlash(`/${segments.slice(1).join("/")}`);
+    return `${withTrailingSlash(`/${segments.slice(1).join("/")}`)}${suffix}`;
   }
-  return clean;
+  return `${clean}${suffix}`;
 }
 
 export function createUrlSystem({ siteOrigin, basePath }: UrlSystemInput) {
