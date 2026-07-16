@@ -9,7 +9,7 @@ import { getProductBySlug } from "@/lib/productData";
 import LocalizedLink from "@/components/LocalizedLink";
 import { usePageSEO } from "@/lib/usePageSEO";
 import { buildPublicAssetPath } from "@/content/url";
-import { useI18nContext } from "@/i18n";
+import { buildLocalizedPublicPath, useI18nContext } from "@/i18n";
 
 const CONTACT_EMAIL_BASE = "mailto:jojowei@huiyijianpin.cn?subject=";
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
@@ -67,6 +67,7 @@ export default function ProductDetail() {
   )}&body=${encodeURIComponent(
     `Please fill in:\nCompany:\nProduct: ${product.name}\nQuantity:\nMessage:`
   )}`;
+  const contactQuoteFormLink = buildLocalizedPublicPath(locale, "/contact#quoteForm");
   const productImage = buildPublicAssetPath(product.image);
 
   return (
@@ -144,7 +145,7 @@ export default function ProductDetail() {
                   {t("product_detail.back_to_products", "Back to Products")}
                 </LocalizedLink>
                 <a
-                  href={emailLink}
+                  href={contactQuoteFormLink}
                   className="inline-flex items-center gap-2 px-4 py-2.5 bg-earth-green text-white rounded-md hover:bg-earth-green-dark transition-colors text-sm font-medium"
                 >
                   <Mail className="w-4 h-4" />
