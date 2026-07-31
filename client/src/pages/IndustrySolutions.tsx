@@ -214,7 +214,10 @@ export default function IndustrySolutions() {
       </section>
 
       {/* Filter + Table */}
-      <section className="py-12 lg:py-20 bg-warm-ivory">
+      <section
+        id="application-fit-lecithin"
+        className="scroll-mt-24 py-12 lg:py-20 bg-warm-ivory"
+      >
         <div className="container">
           <FadeIn>
             <div className="mb-10">
