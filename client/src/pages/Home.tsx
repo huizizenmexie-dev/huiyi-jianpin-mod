@@ -142,6 +142,10 @@ export default function Home() {
   const { t, locale } = useI18nContext();
 
   // Build localized links
+  const APPLICATION_FIT_LINK = buildLocalizedPublicPath(
+    locale,
+    "/industry-solutions#application-fit-lecithin"
+  );
   const PRODUCTS_LINK = buildLocalizedPath(locale, "/products");
   const QUALITY_LINK = buildLocalizedPath(locale, "/quality");
   const INQUIRY_FORM_LINK = buildLocalizedPublicPath(
@@ -302,12 +306,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         <div className="relative container py-32 lg:py-40">
           <div className="max-w-2xl">
-            <p className="text-harvest-gold font-heading font-medium text-sm uppercase tracking-widest mb-4">
+            <a
+              href={APPLICATION_FIT_LINK}
+              className="mb-4 inline-flex text-harvest-gold font-heading font-medium text-sm uppercase tracking-widest underline decoration-harvest-gold/40 underline-offset-4 transition-colors hover:text-white hover:decoration-white/70"
+            >
               {t(
                 "homepage.hero_subtitle",
-                "From Heilongjiang Black Soil to Stable Global Formulations"
+                "Application-fit lecithin and phospholipid ingredients"
               )}
-            </p>
+            </a>
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
               {t("homepage.hero_title_line1", "Natural Phospholipids")}
               <br />
@@ -330,28 +337,64 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-3 mb-8">
               {[
-                t("homepage.hero_badges.clear_specs", "Clear Specs"),
-                t("homepage.hero_badges.batch_coa", "Batch COA"),
-                t("homepage.hero_badges.application_fit", "Application Fit"),
-                t("homepage.hero_badges.sample_to_scale", "Sample to Scale"),
-              ].map(badge => (
-                <span
-                  key={badge}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-harvest-gold/20 border border-harvest-gold/40 rounded text-harvest-gold text-xs font-heading font-semibold uppercase tracking-wide"
-                >
-                  <Shield className="w-3.5 h-3.5" />
-                  {badge}
-                </span>
-              ))}
+                {
+                  label: t("homepage.hero_badges.clear_specs", "Clear Specs"),
+                },
+                {
+                  label: t("homepage.hero_badges.batch_coa", "Batch COA"),
+                },
+                {
+                  label: t(
+                    "homepage.hero_badges.application_fit",
+                    "Application Fit"
+                  ),
+                  href: APPLICATION_FIT_LINK,
+                },
+                {
+                  label: t(
+                    "homepage.hero_badges.sample_to_scale",
+                    "Sample to Scale"
+                  ),
+                },
+              ].map(badge => {
+                const badgeClass =
+                  "inline-flex items-center gap-1.5 px-3 py-1.5 bg-harvest-gold/20 border border-harvest-gold/40 rounded text-harvest-gold text-xs font-heading font-semibold uppercase tracking-wide";
+                const content = (
+                  <>
+                    <Shield className="w-3.5 h-3.5" />
+                    {badge.label}
+                  </>
+                );
+
+                return badge.href ? (
+                  <a
+                    key={badge.label}
+                    href={badge.href}
+                    className={`${badgeClass} transition-colors hover:bg-harvest-gold hover:text-white`}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <span key={badge.label} className={badgeClass}>
+                    {content}
+                  </span>
+                );
+              })}
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <Link
-                href={PRODUCTS_LINK}
+              <a
+                href={APPLICATION_FIT_LINK}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
               >
-                {t("homepage.explore_products", "Explore Product Systems")}
+                {t("homepage.match_by_application", "Match by Application")}
                 <ArrowRight className="w-4 h-4" />
+              </a>
+              <Link
+                href={PRODUCTS_LINK}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/35 text-white font-medium rounded-md hover:bg-white hover:text-earth-green transition-colors"
+              >
+                {t("homepage.explore_products", "Explore Product Systems")}
               </Link>
               <a
                 href={INQUIRY_FORM_LINK}
