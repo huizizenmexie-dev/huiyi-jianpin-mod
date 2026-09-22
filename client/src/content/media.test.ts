@@ -1,4 +1,4 @@
-import { existsSync, statSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { BRAND_ASSETS, PRODUCT_IMAGES, SITE_IMAGES } from "./media";
@@ -21,6 +21,41 @@ describe("site-owned images", () => {
       const file = resolve(import.meta.dirname, "../../public", path.slice(1));
       expect(existsSync(file), path).toBe(true);
       expect(statSync(file).size, path).toBeGreaterThan(100);
+    }
+  });
+
+  it("ships square product images with real transparency at every WebP size", () => {
+    for (const path of Object.values(PRODUCT_IMAGES)) {
+      for (const size of [400, 800, 1200]) {
+        const variant = size === 1200 ? path : path.replace(/\.webp$/, `-${size}.webp`);
+        const file = readFileSync(resolve(import.meta.dirname, "../../public", variant.slice(1)));
+        // Extended WebP stores alpha and canvas geometry in the VP8X header.
+        expect(file.toString("ascii", 12, 16), variant).toBe("VP8X");
+        expect(file[20] & 0x10, `${variant} alpha flag`).toBe(0x10);
+        expect(file.readUIntLE(24, 3) + 1, `${variant} width`).toBe(size);
+        expect(file.readUIntLE(27, 3) + 1, `${variant} height`).toBe(size);
+      }
+    }
+  });
+
+  it("ships every responsive format and keeps phone-sized images under 50 KB", () => {
+    const presets = [
+      { paths: Object.values(PRODUCT_IMAGES), sizes: [400, 800, 1200] },
+      { paths: Object.values(SITE_IMAGES), sizes: [480, 960, 1536] },
+    ];
+    for (const { paths, sizes } of presets) {
+      for (const path of paths) {
+        for (const format of ["avif", "webp"]) {
+          for (const size of sizes) {
+            const variant = format === "webp" && size === sizes.at(-1)
+              ? path : path.replace(/\.webp$/, `-${size}.${format}`);
+            const file = resolve(import.meta.dirname, "../../public", variant.slice(1));
+            expect(existsSync(file), variant).toBe(true);
+            expect(statSync(file).size, variant).toBeGreaterThan(100);
+            if (size === sizes[0]) expect(statSync(file).size, variant).toBeLessThan(50_000);
+          }
+        }
+      }
     }
   });
 

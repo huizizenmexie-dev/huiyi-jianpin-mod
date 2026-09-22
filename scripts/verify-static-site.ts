@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { srcsetReferences } from "./srcset-references";
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -115,6 +116,9 @@ function validateAssetReferences(content: string, routeLabel: string) {
     ...content.matchAll(/url\((?:&quot;|&#x27;|["'])?([^\s)"']+?)(?:&quot;|&#x27;|["'])?\)/g),
   ].map((match) => match[1]);
 
+  // Picture sources, img fallbacks and image preloads can all reference srcsets.
+  refs.push(...srcsetReferences(content));
+
   for (const ref of refs) {
     if (/^(https?:|mailto:|tel:|data:|#)/.test(ref)) continue;
     if (ref.startsWith("/assets/") || ref.includes("/assets/")) {
@@ -123,9 +127,9 @@ function validateAssetReferences(content: string, routeLabel: string) {
       }
       check(existsSync(localFileForPublicPath(ref)), `${routeLabel} built asset ${ref} exists`);
     }
-    if (/\/(?:images|products)\//.test(ref)) {
-      check(ref.startsWith(BASE_PATH), `${routeLabel} public image ${ref} preserves base path`);
-      check(existsSync(localFileForPublicPath(ref)), `${routeLabel} public image ${ref} exists`);
+    if (/\/(?:images|products|fonts)\//.test(ref)) {
+      check(ref.startsWith(BASE_PATH), `${routeLabel} public media ${ref} preserves base path`);
+      check(existsSync(localFileForPublicPath(ref)), `${routeLabel} public media ${ref} exists`);
     }
   }
 }
@@ -160,6 +164,14 @@ async function validateHttpPreview(publicPaths: string[]) {
 
 async function validate() {
   check(existsSync(DIST), "dist/public exists");
+  const fontCssPath = join(DIST, "fonts", "fonts.css");
+  check(existsSync(fontCssPath), "local font stylesheet exists");
+  if (existsSync(fontCssPath)) {
+    const css = readFileSync(fontCssPath, "utf-8");
+    for (const match of css.matchAll(/url\(["']?([^\s)"']+)["']?\)/g)) {
+      check(existsSync(join(DIST, "fonts", match[1])), `local font ${match[1]} exists`);
+    }
+  }
   for (const image of [...Object.values(PRODUCT_IMAGES), ...Object.values(SITE_IMAGES), ...Object.values(BRAND_ASSETS)]) {
     const publicPath = buildPublicAssetPath(image);
     check(existsSync(localFileForPublicPath(publicPath)), `owned media ${publicPath} exists in build`);

@@ -1,5 +1,5 @@
 import { SITE_IMAGES } from "@/content/media";
-import { buildPublicAssetPath } from "@/content/url";
+import ResponsiveImage from "@/components/ResponsiveImage";
 /*
  * DESIGN: Agricultural Documentary - Cinematic Storytelling
  * Contact page: Contact details plus Web3Forms quote and inquiry forms
@@ -192,8 +192,13 @@ export default function Contact() {
         <div className="container">
           <div className="grid grid-cols-1 overflow-hidden rounded-2xl shadow-lg lg:grid-cols-[0.9fr_1.1fr]">
             <div className="relative min-h-[360px] lg:min-h-full">
-              <img
-                src={buildPublicAssetPath(SPLIT_IMG)}
+              <ResponsiveImage
+                src={SPLIT_IMG}
+                preset="editorial"
+                sizes="(max-width: 1023px) 92vw, 560px"
+                pictureClassName="absolute inset-0"
+                loading="eager"
+                fetchPriority="high"
                 alt={t("contact_page.hero_image_alt", "Illustrative arrangement of liquid, powder and granular ingredient samples")}
                 className="absolute inset-0 h-full w-full object-cover"
               />

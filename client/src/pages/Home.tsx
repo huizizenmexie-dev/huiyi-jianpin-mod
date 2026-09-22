@@ -25,7 +25,7 @@ import {
 } from "@/i18n";
 import { getProducts } from "@/lib/productData";
 import { SITE_IMAGES } from "@/content/media";
-import { buildPublicAssetPath } from "@/content/url";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 // Representative products retain their names, imagery and routes from shared data.
 const systemProductIds = [1, 2, 4, 6, 8, 7];
@@ -209,15 +209,16 @@ export default function Home() {
             </div>
             <figure className="hero-figure">
               <div className="hero-image-frame">
-                <img
-                  src={buildPublicAssetPath(SITE_IMAGES.hero)}
+                <ResponsiveImage
+                  src={SITE_IMAGES.hero}
+                  preset="editorial"
+                  sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 900px) min(608px, calc(100vw - 48px)), (max-width: 1023px) calc(50vw - 40px), (max-width: 1100px) calc(50vw - 48px), (max-width: 1279px) calc(50vw - 52px), 588px"
                   alt={t(
                     "homepage.hero_subtitle",
                     "Lecithin and phospholipid ingredients"
                   )}
-                  width={1536}
-                  height={1024}
                   className="hero-image"
+                  pictureClassName="image-fill"
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
@@ -304,11 +305,12 @@ export default function Home() {
                   className="system-card group"
                 >
                   <div className="system-image-frame">
-                    <img
-                      src={buildPublicAssetPath(product.image)}
+                    <ResponsiveImage
+                      src={product.image}
+                      preset="product"
+                      sizes="(max-width: 639px) calc(50vw - 23px), (max-width: 900px) calc(50vw - 37px), (max-width: 1023px) calc(33.333vw - 34px), (max-width: 1279px) calc(33.333vw - 39px), 389px"
+                      pictureClassName="image-fill"
                       alt={product.name}
-                      width={600}
-                      height={600}
                       loading="lazy"
                       decoding="async"
                     />
@@ -354,12 +356,12 @@ export default function Home() {
                 )}
               </h2>
             </div>
-            <img
-              src={buildPublicAssetPath(SITE_IMAGES.applications)}
+            <ResponsiveImage
+              src={SITE_IMAGES.applications}
+              preset="editorial"
+              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 900px) calc(46.512vw - 38px), (max-width: 1023px) calc(46.512vw - 60px), (max-width: 1279px) calc(46.512vw - 67px), 529px"
               alt={t("common.industry_solutions", "Ingredient applications")}
               className="application-intro-image"
-              width={960}
-              height={640}
               loading="lazy"
               decoding="async"
             />
@@ -397,14 +399,15 @@ export default function Home() {
         <div className="container">
           <div className="confidence-grid">
             <div className="confidence-visual">
-              <img
-                src={buildPublicAssetPath(SITE_IMAGES.laboratory)}
+              <ResponsiveImage
+                src={SITE_IMAGES.laboratory}
+                preset="editorial"
+                sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 900px) calc(100vw - 48px), (max-width: 1023px) calc(47.5vw - 46px), (max-width: 1100px) calc(47.5vw - 54px), (max-width: 1279px) calc(47.5vw - 69px), 540px"
+                pictureClassName="image-fill"
                 alt={t(
                   "homepage.verify_quality",
                   "Quality documentation review"
                 )}
-                width={1000}
-                height={1000}
                 loading="lazy"
                 decoding="async"
               />

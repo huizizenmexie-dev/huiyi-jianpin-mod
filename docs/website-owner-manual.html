@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lecprima 网站使用与维护说明书</title>
+<style>
+@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#e8ebe5;color:#243d32;font:13px/1.7 "Microsoft YaHei","Noto Sans CJK SC",sans-serif}.page{position:relative;width:210mm;min-height:297mm;margin:20px auto;padding:17mm 18mm 19mm;background:#fffefa;break-after:page}.page:last-child{break-after:auto}.eyebrow{font-size:11px;letter-spacing:2px;color:#7c7350;text-transform:uppercase}.brand{font-family:Georgia,serif;font-size:34px;line-height:1.2;letter-spacing:1px;margin:4px 0 14px}.topline{display:flex;justify-content:space-between;border-bottom:1px solid #dbe1d5;padding-bottom:10px;margin-bottom:25px;font-size:11px;color:#77806f}h1{font-size:30px;line-height:1.4;margin:6px 0 14px;letter-spacing:-1px}h2{font-size:23px;line-height:1.4;margin:0 0 20px}h3{font-size:15px;margin:21px 0 8px}p{margin:8px 0}b,strong{font-weight:700;color:#123e31}.lead{font-size:15px;line-height:1.85;max-width:590px}.callout{padding:14px 17px;margin:18px 0;background:#edf2e8;border-left:3px solid #516c45}.gold{background:#f5f0e2;border-left-color:#b89746}table{border-collapse:collapse;width:100%;font-size:12px;margin:12px 0}th,td{text-align:left;vertical-align:top;padding:10px 11px;border-bottom:1px solid #dfe3d8}th{background:#eef1e7;color:#31503b;font-weight:600}td:first-child{width:26%;font-weight:600}ol,ul{padding-left:21px;margin:9px 0}li{padding:3px 0}code{font:11px/1.6 Consolas,"Microsoft YaHei",monospace;overflow-wrap:anywhere;background:#f0f0e9;padding:1px 4px}pre{font:11px/1.65 Consolas,"Microsoft YaHei",monospace;white-space:pre-wrap;overflow-wrap:anywhere;background:#eef1e9;padding:12px 14px;margin:12px 0;color:#234d39}.small{font-size:11px;color:#687063}.file{overflow-wrap:anywhere;font-family:Consolas,"Microsoft YaHei",monospace;font-size:11px}.footer{position:absolute;left:18mm;right:18mm;bottom:10mm;border-top:1px solid #dbe1d5;padding-top:7px;font-size:10px;color:#7b8373;display:flex;justify-content:space-between}a{color:#2c684c;text-decoration:underline;overflow-wrap:anywhere}.flow{display:flex;align-items:center;gap:9px;margin:16px 0}.flow span{flex:1;background:#eef2e9;padding:15px 9px;text-align:center;border:1px solid #dde4d6;border-radius:3px}.flow i{font-style:normal;color:#8a967f}.steps li{padding-bottom:10px}.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}.pill{display:inline-block;background:#143e32;color:#fff;padding:5px 12px;font-size:11px;letter-spacing:.5px;margin:5px 0 15px}@media print{body{background:#fff}.page{margin:0;min-height:297mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}a{color:inherit}}@media screen and (max-width:800px){.page{width:100%;min-height:auto;padding:26px 22px 70px;margin:0 0 14px}.footer{left:22px;right:22px}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<section class="page">
+<div class="eyebrow">Website owner's guide / 2026.09.23</div>
+<div class="brand">LECPRIMA</div>
+<span class="pill">网站使用与维护说明书</span>
+<h1>编辑、发布和接收询盘，<br>从这个文件夹继续。</h1>
+<p class="lead">网站源代码保存在您桌面的项目文件夹中。今后的修改、备份和发布都可以从这里完成，无需依赖原建站平台的项目编辑器。</p>
+<div class="callout"><b>日常只需要记住：</b>在项目文件夹里修改，用 GitHub Desktop 提交到分支；确认后合并到 <code>main</code>，GitHub Pages 才会自动构建并发布。</div>
+<h3>交付文件分别是什么</h3>
+<table><thead><tr><th>文件</th><th>用途</th></tr></thead><tbody>
+<tr><td>源代码文件夹</td><td><div class="file">C:/Users/29223/Desktop/huiyi-jianpin-mod/</div>日常编辑、GitHub Desktop 提交和长期维护使用。应保留完整文件夹及 Git 历史。</td></tr>
+<tr><td>桌面部署压缩包</td><td><div class="file">Lecprima-网站部署包-2026-09-23.zip</div>已经构建好的静态网页，可交给支持静态网站的托管服务部署。它是成品快照，不包含完整编辑源码。</td></tr>
+<tr><td>本说明书</td><td>桌面上提供 PDF 和 HTML 两个版本。HTML 可用浏览器双击打开；PDF 适合保存、打印或转交维护人员。</td></tr>
+</tbody></table>
+<h3>网站基本资料</h3>
+<table><tbody>
+<tr><td>正式网址</td><td><a href="https://lecprima.com">https://lecprima.com</a></td></tr>
+<tr><td>托管与技术</td><td>GitHub Pages；React + Vite；预渲染的多语言静态网页。</td></tr>
+<tr><td>支持的语言</td><td>英语、简体中文、葡萄牙语（巴西）、法语、阿拉伯语、西班牙语、俄语。</td></tr>
+<tr><td>邮件询盘中转</td><td><b>Web3Forms</b>；详见第 3 页。</td></tr>
+<tr><td>网站公开联系邮箱</td><td>jojowei@huiyijianpin.cn</td></tr>
+</tbody></table>
+<p class="small">说明书根据 2026-09-23 本地源代码和部署配置编写。具体服务账户、套餐、域名管理和实际收件邮箱，以您持有的账户记录为准。</p>
+<div class="footer"><span>LECPRIMA · 网站使用与维护说明书</span><span>01 / 05</span></div>
+</section>
+<section class="page">
+<div class="topline"><span>LECPRIMA / 操作流程</span><span>2026.09.23</span></div>
+<h2>更新网站与使用部署包</h2>
+<h3>推荐流程：继续使用 GitHub Desktop</h3>
+<ol class="steps">
+<li><b>打开正确仓库。</b>确认 Local path 是桌面的 <code>huiyi-jianpin-mod</code>，查看 Changes 中本次修改。当前工作分支为 <code>codex/lecprima-visual-refresh</code>。</li>
+<li><b>提交本地修改。</b>填写 Summary，例如“统一产品图片并优化加载”，点击 Commit to 当前分支。</li>
+<li><b>推送到 GitHub。</b>点击 Push origin；若是新建的远程分支，按钮可能显示 Publish branch。</li>
+<li><b>审阅后合并到 main。</b>可在 GitHub 创建 Pull Request，检查修改后合并。当前配置仅在 <code>main</code> 收到推送时自动发布，也支持手动运行工作流。</li>
+<li><b>确认发布成功。</b>打开仓库 Actions，查看 <code>Deploy GitHub Pages</code> 是否成功；然后访问正式网址，用无痕窗口检查图片和语言切换。</li>
+</ol>
+<div class="callout gold"><b>提交到分支 ≠ 已更新正式网站。</b>本次交付修改本地文件并提供部署包；正式站点何时更新，由您后续的提交、合并和 Pages 工作流结果决定。</div>
+<h3>部署 ZIP 的使用方法</h3>
+<ol>
+<li>将桌面的 ZIP 解压到一个新文件夹。打开后应直接看到 <code>index.html</code>、<code>en/</code>、<code>zh-CN/</code>、<code>assets/</code>、<code>images/</code> 和 <code>fonts/</code> 等内容。</li>
+<li>在支持静态站点的主机上，把这些文件和文件夹整体上传到网站根目录。不要把多余的一层解压文件夹当成网站根目录。</li>
+<li>当前部署包按域名根路径 <code>/</code> 和正式域名 <code>https://lecprima.com</code> 构建。若更换域名或部署到 <code>/项目名/</code> 子目录，应使用源码修改构建环境并重新打包。</li>
+</ol>
+<p>使用现有 GitHub Pages 工作流时，<b>无需把 ZIP 放进仓库或上传到 GitHub Desktop</b>；工作流会直接从源码构建。ZIP 适合作为静态成品备份，或交给其他托管服务。</p>
+<h3>在电脑上预览源码</h3>
+<p>在项目文件夹打开 PowerShell；准备好 Node.js（工作流使用 22）和 pnpm 后执行：</p>
+<pre>pnpm install --frozen-lockfile
+pnpm run build
+pnpm run start</pre>
+<p>浏览器打开 <code>http://localhost:4173/en/</code>。开发时可使用 <code>pnpm run dev</code> 并打开终端显示的地址。直接双击部署包里的 <code>index.html</code> 无法等同于真实网站服务。</p>
+<div class="footer"><span>配置来源：.github/workflows/deploy-pages.yml · package.json</span><span>02 / 05</span></div>
+</section>
+<section class="page">
+<div class="topline"><span>LECPRIMA / 邮件询盘</span><span>2026.09.23</span></div>
+<h2>询盘由 Web3Forms 中转</h2>
+<p class="lead">联系页面的报价表单和邮件询盘表单，使用 <b>Web3Forms</b> 把访客提交的内容转发到绑定邮箱。网站本身没有独立的邮件发送服务器。</p>
+<div class="flow"><span>访客填写表单</span><i>→</i><span>Web3Forms 接收</span><i>→</i><span>密钥绑定的邮箱</span></div>
+<table><tbody>
+<tr><td>服务商</td><td><a href="https://web3forms.com/">Web3Forms</a></td></tr>
+<tr><td>提交接口</td><td class="file">https://api.web3forms.com/submit</td></tr>
+<tr><td>代码位置</td><td><code>client/src/lib/web3Forms.ts</code></td></tr>
+<tr><td>关键配置</td><td><code>WEB3FORMS_ENDPOINT</code>、<code>WEB3FORMS_ACCESS_KEY</code>、<code>WEBSITE_FROM_NAME</code></td></tr>
+<tr><td>站点发送名称</td><td>Lecprima Website Inquiry</td></tr>
+<tr><td>表单页面</td><td><code>client/src/pages/Contact.tsx</code></td></tr>
+</tbody></table>
+<div class="callout"><b>如何确认真正的收件邮箱？</b>Web3Forms 通过 access key 关联邮箱，代码中的密钥不是明文邮箱。因此不能仅根据本站公开邮箱判断转发目的地。请查找原来的 Web3Forms 开通邮件或服务账户，再用自己的测试询盘核实收件。</div>
+<h3>两种联系入口的区别</h3>
+<table><thead><tr><th>入口</th><th>邮件如何发送</th></tr></thead><tbody>
+<tr><td>网页中的询盘表单</td><td>经 Web3Forms 转发到密钥绑定的邮箱。网页提示成功只代表服务端接受了提交，还应检查邮箱是否真正收到。</td></tr>
+<tr><td>直接点击邮箱 / 邮件链接</td><td>使用 <code>mailto:</code> 打开访客的邮件软件，目标为 <b>jojowei@huiyijianpin.cn</b>。这一入口不经过 Web3Forms。</td></tr>
+</tbody></table>
+<p class="small">服务商官方说明：<a href="https://docs.web3forms.com/getting-started/installation">安装与密钥</a> · <a href="https://docs.web3forms.com/getting-started/faq">密钥与邮箱说明</a> · <a href="https://docs.web3forms.com/getting-started/customizations/custom-reply-to">回复地址</a> · <a href="https://docs.web3forms.com/getting-started/troubleshooting">收件排障</a>。核对日期：2026-09-23。</p>
+<div class="footer"><span>网页表单使用 Web3Forms；直接邮箱链接使用访客邮件软件</span><span>03 / 05</span></div>
+</section>
+<section class="page">
+<div class="topline"><span>LECPRIMA / 后续维护</span><span>2026.09.23</span></div>
+<h2>图片、语言与故障排查</h2>
+<h3>常用文件位置</h3>
+<table><thead><tr><th>修改内容</th><th>源码位置（相对项目文件夹）</th></tr></thead><tbody>
+<tr><td>产品名称与参数</td><td><code>client/src/lib/productData.ts</code></td></tr>
+<tr><td>多语言页面文案</td><td><code>client/src/i18n/messages/</code> 下对应语言的 JSON 文件；中文为 <code>zh-CN.json</code>。</td></tr>
+<tr><td>公共联系方式</td><td><code>client/src/content/site.ts</code></td></tr>
+<tr><td>网页产品图 / 场景图</td><td><code>client/public/images/products/</code><br><code>client/public/images/site/</code></td></tr>
+<tr><td>图片原稿与品牌素材</td><td><code>design-assets/source-products/</code> 原始产品图；<code>design-assets/product-cutouts/</code> 透明底正方形母版；<code>design-assets/generated/</code> 场景图与品牌原稿。</td></tr>
+<tr><td>品牌图标 / 本地字体</td><td><code>client/public/images/brand/</code><br><code>client/public/fonts/</code>（含字体许可证）</td></tr>
+</tbody></table>
+<h3>图片替换规范</h3>
+<p>10 款产品的默认网页图片统一为 <b>1200 × 1200</b>，使用透明背景，并由白色图片框统一显示；另有 400、800 像素版本。场景图采用 3:2 比例，提供 480、960、1536 像素版本。</p>
+<p>页面自动选择 AVIF，兼容回退使用 WebP。替换图片时须同步生成同名的各尺寸文件，不能只覆盖一张默认 WebP。维护人员可参照 <code>scripts/optimize-media.mjs</code> 与 <code>docs/design/media-manifest.json</code>；不要把整张高清 PNG 直接作为网页加载图。</p>
+<div class="callout"><b>原稿与网页文件分开保存。</b>透明底 PNG 用于长期维护，各尺寸的 AVIF / WebP 用于网页加载。每次更换原稿后，请同步生成并提交所有网页尺寸，再进行构建验证。</div>
+<div class="footer"><span>保留源码和原始素材；桌面 ZIP 是静态发布快照</span><span>04 / 05</span></div>
+</section>
+<section class="page">
+<div class="topline"><span>LECPRIMA / 验收与排障</span><span>2026.09.23</span></div>
+<h2>收件验收与常见问题</h2>
+<h3>更换收件邮箱与验收</h3>
+<ol>
+<li>用新的收件邮箱在 Web3Forms 获取对应 access key，按服务商提示验证；将代码中的 <code>WEB3FORMS_ACCESS_KEY</code> 替换，再构建发布。</li>
+<li>如需同步变更公开邮箱，更新 <code>client/src/content/site.ts</code> 中的 <code>CONTACT.email</code>，并搜索旧邮箱，同步检查 <code>client/src/pages/Contact.tsx</code> 和 <code>client/src/components/ErrorBoundary.tsx</code> 的显示文字或链接。只改公开邮箱，不会自动改变表单转发邮箱。</li>
+<li>发布后由您填写一次带“网站测试”备注的完整询盘，核对产品、联系信息和来源字段；检查收件箱和垃圾邮件箱，并验证回复是否指向测试者邮箱。</li>
+</ol>
+<p class="small">本次开发没有向真实邮箱提交询盘。Access key 是可出现在前端的表单标识，不是邮箱密码；仍应使用 Web3Forms 提供的反垃圾措施，并保留网站现有 honeypot 字段。</p>
+<h3>遇到问题时先检查这些地方</h3>
+<table><thead><tr><th>现象</th><th>检查方法</th></tr></thead><tbody>
+<tr><td>修改后线上没变化</td><td>先看分支是否已合并到 main、Actions 是否发布成功；再用无痕窗口或强制刷新排除旧缓存。</td></tr>
+<tr><td>图片不显示 / 变慢</td><td>确认图片各尺寸已一起提交、文件名大小写正确；检查网络请求是否 404。不要重新引用失效的原建站平台图片地址。</td></tr>
+<tr><td>切换语言异常</td><td>检查 URL 是否进入对应语言目录；测试导航、产品详情和浏览器前进后退。修改翻译时保持 JSON 格式有效。</td></tr>
+<tr><td>表单成功但没收到</td><td>确认 Web3Forms 密钥绑定的邮箱、垃圾邮件目录及服务商状态；按第 3 页进行一次真实收件核对。</td></tr>
+<tr><td>旧证书链接打不开</td><td>部分历史证书链接仍由外部地址提供。应使用经核准的本地文件替换，并更新相关链接和证据记录。</td></tr>
+</tbody></table>
+<p><b>发布前检查：</b><code>pnpm run check</code>、<code>pnpm run test</code>、<code>pnpm run build</code>、<code>pnpm run validate-seo</code>、<code>pnpm run verify-static</code>。随后检查手机和电脑上的首页、产品图、语言切换与询盘入口。</p>
+<p class="small">请保留 Git 历史、原始图片和每次桌面部署包。需要恢复旧版时，从 Git 历史恢复源码并重新发布；部署包只能恢复当时的静态成品。涉及认证、产能、产品功效等内容，应先核准资料再更新文案。</p>
+<div class="footer"><span>发布完成后核对真实收件，并保存可回退版本</span><span>05 / 05</span></div>
+</section>
+</body>
+</html>

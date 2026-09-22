@@ -1,5 +1,5 @@
 import { SITE_IMAGES } from "@/content/media";
-import { buildPublicAssetPath } from "@/content/url";
+import ResponsiveImage from "@/components/ResponsiveImage";
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
  * Industry Solutions: Selection matrix table with filter tags
@@ -194,9 +194,15 @@ export default function IndustrySolutions() {
     <div>
       {/* Header */}
       <section className="relative h-[40vh] min-h-[360px] flex items-end overflow-hidden pt-24">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${buildPublicAssetPath(HEADER_IMG)})` }}
+        <ResponsiveImage
+          src={HEADER_IMG}
+          preset="editorial"
+          sizes="100vw"
+          alt=""
+          pictureClassName="absolute inset-0"
+          className="h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-10">

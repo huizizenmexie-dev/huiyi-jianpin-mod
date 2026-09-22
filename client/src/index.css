@@ -331,6 +331,26 @@ html {
 .breadcrumb svg {
   flex: none;
 }
+.responsive-image {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  line-height: 0;
+}
+.responsive-image > img {
+  display: block;
+}
+.image-fill {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+.image-fill > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
 
 /* A stable, readable header on every route */
 .site-header {
@@ -584,19 +604,18 @@ html {
   padding-top: 1rem;
 }
 .hero-image-frame {
+  position: relative;
+  width: 100%;
   background: #fdfcf8;
   border-radius: 48% 48% 5px 5px;
   overflow: hidden;
   aspect-ratio: 1.12;
-  display: flex;
-  align-items: center;
   border: 1px solid #edeee4;
 }
 .hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: multiply;
 }
 .hero-image-caption {
   display: flex;
@@ -665,7 +684,7 @@ a.hero-badge:hover {
 }
 .system-image-frame {
   position: relative;
-  aspect-ratio: 1.35;
+  aspect-ratio: 1;
   background: #fff;
   overflow: hidden;
   border: 1px solid #e8eade;
@@ -675,7 +694,6 @@ a.hero-badge:hover {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  padding: 0.75rem;
   transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .system-card:hover .system-image-frame img {
@@ -788,13 +806,13 @@ a.hero-badge:hover {
 }
 .confidence-visual {
   position: relative;
+  aspect-ratio: 0.92;
   overflow: hidden;
   border-radius: 3px 3px 75px 3px;
   background: #eef1ea;
 }
-.confidence-visual > img {
+.confidence-visual img {
   width: 100%;
-  aspect-ratio: 0.92;
   object-fit: cover;
 }
 .confidence-visual-caption {
@@ -903,6 +921,8 @@ a.hero-badge:hover {
   max-width: 34rem;
 }
 .catalogue-header-visual {
+  position: relative;
+  width: 100%;
   overflow: hidden;
   border-radius: 50% 50% 3px 3px;
   aspect-ratio: 1.27;
@@ -912,7 +932,6 @@ a.hero-badge:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: multiply;
 }
 .catalogue-body {
   background: #fcfbf6;
@@ -1007,8 +1026,8 @@ a.hero-badge:hover {
   transform: translateY(-3px);
 }
 .product-card-image {
-  height: 285px;
-  padding: 1rem 1rem 2rem;
+  aspect-ratio: 1;
+  width: 100%;
   position: relative;
   border-bottom: 1px solid #edf0e7;
   background: #fff;
@@ -1123,12 +1142,12 @@ a.hero-badge:hover {
 .product-detail-image {
   position: sticky;
   top: 110px;
-  aspect-ratio: 0.98;
+  aspect-ratio: 1;
   width: 100%;
+  max-width: 600px;
   background: white;
   border: 1px solid #e4e8dd;
   border-radius: 8px;
-  padding: 1.5rem;
   overflow: hidden;
 }
 .product-detail-copy {
@@ -1569,8 +1588,6 @@ a.hero-badge:hover {
   }
   .confidence-visual {
     max-height: 430px;
-  }
-  .confidence-visual > img {
     aspect-ratio: 1.4;
   }
   .home-contact-grid {
@@ -1607,9 +1624,8 @@ a.hero-badge:hover {
     gap: 2.3rem;
   }
   .product-detail-image {
-    max-height: 500px;
-    aspect-ratio: 1.3;
-    position: static;
+    margin-inline: auto;
+    position: relative;
   }
   .detail-title {
     max-width: 45rem;
@@ -1717,9 +1733,6 @@ a.hero-badge:hover {
   .system-image-frame {
     aspect-ratio: 1;
   }
-  .system-image-frame img {
-    padding: 0.4rem;
-  }
   .system-card-arrow {
     width: 27px;
     height: 27px;
@@ -1768,8 +1781,6 @@ a.hero-badge:hover {
   }
   .confidence-visual {
     max-height: 350px;
-  }
-  .confidence-visual > img {
     aspect-ratio: 1.07;
   }
   .confidence-visual-caption {
@@ -1853,9 +1864,6 @@ a.hero-badge:hover {
     grid-template-columns: 1fr;
     gap: 1.4rem;
   }
-  .product-card-image {
-    height: 300px;
-  }
   .product-card-content {
     padding: 1.3rem;
   }
@@ -1879,10 +1887,6 @@ a.hero-badge:hover {
   }
   .product-detail-header {
     padding-block: 6.6rem 2.5rem;
-  }
-  .product-detail-image {
-    aspect-ratio: 1.05;
-    padding: 1rem;
   }
   .detail-title {
     font-size: clamp(1.95rem, 8.5vw, 2.5rem);

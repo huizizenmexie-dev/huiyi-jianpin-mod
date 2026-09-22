@@ -1,114 +1,819 @@
 [
   {
+    "path": "/images/products/soy-lecithin-liquid-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 39746,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-liquid.png",
+    "provenance": "User supplied: 卵磷脂液体系列.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-liquid-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 18974,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-liquid.png",
+    "provenance": "User supplied: 卵磷脂液体系列.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-liquid-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 114388,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-liquid.png",
+    "provenance": "User supplied: 卵磷脂液体系列.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-liquid-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 51262,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-liquid.png",
+    "provenance": "User supplied: 卵磷脂液体系列.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
     "path": "/images/products/soy-lecithin-liquid.webp",
-    "width": 1400,
-    "height": 782,
-    "bytes": 74674,
-    "provenance": "User supplied: 卵磷脂液体系列.png"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 218078,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-liquid.png",
+    "provenance": "User supplied: 卵磷脂液体系列.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-liquid-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 88703,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-liquid.png",
+    "provenance": "User supplied: 卵磷脂液体系列.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-powder-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 34016,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-powder.png",
+    "provenance": "User supplied: 粉末大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-powder-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 18621,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-powder.png",
+    "provenance": "User supplied: 粉末大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-powder-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 104192,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-powder.png",
+    "provenance": "User supplied: 粉末大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-powder-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 52908,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-powder.png",
+    "provenance": "User supplied: 粉末大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/soy-lecithin-powder.webp",
-    "width": 1400,
-    "height": 782,
-    "bytes": 48892,
-    "provenance": "User supplied: 粉末大豆卵磷脂.png"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 196270,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-powder.png",
+    "provenance": "User supplied: 粉末大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-powder-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 94547,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-powder.png",
+    "provenance": "User supplied: 粉末大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/modified-soy-lecithin-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 27152,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/modified-soy-lecithin.png",
+    "provenance": "User supplied: 改性大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/modified-soy-lecithin-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 14105,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/modified-soy-lecithin.png",
+    "provenance": "User supplied: 改性大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/modified-soy-lecithin-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 81486,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/modified-soy-lecithin.png",
+    "provenance": "User supplied: 改性大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/modified-soy-lecithin-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 42366,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/modified-soy-lecithin.png",
+    "provenance": "User supplied: 改性大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/modified-soy-lecithin.webp",
-    "width": 1046,
-    "height": 1400,
-    "bytes": 66066,
-    "provenance": "User supplied: 改性大豆卵磷脂.png"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 149284,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/modified-soy-lecithin.png",
+    "provenance": "User supplied: 改性大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/modified-soy-lecithin-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 75214,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/modified-soy-lecithin.png",
+    "provenance": "User supplied: 改性大豆卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylcholine-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 35032,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylcholine.png",
+    "provenance": "User supplied: 磷脂酰胆碱.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylcholine-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 19327,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylcholine.png",
+    "provenance": "User supplied: 磷脂酰胆碱.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylcholine-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 99034,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylcholine.png",
+    "provenance": "User supplied: 磷脂酰胆碱.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylcholine-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 52742,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylcholine.png",
+    "provenance": "User supplied: 磷脂酰胆碱.png; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/phosphatidylcholine.webp",
-    "width": 1046,
-    "height": 1400,
-    "bytes": 75968,
-    "provenance": "User supplied: 磷脂酰胆碱.png"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 182966,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylcholine.png",
+    "provenance": "User supplied: 磷脂酰胆碱.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylcholine-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 94827,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylcholine.png",
+    "provenance": "User supplied: 磷脂酰胆碱.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/sunflower-lecithin-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 20086,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/sunflower-lecithin.png",
+    "provenance": "User supplied: 葵花卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/sunflower-lecithin-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 10662,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/sunflower-lecithin.png",
+    "provenance": "User supplied: 葵花卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/sunflower-lecithin-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 55828,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/sunflower-lecithin.png",
+    "provenance": "User supplied: 葵花卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/sunflower-lecithin-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 27673,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/sunflower-lecithin.png",
+    "provenance": "User supplied: 葵花卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/sunflower-lecithin.webp",
-    "width": 1046,
-    "height": 1400,
-    "bytes": 50798,
-    "provenance": "User supplied: 葵花卵磷脂.png"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 101494,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/sunflower-lecithin.png",
+    "provenance": "User supplied: 葵花卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/sunflower-lecithin-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 49220,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/sunflower-lecithin.png",
+    "provenance": "User supplied: 葵花卵磷脂.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-granules-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 26068,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-granules.png",
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-granules-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 16856,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-granules.png",
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-granules-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 70278,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-granules.png",
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-granules-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 43311,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-granules.png",
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/soy-lecithin-granules.webp",
-    "width": 1400,
-    "height": 1050,
-    "bytes": 78566,
-    "provenance": "User supplied: 大豆卵磷脂颗粒.png"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 131950,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-granules.png",
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-lecithin-granules-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 76715,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-lecithin-granules.png",
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylserine-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 27938,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylserine.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylserine-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 15699,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylserine.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylserine-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 78308,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylserine.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylserine-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 41835,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylserine.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/phosphatidylserine.webp",
-    "width": 1400,
-    "height": 933,
-    "bytes": 79850,
-    "provenance": "AI generated illustrative image"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 145834,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylserine.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/phosphatidylserine-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 75260,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/phosphatidylserine.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-dietary-fiber-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 25468,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-dietary-fiber.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-dietary-fiber-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 15801,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-dietary-fiber.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-dietary-fiber-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 76754,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-dietary-fiber.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-dietary-fiber-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 43723,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-dietary-fiber.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/soy-dietary-fiber.webp",
-    "width": 1400,
-    "height": 933,
-    "bytes": 111782,
-    "provenance": "AI generated illustrative image"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 143842,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-dietary-fiber.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-dietary-fiber-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 79414,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-dietary-fiber.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-protein-isolate-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 20616,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-protein-isolate.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-protein-isolate-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 12559,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-protein-isolate.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-protein-isolate-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 60786,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-protein-isolate.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-protein-isolate-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 35180,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-protein-isolate.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/soy-protein-isolate.webp",
-    "width": 1400,
-    "height": 933,
-    "bytes": 68602,
-    "provenance": "AI generated illustrative image"
+    "width": 1200,
+    "height": 1200,
+    "bytes": 117216,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-protein-isolate.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-protein-isolate-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 64950,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-protein-isolate.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-oligosaccharide-small-pack-400.webp",
+    "width": 400,
+    "height": 400,
+    "bytes": 21912,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-oligosaccharide-small-pack.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-oligosaccharide-small-pack-400.avif",
+    "width": 400,
+    "height": 400,
+    "bytes": 12721,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-oligosaccharide-small-pack.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-oligosaccharide-small-pack-800.webp",
+    "width": 800,
+    "height": 800,
+    "bytes": 64654,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-oligosaccharide-small-pack.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-oligosaccharide-small-pack-800.avif",
+    "width": 800,
+    "height": 800,
+    "bytes": 35070,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-oligosaccharide-small-pack.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
   },
   {
     "path": "/images/products/soy-oligosaccharide-small-pack.webp",
-    "width": 1400,
-    "height": 933,
-    "bytes": 70594,
+    "width": 1200,
+    "height": 1200,
+    "bytes": 124292,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-oligosaccharide-small-pack.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/products/soy-oligosaccharide-small-pack-1200.avif",
+    "width": 1200,
+    "height": 1200,
+    "bytes": 63405,
+    "hasAlpha": true,
+    "master": "design-assets/product-cutouts/soy-oligosaccharide-small-pack.png",
+    "provenance": "AI generated illustrative image; AI background extraction and square reframing, 2026-09-23"
+  },
+  {
+    "path": "/images/site/ingredient-still-life-480.webp",
+    "width": 480,
+    "height": 320,
+    "bytes": 15278,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-still-life.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-still-life-480.avif",
+    "width": 480,
+    "height": 320,
+    "bytes": 9485,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-still-life.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-still-life-960.webp",
+    "width": 960,
+    "height": 640,
+    "bytes": 42420,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-still-life.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-still-life-960.avif",
+    "width": 960,
+    "height": 640,
+    "bytes": 26219,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-still-life.png",
     "provenance": "AI generated illustrative image"
   },
   {
     "path": "/images/site/ingredient-still-life.webp",
     "width": 1536,
     "height": 1024,
-    "bytes": 135314,
+    "bytes": 82832,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-still-life.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-still-life-1536.avif",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 51172,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-still-life.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/soybean-fields-480.webp",
+    "width": 480,
+    "height": 320,
+    "bytes": 31306,
+    "hasAlpha": false,
+    "master": "design-assets/generated/soybean-fields.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/soybean-fields-480.avif",
+    "width": 480,
+    "height": 320,
+    "bytes": 16512,
+    "hasAlpha": false,
+    "master": "design-assets/generated/soybean-fields.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/soybean-fields-960.webp",
+    "width": 960,
+    "height": 640,
+    "bytes": 100426,
+    "hasAlpha": false,
+    "master": "design-assets/generated/soybean-fields.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/soybean-fields-960.avif",
+    "width": 960,
+    "height": 640,
+    "bytes": 54754,
+    "hasAlpha": false,
+    "master": "design-assets/generated/soybean-fields.png",
     "provenance": "AI generated illustrative image"
   },
   {
     "path": "/images/site/soybean-fields.webp",
     "width": 1536,
     "height": 1024,
-    "bytes": 311724,
+    "bytes": 198132,
+    "hasAlpha": false,
+    "master": "design-assets/generated/soybean-fields.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/soybean-fields-1536.avif",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 111646,
+    "hasAlpha": false,
+    "master": "design-assets/generated/soybean-fields.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/quality-lab-480.webp",
+    "width": 480,
+    "height": 320,
+    "bytes": 17890,
+    "hasAlpha": false,
+    "master": "design-assets/generated/quality-lab.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/quality-lab-480.avif",
+    "width": 480,
+    "height": 320,
+    "bytes": 10875,
+    "hasAlpha": false,
+    "master": "design-assets/generated/quality-lab.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/quality-lab-960.webp",
+    "width": 960,
+    "height": 640,
+    "bytes": 43520,
+    "hasAlpha": false,
+    "master": "design-assets/generated/quality-lab.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/quality-lab-960.avif",
+    "width": 960,
+    "height": 640,
+    "bytes": 26350,
+    "hasAlpha": false,
+    "master": "design-assets/generated/quality-lab.png",
     "provenance": "AI generated illustrative image"
   },
   {
     "path": "/images/site/quality-lab.webp",
     "width": 1536,
     "height": 1024,
-    "bytes": 117362,
+    "bytes": 78344,
+    "hasAlpha": false,
+    "master": "design-assets/generated/quality-lab.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/quality-lab-1536.avif",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 47504,
+    "hasAlpha": false,
+    "master": "design-assets/generated/quality-lab.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-workbench-480.webp",
+    "width": 480,
+    "height": 320,
+    "bytes": 19644,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-workbench.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-workbench-480.avif",
+    "width": 480,
+    "height": 320,
+    "bytes": 11911,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-workbench.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-workbench-960.webp",
+    "width": 960,
+    "height": 640,
+    "bytes": 54670,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-workbench.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-workbench-960.avif",
+    "width": 960,
+    "height": 640,
+    "bytes": 32817,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-workbench.png",
     "provenance": "AI generated illustrative image"
   },
   {
     "path": "/images/site/ingredient-workbench.webp",
     "width": 1536,
     "height": 1024,
-    "bytes": 168528,
+    "bytes": 104646,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-workbench.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-workbench-1536.avif",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 63608,
+    "hasAlpha": false,
+    "master": "design-assets/generated/ingredient-workbench.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/food-applications-480.webp",
+    "width": 480,
+    "height": 320,
+    "bytes": 25014,
+    "hasAlpha": false,
+    "master": "design-assets/generated/food-applications.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/food-applications-480.avif",
+    "width": 480,
+    "height": 320,
+    "bytes": 13801,
+    "hasAlpha": false,
+    "master": "design-assets/generated/food-applications.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/food-applications-960.webp",
+    "width": 960,
+    "height": 640,
+    "bytes": 70288,
+    "hasAlpha": false,
+    "master": "design-assets/generated/food-applications.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/food-applications-960.avif",
+    "width": 960,
+    "height": 640,
+    "bytes": 39374,
+    "hasAlpha": false,
+    "master": "design-assets/generated/food-applications.png",
     "provenance": "AI generated illustrative image"
   },
   {
     "path": "/images/site/food-applications.webp",
     "width": 1536,
     "height": 1024,
-    "bytes": 208976,
+    "bytes": 132710,
+    "hasAlpha": false,
+    "master": "design-assets/generated/food-applications.png",
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/food-applications-1536.avif",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 76390,
+    "hasAlpha": false,
+    "master": "design-assets/generated/food-applications.png",
     "provenance": "AI generated illustrative image"
   },
   {
     "path": "/images/brand/lecprima-mark.png",
-    "width": 512,
-    "height": 512,
-    "bytes": 82540,
+    "width": 192,
+    "height": 192,
+    "bytes": 8704,
     "provenance": "AI generated brand icon"
   },
   {
