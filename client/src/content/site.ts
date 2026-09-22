@@ -1,6 +1,7 @@
 /**
  * Site-wide constants — single source of truth
  */
+import { SITE_IMAGES } from "./media";
 import { SITE_ORIGIN } from "./url";
 
 export const SITE_URL = SITE_ORIGIN;
@@ -41,5 +42,4 @@ export const CERTIFICATIONS = [
   "Non-GMO IP",
 ] as const;
 
-export const DEFAULT_OG_IMAGE =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
+export const DEFAULT_OG_IMAGE = SITE_IMAGES.hero;

@@ -1,0 +1,128 @@
+[
+  {
+    "path": "/images/products/soy-lecithin-liquid.webp",
+    "width": 1400,
+    "height": 782,
+    "bytes": 74674,
+    "provenance": "User supplied: 卵磷脂液体系列.png"
+  },
+  {
+    "path": "/images/products/soy-lecithin-powder.webp",
+    "width": 1400,
+    "height": 782,
+    "bytes": 48892,
+    "provenance": "User supplied: 粉末大豆卵磷脂.png"
+  },
+  {
+    "path": "/images/products/modified-soy-lecithin.webp",
+    "width": 1046,
+    "height": 1400,
+    "bytes": 66066,
+    "provenance": "User supplied: 改性大豆卵磷脂.png"
+  },
+  {
+    "path": "/images/products/phosphatidylcholine.webp",
+    "width": 1046,
+    "height": 1400,
+    "bytes": 75968,
+    "provenance": "User supplied: 磷脂酰胆碱.png"
+  },
+  {
+    "path": "/images/products/sunflower-lecithin.webp",
+    "width": 1046,
+    "height": 1400,
+    "bytes": 50798,
+    "provenance": "User supplied: 葵花卵磷脂.png"
+  },
+  {
+    "path": "/images/products/soy-lecithin-granules.webp",
+    "width": 1400,
+    "height": 1050,
+    "bytes": 78566,
+    "provenance": "User supplied: 大豆卵磷脂颗粒.png"
+  },
+  {
+    "path": "/images/products/phosphatidylserine.webp",
+    "width": 1400,
+    "height": 933,
+    "bytes": 79850,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/products/soy-dietary-fiber.webp",
+    "width": 1400,
+    "height": 933,
+    "bytes": 111782,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/products/soy-protein-isolate.webp",
+    "width": 1400,
+    "height": 933,
+    "bytes": 68602,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/products/soy-oligosaccharide-small-pack.webp",
+    "width": 1400,
+    "height": 933,
+    "bytes": 70594,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-still-life.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 135314,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/soybean-fields.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 311724,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/quality-lab.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 117362,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/ingredient-workbench.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 168528,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/site/food-applications.webp",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 208976,
+    "provenance": "AI generated illustrative image"
+  },
+  {
+    "path": "/images/brand/lecprima-mark.png",
+    "width": 512,
+    "height": 512,
+    "bytes": 82540,
+    "provenance": "AI generated brand icon"
+  },
+  {
+    "path": "/images/brand/favicon-32.png",
+    "width": 32,
+    "height": 32,
+    "bytes": 1201,
+    "provenance": "AI generated brand icon"
+  },
+  {
+    "path": "/images/brand/apple-touch-icon.png",
+    "width": 180,
+    "height": 180,
+    "bytes": 12498,
+    "provenance": "AI generated brand icon"
+  }
+]

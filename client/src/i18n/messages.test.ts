@@ -1,5 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { LOCALES, type Locale } from "./config";
+import {
+  clearCachedMessages,
+  getCachedMessages,
+  hasCachedMessages,
+  loadMessages,
+  setCachedMessages,
+} from "./messages";
 import en from "./messages/en.json";
 import zhCN from "./messages/zh-CN.json";
 import ptBR from "./messages/pt-BR.json";
@@ -51,4 +58,34 @@ describe("locale message coverage", () => {
       expect(missingKeys(messages.en, messages[locale]), locale).toEqual([]);
     }
   });
+});
+
+describe("language switching with cached English messages", () => {
+  beforeEach(() => {
+    clearCachedMessages();
+    globalThis.__LECPRIMA_I18N__ = undefined;
+    setCachedMessages("en", en);
+  });
+
+  afterEach(() => {
+    clearCachedMessages();
+    globalThis.__LECPRIMA_I18N__ = undefined;
+  });
+
+  it("does not treat English messages as a cached translation for another locale", () => {
+    expect(getCachedMessages("zh-CN")).toBeUndefined();
+    expect(hasCachedMessages("zh-CN")).toBe(false);
+  });
+
+  it.each(LOCALES.filter(locale => locale !== "en"))(
+    "loads %s messages without requiring a page reload",
+    async locale => {
+      const translated = await loadMessages(locale);
+
+      expect(translated).toEqual(messages[locale]);
+      expect(getCachedMessages(locale)).toBe(translated);
+      expect(await loadMessages("en")).toEqual(en);
+      expect(await loadMessages(locale)).toBe(translated);
+    }
+  );
 });

@@ -1,5 +1,8 @@
 {
   "common": {
+    "open_menu": "Ouvrir le menu",
+    "close_menu": "Fermer le menu",
+    "language": "Langue",
     "home": "Accueil",
     "products": "Produits",
     "industry_solutions": "Solutions par Industrie",
@@ -162,7 +165,7 @@
     "hero_subtitle": "Des Sols Noirs de Heilongjiang",
     "hero_title": "Contactez-nous",
     "hero_description": "Parlez-nous de votre application, dosage cible, spécification requise et calendrier d'approvisionnement. Notre équipe répondra sous 1 jour ouvrable.",
-    "hero_image_alt": "Champ de soja et usine GMP pour l'approvisionnement stable en ingrédients",
+    "hero_image_alt": "Composition illustrative d’échantillons d’ingrédients liquides, en poudre et en granulés",
     "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
     "headquarters": "Siège",
     "headquarters_address": "Harbin, Province de Heilongjiang, Chine",
@@ -274,7 +277,7 @@
       "Le site de Liaocheng comprend un atelier GMP de 7 000㎡ dans le Shandong, trois lignes automatisées indépendantes contrôlées par ordinateur et une capacité annuelle de 10 000 tonnes pour les produits de lécithine de soja.",
       "Nous maintenons le contrôle qualité de la graine à l'expédition : matières premières issues de fermes Non-GMO IP du Heilongjiang ; production sous ISO 22000, FSSC 22000 et HACCP. Chaque lot est testé pour les insolubles dans l'acétone, l'indice d'acide, l'indice de peroxyde et les métaux lourds, avec COA traçable."
     ],
-    "story_image_alt": "Technicien qualité vérifiant un approvisionnement traçable en phospholipides",
+    "story_image_alt": "Scène illustrative de laboratoire avec des échantillons d’ingrédients liquides et en poudre",
     "stats": {
       "gmp_workshop": "Atelier GMP",
       "automated_lines": "Lignes Automatisées",

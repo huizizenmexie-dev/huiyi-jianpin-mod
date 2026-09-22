@@ -1,178 +1,226 @@
-/*
- * DESIGN: Agricultural Documentary — Cinematic Storytelling
- * Layout: Sticky nav (transparent→ivory), dark green footer, floating contact button
- */
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { Link, useLocation } from "wouter";
 import { getProductListingNames } from "@/lib/productData";
 import {
   ChevronDown,
+  ArrowUpRight,
+  ArrowRight,
   Menu,
   X,
   Mail,
   MessageCircle,
   Phone,
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useI18nContext, buildLocalizedPath, buildLocalizedPublicPath } from "@/i18n";
+import Brand from "./Brand";
+import {
+  useI18nContext,
+  buildLocalizedPath,
+  buildLocalizedPublicPath,
+  getPathWithoutLocale,
+} from "@/i18n";
+import { CONTACT } from "@/content/site";
 
-const WHATSAPP_LINK = "https://wa.me/8618646556618";
-
-/* ─── Navbar ─── */
 function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [prodOpen, setProdOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const [location] = useLocation();
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { isRTL, t, locale } = useI18nContext();
   const productListingNames = getProductListingNames(locale);
-
-  // Build localized links
-  const QUOTE_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#quoteForm");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const route = getPathWithoutLocale(location);
+  const quoteLink = buildLocalizedPublicPath(locale, "/contact#quoteForm");
+  const navLinks = [
+    { label: t("common.home", "Home"), path: "/" },
+    {
+      label: t("common.products", "Products"),
+      path: "/products",
+      dropdown: true,
+    },
+    {
+      label: t("common.industry_solutions", "Industry Solutions"),
+      path: "/industry-solutions",
+    },
+    { label: t("common.quality", "Quality"), path: "/quality" },
+    { label: t("common.insights", "Insights"), path: "/insights" },
+    { label: t("common.about", "About"), path: "/about" },
+    { label: t("common.contact", "Contact"), path: "/contact" },
+  ];
+  const isActive = (path: string) =>
+    path === "/"
+      ? route === "/"
+      : route.startsWith(`${path}/`) || route === path;
 
   useEffect(() => {
     setMobileOpen(false);
-    setProdOpen(false);
+    setProductsOpen(false);
   }, [location]);
 
-  const navLinks = [
-    { label: t("common.home", "Home"), href: buildLocalizedPath(locale, "/") },
-    { label: t("common.products", "Products"), href: buildLocalizedPath(locale, "/products"), dropdown: true },
-    { label: t("common.industry_solutions", "Industry Solutions"), href: buildLocalizedPath(locale, "/industry-solutions") },
-    { label: t("common.quality", "Quality"), href: buildLocalizedPath(locale, "/quality") },
-    { label: t("common.insights", "Insights"), href: buildLocalizedPath(locale, "/insights") },
-    { label: t("common.about", "About"), href: buildLocalizedPath(locale, "/about") },
-    { label: t("common.contact", "Contact"), href: buildLocalizedPath(locale, "/contact") },
-  ];
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    const closeOutside = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        !headerRef.current?.contains(event.target)
+      )
+        setMobileOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("pointerdown", closeOutside);
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("pointerdown", closeOutside);
+    };
+  }, [mobileOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-warm-ivory/95 backdrop-blur-md shadow-sm"
-          : "bg-transparent"
-      }`}
-      style={
-        scrolled
-          ? { backgroundColor: "rgba(245, 242, 235, 0.95)" }
-          : undefined
-      }
-    >
-      <nav className={`container flex items-center justify-between h-16 lg:h-18 ${isRTL ? "flex-row-reverse" : ""}`}>
-        {/* Logo */}
-        <Link href={buildLocalizedPath(locale, "/")} className="flex items-center shrink-0">
-          <span className="font-heading font-semibold text-deep-brown text-base lg:text-lg tracking-tight">
-            Lecprima
-          </span>
+    <header className="site-header" ref={headerRef}>
+      <nav
+        className="container header-inner"
+        aria-label={t("footer.quick_links", "Quick Links")}
+      >
+        <Link
+          href={buildLocalizedPath(locale, "/")}
+          className="brand-home"
+          aria-label={`Lecprima — ${t("common.home", "Home")}`}
+        >
+          <Brand />
         </Link>
-
-        {/* Desktop Nav */}
-        <div className={`hidden lg:flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}>
-          {navLinks.map((link) =>
+        <div className="desktop-navigation">
+          {navLinks.map(link =>
             link.dropdown ? (
-              <div key={link.label} className="relative group">
-                <Link
-                  href={link.href}
-                  className={`flex items-center gap-1 px-3 py-2 text-sm font-body font-medium transition-colors rounded-md ${
-                    location.startsWith(`/${locale}/products`)
-                      ? "text-earth-green"
-                      : "text-deep-brown hover:text-earth-green"
-                  }`}
+              <DropdownMenu key={link.path} dir={isRTL ? "rtl" : "ltr"}>
+                <DropdownMenuTrigger
+                  className={`nav-link ${isActive(link.path) ? "is-active" : ""}`}
                 >
                   {link.label}
-                  <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
-                </Link>
-                <div className={`absolute top-full pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ${isRTL ? "right-0" : "left-0"}`}>
-                  <div className="bg-white rounded-lg shadow-lg border border-border py-2 min-w-[260px]">
-                    {productListingNames.map((p) => (
+                  <ChevronDown size={13} aria-hidden="true" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="start"
+                  sideOffset={15}
+                  className="product-nav-dropdown"
+                >
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href={buildLocalizedPath(locale, "/products")}
+                      className="font-semibold"
+                    >
+                      {t("common.all_products", "All Products")}
+                      <ArrowRight
+                        size={15}
+                        className="ms-auto directional-arrow"
+                      />
+                    </Link>
+                  </DropdownMenuItem>
+                  {productListingNames.map(product => (
+                    <DropdownMenuItem key={product.slug} asChild>
                       <Link
-                        key={p.slug}
-                        href={buildLocalizedPath(locale, `/products/${p.slug}`)}
-                        className="block px-4 py-2 text-sm text-deep-brown hover:bg-soft-green hover:text-earth-green transition-colors"
+                        href={buildLocalizedPath(
+                          locale,
+                          `/products/${product.slug}`
+                        )}
                       >
-                        {p.name}
+                        {product.name}
                       </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Link
-                key={link.label}
-                href={link.href}
-                className={`px-3 py-2 text-sm font-body font-medium transition-colors rounded-md ${
-                  location === link.href
-                    ? "text-earth-green"
-                    : "text-deep-brown hover:text-earth-green"
-                }`}
+                key={link.path}
+                href={buildLocalizedPath(locale, link.path)}
+                className={`nav-link ${isActive(link.path) ? "is-active" : ""}`}
+                aria-current={isActive(link.path) ? "page" : undefined}
               >
                 {link.label}
               </Link>
             )
           )}
         </div>
-
-        {/* Desktop CTA + Language Switcher */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="header-actions">
           <LanguageSwitcher />
-          <a
-            href={QUOTE_FORM_LINK}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-          >
-            <Mail className="w-4 h-4" />
+          <a href={quoteLink} className="button-primary header-quote">
             {t("common.get_a_quote", "Get a Quote")}
+            <ArrowUpRight size={15} className="directional-arrow" />
           </a>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setMobileOpen(open => !open)}
+            className="mobile-menu-toggle"
+            aria-label={
+              mobileOpen
+                ? t("common.close_menu", "Close menu")
+                : t("common.open_menu", "Open menu")
+            }
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-deep-brown"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </nav>
-
-      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-border shadow-lg">
-          <div className="container py-4 space-y-1">
-            {navLinks.map((link) =>
+        <nav
+          id="mobile-navigation"
+          className="mobile-navigation"
+          aria-label={t("footer.quick_links", "Quick Links")}
+        >
+          <div className="container">
+            {navLinks.map(link =>
               link.dropdown ? (
-                <div key={link.label}>
-                  <button
-                    onClick={() => setProdOpen(!prodOpen)}
-                    className="flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium text-deep-brown"
-                  >
-                    {link.label}
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        prodOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {prodOpen && (
-                    <div className="pl-4 space-y-0.5">
-                      <Link
-                        href={buildLocalizedPath(locale, "/products")}
-                        className="block px-3 py-2 text-sm text-medium-gray hover:text-earth-green"
-                      >
-                        {t("common.all_products", "All Products")}
-                      </Link>
-                      {productListingNames.map((p) => (
+                <div key={link.path}>
+                  <div className="mobile-product-navigation">
+                    <Link
+                      href={buildLocalizedPath(locale, link.path)}
+                      className="mobile-nav-link"
+                      aria-current={isActive(link.path) ? "page" : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setProductsOpen(open => !open)}
+                      className="mobile-product-toggle"
+                      aria-expanded={productsOpen}
+                      aria-controls="mobile-product-links"
+                      aria-label={t("common.all_products", "All Products")}
+                    >
+                      <ChevronDown
+                        size={19}
+                        className={productsOpen ? "rotate-180" : ""}
+                      />
+                    </button>
+                  </div>
+                  {productsOpen && (
+                    <div
+                      id="mobile-product-links"
+                      className="mobile-product-links"
+                    >
+                      {productListingNames.map(product => (
                         <Link
-                          key={p.slug}
-                          href={buildLocalizedPath(locale, `/products/${p.slug}`)}
-                          className="block px-3 py-2 text-sm text-medium-gray hover:text-earth-green"
+                          key={product.slug}
+                          href={buildLocalizedPath(
+                            locale,
+                            `/products/${product.slug}`
+                          )}
                         >
-                          {p.name}
+                          {product.name}
                         </Link>
                       ))}
                     </div>
@@ -180,182 +228,234 @@ function Navbar() {
                 </div>
               ) : (
                 <Link
-                  key={link.label}
-                  href={link.href}
-                  className="block px-3 py-2.5 text-sm font-medium text-deep-brown hover:text-earth-green"
+                  key={link.path}
+                  href={buildLocalizedPath(locale, link.path)}
+                  className="mobile-nav-link"
+                  aria-current={isActive(link.path) ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
               )
             )}
-            <div className="pt-2">
-              <LanguageSwitcher />
-            </div>
             <a
-              href={QUOTE_FORM_LINK}
-              className="flex items-center justify-center gap-2 mt-3 px-4 py-2.5 bg-earth-green text-white text-sm font-medium rounded-md"
+              href={quoteLink}
+              onClick={() => setMobileOpen(false)}
+              className="button-primary mobile-quote"
             >
-              <Mail className="w-4 h-4" />
               {t("common.get_a_quote", "Get a Quote")}
+              <ArrowUpRight size={17} className="directional-arrow" />
             </a>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
 }
 
-/* ─── Footer ─── */
 function Footer() {
-  const { t, isRTL, locale } = useI18nContext();
-
-  const quickLinks = [
-    { label: t("common.home", "Home"), href: buildLocalizedPath(locale, "/") },
-    { label: t("common.products", "Products"), href: buildLocalizedPath(locale, "/products") },
-    { label: t("common.industry_solutions", "Industry Solutions"), href: buildLocalizedPath(locale, "/industry-solutions") },
-    { label: t("common.quality", "Quality"), href: buildLocalizedPath(locale, "/quality") },
-    { label: t("common.about", "About"), href: buildLocalizedPath(locale, "/about") },
-    { label: t("common.contact", "Contact"), href: buildLocalizedPath(locale, "/contact") },
+  const { t, locale } = useI18nContext();
+  const links = [
+    { label: t("common.products", "Products"), path: "/products" },
+    {
+      label: t("common.industry_solutions", "Industry Solutions"),
+      path: "/industry-solutions",
+    },
+    { label: t("common.quality", "Quality"), path: "/quality" },
+    { label: t("common.insights", "Insights"), path: "/insights" },
+    { label: t("common.about", "About"), path: "/about" },
+    { label: t("common.contact", "Contact"), path: "/contact" },
   ];
-
-  const certs = ["ISO 22000", "FSSC 22000", "HACCP", "Halal", "Non-GMO IP"];
-
   return (
-    <footer className="bg-dark-green text-warm-ivory">
-      <div className="container py-12 lg:py-16">
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 ${isRTL ? "text-right" : ""}`}>
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="mb-4">
-              <span className="font-heading font-semibold text-warm-ivory text-lg">
-                {t("footer.brand_name", "Lecprima")}
-              </span>
-            </div>
-            <p className="text-sm text-warm-ivory/70 leading-relaxed">
-              {t("footer.company_name", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.")}
-            </p>
-            <p className="text-xs text-warm-ivory/60 mt-2 leading-relaxed">
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer-main">
+          <div className="footer-brand-column">
+            <Link
+              href={buildLocalizedPath(locale, "/")}
+              aria-label={`Lecprima — ${t("common.home", "Home")}`}
+            >
+              <Brand light />
+            </Link>
+            <p className="footer-brand-statement">
               {t(
                 "footer.brand_statement",
-                "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
+                "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd."
               )}
             </p>
-            <p className="text-xs text-warm-ivory/50 mt-2">
-              {t("footer.tagline", "From Black Soil to Global Health.")}
-            </p>
           </div>
-
-          {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-harvest-gold mb-4">
+            <h2 className="footer-heading">
               {t("footer.quick_links", "Quick Links")}
-            </h4>
-            <ul className="space-y-2">
-              {quickLinks.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors"
-                  >
-                    {l.label}
+            </h2>
+            <ul className="footer-links">
+              {links.map(link => (
+                <li key={link.path}>
+                  <Link href={buildLocalizedPath(locale, link.path)}>
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
-          {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-harvest-gold mb-4">
-              {t("footer.contact", "Contact")}
-            </h4>
-            <ul className="space-y-2 text-sm text-warm-ivory/70">
-              <li>+86 18646556618</li>
-              <li>jojowei@huiyijianpin.cn</li>
-              <li className="pt-1">{t("footer.location_harbin", "Harbin (HQ)")}</li>
-              <li>{t("footer.location_liaocheng", "Liaocheng (Factory)")}</li>
+            <h2 className="footer-heading">{t("footer.contact", "Contact")}</h2>
+            <ul className="footer-links footer-contact-links">
+              <li>
+                <a href={`mailto:${CONTACT.email}`}>
+                  <Mail size={15} aria-hidden="true" />
+                  <span dir="ltr">{CONTACT.email}</span>
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}>
+                  <Phone size={15} aria-hidden="true" />
+                  <span dir="ltr">{CONTACT.phone}</span>
+                </a>
+              </li>
+              <li className="footer-locations">
+                {t("footer.location_harbin", "Harbin (HQ)")}
+                <br />
+                {t("footer.location_liaocheng", "Liaocheng (Factory)")}
+              </li>
             </ul>
           </div>
-
-          {/* Certifications */}
-          <div>
-            <h4 className="font-heading font-semibold text-sm uppercase tracking-wider text-harvest-gold mb-4">
-              {t("footer.certifications", "Certifications")}
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {certs.map((c) => (
-                <span
-                  key={c}
-                  className="inline-block px-2.5 py-1 text-xs font-medium border border-harvest-gold/40 text-harvest-gold rounded"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
+          <div className="footer-documentation">
+            <FileIcon />
+            <h2 className="footer-heading">
+              {t("homepage.hero_badges.clear_specs", "Clear Specs")}.{" "}
+              {t("homepage.hero_badges.batch_coa", "Batch COA")}.
+            </h2>
+            <Link
+              href={buildLocalizedPath(locale, "/quality")}
+              className="footer-document-link"
+            >
+              {t("homepage.verify_quality", "Review Quality Documents")}
+              <ArrowUpRight size={18} className="directional-arrow" />
+            </Link>
+            <a
+              href={buildLocalizedPublicPath(locale, "/contact#quoteForm")}
+              className="footer-document-link"
+            >
+              {t("common.get_a_quote", "Get a Quote")}
+              <ArrowUpRight size={18} className="directional-arrow" />
+            </a>
           </div>
         </div>
-
-        <div className="mt-10 pt-6 border-t border-warm-ivory/10 text-center text-xs text-warm-ivory/40">
-          &copy; {new Date().getFullYear()} {t("footer.copyright", "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. All rights reserved.")}
+        <div className="footer-bottom">
+          <p>
+            &copy; {new Date().getFullYear()}{" "}
+            {t(
+              "footer.copyright",
+              "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. All rights reserved."
+            )}
+          </p>
+          <span>
+            {t("homepage.hero_title_line1", "Make Every")}{" "}
+            {t("homepage.hero_title_line2", "Batch Perform")}
+          </span>
         </div>
       </div>
     </footer>
   );
 }
 
-/* ─── Floating Contact Button ─── */
+function FileIcon() {
+  return (
+    <svg
+      width="27"
+      height="32"
+      viewBox="0 0 27 32"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path d="M4 1h13l9 9v21H1V4a3 3 0 0 1 3-3Z" stroke="currentColor" />
+      <path d="M17 1v9h9M7 17h13M7 22h13" stroke="currentColor" />
+    </svg>
+  );
+}
+
 function FloatingContact() {
   const [open, setOpen] = useState(false);
+  const [location] = useLocation();
   const { t, locale } = useI18nContext();
-  const INQUIRY_FORM_LINK = buildLocalizedPublicPath(locale, "/contact#inquiryForm");
+  const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const detailRoute = /^\/products\/[^/]+\/?$/.test(
+    getPathWithoutLocale(location)
+  );
+
+  useEffect(() => {
+    setOpen(false);
+  }, [location]);
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    const outside = (event: PointerEvent) => {
+      if (
+        event.target instanceof Node &&
+        !rootRef.current?.contains(event.target)
+      )
+        setOpen(false);
+    };
+    document.addEventListener("keydown", close);
+    document.addEventListener("pointerdown", outside);
+    return () => {
+      document.removeEventListener("keydown", close);
+      document.removeEventListener("pointerdown", outside);
+    };
+  }, [open]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-40">
+    <div
+      ref={rootRef}
+      className={`floating-contact ${detailRoute ? "floating-contact-with-bar" : ""}`}
+    >
       {open && (
-        <div className="mb-3 bg-white rounded-xl shadow-xl border border-border p-3 space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-200">
+        <div id="floating-contact-options" className="floating-contact-panel">
           <a
-            href={INQUIRY_FORM_LINK}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors"
+            href={buildLocalizedPublicPath(locale, "/contact#inquiryForm")}
+            onClick={() => setOpen(false)}
           >
-            <Mail className="w-5 h-5 text-earth-green" />
-            <span className="text-sm font-medium text-deep-brown">{t("contact_page.email_inquiry", "Email Inquiry")}</span>
+            <Mail size={19} />
+            <span>{t("contact_page.email_inquiry", "Email Inquiry")}</span>
           </a>
-          <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors"
-          >
-            <Phone className="w-5 h-5 text-earth-green" />
-            <span className="text-sm font-medium text-deep-brown">{t("common.whatsapp", "WhatsApp")}</span>
+          <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
+            <Phone size={19} />
+            <span>{t("common.whatsapp", "WhatsApp")}</span>
           </a>
-          <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-soft-green transition-colors cursor-default">
-            <MessageCircle className="w-5 h-5 text-earth-green" />
-            <span className="text-sm font-medium text-deep-brown">{t("common.wechat_contact", "WeChat: +86 18646556618")}</span>
-          </div>
+          <p>
+            <MessageCircle size={19} />
+            <span>{t("common.wechat_contact", "WeChat: +86 18646556618")}</span>
+          </p>
         </div>
       )}
       <button
-        onClick={() => setOpen(!open)}
-        className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-200 ${
-          open
-            ? "bg-deep-brown text-white rotate-45"
-            : "bg-earth-green text-white hover:bg-earth-green-dark hover:shadow-xl"
-        }`}
+        ref={buttonRef}
+        type="button"
+        onClick={() => setOpen(value => !value)}
+        className="floating-contact-button"
+        aria-expanded={open}
+        aria-controls="floating-contact-options"
         aria-label={t("common.contact_options", "Contact options")}
       >
-        {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {open ? <X size={23} /> : <MessageCircle size={23} />}
       </button>
     </div>
   );
 }
 
-/* ─── Layout ─── */
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="site-layout">
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="site-main">
+        {children}
+      </main>
       <Footer />
       <FloatingContact />
     </div>

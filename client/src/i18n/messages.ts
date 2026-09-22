@@ -91,7 +91,9 @@ export function getCachedMessages(locale: Locale): TranslationData | undefined {
     return cached;
   }
 
-  return MESSAGE_CACHE[DEFAULT_LOCALE] || globalInitialMessages(DEFAULT_LOCALE);
+  // A cache hit must belong to the requested locale. Returning English here
+  // prevents loadMessages from fetching the selected language after navigation.
+  return undefined;
 }
 
 export async function loadMessages(locale: Locale): Promise<TranslationData> {

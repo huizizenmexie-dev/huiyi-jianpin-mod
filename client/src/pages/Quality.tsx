@@ -1,3 +1,5 @@
+import { SITE_IMAGES } from "@/content/media";
+import { buildPublicAssetPath } from "@/content/url";
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
  * Quality & Compliance: Certifications, QC system, traceability flow, documentation
@@ -17,8 +19,7 @@ import {
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
-const QUALITY_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-quality-samples-iG6mFTz7k7z8wbBtmTUuWG.webp";
+const QUALITY_IMG = SITE_IMAGES.laboratory;
 
 const certifications = [
   { name: "ISO 22000:2018", desc: "Food Safety Management System — Full production lines", icon: Shield },
@@ -134,7 +135,7 @@ export default function Quality() {
       <section className="relative h-[45vh] min-h-[390px] flex items-end overflow-hidden pt-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${QUALITY_IMG})` }}
+          style={{ backgroundImage: `url(${buildPublicAssetPath(QUALITY_IMG)})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-12">
