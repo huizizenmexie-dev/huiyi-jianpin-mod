@@ -35,7 +35,7 @@ export const evidenceLedger: EvidenceLedgerEntry[] = [
   {
     claimId: "cert-fssc-22000-public-certificate",
     exactPublicWording: "FSSC 22000",
-    productGrade: "Small packaging production and selected documented scope",
+    productGrade: "Small packaging production and sales of soy protein, soy fiber and soy oligosaccharides as separate categories",
     sourceDocument: "Quality page certificate download center",
     sourceOwner: "Business owner review required",
     sourceDate: "2026-07-01",
@@ -43,7 +43,7 @@ export const evidenceLedger: EvidenceLedgerEntry[] = [
     verificationStatus: "reviewed",
     reviewer: "Pending business owner confirmation",
     expiryDate: "Pending certificate expiry extraction",
-    pageUsage: ["/quality/", "/products/soy-oligosaccharide-small-pack/"],
+    pageUsage: ["/quality/"],
     publicationStatus: "publishable",
   },
   {

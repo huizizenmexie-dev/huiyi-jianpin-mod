@@ -173,7 +173,7 @@
       "powder": "粉末",
       "high_purity": "高纯度",
       "allergen_free": "无过敏原",
-      "protein_fiber": "蛋白/纤维"
+      "protein_fiber": "蛋白 / 纤维 / 低聚糖"
     }
   },
   "product_detail": {
@@ -254,7 +254,7 @@
       {
         "industry": "乳制品与速溶饮料",
         "pain_points": "粉末结团、溶解慢、脂肪上浮、乳化不均",
-        "products": "改性卵磷脂 HXY-PLW、大豆卵磷脂液体 HXY-1SPN、小包装低聚糖",
+        "products": "改性卵磷脂 HXY-PLW、大豆卵磷脂液体 HXY-1SPN、大豆低聚糖",
         "dosage": "0.2-2% 干/湿添加、喷涂或干混",
         "effect": "经买方验证后，支持分散、乳化稳定和口感目标"
       },
@@ -289,14 +289,14 @@
       {
         "industry": "饲料/动物营养",
         "pain_points": "脂溶性营养吸收低、粉末结块、稳定性差",
-        "products": "小包装大豆蛋白/低聚糖、大豆膳食纤维",
+        "products": "大豆蛋白、大豆膳食纤维、大豆低聚糖",
         "dosage": "混入饲料配方",
         "effect": "营养分布均匀，改善肠道健康，粉末流动性更好"
       },
       {
         "industry": "高纤维食品",
         "pain_points": "高纤维配方和质构需求",
-        "products": "大豆膳食纤维 J18000、小包装大豆低聚糖",
+        "products": "大豆膳食纤维 J18000、大豆低聚糖",
         "dosage": "添加 1-5%",
         "effect": "经买方验证后，支持纤维含量和质构配方目标"
       }
