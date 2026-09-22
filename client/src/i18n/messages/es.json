@@ -1,5 +1,8 @@
 {
   "common": {
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú",
+    "language": "Idioma",
     "home": "Inicio",
     "products": "Productos",
     "industry_solutions": "Soluciones por Industria",
@@ -162,7 +165,7 @@
     "hero_subtitle": "Del Suelo Negro de Heilongjiang",
     "hero_title": "Póngase en Contacto",
     "hero_description": "Cuéntenos su aplicación, dosis objetivo, especificación requerida y cronograma de suministro. Nuestro equipo responderá dentro de 1 día hábil.",
-    "hero_image_alt": "Campo de soja y fábrica GMP para suministro estable de ingredientes",
+    "hero_image_alt": "Composición ilustrativa de muestras de ingredientes líquidos, en polvo y granulados",
     "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
     "headquarters": "Sede Central",
     "headquarters_address": "Harbin, Provincia de Heilongjiang, China",
@@ -274,7 +277,7 @@
       "La planta de Liaocheng incluye un taller GMP de 7,000㎡ en Shandong, tres líneas automatizadas independientes controladas por computadora y capacidad anual de 10,000 toneladas para productos de lecitina de soja.",
       "Mantenemos control de calidad desde la semilla hasta el embarque: materias primas de granjas Non-GMO IP de Heilongjiang; producción bajo ISO 22000, FSSC 22000 y HACCP. Cada lote se analiza para insolubles en acetona, índice de acidez, índice de peróxido y metales pesados, con COA trazable."
     ],
-    "story_image_alt": "Técnico de calidad verificando suministro trazable de fosfolípidos",
+    "story_image_alt": "Escena ilustrativa de laboratorio con muestras de ingredientes líquidos y en polvo",
     "stats": {
       "gmp_workshop": "Taller GMP",
       "automated_lines": "Líneas Automatizadas",

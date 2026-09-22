@@ -1,3 +1,4 @@
+import { BRAND_ASSETS } from "./media";
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -245,6 +246,7 @@ function organizationSchema(urls: UrlSystem) {
     "@id": organizationId(urls),
     name: SITE_LEGAL_NAME,
     legalName: SITE_LEGAL_NAME,
+    logo: urls.absoluteAssetUrl(BRAND_ASSETS.icon),
     alternateName: [SITE_LEGAL_NAME_ZH, SITE_COMPANY_SHORT_NAME],
     url: urls.siteOrigin,
     description: SITE_BRAND_STATEMENT,
@@ -281,6 +283,7 @@ function brandSchema(urls: UrlSystem) {
     "@type": "Brand",
     "@id": brandId(urls),
     name: SITE_BRAND_NAME,
+    logo: urls.absoluteAssetUrl(BRAND_ASSETS.icon),
     url: urls.siteOrigin,
     description: SITE_BRAND_STATEMENT,
     parentOrganization: { "@id": organizationId(urls) },

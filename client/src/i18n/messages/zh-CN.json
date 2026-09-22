@@ -1,5 +1,8 @@
 {
   "common": {
+    "open_menu": "打开菜单",
+    "close_menu": "关闭菜单",
+    "language": "语言",
     "home": "首页",
     "products": "产品",
     "industry_solutions": "行业解决方案",
@@ -443,7 +446,7 @@
     "hero_description": "告诉我们您的应用、目标剂量、所需规格和供应时间表。我们的团队将在1个工作日内回复。",
     "brand_statement": "Lecprima 是由哈尔滨慧意建品进出口贸易有限公司运营的全球 B2B 品牌。我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
     "facility_operator_statement": "我们在中国山东聊城设有自有生产基地，为全球客户提供稳定的生产、质量管理与出口服务。",
-    "hero_image_alt": "大豆田和GMP工厂，稳定原料供应",
+    "hero_image_alt": "液体、粉末和颗粒原料样品陈列示意图",
     "company_name": "哈尔滨慧意建品进出口贸易有限公司",
     "headquarters": "总部",
     "headquarters_address": "中国黑龙江省哈尔滨市",
@@ -518,7 +521,7 @@
       "聊城制造基地拥有位于山东省的 7,000㎡ GMP 标准车间，配置三条独立的计算机控制自动化生产线，大豆卵磷脂系列产品年处理能力为 10,000 吨。",
       "我们从种植到发货保持质量控制：原料来自黑龙江非转基因身份保持（IP）农场；生产在 ISO 22000、FSSC 22000 和 HACCP 体系下执行。每批产品检测丙酮不溶物、酸值、过氧化值和重金属，并提供可追溯的 COA。"
     ],
-    "story_image_alt": "质量控制人员验证可追溯磷脂供应",
+    "story_image_alt": "液体及粉末原料样品的实验室场景示意图",
     "stats": {
       "gmp_workshop": "GMP 车间",
       "automated_lines": "自动化生产线",

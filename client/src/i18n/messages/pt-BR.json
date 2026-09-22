@@ -1,5 +1,8 @@
 {
   "common": {
+    "open_menu": "Abrir menu",
+    "close_menu": "Fechar menu",
+    "language": "Idioma",
     "home": "Início",
     "products": "Produtos",
     "industry_solutions": "Soluções por Indústria",
@@ -162,7 +165,7 @@
     "hero_subtitle": "Do Solo Negro de Heilongjiang",
     "hero_title": "Entre em Contato",
     "hero_description": "Conte-nos sua aplicação, dosagem alvo, especificação necessária e cronograma de abastecimento. Nossa equipe responderá em 1 dia útil.",
-    "hero_image_alt": "Campo de soja e fábrica GMP para abastecimento estável de ingredientes",
+    "hero_image_alt": "Composição ilustrativa de amostras de ingredientes líquidos, em pó e granulados",
     "company_name": "Harbin Huiyi Jianpin Import & Export Trade Co., Ltd.",
     "headquarters": "Sede",
     "headquarters_address": "Harbin, Província de Heilongjiang, China",
@@ -274,7 +277,7 @@
       "A unidade de Liaocheng inclui uma oficina GMP de 7.000㎡ em Shandong, com três linhas automatizadas independentes controladas por computador e capacidade anual de 10.000 toneladas para produtos da série lecitina de soja.",
       "Mantemos controle de qualidade da semente ao embarque: matérias-primas de fazendas Non-GMO IP de Heilongjiang; produção sob sistemas ISO 22000, FSSC 22000 e HACCP. Cada lote é testado para insolúveis em acetona, índice de acidez, índice de peróxido e metais pesados, com COA rastreável."
     ],
-    "story_image_alt": "Técnico de qualidade verificando fornecimento rastreável de fosfolipídios",
+    "story_image_alt": "Cena ilustrativa de laboratório com amostras de ingredientes líquidos e em pó",
     "stats": {
       "gmp_workshop": "Oficina GMP",
       "automated_lines": "Linhas Automatizadas",

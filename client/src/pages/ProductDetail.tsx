@@ -1,39 +1,43 @@
-/*
- * DESIGN: Agricultural Documentary — Cinematic Storytelling
- * Product Detail: Tabs for Specifications / Applications & Pain Points, sticky CTA bar
- */
 import { useState, useEffect } from "react";
 import { useParams } from "wouter";
-import { ChevronRight, ArrowLeft, Mail, Phone } from "lucide-react";
+import {
+  ChevronRight,
+  ArrowLeft,
+  ArrowUpRight,
+  Mail,
+  Phone,
+  FileText,
+} from "lucide-react";
 import { getProductBySlug } from "@/lib/productData";
 import LocalizedLink from "@/components/LocalizedLink";
 import { usePageSEO } from "@/lib/usePageSEO";
 import { buildPublicAssetPath } from "@/content/url";
 import { buildLocalizedPublicPath, useI18nContext } from "@/i18n";
+import { CONTACT } from "@/content/site";
 
-const CONTACT_EMAIL_BASE = "mailto:jojowei@huiyijianpin.cn?subject=";
-const WHATSAPP_LINK = "https://wa.me/8618646556618";
-const PRODUCT_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-lab-closeup-eEN2xCbwdBHhpnYpNTTntG.webp";
+const CONTACT_EMAIL_BASE = `mailto:${CONTACT.email}?subject=`;
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const { t, locale } = useI18nContext();
   const product = getProductBySlug(slug || "", locale);
-  const [activeTab, setActiveTab] = useState<"specs" | "apps">("specs");
   const [showStickyCta, setShowStickyCta] = useState(false);
 
   usePageSEO({
     path: product ? `/products/${product.slug}` : "/products",
-    title: product ? `${product.name} | Lecprima` : t("product_detail.not_found_title", "Product Not Found | Lecprima"),
+    title: product
+      ? `${product.name} | Lecprima`
+      : t("product_detail.not_found_title", "Product Not Found | Lecprima"),
     description: product
       ? `${product.subtitle}. ${product.quickSpecs}`
-      : t("product_detail.not_found_description", "The requested product could not be found."),
+      : t(
+          "product_detail.not_found_description",
+          "The requested product could not be found."
+        ),
     image: product?.image,
   });
 
   useEffect(() => {
-    setActiveTab("specs");
     window.scrollTo(0, 0);
   }, [slug]);
 
@@ -67,56 +71,80 @@ export default function ProductDetail() {
   )}&body=${encodeURIComponent(
     `Please fill in:\nCompany:\nProduct: ${product.name}\nQuantity:\nMessage:`
   )}`;
+  // Keep this existing CTA contract easy to inspect in source-based checks.
+  // prettier-ignore
   const contactQuoteFormLink = buildLocalizedPublicPath(locale, "/contact#quoteForm");
   const productImage = buildPublicAssetPath(product.image);
 
   return (
-    <div className="bg-warm-ivory">
+    <div className="product-detail-page">
       {/* Header */}
-      <section className="pt-24 pb-8 bg-white border-b border-border">
+      <section className="product-detail-header">
         <div className="container">
-          <nav className="flex items-center gap-2 text-sm text-medium-gray mb-6">
-            <LocalizedLink to="/" className="hover:text-earth-green transition-colors">{t("common.home", "Home")}</LocalizedLink>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <LocalizedLink to="/products" className="hover:text-earth-green transition-colors">{t("common.products", "Products")}</LocalizedLink>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-deep-brown font-medium">{product.name}</span>
+          <nav
+            className="breadcrumb"
+            aria-label={t("common.products", "Products")}
+          >
+            <LocalizedLink
+              to="/"
+              className="hover:text-earth-green transition-colors"
+            >
+              {t("common.home", "Home")}
+            </LocalizedLink>
+            <ChevronRight
+              className="directional-arrow w-3.5 h-3.5"
+              aria-hidden="true"
+            />
+            <LocalizedLink
+              to="/products"
+              className="hover:text-earth-green transition-colors"
+            >
+              {t("common.products", "Products")}
+            </LocalizedLink>
+            <ChevronRight
+              className="directional-arrow w-3.5 h-3.5"
+              aria-hidden="true"
+            />
+            <span aria-current="page">{product.name}</span>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="product-detail-grid">
             {/* Product Image */}
-            <div className="rounded-xl overflow-hidden shadow-md">
+            <div className="product-detail-image">
               <img
                 src={productImage}
                 alt={product.name}
-                className="w-full h-[320px] lg:h-[400px] object-cover"
+                className="w-full h-full object-contain"
+                width={900}
+                height={900}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = PRODUCT_IMG;
-                }}
               />
             </div>
 
             {/* Product Info */}
-            <div>
-              <h1 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown mb-2">
-                {product.name}
-              </h1>
-              <p className="text-medium-gray text-lg mb-4">{product.subtitle}</p>
+            <div className="product-detail-copy">
+              <p className="eyebrow">
+                {t("homepage.systems_subtitle", "Product Systems")}{" "}
+                <span aria-hidden="true">/</span> {product.form}
+              </p>
+              <h1 className="display-heading detail-title">{product.name}</h1>
+              <p className="product-detail-subtitle">{product.subtitle}</p>
 
               {/* Quick Specs Bar */}
-              <div className="bg-soft-green rounded-lg p-4 mb-6">
-                <p className="text-sm font-mono text-earth-green font-medium">
-                  {product.quickSpecs}
-                </p>
+              <div className="detail-quick-specs">
+                <FileText size={21} strokeWidth={1.5} aria-hidden="true" />
+                <p>{product.quickSpecs}</p>
               </div>
 
-              <div className="bg-white rounded-lg border border-border p-5 mb-6 shadow-sm">
-                <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-2">
-                  {t("product_detail.evaluation_title", "What this product helps evaluate")}
-                </p>
+              <div className="detail-evaluation">
+                <h2 className="detail-evaluation-title">
+                  {t(
+                    "product_detail.evaluation_title",
+                    "What this product helps evaluate"
+                  )}
+                </h2>
                 <ul className="space-y-2">
                   {product.applications.slice(0, 2).map(app => (
                     <li
@@ -131,81 +159,64 @@ export default function ProductDetail() {
                   ))}
                 </ul>
                 <p className="mt-4 text-sm text-medium-gray leading-relaxed">
-                  {t("product_detail.evaluation_description", "Request COA, TDS, SDS/MSDS or a sample before supplier qualification, formula trials or production scale-up.")}
+                  {t(
+                    "product_detail.evaluation_description",
+                    "Request COA, TDS, SDS/MSDS or a sample before supplier qualification, formula trials or production scale-up."
+                  )}
                 </p>
               </div>
 
               {/* Actions */}
-              <div className="flex flex-wrap gap-3">
-                <LocalizedLink
-                  to="/products"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 border border-border text-medium-gray rounded-md hover:border-earth-green hover:text-earth-green transition-colors text-sm"
-                >
-                  <ArrowLeft className="w-4 h-4" />
+              <div className="detail-actions">
+                <a href={contactQuoteFormLink} className="button-primary">
+                  <Mail className="w-4 h-4" />
+                  {t(
+                    "product_detail.request_docs_sample",
+                    "Request COA / TDS / Sample"
+                  )}
+                  <ArrowUpRight className="directional-arrow w-4 h-4" />
+                </a>
+                <LocalizedLink to="/products" className="text-link">
+                  <ArrowLeft className="directional-arrow w-4 h-4" />
                   {t("product_detail.back_to_products", "Back to Products")}
                 </LocalizedLink>
-                <a
-                  href={contactQuoteFormLink}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-earth-green text-white rounded-md hover:bg-earth-green-dark transition-colors text-sm font-medium"
-                >
-                  <Mail className="w-4 h-4" />
-                  {t("product_detail.request_docs_sample", "Request COA / TDS / Sample")}
-                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tabs */}
-      <section className="py-12 lg:py-16">
+      {/* Section links work without JavaScript; all technical content stays visible. */}
+      <section className="detail-content-section">
         <div className="container">
-          {/* Tab Headers */}
-          <div className="flex border-b border-border mb-8">
-            <button
-              onClick={() => setActiveTab("specs")}
-              className={`px-6 py-3 text-sm font-heading font-semibold transition-colors border-b-2 -mb-px ${
-                activeTab === "specs"
-                  ? "border-earth-green text-earth-green"
-                  : "border-transparent text-medium-gray hover:text-deep-brown"
-              }`}
-            >
+          <nav className="detail-section-links" aria-label={product.name}>
+            <a href="#product-specifications">
               {t("product_detail.specifications_tab", "Specifications")}
-            </button>
-            <button
-              onClick={() => setActiveTab("apps")}
-              className={`px-6 py-3 text-sm font-heading font-semibold transition-colors border-b-2 -mb-px ${
-                activeTab === "apps"
-                  ? "border-earth-green text-earth-green"
-                  : "border-transparent text-medium-gray hover:text-deep-brown"
-              }`}
-            >
-              {t("product_detail.applications_tab", "Applications & Pain Points")}
-            </button>
-          </div>
+            </a>
+            <a href="#product-applications">
+              {t(
+                "product_detail.applications_tab",
+                "Applications & Pain Points"
+              )}
+            </a>
+          </nav>
 
           {/* Static core content: keep specs visible in initial HTML */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-xl p-6 lg:p-8 shadow-sm border border-border">
-              <h2 className="font-heading font-bold text-2xl text-deep-brown mb-5">
-                {t("product_detail.specifications_title", "Product Specifications")}
+          <div className="space-y-12">
+            <div id="product-specifications" className="specifications-panel">
+              <h2 className="display-heading text-3xl md:text-4xl text-earth-green mb-7">
+                {t(
+                  "product_detail.specifications_title",
+                  "Product Specifications"
+                )}
               </h2>
               <div className="max-w-full overflow-x-auto">
-                <table className="w-full min-w-[560px]">
+                <table className="specifications-table">
                   <tbody>
                     {product.specifications.map((spec, i) => (
-                      <tr
-                        key={i}
-                        className={`${
-                          i % 2 === 0 ? "bg-light-green/50" : "bg-white"
-                        }`}
-                      >
-                        <td className="px-4 py-3 text-sm font-heading font-semibold text-deep-brown w-1/3 align-top">
-                          {spec.label}
-                        </td>
-                        <td className="px-4 py-3 text-sm font-mono text-medium-gray">
-                          {spec.value}
-                        </td>
+                      <tr key={i}>
+                        <th scope="row">{spec.label}</th>
+                        <td>{spec.value}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -213,15 +224,15 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="space-y-4">
-              <h2 className="font-heading font-bold text-2xl text-deep-brown">
-                {t("product_detail.applications_title", "Applications & Pain Points")}
+            <div id="product-applications" className="space-y-5">
+              <h2 className="display-heading text-3xl md:text-4xl text-earth-green mb-7">
+                {t(
+                  "product_detail.applications_title",
+                  "Applications & Pain Points"
+                )}
               </h2>
               {product.applications.map((app, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl p-6 shadow-sm border border-border"
-                >
+                <div key={i} className="detail-application-card">
                   <h3 className="font-heading font-semibold text-deep-brown text-lg mb-3">
                     {app.industry}
                   </h3>
@@ -230,11 +241,16 @@ export default function ProductDetail() {
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
                         {t("product_detail.pain_point_label", "Pain Point")}
                       </p>
-                      <p className="text-sm text-medium-gray">{app.painPoint}</p>
+                      <p className="text-sm text-medium-gray">
+                        {app.painPoint}
+                      </p>
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
-                        {t("product_detail.recommended_product_label", "Recommended Product")}
+                        {t(
+                          "product_detail.recommended_product_label",
+                          "Recommended Product"
+                        )}
                       </p>
                       <p className="text-sm text-earth-green font-medium">
                         {app.product}
@@ -250,7 +266,10 @@ export default function ProductDetail() {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-wider text-harvest-gold font-heading font-semibold mb-1">
-                        {t("product_detail.technical_effect_label", "Technical Effect")}
+                        {t(
+                          "product_detail.technical_effect_label",
+                          "Technical Effect"
+                        )}
                       </p>
                       <p className="text-sm text-medium-gray">{app.effect}</p>
                     </div>
@@ -263,35 +282,30 @@ export default function ProductDetail() {
       </section>
 
       {/* Sticky CTA Bar */}
-      <div
-        className={`fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-border shadow-lg transition-transform duration-300 ${
-          showStickyCta ? "translate-y-0" : "translate-y-full"
-        }`}
-      >
-        <div className="container flex items-center justify-between py-3 gap-4">
-          <p className="text-sm text-deep-brown font-medium hidden sm:block">
-            {product.ctaText}
-          </p>
-          <div className="flex items-center gap-3 ml-auto">
-            <a
-              href={emailLink}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-earth-green text-white text-sm font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              {t("homepage.email_inquiry", "Email Inquiry")}
-            </a>
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 border border-earth-green text-earth-green text-sm font-medium rounded-md hover:bg-earth-green hover:text-white transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              WhatsApp
-            </a>
+      {showStickyCta && (
+        <div className="detail-sticky-cta">
+          <div className="container detail-sticky-inner">
+            <p className="text-sm text-deep-brown font-medium hidden sm:block">
+              {product.ctaText}
+            </p>
+            <div className="detail-sticky-actions">
+              <a href={emailLink} className="button-primary">
+                <Mail className="w-4 h-4" />
+                {t("homepage.email_inquiry", "Email Inquiry")}
+              </a>
+              <a
+                href={CONTACT.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-secondary"
+              >
+                <Phone className="w-4 h-4" />
+                WhatsApp
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

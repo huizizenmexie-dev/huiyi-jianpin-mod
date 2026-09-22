@@ -1,3 +1,4 @@
+import { PRODUCT_IMAGES } from "../content/media";
 import { DEFAULT_LOCALE, type Locale } from "../i18n/config";
 
 export interface ProductSpec {
@@ -39,7 +40,7 @@ export const products: Product[] = [
     form: "Liquid",
     moq: "200 kg",
     category: ["Liquid"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663533550952/36JVCC6brZWby675y2RiTA/soy-lecithin-liquid-system-comparison-Qs6rasutqQrGfEDeVMXK7D.webp",
+    image: PRODUCT_IMAGES["soy-lecithin-liquid"],
     listingSpecs: "Phospholipid ≥60% | Non-GMO IP Optional",
     specifications: [
       { label: "Product Form", value: "Yellow to brown viscous liquid; bleached type lighter" },
@@ -68,7 +69,7 @@ export const products: Product[] = [
     form: "Powder",
     moq: "200 kg",
     category: ["Powder"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663533550952/36JVCC6brZWby675y2RiTA/soy-lecithin-powder-system-comparison-AfqafPsyWYrHyfC6JPifdK.webp",
+    image: PRODUCT_IMAGES["soy-lecithin-powder"],
     listingSpecs: "Phospholipid ≥96% | Peroxide ≤5.0",
     specifications: [
       { label: "Product Form", value: "Fine light yellow powder" },
@@ -97,7 +98,7 @@ export const products: Product[] = [
     form: "Liquid / Powder",
     moq: "200 kg",
     category: ["Liquid", "Powder"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-modified-lecithin-ML39LJX3HarLmSbbPfjVkG.webp",
+    image: PRODUCT_IMAGES["modified-soy-lecithin"],
     listingSpecs: "HLB ~10 | Rapid Dispersion",
     specifications: [
       { label: "Product Form", value: "Liquid (HXY-2SP) / Powder (HXY-PLW)" },
@@ -124,7 +125,7 @@ export const products: Product[] = [
     form: "Powder / Waxy Solid",
     moq: "5 kg",
     category: ["High-Purity"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-phosphatidylcholine-mn2rCrodgbXPPiwaAe7HL9.webp",
+    image: PRODUCT_IMAGES["phosphatidylcholine"],
     listingSpecs: "Liposome Grade | Cold Chain for High Purity",
     specifications: [
       { label: "Product Form", value: "Light yellow powder to yellow waxy solid (depending on purity)" },
@@ -152,7 +153,7 @@ export const products: Product[] = [
     form: "Light yellow powder",
     moq: "5 kg",
     category: ["High-Purity"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-phosphatidylserine-XM4LntbU7RREZPWVZ5CRNP.webp",
+    image: PRODUCT_IMAGES["phosphatidylserine"],
     listingSpecs: "Phospholipid Ingredient | Enzymatic Synthesis",
     specifications: [
       { label: "Product Form", value: "Light yellow powder" },
@@ -180,7 +181,7 @@ export const products: Product[] = [
     form: "Liquid / Powder",
     moq: "200 kg",
     category: ["Allergen-Free"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-sunflower-lecithin-Vrcgik3YpbEZcvAGkfPVMf.webp",
+    image: PRODUCT_IMAGES["sunflower-lecithin"],
     listingSpecs: "Soy-Free · Allergen-Free",
     specifications: [
       { label: "Product Form", value: "Liquid (HXY-SFL) / Powder (HXY-SFP)" },
@@ -207,7 +208,7 @@ export const products: Product[] = [
     form: "Powder",
     moq: "200 kg",
     category: ["Protein/Fiber"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-soy-dietary-fiber-5CnAZj8wYqg8tGGWeETC62.webp",
+    image: PRODUCT_IMAGES["soy-dietary-fiber"],
     listingSpecs: "Total Fiber ≥60% | High Water Holding",
     specifications: [
       { label: "Product Form", value: "Powder (J8000 / J18000)" },
@@ -236,7 +237,7 @@ export const products: Product[] = [
     form: "Light yellow powder",
     moq: "200 kg",
     category: ["Protein/Fiber"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-soy-protein-isolate-8SKUhatJo4bHShdmeP7HhE.webp",
+    image: PRODUCT_IMAGES["soy-protein-isolate"],
     listingSpecs: "Protein ≥90% | Gel Value ≥20g",
     specifications: [
       { label: "Product Form", value: "Light yellow powder (J7501)" },
@@ -267,7 +268,7 @@ export const products: Product[] = [
     form: "Powder / Liquid",
     moq: "50 kg",
     category: ["Protein/Fiber"],
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/prod-soy-oligosaccharide-MKHUvqAVWmpChiqLRNppFS.webp",
+    image: PRODUCT_IMAGES["soy-oligosaccharide-small-pack"],
     listingSpecs: "Prebiotic | Retail Ready",
     specifications: [
       { label: "Product Form", value: "Powder / Liquid (varies)" },
@@ -294,7 +295,7 @@ export const products: Product[] = [
     form: "Granules",
     moq: "200 kg",
     category: ["Powder"],
-    image: "/products/soy-lecithin-granules.png",
+    image: PRODUCT_IMAGES["soy-lecithin-granules"],
     listingSpecs: "Total Phospholipids 97.2% | Non-GMO Granules",
     specifications: [
       { label: "Product Form", value: "Light yellow soy lecithin granules for easy blending, dispersion, and handling" },

@@ -1,3 +1,5 @@
+import { SITE_IMAGES } from "@/content/media";
+import { buildPublicAssetPath } from "@/content/url";
 /*
  * DESIGN: Agricultural Documentary - Cinematic Storytelling
  * Contact page: Contact details plus Web3Forms quote and inquiry forms
@@ -18,8 +20,7 @@ import {
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
-const SPLIT_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
+const SPLIT_IMG = SITE_IMAGES.company;
 const WHATSAPP_LINK = "https://wa.me/8618646556618";
 const WEB3FORMS_ACTION = "https://api.web3forms.com/submit";
 
@@ -192,8 +193,8 @@ export default function Contact() {
           <div className="grid grid-cols-1 overflow-hidden rounded-2xl shadow-lg lg:grid-cols-[0.9fr_1.1fr]">
             <div className="relative min-h-[360px] lg:min-h-full">
               <img
-                src={SPLIT_IMG}
-                alt={t("contact_page.hero_image_alt", "Soybean field and GMP factory for stable ingredient supply")}
+                src={buildPublicAssetPath(SPLIT_IMG)}
+                alt={t("contact_page.hero_image_alt", "Illustrative arrangement of liquid, powder and granular ingredient samples")}
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />

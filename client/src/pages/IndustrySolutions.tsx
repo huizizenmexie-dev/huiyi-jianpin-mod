@@ -1,3 +1,5 @@
+import { SITE_IMAGES } from "@/content/media";
+import { buildPublicAssetPath } from "@/content/url";
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
  * Industry Solutions: Selection matrix table with filter tags
@@ -8,8 +10,7 @@ import { ChevronRight, Mail } from "lucide-react";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath, buildLocalizedPublicPath } from "@/i18n";
 
-const HEADER_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
+const HEADER_IMG = SITE_IMAGES.applications;
 
 interface SolutionRow {
   industry: string;
@@ -195,7 +196,7 @@ export default function IndustrySolutions() {
       <section className="relative h-[40vh] min-h-[360px] flex items-end overflow-hidden pt-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HEADER_IMG})` }}
+          style={{ backgroundImage: `url(${buildPublicAssetPath(HEADER_IMG)})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-10">

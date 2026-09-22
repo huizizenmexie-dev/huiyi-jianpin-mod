@@ -1,17 +1,20 @@
-/*
- * DESIGN: Agricultural Documentary — Cinematic Storytelling
- * Products listing: Filter bar, product cards in grid
- */
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import {
+  ChevronRight,
+  ArrowRight,
+  ArrowUpRight,
+  SlidersHorizontal,
+} from "lucide-react";
 import { getProducts, filterCategories } from "@/lib/productData";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
-import { useI18nContext, buildLocalizedPath } from "@/i18n";
+import {
+  useI18nContext,
+  buildLocalizedPath,
+  buildLocalizedPublicPath,
+} from "@/i18n";
 import { buildPublicAssetPath } from "@/content/url";
-
-const HEADER_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-soybean-harvest-4Swmtb4Bj6WCpQxs3QVKpV.webp";
+import { SITE_IMAGES } from "@/content/media";
 
 const filterLabelKeys: Record<string, string> = {
   All: "products_page.filters.all",
@@ -22,166 +25,216 @@ const filterLabelKeys: Record<string, string> = {
   "Protein/Fiber": "products_page.filters.protein_fiber",
 };
 
-function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function Products() {
   const [activeFilter, setActiveFilter] = useState("All");
   const { t, locale } = useI18nContext();
   const products = getProducts(locale);
 
-  // Apply unified SEO
   usePageSEO({
-    title: t("products_page.seo_title", "Soy Lecithin & Phospholipid Products | Stable B2B Supply"),
-    description: t("products_page.seo_description", "Explore soy lecithin, phosphatidylcholine, phosphatidylserine, soy protein and dietary fiber systems from Lecprima, built for reliable sourcing and global B2B supply."),
-    keywords: t("products_page.seo_keywords", "soy lecithin products, phospholipid systems, phosphatidylcholine supplier, phosphatidylserine supplier, reliable lecithin sourcing, stable B2B ingredient supply"),
+    title: t(
+      "products_page.seo_title",
+      "Lecithin & Phospholipid Products | Lecprima"
+    ),
+    description: t(
+      "products_page.seo_description",
+      "Explore lecithin, phospholipid, soy protein and dietary fiber ingredient systems for B2B formulation."
+    ),
+    keywords: t(
+      "products_page.seo_keywords",
+      "soy lecithin products, phospholipid systems, phosphatidylcholine supplier, phosphatidylserine supplier"
+    ),
     path: "/products",
-    image: HEADER_IMG,
+    image: SITE_IMAGES.hero,
     jsonLd: [
-      buildBreadcrumbSchema([
-        { name: t("common.home", "Home"), path: "/" },
-        { name: t("common.products", "Products"), path: "/products" },
-      ], locale),
+      buildBreadcrumbSchema(
+        [
+          { name: t("common.home", "Home"), path: "/" },
+          { name: t("common.products", "Products"), path: "/products" },
+        ],
+        locale
+      ),
     ],
   });
 
   const filtered =
     activeFilter === "All"
       ? products
-      : products.filter((p) => p.category.includes(activeFilter));
+      : products.filter(product => product.category.includes(activeFilter));
 
   return (
-    <div>
-      {/* Header */}
-      <section className="relative h-[40vh] min-h-[360px] flex items-end overflow-hidden pt-24">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${HEADER_IMG})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="relative container pb-10">
-          <nav className="flex items-center gap-2 text-sm text-white/60 mb-4">
-            <Link href={buildLocalizedPath(locale, "/")} className="hover:text-white transition-colors">{t("common.home", "Home")}</Link>
-            <ChevronRight className="w-3.5 h-3.5" />
-            <span className="text-white">{t("common.products", "Products")}</span>
+    <div className="catalogue-page">
+      <section className="catalogue-header">
+        <div className="container">
+          <nav
+            className="breadcrumb"
+            aria-label={t("common.products", "Products")}
+          >
+            <Link href={buildLocalizedPath(locale, "/")}>
+              {t("common.home", "Home")}
+            </Link>
+            <ChevronRight
+              size={14}
+              className="directional-arrow"
+              aria-hidden="true"
+            />
+            <span aria-current="page">{t("common.products", "Products")}</span>
           </nav>
-          <h1 className="font-heading font-bold text-4xl md:text-5xl text-white">
-            {t("products_page.hero_title", "Select Lecithin & Phospholipids by Application Problem")}
-          </h1>
-          <p className="text-harvest-gold font-heading font-medium text-lg mt-2">
-            {t("products_page.hero_description", "Compare form, specification, documentation and validation fit.")}
-          </p>
-        </div>
-      </section>
-
-      {/* Intro + Filter */}
-      <section className="py-8 bg-warm-ivory border-b border-border sticky top-16 z-30 backdrop-blur-sm" style={{ backgroundColor: "rgba(245, 242, 235, 0.95)" }}>
-        <div className="container">
-          <p className="text-medium-gray text-sm mb-4 max-w-3xl">
-            {t("products_page.intro", "Start with the formulation or procurement problem, then compare form, grade, specification, documentation and buyer-side validation needs. Each product page keeps core specs and application context visible for QA, R&D and purchasing review.")}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {filterCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-200 ${
-                  activeFilter === cat
-                    ? "bg-earth-green text-white"
-                    : "bg-white text-medium-gray border border-border hover:border-earth-green hover:text-earth-green"
-                }`}
-              >
-                {t(filterLabelKeys[cat] ?? "products_page.filters.all", cat)}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Grid */}
-      <section className="py-12 lg:py-20 bg-warm-ivory">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((product, i) => (
-              <FadeIn key={product.id} delay={i * 60}>
-                <Link href={buildLocalizedPath(locale, `/products/${product.slug}`)}>
-                  <div className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-earth-green shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer h-full flex flex-col">
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={buildPublicAssetPath(product.image)}
-                        alt={`${product.name} for application-led ingredient evaluation`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                    <div className="p-5 flex-1 flex flex-col">
-                      <h3 className="font-heading font-semibold text-deep-brown text-lg mb-1 group-hover:text-earth-green transition-colors">
-                        {product.name}
-                      </h3>
-                      <p className="text-medium-gray text-sm mb-3 line-clamp-2">
-                        {product.subtitle}
-                      </p>
-                      {product.applications[0] && (
-                        <p className="text-xs leading-relaxed text-medium-gray mb-3">
-                          <span className="font-heading font-semibold text-deep-brown">
-                            {t("products_page.problem_fit_label", "Problem fit")}:
-                          </span>{" "}
-                          {product.applications[0].painPoint}
-                        </p>
-                      )}
-                      <div className="mt-auto pt-3 border-t border-border">
-                        <p className="text-xs font-mono text-earth-green font-medium">
-                          {product.listingSpecs}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-1 mt-3 text-earth-green text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                        {t("common.view_details", "View Details")}
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-medium-gray">{t("products_page.no_products", "No products match this filter.")}</p>
+          <div className="catalogue-header-grid">
+            <div>
+              <p className="eyebrow">
+                {t("homepage.systems_subtitle", "Product Systems")}
+              </p>
+              <h1 className="display-heading catalogue-title">
+                {t(
+                  "products_page.hero_title",
+                  "Select Lecithin & Phospholipids by Application Problem"
+                )}
+              </h1>
+              <p className="section-description">
+                {t(
+                  "products_page.hero_description",
+                  "Compare form, specification, documentation and validation fit."
+                )}
+              </p>
             </div>
+            <div className="catalogue-header-visual">
+              <img
+                src={buildPublicAssetPath(SITE_IMAGES.hero)}
+                alt={t(
+                  "homepage.hero_subtitle",
+                  "Lecithin and phospholipid ingredients"
+                )}
+                width={1536}
+                height={1024}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="catalogue-body">
+        <div className="container">
+          <div className="catalogue-intro">
+            <p>
+              {t(
+                "products_page.intro",
+                "Compare form, grade, specification, documentation and buyer-side validation needs. Core specifications and application context are available on every product page."
+              )}
+            </p>
+            <a
+              href={buildLocalizedPublicPath(locale, "/contact#quoteForm")}
+              className="text-link"
+            >
+              {t("homepage.contact_engineer", "Request Technical Data")}
+              <ArrowUpRight className="directional-arrow h-4 w-4" />
+            </a>
+          </div>
+          <div className="catalogue-filter-bar">
+            <SlidersHorizontal
+              size={18}
+              aria-hidden="true"
+              className="shrink-0 text-earth-green"
+            />
+            <div
+              className="catalogue-filters"
+              role="group"
+              aria-label={t("common.products", "Products")}
+            >
+              {filterCategories.map(category => (
+                <button
+                  type="button"
+                  key={category}
+                  onClick={() => setActiveFilter(category)}
+                  aria-pressed={activeFilter === category}
+                  aria-controls="product-grid"
+                  className="filter-button"
+                >
+                  {t(
+                    filterLabelKeys[category] ?? "products_page.filters.all",
+                    category
+                  )}
+                </button>
+              ))}
+            </div>
+            <p
+              className="catalogue-count"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {filtered.length} <span>{t("common.products", "Products")}</span>
+            </p>
+          </div>
+
+          <div id="product-grid" className="catalogue-grid">
+            {filtered.map(product => (
+              <Link
+                key={product.id}
+                href={buildLocalizedPath(locale, `/products/${product.slug}`)}
+                className="product-card"
+              >
+                <div className="product-card-image">
+                  <img
+                    src={buildPublicAssetPath(product.image)}
+                    alt={product.name}
+                    width={720}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="product-form-tag">{product.form}</span>
+                </div>
+                <div className="product-card-content">
+                  <h2>{product.name}</h2>
+                  <p className="product-card-subtitle">{product.subtitle}</p>
+                  <p className="product-card-specs">{product.listingSpecs}</p>
+                  {product.applications[0] && (
+                    <p className="product-card-fit">
+                      <span>
+                        {t("products_page.problem_fit_label", "Problem fit")}
+                      </span>
+                      {product.applications[0].painPoint}
+                    </p>
+                  )}
+                  <div className="product-card-link">
+                    <span>{t("common.view_details", "View Details")}</span>
+                    <ArrowRight
+                      size={18}
+                      className="directional-arrow"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          {filtered.length === 0 && (
+            <p className="py-16 text-center text-medium-gray">
+              {t("products_page.no_products", "No products match this filter.")}
+            </p>
           )}
+          <div className="catalogue-contact">
+            <div>
+              <p className="eyebrow">
+                {t("homepage.resilience_subtitle", "Formulation Confidence")}
+              </p>
+              <h2 className="display-heading">
+                {t(
+                  "homepage.cta_title",
+                  "Tell Us the Problem Your Formula Needs to Solve"
+                )}
+              </h2>
+            </div>
+            <a
+              href={buildLocalizedPublicPath(locale, "/contact#quoteForm")}
+              className="button-primary"
+            >
+              {t("common.get_a_quote", "Get a Quote")}
+              <ArrowUpRight size={17} className="directional-arrow" />
+            </a>
+          </div>
         </div>
       </section>
     </div>

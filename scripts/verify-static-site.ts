@@ -12,11 +12,13 @@ import {
   type Locale,
 } from "../client/src/content/routes";
 import { getInsightBySlug } from "../client/src/content/insights";
+import { BRAND_ASSETS, PRODUCT_IMAGES, SITE_IMAGES } from "../client/src/content/media";
 import {
   BASE_PATH,
   SITE_ORIGIN,
   buildCanonicalUrl,
   buildPublicPath,
+  buildPublicAssetPath,
   buildRoutePath,
   buildSitemapUrl,
   stripBasePath,
@@ -110,6 +112,7 @@ function validateAssetReferences(content: string, routeLabel: string) {
   const refs = [
     ...content.matchAll(/<(?:script|link|img)[^>]+(?:src|href)="([^"]+)"/g),
     ...content.matchAll(/data-src="([^"]+)"/g),
+    ...content.matchAll(/url\((?:&quot;|&#x27;|["'])?([^\s)"']+?)(?:&quot;|&#x27;|["'])?\)/g),
   ].map((match) => match[1]);
 
   for (const ref of refs) {
@@ -120,7 +123,8 @@ function validateAssetReferences(content: string, routeLabel: string) {
       }
       check(existsSync(localFileForPublicPath(ref)), `${routeLabel} built asset ${ref} exists`);
     }
-    if (ref.startsWith("/products/") || ref.startsWith(`${BASE_PATH}products/`)) {
+    if (/\/(?:images|products)\//.test(ref)) {
+      check(ref.startsWith(BASE_PATH), `${routeLabel} public image ${ref} preserves base path`);
       check(existsSync(localFileForPublicPath(ref)), `${routeLabel} public image ${ref} exists`);
     }
   }
@@ -156,6 +160,10 @@ async function validateHttpPreview(publicPaths: string[]) {
 
 async function validate() {
   check(existsSync(DIST), "dist/public exists");
+  for (const image of [...Object.values(PRODUCT_IMAGES), ...Object.values(SITE_IMAGES), ...Object.values(BRAND_ASSETS)]) {
+    const publicPath = buildPublicAssetPath(image);
+    check(existsSync(localFileForPublicPath(publicPath)), `owned media ${publicPath} exists in build`);
+  }
   const routes = allRoutes();
   check(routes.length === LOCALES.length * (PAGE_PATHS.length + PRODUCT_SLUGS.length + INSIGHT_SLUGS.length), `route manifest derives ${routes.length} localized static pages`);
 

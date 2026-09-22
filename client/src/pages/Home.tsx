@@ -1,28 +1,17 @@
-/*
- * DESIGN: Agricultural Documentary — Cinematic Storytelling
- * Home page: Hero with soybean field, industry grid, product systems, trust layer, resilience narrative, footer CTA
- */
 import { Link } from "wouter";
-import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
+  ArrowUpRight,
+  Check,
   Mail,
-  Shield,
-  MapPin,
   FileText,
-  Factory,
-  Headphones,
   Candy,
   Milk,
   Croissant,
-  Pill,
   Brain,
   Leaf,
-  Sparkles,
-  Dog,
-  Globe2,
-  PackageCheck,
-  Route,
+  ClipboardCheck,
+  FlaskConical,
 } from "lucide-react";
 import {
   usePageSEO,
@@ -34,114 +23,16 @@ import {
   buildLocalizedPath,
   buildLocalizedPublicPath,
 } from "@/i18n";
+import { getProducts } from "@/lib/productData";
+import { SITE_IMAGES } from "@/content/media";
+import { buildPublicAssetPath } from "@/content/url";
 
-const HERO_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/hero-soybean-field-5mhsgZ9cxNzY2H9xAgjcJ4.webp";
-
-// Industry icons mapping
-const industryIcons = {
-  "Chocolate & Confectionery": Candy,
-  "Dairy & Instant Beverages": Milk,
-  "Bakery & Snacks": Croissant,
-  "Pharmaceuticals & Liposomes": Pill,
-  "Cognitive & Sports Nutrition": Brain,
-  "Plant-Based Meat & Protein": Leaf,
-  "Cosmetics & Personal Care": Sparkles,
-  "Animal Nutrition & Feed": Dog,
-};
-
-// Trust item icons mapping
-const trustIcons = {
-  Certifications: Shield,
-  Traceability: MapPin,
-  Documentation: FileText,
-  Capacity: Factory,
-  Support: Headphones,
-};
-
-// Resilience item icons mapping
-const resilienceIcons = {
-  "China-Based Supply Continuity": Globe2,
-  "Documented Procurement Confidence": PackageCheck,
-  "Traceable Farm-to-Shipment Control": Route,
-};
-
-function useCounter(end: number, duration = 2000) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          const start = performance.now();
-          const animate = (now: number) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            setCount(Math.floor(progress * end));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [end, duration]);
-
-  return { count, ref };
-}
-
-function FadeIn({
-  children,
-  className = "",
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-}
+// Representative products retain their names, imagery and routes from shared data.
+const systemProductIds = [1, 2, 4, 6, 8, 7];
 
 export default function Home() {
   const { t, locale } = useI18nContext();
-
-  // Build localized links
+  const products = getProducts(locale);
   const APPLICATION_FIT_LINK = buildLocalizedPublicPath(
     locale,
     "/industry-solutions#application-fit-lecithin"
@@ -153,26 +44,21 @@ export default function Home() {
     "/contact#inquiryForm"
   );
 
-  // SEO data from translations
-  const seoTitle = t(
-    "homepage.seo_title",
-    "Stable Soy Lecithin Supplier | Lecprima"
-  );
-  const seoDescription = t(
-    "homepage.seo_description",
-    "Secure your formulation against global supply chain disruptions. Lecprima offers 10,000T annual capacity, Non-GMO IP traceability."
-  );
-  const seoKeywords = t(
-    "homepage.seo_keywords",
-    "soy lecithin, phospholipids, phosphatidylcholine, Lecprima"
-  );
-
-  // Apply unified SEO
   usePageSEO({
-    title: seoTitle,
-    description: seoDescription,
-    keywords: seoKeywords,
+    title: t(
+      "homepage.seo_title",
+      "Lecithin & Phospholipid Ingredients | Lecprima"
+    ),
+    description: t(
+      "homepage.seo_description",
+      "Compare lecithin and phospholipid ingredients by application, specification and documentation needs."
+    ),
+    keywords: t(
+      "homepage.seo_keywords",
+      "soy lecithin, phospholipids, phosphatidylcholine, Lecprima"
+    ),
     path: "/",
+    image: SITE_IMAGES.hero,
     jsonLd: [
       buildOrganizationSchema(),
       buildBreadcrumbSchema(
@@ -182,31 +68,6 @@ export default function Home() {
     ],
   });
 
-  // Industries data from translations
-  const industries = [
-    { key: "chocolate", icon: industryIcons["Chocolate & Confectionery"] },
-    { key: "dairy", icon: industryIcons["Dairy & Instant Beverages"] },
-    { key: "bakery", icon: industryIcons["Bakery & Snacks"] },
-    {
-      key: "pharmaceuticals",
-      icon: industryIcons["Pharmaceuticals & Liposomes"],
-    },
-    { key: "cognitive", icon: industryIcons["Cognitive & Sports Nutrition"] },
-    { key: "plant_based", icon: industryIcons["Plant-Based Meat & Protein"] },
-    { key: "cosmetics", icon: industryIcons["Cosmetics & Personal Care"] },
-    { key: "animal", icon: industryIcons["Animal Nutrition & Feed"] },
-  ];
-
-  // Product systems from translations
-  const productSystemColors = [
-    "from-amber-600/20 to-amber-600/5",
-    "from-yellow-600/20 to-yellow-600/5",
-    "from-emerald-600/20 to-emerald-600/5",
-    "from-orange-500/20 to-orange-500/5",
-    "from-red-600/20 to-red-600/5",
-    "from-lime-600/20 to-lime-600/5",
-  ];
-
   const formulationProblems = [
     {
       title: t(
@@ -215,7 +76,7 @@ export default function Home() {
       ),
       body: t(
         "homepage.problem_cards.chocolate.body",
-        "Start with liquid soy lecithin grades for flow, molding and fat-system evaluation in buyer-validated chocolate formulas."
+        "Compare liquid lecithin grades for your chocolate formulation."
       ),
       icon: Candy,
     },
@@ -226,7 +87,7 @@ export default function Home() {
       ),
       body: t(
         "homepage.problem_cards.beverage.body",
-        "Compare modified lecithin and powder formats when clumping, floating fat or slow wetting blocks scale-up."
+        "Compare modified lecithin and powder formats for your beverage application."
       ),
       icon: Milk,
     },
@@ -237,7 +98,7 @@ export default function Home() {
       ),
       body: t(
         "homepage.problem_cards.bakery.body",
-        "Use powder or liquid lecithin systems to evaluate dough handling, fat distribution and finished-product texture."
+        "Evaluate powder and liquid lecithin systems in your bakery formulation."
       ),
       icon: Croissant,
     },
@@ -248,7 +109,7 @@ export default function Home() {
       ),
       body: t(
         "homepage.problem_cards.clean_label.body",
-        "Review sunflower lecithin options when the formula needs a soy-free source and buyer-approved allergen positioning."
+        "Review sunflower lecithin options and request product documentation."
       ),
       icon: Leaf,
     },
@@ -256,7 +117,7 @@ export default function Home() {
       title: t("homepage.problem_cards.purity.title", "PC/PS purity selection"),
       body: t(
         "homepage.problem_cards.purity.body",
-        "Select phosphatidylcholine or phosphatidylserine grades by target purity, storage condition and documentation needs."
+        "Compare phosphatidylcholine and phosphatidylserine grades by specification."
       ),
       icon: Brain,
     },
@@ -267,82 +128,118 @@ export default function Home() {
       ),
       body: t(
         "homepage.problem_cards.qa.body",
-        "Request COA, TDS, SDS/MSDS and certificate files before supplier qualification or production trials."
+        "Request COA, TDS, SDS/MSDS and certificate files for review."
       ),
       icon: FileText,
     },
   ];
 
-  // Trust items from translations
-  const trustItemKeys = [
-    "certifications",
-    "traceability",
-    "documentation",
-    "capacity",
-    "support",
+  const evaluationSteps = [
+    {
+      icon: FlaskConical,
+      title: t(
+        "homepage.resilience.supply_continuity.title",
+        "Application-Fit Selection"
+      ),
+      body: t(
+        "homepage.resilience.supply_continuity.desc",
+        "Start from the formulation issue, then compare forms, grades and usage context."
+      ),
+    },
+    {
+      icon: FileText,
+      title: t(
+        "homepage.resilience.procurement_confidence.title",
+        "Documented Procurement Review"
+      ),
+      body: t(
+        "homepage.resilience.procurement_confidence.desc",
+        "Request COA, TDS, MSDS and certification files for supplier review."
+      ),
+    },
+    {
+      icon: ClipboardCheck,
+      title: t("homepage.hero_badges.sample_to_scale", "Sample to Scale"),
+      body: t(
+        "product_detail.evaluation_description",
+        "Request COA, TDS, SDS/MSDS or a sample before supplier qualification, formula trials or production scale-up."
+      ),
+    },
   ];
-  const trustItemIcons = [Shield, MapPin, FileText, Factory, Headphones];
-
-  // Resilience items from translations
-  const resilienceItemKeys = [
-    "supply_continuity",
-    "procurement_confidence",
-    "farm_to_shipment",
-  ];
-  const resilienceItemIcons = [Globe2, PackageCheck, Route];
 
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        <img
-          src={HERO_IMG}
-          alt="Soybean field representing Lecprima lecithin and phospholipid ingredient sourcing"
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
-        <div className="relative container py-32 lg:py-40">
-          <div className="max-w-2xl">
-            <a
-              href={APPLICATION_FIT_LINK}
-              className="mb-4 inline-flex text-harvest-gold font-heading font-medium text-sm uppercase tracking-widest underline decoration-harvest-gold/40 underline-offset-4 transition-colors hover:text-white hover:decoration-white/70"
-            >
-              {t(
-                "homepage.hero_subtitle",
-                "Application-fit lecithin and phospholipid ingredients"
-              )}
-            </a>
-            <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6">
-              {t("homepage.hero_title_line1", "Natural Phospholipids")}
-              <br />
-              <span className="text-harvest-gold">
-                {t("homepage.hero_title_line2", "Engineered for Stable Supply")}
-              </span>
-            </h1>
-            <p className="text-white/85 text-lg md:text-xl leading-relaxed mb-4 max-w-xl">
-              {t(
-                "homepage.hero_description",
-                "ISO 22000 certified soy lecithin and high-purity phospholipid derivatives with 10,000 tons annual capacity, Non-GMO IP traceability, and reliable supply continuity from China."
-              )}
-            </p>
-            <p className="text-harvest-gold/90 text-sm font-semibold mb-8 border-l-2 border-harvest-gold pl-4">
+    <div className="home-page">
+      <section className="home-hero">
+        <div className="container">
+          <div className="home-hero-grid">
+            <div className="hero-copy">
+              <a href={APPLICATION_FIT_LINK} className="eyebrow hero-eyebrow">
+                <span className="eyebrow-rule" aria-hidden="true" />
+                {t(
+                  "homepage.hero_subtitle",
+                  "Application-fit lecithin and phospholipid ingredients"
+                )}
+              </a>
+              <h1 className="display-heading hero-title">
+                {t("homepage.hero_title_line1", "Make Every")}{" "}
+                <span>{t("homepage.hero_title_line2", "Batch Perform")}</span>
+              </h1>
+              <p className="hero-description">
+                {t(
+                  "homepage.hero_description",
+                  "Compare ingredients, review specifications and discuss your application with our team."
+                )}
+              </p>
+              <div className="hero-actions">
+                <Link href={PRODUCTS_LINK} className="button-primary">
+                  {t("homepage.explore_products", "Find the Right Ingredient")}
+                  <ArrowUpRight className="directional-arrow h-4 w-4" />
+                </Link>
+                <a href={INQUIRY_FORM_LINK} className="button-secondary">
+                  {t("homepage.contact_engineer", "Request Technical Data")}
+                </a>
+              </div>
+              <a
+                href={APPLICATION_FIT_LINK}
+                className="text-link hero-application-link"
+              >
+                {t("homepage.match_by_application", "Match by Application")}
+                <ArrowRight className="directional-arrow h-4 w-4" />
+              </a>
+            </div>
+            <figure className="hero-figure">
+              <div className="hero-image-frame">
+                <img
+                  src={buildPublicAssetPath(SITE_IMAGES.hero)}
+                  alt={t(
+                    "homepage.hero_subtitle",
+                    "Lecithin and phospholipid ingredients"
+                  )}
+                  width={1536}
+                  height={1024}
+                  className="hero-image"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </div>
+              <figcaption className="hero-image-caption">
+                <span>Lecprima</span>
+                <span>{t("homepage.systems_subtitle", "Product Systems")}</span>
+              </figcaption>
+            </figure>
+          </div>
+          <div className="hero-confidence-row">
+            <p>
               {t(
                 "homepage.hero_guarantee",
-                "Guaranteed supply stability amidst global sourcing uncertainty."
+                "Match the problem, verify the specs, then discuss your application."
               )}
             </p>
-
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="hero-badges">
               {[
-                {
-                  label: t("homepage.hero_badges.clear_specs", "Clear Specs"),
-                },
-                {
-                  label: t("homepage.hero_badges.batch_coa", "Batch COA"),
-                },
+                { label: t("homepage.hero_badges.clear_specs", "Clear Specs") },
+                { label: t("homepage.hero_badges.batch_coa", "Batch COA") },
                 {
                   label: t(
                     "homepage.hero_badges.application_fit",
@@ -356,265 +253,245 @@ export default function Home() {
                     "Sample to Scale"
                   ),
                 },
-              ].map(badge => {
-                const badgeClass =
-                  "inline-flex items-center gap-1.5 px-3 py-1.5 bg-harvest-gold/20 border border-harvest-gold/40 rounded text-harvest-gold text-xs font-heading font-semibold uppercase tracking-wide";
-                const content = (
-                  <>
-                    <Shield className="w-3.5 h-3.5" />
+              ].map(badge =>
+                badge.href ? (
+                  <a key={badge.label} href={badge.href} className="hero-badge">
+                    <Check size={14} aria-hidden="true" />
                     {badge.label}
-                  </>
-                );
-
-                return badge.href ? (
-                  <a
-                    key={badge.label}
-                    href={badge.href}
-                    className={`${badgeClass} transition-colors hover:bg-harvest-gold hover:text-white`}
-                  >
-                    {content}
                   </a>
                 ) : (
-                  <span key={badge.label} className={badgeClass}>
-                    {content}
+                  <span key={badge.label} className="hero-badge">
+                    <Check size={14} aria-hidden="true" />
+                    {badge.label}
                   </span>
-                );
-              })}
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <a
-                href={APPLICATION_FIT_LINK}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-              >
-                {t("homepage.match_by_application", "Match by Application")}
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <Link
-                href={PRODUCTS_LINK}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/35 text-white font-medium rounded-md hover:bg-white hover:text-earth-green transition-colors"
-              >
-                {t("homepage.explore_products", "Explore Product Systems")}
-              </Link>
-              <a
-                href={INQUIRY_FORM_LINK}
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-harvest-gold text-harvest-gold font-medium rounded-md hover:bg-harvest-gold hover:text-white transition-colors"
-              >
-                {t("homepage.contact_engineer", "Contact an Engineer")}
-              </a>
+                )
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Brand Statement */}
-      <section className="border-b border-earth-green/10 bg-warm-ivory py-8">
+      <section
+        className="section-space product-systems"
+        aria-labelledby="systems-title"
+      >
         <div className="container">
-          <p className="max-w-4xl text-base md:text-lg leading-relaxed text-deep-brown">
-            {t(
-              "homepage.brand_statement",
-              "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
-            )}
-          </p>
-        </div>
-      </section>
-
-      {/* Industries Section */}
-      <section className="py-20 lg:py-28 bg-warm-ivory">
-        <div className="container">
-          <FadeIn>
-            <div className="text-center mb-14">
-              <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                {t("homepage.industries_subtitle", "Serving Global Industries")}
+          <div className="section-heading-row">
+            <div className="max-w-3xl">
+              <p className="eyebrow">
+                {t("homepage.systems_subtitle", "Product Systems")}
               </p>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                {t("homepage.industries_title", "Application Industries")}
+              <h2 id="systems-title" className="display-heading section-title">
+                {t(
+                  "homepage.systems_title",
+                  "Select by Form, Function and Documentation Need"
+                )}
               </h2>
             </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {formulationProblems.map((item, i) => {
-              const Icon = item.icon;
+            <Link href={PRODUCTS_LINK} className="text-link shrink-0">
+              {t("homepage.browse_all", "Browse All 10 Products")}
+              <ArrowRight className="directional-arrow h-4 w-4" />
+            </Link>
+          </div>
+          <div className="system-grid">
+            {systemProductIds.map((id, index) => {
+              const product = products.find(item => item.id === id);
+              if (!product) return null;
               return (
-                <FadeIn key={item.title} delay={i * 60}>
-                  <Link
-                    href={buildLocalizedPath(locale, "/industry-solutions")}
-                  >
-                    <div className="group bg-white rounded-lg p-6 border border-transparent hover:border-earth-green shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 cursor-pointer h-full">
-                      <Icon className="w-8 h-8 text-earth-green mb-4 group-hover:scale-110 transition-transform" />
-                      <h3 className="font-heading font-semibold text-deep-brown text-base mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-medium-gray text-sm leading-relaxed">
-                        {item.body}
-                      </p>
-                    </div>
-                  </Link>
-                </FadeIn>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Systems Section */}
-      <section className="py-20 lg:py-28 bg-soft-green">
-        <div className="container">
-          <FadeIn>
-            <div className="text-center mb-14">
-              <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                {t("homepage.systems_subtitle", "Comprehensive Solutions")}
-              </p>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown">
-                {t("homepage.systems_title", "Six Functional Systems")}
-              </h2>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-            {[0, 1, 2, 3, 4, 5].map(i => (
-              <FadeIn key={i} delay={i * 80}>
-                <div
-                  className={`bg-gradient-to-br ${productSystemColors[i]} rounded-lg p-6 border border-earth-green/10 hover:border-earth-green/30 transition-all duration-200 hover:-translate-y-1`}
+                <Link
+                  key={product.id}
+                  href={buildLocalizedPath(locale, `/products/${product.slug}`)}
+                  className="system-card group"
                 >
-                  <div className="w-10 h-10 rounded-full bg-earth-green/10 flex items-center justify-center mb-4">
-                    <span className="font-heading font-bold text-earth-green text-lg">
-                      {i + 1}
+                  <div className="system-image-frame">
+                    <img
+                      src={buildPublicAssetPath(product.image)}
+                      alt={product.name}
+                      width={600}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="system-card-arrow" aria-hidden="true">
+                      <ArrowUpRight className="directional-arrow h-5 w-5" />
                     </span>
                   </div>
-                  <h3 className="font-heading font-semibold text-deep-brown text-lg">
-                    {t(`homepage.systems.${i}`, `System ${i + 1}`)}
-                  </h3>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          <FadeIn>
-            <div className="text-center">
-              <Link
-                href={PRODUCTS_LINK}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-              >
-                {t("homepage.browse_all", "Browse All 10 Products")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-16 lg:py-24 bg-warm-ivory">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-8">
-            {trustItemKeys.map((key, i) => {
-              const Icon = trustItemIcons[i];
-              return (
-                <FadeIn key={key} delay={i * 80}>
-                  <div className="text-center">
-                    <div className="w-12 h-12 mx-auto rounded-full bg-harvest-gold/15 flex items-center justify-center mb-3">
-                      <Icon className="w-6 h-6 text-harvest-gold" />
-                    </div>
-                    <h4 className="font-heading font-semibold text-deep-brown text-sm mb-1">
-                      {t(`homepage.trust.${key}.title`, key)}
-                    </h4>
-                    <p className="text-medium-gray text-xs leading-relaxed">
-                      {t(`homepage.trust.${key}.desc`, "")}
-                    </p>
+                  <div className="system-card-copy">
+                    <h3>{t(`homepage.systems.${index}`, product.name)}</h3>
+                    <p>{product.name}</p>
+                    <span className="text-link">
+                      {t("common.view_details", "View Details")}
+                      <ArrowRight className="directional-arrow h-3.5 w-3.5" />
+                    </span>
                   </div>
-                </FadeIn>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Resilience Section */}
-      <section className="py-20 lg:py-28 bg-soft-green">
+      <section
+        className="section-space application-section"
+        aria-labelledby="applications-title"
+      >
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-center">
-            <FadeIn>
-              <div>
-                <p className="text-harvest-gold font-heading font-semibold text-sm uppercase tracking-widest mb-3">
-                  {t("homepage.resilience_subtitle", "Supply Chain Resilience")}
-                </p>
-                <h2 className="font-heading font-bold text-3xl md:text-4xl text-deep-brown mb-5">
-                  {t(
-                    "homepage.resilience_title",
-                    "Your Safe Harbor in Global Ingredient Sourcing"
-                  )}
-                </h2>
-                <p className="text-medium-gray text-lg leading-relaxed mb-6">
-                  {t(
-                    "homepage.resilience_description",
-                    "Lecprima is a global B2B brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd. We operate our own manufacturing facility in Liaocheng, Shandong, China, providing global customers with reliable production, quality management and export services."
-                  )}
-                </p>
-                <Link
-                  href={QUALITY_LINK}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-                >
-                  {t(
-                    "homepage.verify_quality",
-                    "Verify Quality & Traceability"
-                  )}
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </FadeIn>
-            <div className="grid grid-cols-1 gap-4">
-              {resilienceItemKeys.map((key, index) => {
-                const Icon = resilienceItemIcons[index];
-                return (
-                  <FadeIn key={key} delay={index * 100}>
-                    <div className="bg-white rounded-lg border border-earth-green/10 p-6 shadow-sm hover:shadow-md transition-all">
-                      <div className="flex items-start gap-4">
-                        <div className="w-11 h-11 rounded-full bg-earth-green/10 flex items-center justify-center shrink-0">
-                          <Icon className="w-5 h-5 text-earth-green" />
-                        </div>
-                        <div>
-                          <h3 className="font-heading font-semibold text-deep-brown text-lg mb-1">
-                            {t(`homepage.resilience.${key}.title`, key)}
-                          </h3>
-                          <p className="text-medium-gray text-sm leading-relaxed">
-                            {t(`homepage.resilience.${key}.desc`, "")}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </FadeIn>
-                );
-              })}
+          <div className="application-intro">
+            <div>
+              <p className="eyebrow">
+                {t(
+                  "homepage.industries_subtitle",
+                  "Start With the Formulation Problem"
+                )}
+              </p>
+              <h2
+                id="applications-title"
+                className="display-heading section-title"
+              >
+                {t(
+                  "homepage.industries_title",
+                  "Problems Buyers Ask Us to Solve"
+                )}
+              </h2>
             </div>
+            <img
+              src={buildPublicAssetPath(SITE_IMAGES.applications)}
+              alt={t("common.industry_solutions", "Ingredient applications")}
+              className="application-intro-image"
+              width={960}
+              height={640}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div className="application-grid">
+            {formulationProblems.map(item => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.title}
+                  href={APPLICATION_FIT_LINK}
+                  className="application-card"
+                >
+                  <div className="application-card-top">
+                    <Icon size={25} strokeWidth={1.5} aria-hidden="true" />
+                    <ArrowUpRight
+                      size={18}
+                      className="directional-arrow"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 lg:py-28 bg-dark-green">
-        <div className="container text-center">
-          <FadeIn>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-warm-ivory mb-4">
-              {t("homepage.cta_title", "From Field to Formulation")}
-            </h2>
-            <p className="text-warm-ivory/70 text-lg max-w-2xl mx-auto mb-8">
+      <section
+        className="section-space confidence-section"
+        aria-labelledby="confidence-title"
+      >
+        <div className="container">
+          <div className="confidence-grid">
+            <div className="confidence-visual">
+              <img
+                src={buildPublicAssetPath(SITE_IMAGES.laboratory)}
+                alt={t(
+                  "homepage.verify_quality",
+                  "Quality documentation review"
+                )}
+                width={1000}
+                height={1000}
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="confidence-visual-caption">
+                <FileText size={22} strokeWidth={1.5} aria-hidden="true" />
+                <span>
+                  {t("homepage.hero_badges.clear_specs", "Clear Specs")}{" "}
+                  <span aria-hidden="true">/</span>{" "}
+                  {t("homepage.hero_badges.batch_coa", "Batch COA")}
+                </span>
+              </div>
+            </div>
+            <div>
+              <p className="eyebrow">
+                {t("homepage.resilience_subtitle", "Formulation Confidence")}
+              </p>
+              <h2
+                id="confidence-title"
+                className="display-heading section-title"
+              >
+                {t(
+                  "homepage.resilience_title",
+                  "Clear Answers for QA, Procurement and R&D"
+                )}
+              </h2>
+              <p className="section-description">
+                {t(
+                  "homepage.resilience_description",
+                  "Connect your application to specifications, documentation and sample evaluation."
+                )}
+              </p>
+              <div className="evaluation-steps">
+                {evaluationSteps.map(step => {
+                  const Icon = step.icon;
+                  return (
+                    <div className="evaluation-step" key={step.title}>
+                      <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
+                      <div>
+                        <h3>{step.title}</h3>
+                        <p>{step.body}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <Link href={QUALITY_LINK} className="text-link">
+                {t("homepage.verify_quality", "Review Quality Documents")}
+                <ArrowRight className="directional-arrow h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+          <div className="brand-statement">
+            <span className="brand-statement-name">Lecprima</span>
+            <p>
               {t(
-                "homepage.cta_description",
-                "Precision controlled every step. Tell us about your product needs. Our agricultural and application engineers provide tailored recommendations for stable, long-term phospholipid sourcing."
+                "homepage.brand_statement",
+                "Lecprima is a B2B ingredient brand operated by Harbin Huiyi Jianpin Import & Export Trade Co., Ltd."
               )}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href={INQUIRY_FORM_LINK}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-earth-green text-white font-medium rounded-md hover:bg-earth-green-dark transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                {t("homepage.email_inquiry", "Email Inquiry")}
-              </a>
-            </div>
-          </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      <section className="home-contact-section">
+        <div className="container home-contact-grid">
+          <div>
+            <p className="eyebrow">{t("common.contact", "Contact")}</p>
+            <h2 className="display-heading section-title">
+              {t(
+                "homepage.cta_title",
+                "Tell Us the Problem Your Formula Needs to Solve"
+              )}
+            </h2>
+          </div>
+          <div>
+            <p>
+              {t(
+                "homepage.cta_description",
+                "Share your application, specification, sample request and quantity range with our team."
+              )}
+            </p>
+            <a href={INQUIRY_FORM_LINK} className="button-light">
+              <Mail className="h-4 w-4" />
+              {t("homepage.email_inquiry", "Email Inquiry")}
+              <ArrowUpRight className="directional-arrow h-4 w-4" />
+            </a>
+          </div>
         </div>
       </section>
     </div>

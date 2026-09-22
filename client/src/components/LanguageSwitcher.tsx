@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Globe } from "lucide-react";
+import { Check, ChevronDown, Globe } from "lucide-react";
 import { useLocation } from "wouter";
 import {
   useI18nContext,
@@ -19,10 +19,9 @@ import {
 
 export default function LanguageSwitcher() {
   const [location, setLocation] = useLocation();
-  const { locale: currentLocale } = useI18nContext();
+  const { locale: currentLocale, isRTL, t } = useI18nContext();
 
   const currentName = LOCALE_NAMES[currentLocale];
-  const currentFlag = LOCALE_FLAGS[currentLocale];
 
   const handleLanguageChange = (langCode: Locale) => {
     const pathWithoutLocale = getPathWithoutLocale(location);
@@ -31,22 +30,40 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu dir={isRTL ? "rtl" : "ltr"}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentFlag}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="language-trigger"
+          aria-label={`${t("common.language", "Language")}: ${currentName}`}
+          title={currentName}
+        >
+          <Globe className="h-4 w-4" aria-hidden="true" />
+          <span>
+            {currentLocale === "zh-CN"
+              ? "中文"
+              : currentLocale === "ar"
+                ? "العربية"
+                : currentLocale.split("-")[0].toUpperCase()}
+          </span>
+          <ChevronDown className="h-3 w-3" aria-hidden="true" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {LOCALES.map((lang) => (
+      <DropdownMenuContent align="end" className="min-w-48 p-2">
+        {LOCALES.map(lang => (
           <DropdownMenuItem
             key={lang}
             onClick={() => handleLanguageChange(lang)}
-            className={currentLocale === lang ? "bg-accent" : ""}
+            className={`min-h-10 gap-3 ${currentLocale === lang ? "bg-accent font-semibold" : ""}`}
+            lang={lang}
+            aria-current={currentLocale === lang ? "true" : undefined}
           >
-            <span className="mr-2">{LOCALE_FLAGS[lang]}</span>
+            <span aria-hidden="true">{LOCALE_FLAGS[lang]}</span>
             {LOCALE_NAMES[lang]}
+            {currentLocale === lang && (
+              <Check className="ms-auto h-4 w-4" aria-hidden="true" />
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

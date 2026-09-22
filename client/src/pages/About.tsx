@@ -1,3 +1,5 @@
+import { SITE_IMAGES } from "@/content/media";
+import { buildPublicAssetPath } from "@/content/url";
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
  * About page: Company intro, animated counters, philosophy, locations
@@ -8,10 +10,8 @@ import { MapPin, Eye, ShieldCheck, ChevronRight } from "lucide-react";
 import { usePageSEO, buildBreadcrumbSchema } from "@/lib/usePageSEO";
 import { useI18nContext, buildLocalizedPath } from "@/i18n";
 
-const GMP_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/about-company-scene-4hr3U7uoXgBrhJqFUv3tiL.webp";
-const QUALITY_IMG =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663542071909/f8VjjnvUts7et3XqyBkjBm/banner-lab-closeup-eEN2xCbwdBHhpnYpNTTntG.webp";
+const GMP_IMG = SITE_IMAGES.company;
+const QUALITY_IMG = SITE_IMAGES.laboratory;
 
 function useCounter(end: number, suffix = "", duration = 2000) {
   const [count, setCount] = useState(0);
@@ -105,7 +105,7 @@ export default function About() {
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${GMP_IMG})` }}
+          style={{ backgroundImage: `url(${buildPublicAssetPath(GMP_IMG)})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-12">
@@ -154,8 +154,8 @@ export default function About() {
             <FadeIn delay={200}>
               <div className="rounded-xl overflow-hidden shadow-lg">
                 <img
-                  src={QUALITY_IMG}
-                  alt={t("about_page.story_image_alt", "Quality control technician verifying traceable phospholipid supply")}
+                  src={buildPublicAssetPath(QUALITY_IMG)}
+                  alt={t("about_page.story_image_alt", "Illustrative laboratory scene with liquid and powder ingredient samples")}
                   className="w-full h-[400px] object-cover"
                 />
               </div>
