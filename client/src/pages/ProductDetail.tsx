@@ -11,9 +11,9 @@ import {
 import { getProductBySlug } from "@/lib/productData";
 import LocalizedLink from "@/components/LocalizedLink";
 import { usePageSEO } from "@/lib/usePageSEO";
-import { buildPublicAssetPath } from "@/content/url";
 import { buildLocalizedPublicPath, useI18nContext } from "@/i18n";
 import { CONTACT } from "@/content/site";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 const CONTACT_EMAIL_BASE = `mailto:${CONTACT.email}?subject=`;
 
@@ -74,7 +74,6 @@ export default function ProductDetail() {
   // Keep this existing CTA contract easy to inspect in source-based checks.
   // prettier-ignore
   const contactQuoteFormLink = buildLocalizedPublicPath(locale, "/contact#quoteForm");
-  const productImage = buildPublicAssetPath(product.image);
 
   return (
     <div className="product-detail-page">
@@ -111,12 +110,13 @@ export default function ProductDetail() {
           <div className="product-detail-grid">
             {/* Product Image */}
             <div className="product-detail-image">
-              <img
-                src={productImage}
+              <ResponsiveImage
+                src={product.image}
+                preset="product"
+                sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 900px) min(600px, calc(100vw - 48px)), (max-width: 1023px) calc(50vw - 44px), (max-width: 1100px) calc(50vw - 52px), (max-width: 1279px) calc(50vw - 64px), 576px"
+                pictureClassName="image-fill"
                 alt={product.name}
                 className="w-full h-full object-contain"
-                width={900}
-                height={900}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"

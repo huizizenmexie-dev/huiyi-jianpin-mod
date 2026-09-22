@@ -1,5 +1,5 @@
 import { SITE_IMAGES } from "@/content/media";
-import { buildPublicAssetPath } from "@/content/url";
+import ResponsiveImage from "@/components/ResponsiveImage";
 /*
  * DESIGN: Agricultural Documentary — Cinematic Storytelling
  * About page: Company intro, animated counters, philosophy, locations
@@ -103,9 +103,15 @@ export default function About() {
     <div>
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${buildPublicAssetPath(GMP_IMG)})` }}
+        <ResponsiveImage
+          src={GMP_IMG}
+          preset="editorial"
+          sizes="100vw"
+          alt=""
+          pictureClassName="absolute inset-0"
+          className="h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="relative container pb-12">
@@ -153,8 +159,10 @@ export default function About() {
             </FadeIn>
             <FadeIn delay={200}>
               <div className="rounded-xl overflow-hidden shadow-lg">
-                <img
-                  src={buildPublicAssetPath(QUALITY_IMG)}
+                <ResponsiveImage
+                  src={QUALITY_IMG}
+                  preset="editorial"
+                  sizes="(max-width: 1023px) 92vw, 560px"
                   alt={t("about_page.story_image_alt", "Illustrative laboratory scene with liquid and powder ingredient samples")}
                   className="w-full h-[400px] object-cover"
                 />

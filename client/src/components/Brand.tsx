@@ -14,6 +14,7 @@ export default function Brand({ light = false }: { light?: boolean }) {
           width={48}
           height={48}
           className="brand-mark"
+          decoding="async"
         />
       </span>
       <span className="brand-wordmark">

@@ -1,5 +1,5 @@
 import { SITE_IMAGES } from "@/content/media";
-import { buildPublicAssetPath } from "@/content/url";
+import ResponsiveImage from "@/components/ResponsiveImage";
 import { Link } from "wouter";
 import { ArrowRight, ChevronRight, FileText } from "lucide-react";
 import {
@@ -38,9 +38,15 @@ export default function Insights() {
   return (
     <main className="bg-warm-ivory">
       <section className="relative flex min-h-[300px] items-end overflow-hidden pt-24">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${buildPublicAssetPath(HEADER_IMG)})` }}
+        <ResponsiveImage
+          src={HEADER_IMG}
+          preset="editorial"
+          sizes="100vw"
+          alt=""
+          pictureClassName="absolute inset-0"
+          className="h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10" />
         <div className="container relative pb-10">

@@ -328,7 +328,7 @@ type LocalizedProductCopy = Pick<
 const PRODUCT_COPY: Partial<Record<Locale, Record<string, LocalizedProductCopy>>> = {
   "zh-CN": {
     "soy-lecithin-liquid": {
-      name: "液体大豆卵磷脂系统",
+      name: "液体大豆卵磷脂系列",
       subtitle: "磷脂 ≥60% | ISO 22000 | 可选 Non-GMO IP",
       quickSpecs: "形态：琥珀色黏稠液体 | 型号：HXY-1SP/3SP/5SP/1SPN | MOQ：200 kg",
       form: "液体",
@@ -336,7 +336,7 @@ const PRODUCT_COPY: Partial<Record<Locale, Record<string, LocalizedProductCopy>>
       ctaText: "需要 HXY-1SP 的技术选型支持？",
     },
     "soy-lecithin-powder": {
-      name: "粉末大豆卵磷脂系统",
+      name: "粉末大豆卵磷脂系列",
       subtitle: "磷脂 ≥96% | ISO 22000 | 可选 Non-GMO IP",
       quickSpecs: "形态：浅黄色细粉 | 型号：HXY-PLP/PLS/PLF/PLG | MOQ：200 kg",
       form: "粉末",
@@ -344,7 +344,7 @@ const PRODUCT_COPY: Partial<Record<Locale, Record<string, LocalizedProductCopy>>
       ctaText: "需要 HXY-PL 系列的技术选型支持？",
     },
     "modified-soy-lecithin": {
-      name: "改性大豆卵磷脂系统",
+      name: "改性大豆卵磷脂系列",
       subtitle: "HLB 约 10 | ISO 22000 | O/W 乳化剂",
       quickSpecs: "形态：液体 (HXY-2SP) / 粉末 (HXY-PLW) | HLB 约 10 | MOQ：200 kg",
       form: "液体 / 粉末",
@@ -352,7 +352,7 @@ const PRODUCT_COPY: Partial<Record<Locale, Record<string, LocalizedProductCopy>>
       ctaText: "需要改性卵磷脂的技术选型支持？",
     },
     phosphatidylcholine: {
-      name: "磷脂酰胆碱系统",
+      name: "磷脂酰胆碱系列",
       subtitle: "纯度 30%–90% | ISO 22000 | 脂质体级",
       quickSpecs: "纯度：30%–90% | ≥70% 需要冷链",
       form: "粉末 / 蜡状固体",
@@ -360,7 +360,7 @@ const PRODUCT_COPY: Partial<Record<Locale, Record<string, LocalizedProductCopy>>
       ctaText: "需要高纯度 PC 用于您的配方？",
     },
     phosphatidylserine: {
-      name: "磷脂酰丝氨酸系统",
+      name: "磷脂酰丝氨酸系列",
       subtitle: "纯度 20%–70% | ISO 22000 | 磷脂原料",
       quickSpecs: "纯度：20%–70% | 酶法合成",
       form: "浅黄色粉末",
@@ -368,7 +368,7 @@ const PRODUCT_COPY: Partial<Record<Locale, Record<string, LocalizedProductCopy>>
       ctaText: "需要用于认知健康产品的 PS？",
     },
     "sunflower-lecithin": {
-      name: "葵花卵磷脂系统",
+      name: "葵花卵磷脂系列",
       subtitle: "磷脂 ≥60%（液体）/ ≥96%（粉末）| ISO 22000 | 无大豆 · 无过敏原",
       quickSpecs: "形态：液体 (HXY-SFL) / 粉末 (HXY-SFP) | 来源：100% 葵花",
       form: "液体 / 粉末",

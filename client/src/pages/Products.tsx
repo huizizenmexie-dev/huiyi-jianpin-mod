@@ -13,8 +13,8 @@ import {
   buildLocalizedPath,
   buildLocalizedPublicPath,
 } from "@/i18n";
-import { buildPublicAssetPath } from "@/content/url";
 import { SITE_IMAGES } from "@/content/media";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 const filterLabelKeys: Record<string, string> = {
   All: "products_page.filters.all",
@@ -98,14 +98,15 @@ export default function Products() {
               </p>
             </div>
             <div className="catalogue-header-visual">
-              <img
-                src={buildPublicAssetPath(SITE_IMAGES.hero)}
+              <ResponsiveImage
+                src={SITE_IMAGES.hero}
+                preset="editorial"
+                sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 900px) calc(41.667vw - 34px), (max-width: 1023px) calc(40.817vw - 46px), (max-width: 1279px) calc(40.817vw - 53px), 471px"
+                pictureClassName="image-fill"
                 alt={t(
                   "homepage.hero_subtitle",
                   "Lecithin and phospholipid ingredients"
                 )}
-                width={1536}
-                height={1024}
                 loading="eager"
                 decoding="async"
               />
@@ -176,11 +177,12 @@ export default function Products() {
                 className="product-card"
               >
                 <div className="product-card-image">
-                  <img
-                    src={buildPublicAssetPath(product.image)}
+                  <ResponsiveImage
+                    src={product.image}
+                    preset="product"
+                    sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 900px) calc(50vw - 36px), (max-width: 1023px) calc(33.333vw - 32px), (max-width: 1279px) calc(33.333vw - 38px), 390px"
+                    pictureClassName="image-fill"
                     alt={product.name}
-                    width={720}
-                    height={720}
                     loading="lazy"
                     decoding="async"
                   />

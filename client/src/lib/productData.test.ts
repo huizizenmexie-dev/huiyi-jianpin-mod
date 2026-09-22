@@ -8,7 +8,7 @@ describe("localized product master data", () => {
     expect(product?.slug).toBe("soy-lecithin-liquid");
     expect(product?.category).toEqual(["Liquid"]);
     expect(product?.image).toBe("/images/products/soy-lecithin-liquid.webp");
-    expect(product?.name).toBe("液体大豆卵磷脂系统");
+    expect(product?.name).toBe("液体大豆卵磷脂系列");
     expect(product?.subtitle).toContain("磷脂");
     expect(product?.specifications[0]).toEqual({
       label: "产品形态",
