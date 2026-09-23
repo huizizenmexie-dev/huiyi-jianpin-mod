@@ -242,7 +242,7 @@
       "powder": "Pós",
       "high_purity": "Alta pureza",
       "allergen_free": "Sem alérgenos",
-      "protein_fiber": "Proteína/Fibra"
+      "protein_fiber": "Proteína / Fibra / Oligossacarídeos"
     }
   },
   "product_detail": {
@@ -358,7 +358,7 @@
       {
         "industry": "Lácteos e Bebidas Instantâneas",
         "pain_points": "Empelotamento de pó, dissolução lenta, gordura flutuante, emulsificação irregular",
-        "products": "Lecitina Modificada HXY-PLW, Lecitina de Soja Líquida HXY-1SPN, Oligossacarídeo em pequena embalagem",
+        "products": "Lecitina Modificada HXY-PLW, Lecitina de Soja Líquida HXY-1SPN, Oligossacarídeos de soja",
         "dosage": "0,2-2% por adição seca/úmida, spray ou mistura seca",
         "effect": "Apoia metas de dispersão, estabilidade de emulsão e sensação na boca após validação do comprador"
       },
@@ -393,14 +393,14 @@
       {
         "industry": "Feed / Nutrição Animal",
         "pain_points": "Baixa absorção de nutrientes lipofílicos, empedramento de pó, baixa estabilidade",
-        "products": "Proteína/Oligossacarídeo de soja em pequena embalagem, Fibra Dietética de Soja",
+        "products": "Proteína de soja, fibra dietética de soja, oligossacarídeos de soja",
         "dosage": "Misturar na fórmula de ração",
         "effect": "Nutrição uniforme, apoio à saúde intestinal e pó com melhor fluidez"
       },
       {
         "industry": "Alimentos de Alta Fibra",
         "pain_points": "Necessidades de formulação e textura com alta fibra",
-        "products": "Fibra Dietética de Soja J18000, Oligossacarídeo de Soja em pequena embalagem",
+        "products": "Fibra Dietética de Soja J18000, Oligossacarídeos de soja",
         "dosage": "Adição de 1-5%",
         "effect": "Apoia metas de teor de fibra e textura após validação do comprador"
       }

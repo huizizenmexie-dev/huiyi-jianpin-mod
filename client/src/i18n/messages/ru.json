@@ -173,7 +173,7 @@
       "powder": "Порошковые",
       "high_purity": "Высокая чистота",
       "allergen_free": "Без аллергенов",
-      "protein_fiber": "Белок/клетчатка"
+      "protein_fiber": "Белок / клетчатка / олигосахариды"
     }
   },
   "product_detail": {
@@ -254,7 +254,7 @@
       {
         "industry": "Молочные и растворимые напитки",
         "pain_points": "Комкование порошка, медленное растворение, всплывание жира, неравномерная эмульсия",
-        "products": "Modified Lecithin HXY-PLW, Soy Lecithin Liquid HXY-1SPN, Small Pack Oligosaccharide",
+        "products": "Modified Lecithin HXY-PLW, Soy Lecithin Liquid HXY-1SPN, Соевые олигосахариды",
         "dosage": "0.2-2% сухое/влажное внесение, распыление или сухое смешивание",
         "effect": "Поддерживает цели по дисперсии, стабильности эмульсии и mouthfeel после проверки покупателем"
       },
@@ -289,14 +289,14 @@
       {
         "industry": "Корма / питание животных",
         "pain_points": "Низкое усвоение липофильных нутриентов, слеживание порошка, слабая стабильность",
-        "products": "Small Pack Soy Protein/Oligosaccharide, Soy Dietary Fiber",
+        "products": "Соевый белок, соевые пищевые волокна, соевые олигосахариды",
         "dosage": "Смешивать с кормовой формулой",
         "effect": "Равномерное питание, поддержка здоровья кишечника, лучшая сыпучесть порошка"
       },
       {
         "industry": "Продукты с высоким содержанием клетчатки",
         "pain_points": "Потребности в рецептуре и текстуре high-fiber продуктов",
-        "products": "Soy Dietary Fiber J18000, Small Pack Soy Oligosaccharide",
+        "products": "Soy Dietary Fiber J18000, Соевые олигосахариды",
         "dosage": "1-5% добавления",
         "effect": "Поддерживает цели по содержанию клетчатки и текстуре после проверки покупателем"
       }

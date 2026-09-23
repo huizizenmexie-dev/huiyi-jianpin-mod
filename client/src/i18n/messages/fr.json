@@ -242,7 +242,7 @@
       "powder": "Poudres",
       "high_purity": "Haute pureté",
       "allergen_free": "Sans allergènes",
-      "protein_fiber": "Protéine/Fibre"
+      "protein_fiber": "Protéine / Fibre / Oligosaccharides"
     }
   },
   "product_detail": {
@@ -358,7 +358,7 @@
       {
         "industry": "Produits laitiers et boissons instantanées",
         "pain_points": "Agglomération, dissolution lente, graisse flottante, émulsification irrégulière",
-        "products": "Lécithine modifiée HXY-PLW, lécithine de soja liquide HXY-1SPN, oligosaccharide petit conditionnement",
+        "products": "Lécithine modifiée HXY-PLW, lécithine de soja liquide HXY-1SPN, oligosaccharides de soja",
         "dosage": "0,2-2% en ajout sec/humide, spray ou mélange sec",
         "effect": "Soutient dispersion, stabilité d'émulsion et sensation en bouche après validation acheteur"
       },
@@ -393,14 +393,14 @@
       {
         "industry": "Nutrition animale",
         "pain_points": "Faible absorption des nutriments lipophiles, mottage des poudres, stabilité insuffisante",
-        "products": "Protéine/oligosaccharide soja petit conditionnement, fibre alimentaire de soja",
+        "products": "Protéines de soja, fibres alimentaires de soja, oligosaccharides de soja",
         "dosage": "Incorporation dans la formule d'aliment",
         "effect": "Nutrition uniforme, soutien intestinal et meilleure fluidité des poudres"
       },
       {
         "industry": "Aliments riches en fibres",
         "pain_points": "Besoins de formulation et de texture riches en fibres",
-        "products": "Fibre alimentaire de soja J18000, oligosaccharide de soja petit conditionnement",
+        "products": "Fibre alimentaire de soja J18000, oligosaccharides de soja",
         "dosage": "Ajout de 1-5%",
         "effect": "Soutient les objectifs de teneur en fibres et de texture après validation acheteur"
       }
